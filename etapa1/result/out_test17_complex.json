@@ -4839,15 +4839,25 @@
     "paused" : false
   }
 }, {
+  "command" : "prev",
+  "user" : "bob35",
+  "timestamp" : 5610,
+  "message" : "Returned to previous track successfully. The current track is Stairway to Heaven."
+}, {
+  "command" : "prev",
+  "user" : "bob35",
+  "timestamp" : 5610,
+  "message" : "Please load a source before returning to the previous track."
+}, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 5610,
   "stats" : {
-    "name" : "Stairway to Heaven",
-    "remainedTime" : 284,
+    "name" : "",
+    "remainedTime" : 0,
     "repeat" : "No Repeat",
     "shuffle" : true,
-    "paused" : false
+    "paused" : true
   }
 }, {
   "command" : "like",
@@ -4871,12 +4881,17 @@
   "timestamp" : 5630,
   "message" : "The specified playlist ID is too high."
 }, {
+  "command" : "prev",
+  "user" : "david27",
+  "timestamp" : 5630,
+  "message" : "Returned to previous track successfully. The current track is Start Me Up."
+}, {
   "command" : "status",
   "user" : "david27",
   "timestamp" : 5630,
   "stats" : {
     "name" : "Start Me Up",
-    "remainedTime" : 14,
+    "remainedTime" : 212,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : false
@@ -4914,12 +4929,17 @@
     "paused" : false
   }
 }, {
+  "command" : "prev",
+  "user" : "grace25",
+  "timestamp" : 5660,
+  "message" : "Returned to previous track successfully. The current track is Begin Again."
+}, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 5660,
   "stats" : {
     "name" : "Begin Again",
-    "remainedTime" : 40,
+    "remainedTime" : 238,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : false
@@ -5003,14 +5023,14 @@
   "command" : "playPause",
   "user" : "bob35",
   "timestamp" : 5710,
-  "message" : "Playback paused successfully."
+  "message" : "Please load a source before attempting to pause or resume playback."
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 5710,
   "stats" : {
-    "name" : "Stairway to Heaven",
-    "remainedTime" : 184,
+    "name" : "",
+    "remainedTime" : 0,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : true
@@ -5021,15 +5041,20 @@
   "timestamp" : 5720,
   "message" : "Visibility status updated successfully to private."
 }, {
+  "command" : "prev",
+  "user" : "carol19",
+  "timestamp" : 5720,
+  "message" : "Returned to previous track successfully. The current track is Love Story."
+}, {
   "command" : "status",
   "user" : "carol19",
   "timestamp" : 5720,
   "stats" : {
     "name" : "Love Story",
-    "remainedTime" : 138,
+    "remainedTime" : 236,
     "repeat" : "No Repeat",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "switchVisibility",
@@ -5046,19 +5071,29 @@
   "user" : "david27",
   "timestamp" : 5730,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 181,
+    "name" : "Start Me Up",
+    "remainedTime" : 112,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : false
   }
 }, {
+  "command" : "prev",
+  "user" : "emily30",
+  "timestamp" : 5740,
+  "message" : "Returned to previous track successfully. The current track is Shape of You."
+}, {
+  "command" : "prev",
+  "user" : "emily30",
+  "timestamp" : 5740,
+  "message" : "Returned to previous track successfully. The current track is Start Me Up."
+}, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 5740,
   "stats" : {
-    "name" : "Shape of You",
-    "remainedTime" : 133,
+    "name" : "Start Me Up",
+    "remainedTime" : 212,
     "repeat" : "Repeat All",
     "shuffle" : false,
     "paused" : false
@@ -5089,8 +5124,8 @@
   "user" : "grace25",
   "timestamp" : 5760,
   "stats" : {
-    "name" : "Gimme Shelter",
-    "remainedTime" : 211,
+    "name" : "Begin Again",
+    "remainedTime" : 138,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : false
@@ -5100,8 +5135,8 @@
   "user" : "grace25",
   "timestamp" : 5760,
   "stats" : {
-    "name" : "Gimme Shelter",
-    "remainedTime" : 211,
+    "name" : "Begin Again",
+    "remainedTime" : 138,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : false
@@ -5110,7 +5145,7 @@
   "command" : "next",
   "user" : "henry26",
   "timestamp" : 5770,
-  "message" : null
+  "message" : "Please load a source before skipping to the next track."
 }, {
   "command" : "status",
   "user" : "henry26",
@@ -5174,14 +5209,14 @@
   "command" : "like",
   "user" : "bob35",
   "timestamp" : 5810,
-  "message" : "Like registered successfully."
+  "message" : "Please load a source before liking or unliking."
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 5810,
   "stats" : {
-    "name" : "Stairway to Heaven",
-    "remainedTime" : 184,
+    "name" : "",
+    "remainedTime" : 0,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : true
@@ -5200,15 +5235,15 @@
     "remainedTime" : 219,
     "repeat" : "No Repeat",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "status",
   "user" : "david27",
   "timestamp" : 5830,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 81,
+    "name" : "Start Me Up",
+    "remainedTime" : 12,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : false
@@ -5218,8 +5253,8 @@
   "user" : "david27",
   "timestamp" : 5830,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 81,
+    "name" : "Start Me Up",
+    "remainedTime" : 12,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : false
@@ -5239,8 +5274,8 @@
   "user" : "emily30",
   "timestamp" : 5840,
   "stats" : {
-    "name" : "Shape of You",
-    "remainedTime" : 33,
+    "name" : "Start Me Up",
+    "remainedTime" : 112,
     "repeat" : "Repeat Current Song",
     "shuffle" : false,
     "paused" : false
@@ -5265,14 +5300,14 @@
   "command" : "next",
   "user" : "grace25",
   "timestamp" : 5860,
-  "message" : "Skipped to next track successfully. The current track is Start Me Up."
+  "message" : "Skipped to next track successfully. The current track is Gimme Shelter."
 }, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 5860,
   "stats" : {
-    "name" : "Start Me Up",
-    "remainedTime" : 212,
+    "name" : "Gimme Shelter",
+    "remainedTime" : 271,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : false
@@ -5320,12 +5355,17 @@
   "timestamp" : 5890,
   "message" : "Visibility status updated successfully to private."
 }, {
+  "command" : "prev",
+  "user" : "jack29",
+  "timestamp" : 5890,
+  "message" : "Returned to previous track successfully. The current track is Money Trees."
+}, {
   "command" : "status",
   "user" : "jack29",
   "timestamp" : 5890,
   "stats" : {
     "name" : "Money Trees",
-    "remainedTime" : 222,
+    "remainedTime" : 387,
     "repeat" : "Repeat All",
     "shuffle" : false,
     "paused" : false
@@ -5347,12 +5387,17 @@
     "paused" : true
   }
 }, {
+  "command" : "prev",
+  "user" : "bob35",
+  "timestamp" : 5910,
+  "message" : "Please load a source before returning to the previous track."
+}, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 5910,
   "stats" : {
-    "name" : "Stairway to Heaven",
-    "remainedTime" : 184,
+    "name" : "",
+    "remainedTime" : 0,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : true
@@ -5368,10 +5413,10 @@
   "timestamp" : 5920,
   "stats" : {
     "name" : "Don't",
-    "remainedTime" : 219,
+    "remainedTime" : 119,
     "repeat" : "No Repeat",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "status",
@@ -5379,18 +5424,28 @@
   "timestamp" : 5920,
   "stats" : {
     "name" : "Don't",
-    "remainedTime" : 219,
+    "remainedTime" : 119,
     "repeat" : "No Repeat",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
+}, {
+  "command" : "prev",
+  "user" : "david27",
+  "timestamp" : 5930,
+  "message" : "Returned to previous track successfully. The current track is Dream On."
+}, {
+  "command" : "prev",
+  "user" : "david27",
+  "timestamp" : 5930,
+  "message" : "Returned to previous track successfully. The current track is Start Me Up."
 }, {
   "command" : "status",
   "user" : "david27",
   "timestamp" : 5930,
   "stats" : {
-    "name" : "Angie",
-    "remainedTime" : 254,
+    "name" : "Start Me Up",
+    "remainedTime" : 212,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : false
@@ -5404,14 +5459,14 @@
   "command" : "next",
   "user" : "emily30",
   "timestamp" : 5940,
-  "message" : "Skipped to next track successfully. The current track is Shape of You."
+  "message" : "Skipped to next track successfully. The current track is Start Me Up."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 5940,
   "stats" : {
-    "name" : "Shape of You",
-    "remainedTime" : 233,
+    "name" : "Start Me Up",
+    "remainedTime" : 212,
     "repeat" : "Repeat Current Song",
     "shuffle" : false,
     "paused" : false
@@ -5453,8 +5508,8 @@
   "user" : "grace25",
   "timestamp" : 5960,
   "stats" : {
-    "name" : "Start Me Up",
-    "remainedTime" : 112,
+    "name" : "Gimme Shelter",
+    "remainedTime" : 171,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : false
@@ -5502,7 +5557,7 @@
   "timestamp" : 5990,
   "stats" : {
     "name" : "Money Trees",
-    "remainedTime" : 122,
+    "remainedTime" : 287,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -5532,15 +5587,15 @@
   "command" : "repeat",
   "user" : "bob35",
   "timestamp" : 6010,
-  "message" : "Repeat mode changed to repeat all."
+  "message" : "Please load a source before setting the repeat status."
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 6010,
   "stats" : {
-    "name" : "Stairway to Heaven",
-    "remainedTime" : 184,
-    "repeat" : "Repeat All",
+    "name" : "",
+    "remainedTime" : 0,
+    "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : true
   }
@@ -5555,18 +5610,23 @@
   "timestamp" : 6020,
   "stats" : {
     "name" : "Don't",
-    "remainedTime" : 219,
+    "remainedTime" : 19,
     "repeat" : "No Repeat",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
+}, {
+  "command" : "prev",
+  "user" : "david27",
+  "timestamp" : 6030,
+  "message" : "Returned to previous track successfully. The current track is Start Me Up."
 }, {
   "command" : "status",
   "user" : "david27",
   "timestamp" : 6030,
   "stats" : {
-    "name" : "Angie",
-    "remainedTime" : 154,
+    "name" : "Start Me Up",
+    "remainedTime" : 212,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : false
@@ -5581,8 +5641,8 @@
   "user" : "emily30",
   "timestamp" : 6040,
   "stats" : {
-    "name" : "Shape of You",
-    "remainedTime" : 133,
+    "name" : "Start Me Up",
+    "remainedTime" : 112,
     "repeat" : "Repeat Current Song",
     "shuffle" : false,
     "paused" : false
@@ -5619,8 +5679,8 @@
   "user" : "grace25",
   "timestamp" : 6060,
   "stats" : {
-    "name" : "Start Me Up",
-    "remainedTime" : 12,
+    "name" : "Gimme Shelter",
+    "remainedTime" : 71,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : false
@@ -5679,7 +5739,7 @@
   "timestamp" : 6090,
   "stats" : {
     "name" : "Money Trees",
-    "remainedTime" : 22,
+    "remainedTime" : 187,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : true
@@ -5704,16 +5764,16 @@
   "command" : "shuffle",
   "user" : "bob35",
   "timestamp" : 6110,
-  "message" : "Shuffle function activated successfully."
+  "message" : "Please load a source before using the shuffle function."
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 6110,
   "stats" : {
-    "name" : "Stairway to Heaven",
-    "remainedTime" : 184,
-    "repeat" : "Repeat All",
-    "shuffle" : true,
+    "name" : "",
+    "remainedTime" : 0,
+    "repeat" : "No Repeat",
+    "shuffle" : false,
     "paused" : true
   }
 }, {
@@ -5731,11 +5791,11 @@
   "user" : "carol19",
   "timestamp" : 6120,
   "stats" : {
-    "name" : "Don't",
-    "remainedTime" : 219,
+    "name" : "Money Trees",
+    "remainedTime" : 306,
     "repeat" : "No Repeat",
     "shuffle" : true,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "repeat",
@@ -5747,19 +5807,24 @@
   "user" : "david27",
   "timestamp" : 6130,
   "stats" : {
-    "name" : "Angie",
-    "remainedTime" : 54,
+    "name" : "Start Me Up",
+    "remainedTime" : 112,
     "repeat" : "Repeat All",
     "shuffle" : false,
     "paused" : false
   }
 }, {
+  "command" : "prev",
+  "user" : "emily30",
+  "timestamp" : 6140,
+  "message" : "Returned to previous track successfully. The current track is Start Me Up."
+}, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6140,
   "stats" : {
-    "name" : "Shape of You",
-    "remainedTime" : 33,
+    "name" : "Start Me Up",
+    "remainedTime" : 212,
     "repeat" : "Repeat Current Song",
     "shuffle" : false,
     "paused" : false
@@ -5790,12 +5855,17 @@
   "user" : "grace25",
   "timestamp" : 6160,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
+    "name" : "Start Me Up",
+    "remainedTime" : 183,
     "repeat" : "No Repeat",
     "shuffle" : true,
-    "paused" : true
+    "paused" : false
   }
+}, {
+  "command" : "prev",
+  "user" : "henry26",
+  "timestamp" : 6170,
+  "message" : "Please load a source before returning to the previous track."
 }, {
   "command" : "status",
   "user" : "henry26",
@@ -5834,7 +5904,7 @@
   "timestamp" : 6190,
   "stats" : {
     "name" : "Money Trees",
-    "remainedTime" : 22,
+    "remainedTime" : 187,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -5859,16 +5929,16 @@
   "command" : "like",
   "user" : "bob35",
   "timestamp" : 6210,
-  "message" : "Unlike registered successfully."
+  "message" : "Please load a source before liking or unliking."
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 6210,
   "stats" : {
-    "name" : "Stairway to Heaven",
-    "remainedTime" : 184,
-    "repeat" : "Repeat All",
-    "shuffle" : true,
+    "name" : "",
+    "remainedTime" : 0,
+    "repeat" : "No Repeat",
+    "shuffle" : false,
     "paused" : true
   }
 }, {
@@ -5881,24 +5951,24 @@
   "user" : "carol19",
   "timestamp" : 6220,
   "stats" : {
-    "name" : "Don't",
-    "remainedTime" : 219,
+    "name" : "Money Trees",
+    "remainedTime" : 206,
     "repeat" : "Repeat All",
     "shuffle" : true,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "like",
   "user" : "david27",
   "timestamp" : 6230,
-  "message" : "Like registered successfully."
+  "message" : "Unlike registered successfully."
 }, {
   "command" : "status",
   "user" : "david27",
   "timestamp" : 6230,
   "stats" : {
-    "name" : "Gimme Shelter",
-    "remainedTime" : 225,
+    "name" : "Start Me Up",
+    "remainedTime" : 12,
     "repeat" : "Repeat All",
     "shuffle" : false,
     "paused" : false
@@ -5909,15 +5979,25 @@
   "timestamp" : 6240,
   "message" : "The specified playlist ID is too high."
 }, {
+  "command" : "prev",
+  "user" : "emily30",
+  "timestamp" : 6240,
+  "message" : "Returned to previous track successfully. The current track is Start Me Up."
+}, {
+  "command" : "prev",
+  "user" : "emily30",
+  "timestamp" : 6240,
+  "message" : "Please load a source before returning to the previous track."
+}, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6240,
   "stats" : {
-    "name" : "Shape of You",
-    "remainedTime" : 166,
-    "repeat" : "Repeat Current Song",
+    "name" : "",
+    "remainedTime" : 0,
+    "repeat" : null,
     "shuffle" : false,
-    "paused" : false
+    "paused" : true
   }
 }, {
   "command" : "like",
@@ -5939,23 +6019,23 @@
   "command" : "repeat",
   "user" : "grace25",
   "timestamp" : 6260,
-  "message" : "Please load a source before setting the repeat status."
+  "message" : "Repeat mode changed to repeat all."
 }, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 6260,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
+    "name" : "Start Me Up",
+    "remainedTime" : 83,
+    "repeat" : "Repeat All",
     "shuffle" : true,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "next",
   "user" : "henry26",
   "timestamp" : 6270,
-  "message" : null
+  "message" : "Please load a source before skipping to the next track."
 }, {
   "command" : "status",
   "user" : "henry26",
@@ -5973,12 +6053,22 @@
   "timestamp" : 6280,
   "message" : "Visibility status updated successfully to private."
 }, {
+  "command" : "prev",
+  "user" : "irene33",
+  "timestamp" : 6280,
+  "message" : "Returned to previous track successfully. The current track is Black Dog."
+}, {
+  "command" : "prev",
+  "user" : "irene33",
+  "timestamp" : 6280,
+  "message" : "Returned to previous track successfully. The current track is Thinking Out Loud."
+}, {
   "command" : "status",
   "user" : "irene33",
   "timestamp" : 6280,
   "stats" : {
-    "name" : "Black Dog",
-    "remainedTime" : 194,
+    "name" : "Thinking Out Loud",
+    "remainedTime" : 281,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -6024,16 +6114,16 @@
   "command" : "next",
   "user" : "bob35",
   "timestamp" : 6310,
-  "message" : "Skipped to next track successfully. The current track is Sad But True."
+  "message" : "Please load a source before skipping to the next track."
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 6310,
   "stats" : {
-    "name" : "Sad But True",
-    "remainedTime" : 324,
-    "repeat" : "Repeat All",
-    "shuffle" : true,
+    "name" : "",
+    "remainedTime" : 0,
+    "repeat" : "No Repeat",
+    "shuffle" : false,
     "paused" : true
   }
 }, {
@@ -6046,19 +6136,19 @@
   "user" : "carol19",
   "timestamp" : 6320,
   "stats" : {
-    "name" : "Don't",
-    "remainedTime" : 219,
+    "name" : "Money Trees",
+    "remainedTime" : 106,
     "repeat" : "Repeat All",
     "shuffle" : true,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "status",
   "user" : "david27",
   "timestamp" : 6330,
   "stats" : {
-    "name" : "Gimme Shelter",
-    "remainedTime" : 125,
+    "name" : "Dream On",
+    "remainedTime" : 179,
     "repeat" : "Repeat All",
     "shuffle" : false,
     "paused" : false
@@ -6068,8 +6158,8 @@
   "user" : "david27",
   "timestamp" : 6330,
   "stats" : {
-    "name" : "Gimme Shelter",
-    "remainedTime" : 125,
+    "name" : "Dream On",
+    "remainedTime" : 179,
     "repeat" : "Repeat All",
     "shuffle" : false,
     "paused" : false
@@ -6078,17 +6168,17 @@
   "command" : "next",
   "user" : "emily30",
   "timestamp" : 6340,
-  "message" : "Skipped to next track successfully. The current track is Shape of You."
+  "message" : "Please load a source before skipping to the next track."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6340,
   "stats" : {
-    "name" : "Shape of You",
-    "remainedTime" : 233,
-    "repeat" : "Repeat Current Song",
+    "name" : "",
+    "remainedTime" : 0,
+    "repeat" : null,
     "shuffle" : false,
-    "paused" : false
+    "paused" : true
   }
 }, {
   "command" : "repeat",
@@ -6110,15 +6200,15 @@
   "command" : "playPause",
   "user" : "grace25",
   "timestamp" : 6360,
-  "message" : "Please load a source before attempting to pause or resume playback."
+  "message" : "Playback paused successfully."
 }, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 6360,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
+    "name" : "Begin Again",
+    "remainedTime" : 221,
+    "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : true
   }
@@ -6159,19 +6249,29 @@
   "user" : "irene33",
   "timestamp" : 6380,
   "stats" : {
-    "name" : "Black Dog",
-    "remainedTime" : 94,
+    "name" : "Thinking Out Loud",
+    "remainedTime" : 181,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
   }
 }, {
+  "command" : "prev",
+  "user" : "jack29",
+  "timestamp" : 6390,
+  "message" : "Returned to previous track successfully. The current track is Delicate."
+}, {
+  "command" : "prev",
+  "user" : "jack29",
+  "timestamp" : 6390,
+  "message" : "Returned to previous track successfully. The current track is Money Trees."
+}, {
   "command" : "status",
   "user" : "jack29",
   "timestamp" : 6390,
   "stats" : {
-    "name" : "Delicate",
-    "remainedTime" : 132,
+    "name" : "Money Trees",
+    "remainedTime" : 387,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -6193,31 +6293,36 @@
     "paused" : false
   }
 }, {
+  "command" : "prev",
+  "user" : "bob35",
+  "timestamp" : 6410,
+  "message" : "Please load a source before returning to the previous track."
+}, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 6410,
   "stats" : {
-    "name" : "Sad But True",
-    "remainedTime" : 324,
-    "repeat" : "Repeat All",
-    "shuffle" : true,
+    "name" : "",
+    "remainedTime" : 0,
+    "repeat" : "No Repeat",
+    "shuffle" : false,
     "paused" : true
   }
 }, {
   "command" : "playPause",
   "user" : "carol19",
   "timestamp" : 6420,
-  "message" : "Playback resumed successfully."
+  "message" : "Playback paused successfully."
 }, {
   "command" : "status",
   "user" : "carol19",
   "timestamp" : 6420,
   "stats" : {
-    "name" : "Don't",
-    "remainedTime" : 219,
+    "name" : "Money Trees",
+    "remainedTime" : 6,
     "repeat" : "Repeat All",
     "shuffle" : true,
-    "paused" : false
+    "paused" : true
   }
 }, {
   "command" : "playPause",
@@ -6229,8 +6334,8 @@
   "user" : "david27",
   "timestamp" : 6430,
   "stats" : {
-    "name" : "Gimme Shelter",
-    "remainedTime" : 25,
+    "name" : "Dream On",
+    "remainedTime" : 79,
     "repeat" : "Repeat All",
     "shuffle" : false,
     "paused" : true
@@ -6239,17 +6344,17 @@
   "command" : "next",
   "user" : "emily30",
   "timestamp" : 6440,
-  "message" : "Skipped to next track successfully. The current track is Shape of You."
+  "message" : "Please load a source before skipping to the next track."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6440,
   "stats" : {
-    "name" : "Shape of You",
-    "remainedTime" : 233,
-    "repeat" : "Repeat Current Song",
+    "name" : "",
+    "remainedTime" : 0,
+    "repeat" : null,
     "shuffle" : false,
-    "paused" : false
+    "paused" : true
   }
 }, {
   "command" : "like",
@@ -6273,15 +6378,20 @@
   "timestamp" : 6460,
   "message" : "Visibility status updated successfully to public."
 }, {
+  "command" : "prev",
+  "user" : "grace25",
+  "timestamp" : 6460,
+  "message" : "Returned to previous track successfully. The current track is Begin Again."
+}, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 6460,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
+    "name" : "Begin Again",
+    "remainedTime" : 238,
+    "repeat" : "Repeat All",
     "shuffle" : true,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "shuffle",
@@ -6303,14 +6413,14 @@
   "command" : "next",
   "user" : "irene33",
   "timestamp" : 6480,
-  "message" : "Skipped to next track successfully. The current track is Thinking Out Loud."
+  "message" : "Skipped to next track successfully. The current track is Dream On."
 }, {
   "command" : "status",
   "user" : "irene33",
   "timestamp" : 6480,
   "stats" : {
-    "name" : "Thinking Out Loud",
-    "remainedTime" : 281,
+    "name" : "Dream On",
+    "remainedTime" : 267,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -6325,8 +6435,8 @@
   "user" : "jack29",
   "timestamp" : 6490,
   "stats" : {
-    "name" : "Delicate",
-    "remainedTime" : 32,
+    "name" : "Money Trees",
+    "remainedTime" : 287,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -6351,25 +6461,35 @@
   "command" : "like",
   "user" : "bob35",
   "timestamp" : 6510,
-  "message" : "Like registered successfully."
+  "message" : "Please load a source before liking or unliking."
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 6510,
   "stats" : {
-    "name" : "Sad But True",
-    "remainedTime" : 324,
-    "repeat" : "Repeat All",
-    "shuffle" : true,
+    "name" : "",
+    "remainedTime" : 0,
+    "repeat" : "No Repeat",
+    "shuffle" : false,
     "paused" : true
   }
+}, {
+  "command" : "prev",
+  "user" : "carol19",
+  "timestamp" : 6520,
+  "message" : "Returned to previous track successfully. The current track is Money Trees."
+}, {
+  "command" : "prev",
+  "user" : "carol19",
+  "timestamp" : 6520,
+  "message" : "Returned to previous track successfully. The current track is Don't."
 }, {
   "command" : "status",
   "user" : "carol19",
   "timestamp" : 6520,
   "stats" : {
     "name" : "Don't",
-    "remainedTime" : 119,
+    "remainedTime" : 219,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -6384,8 +6504,8 @@
   "user" : "david27",
   "timestamp" : 6530,
   "stats" : {
-    "name" : "Gimme Shelter",
-    "remainedTime" : 25,
+    "name" : "Dream On",
+    "remainedTime" : 79,
     "repeat" : "Repeat Current Song",
     "shuffle" : false,
     "paused" : true
@@ -6394,30 +6514,30 @@
   "command" : "repeat",
   "user" : "emily30",
   "timestamp" : 6540,
-  "message" : "Repeat mode changed to no repeat."
+  "message" : "Please load a source before setting the repeat status."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6540,
   "stats" : {
-    "name" : "Shape of You",
-    "remainedTime" : 133,
-    "repeat" : "No Repeat",
+    "name" : "",
+    "remainedTime" : 0,
+    "repeat" : null,
     "shuffle" : false,
-    "paused" : false
+    "paused" : true
   }
 }, {
   "command" : "next",
   "user" : "frank21",
   "timestamp" : 6550,
-  "message" : "Skipped to next track successfully. The current track is Dream On."
+  "message" : "Skipped to next track successfully. The current track is Begin Again."
 }, {
   "command" : "status",
   "user" : "frank21",
   "timestamp" : 6550,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 267,
+    "name" : "Begin Again",
+    "remainedTime" : 238,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : false
@@ -6427,22 +6547,22 @@
   "user" : "grace25",
   "timestamp" : 6560,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
+    "name" : "Begin Again",
+    "remainedTime" : 138,
+    "repeat" : "Repeat All",
     "shuffle" : true,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 6560,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
+    "name" : "Begin Again",
+    "remainedTime" : 138,
+    "repeat" : "Repeat All",
     "shuffle" : true,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "repeat",
@@ -6470,8 +6590,8 @@
   "user" : "irene33",
   "timestamp" : 6580,
   "stats" : {
-    "name" : "Thinking Out Loud",
-    "remainedTime" : 181,
+    "name" : "Dream On",
+    "remainedTime" : 167,
     "repeat" : "Repeat Current Song",
     "shuffle" : true,
     "paused" : false
@@ -6480,14 +6600,14 @@
   "command" : "next",
   "user" : "jack29",
   "timestamp" : 6590,
-  "message" : "Skipped to next track successfully. The current track is Begin Again."
+  "message" : "Skipped to next track successfully. The current track is Start Me Up."
 }, {
   "command" : "status",
   "user" : "jack29",
   "timestamp" : 6590,
   "stats" : {
-    "name" : "Begin Again",
-    "remainedTime" : 238,
+    "name" : "Start Me Up",
+    "remainedTime" : 212,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -6512,16 +6632,16 @@
   "command" : "like",
   "user" : "bob35",
   "timestamp" : 6610,
-  "message" : "Unlike registered successfully."
+  "message" : "Please load a source before liking or unliking."
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 6610,
   "stats" : {
-    "name" : "Sad But True",
-    "remainedTime" : 324,
-    "repeat" : "Repeat All",
-    "shuffle" : true,
+    "name" : "",
+    "remainedTime" : 0,
+    "repeat" : "No Repeat",
+    "shuffle" : false,
     "paused" : true
   }
 }, {
@@ -6530,7 +6650,7 @@
   "timestamp" : 6620,
   "stats" : {
     "name" : "Don't",
-    "remainedTime" : 19,
+    "remainedTime" : 119,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -6541,7 +6661,7 @@
   "timestamp" : 6620,
   "stats" : {
     "name" : "Don't",
-    "remainedTime" : 19,
+    "remainedTime" : 119,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -6556,8 +6676,8 @@
   "user" : "david27",
   "timestamp" : 6630,
   "stats" : {
-    "name" : "Gimme Shelter",
-    "remainedTime" : 25,
+    "name" : "Dream On",
+    "remainedTime" : 79,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : true
@@ -6566,17 +6686,17 @@
   "command" : "shuffle",
   "user" : "emily30",
   "timestamp" : 6640,
-  "message" : "Shuffle function activated successfully."
+  "message" : "Please load a source before using the shuffle function."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6640,
   "stats" : {
-    "name" : "Shape of You",
-    "remainedTime" : 33,
-    "repeat" : "No Repeat",
-    "shuffle" : true,
-    "paused" : false
+    "name" : "",
+    "remainedTime" : 0,
+    "repeat" : null,
+    "shuffle" : false,
+    "paused" : true
   }
 }, {
   "command" : "shuffle",
@@ -6588,8 +6708,8 @@
   "user" : "frank21",
   "timestamp" : 6650,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 167,
+    "name" : "Begin Again",
+    "remainedTime" : 138,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : false
@@ -6598,15 +6718,15 @@
   "command" : "playPause",
   "user" : "grace25",
   "timestamp" : 6660,
-  "message" : "Please load a source before attempting to pause or resume playback."
+  "message" : "Playback paused successfully."
 }, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 6660,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
+    "name" : "Begin Again",
+    "remainedTime" : 38,
+    "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : true
   }
@@ -6636,8 +6756,8 @@
   "user" : "irene33",
   "timestamp" : 6680,
   "stats" : {
-    "name" : "Thinking Out Loud",
-    "remainedTime" : 81,
+    "name" : "Dream On",
+    "remainedTime" : 67,
     "repeat" : "Repeat Current Song",
     "shuffle" : true,
     "paused" : false
@@ -6652,8 +6772,8 @@
   "user" : "jack29",
   "timestamp" : 6690,
   "stats" : {
-    "name" : "Begin Again",
-    "remainedTime" : 138,
+    "name" : "Start Me Up",
+    "remainedTime" : 112,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : true
@@ -6683,25 +6803,35 @@
   "command" : "playPause",
   "user" : "bob35",
   "timestamp" : 6710,
-  "message" : "Playback resumed successfully."
+  "message" : "Please load a source before attempting to pause or resume playback."
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 6710,
   "stats" : {
-    "name" : "Sad But True",
-    "remainedTime" : 324,
-    "repeat" : "Repeat All",
-    "shuffle" : true,
-    "paused" : false
+    "name" : "",
+    "remainedTime" : 0,
+    "repeat" : "No Repeat",
+    "shuffle" : false,
+    "paused" : true
   }
+}, {
+  "command" : "prev",
+  "user" : "carol19",
+  "timestamp" : 6720,
+  "message" : "Returned to previous track successfully. The current track is Don't."
+}, {
+  "command" : "prev",
+  "user" : "carol19",
+  "timestamp" : 6720,
+  "message" : "Returned to previous track successfully. The current track is Love Story."
 }, {
   "command" : "status",
   "user" : "carol19",
   "timestamp" : 6720,
   "stats" : {
     "name" : "Love Story",
-    "remainedTime" : 155,
+    "remainedTime" : 236,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -6716,8 +6846,8 @@
   "user" : "david27",
   "timestamp" : 6730,
   "stats" : {
-    "name" : "Gimme Shelter",
-    "remainedTime" : 25,
+    "name" : "Dream On",
+    "remainedTime" : 79,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : true
@@ -6726,40 +6856,60 @@
   "command" : "next",
   "user" : "emily30",
   "timestamp" : 6740,
-  "message" : "Skipped to next track successfully. The current track is Black Dog."
+  "message" : "Please load a source before skipping to the next track."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6740,
   "stats" : {
-    "name" : "Black Dog",
-    "remainedTime" : 294,
-    "repeat" : "No Repeat",
-    "shuffle" : true,
-    "paused" : false
+    "name" : "",
+    "remainedTime" : 0,
+    "repeat" : null,
+    "shuffle" : false,
+    "paused" : true
   }
+}, {
+  "command" : "prev",
+  "user" : "frank21",
+  "timestamp" : 6750,
+  "message" : "Returned to previous track successfully. The current track is Begin Again."
 }, {
   "command" : "status",
   "user" : "frank21",
   "timestamp" : 6750,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 67,
+    "name" : "Begin Again",
+    "remainedTime" : 238,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : false
   }
 }, {
+  "command" : "prev",
+  "user" : "grace25",
+  "timestamp" : 6760,
+  "message" : "Returned to previous track successfully. The current track is Begin Again."
+}, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 6760,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
+    "name" : "Begin Again",
+    "remainedTime" : 238,
+    "repeat" : "Repeat All",
     "shuffle" : true,
-    "paused" : true
+    "paused" : false
   }
+}, {
+  "command" : "prev",
+  "user" : "henry26",
+  "timestamp" : 6770,
+  "message" : "Please load a source before returning to the previous track."
+}, {
+  "command" : "prev",
+  "user" : "henry26",
+  "timestamp" : 6770,
+  "message" : "Please load a source before returning to the previous track."
 }, {
   "command" : "status",
   "user" : "henry26",
@@ -6775,28 +6925,38 @@
   "command" : "next",
   "user" : "irene33",
   "timestamp" : 6780,
-  "message" : "Skipped to next track successfully. The current track is Thinking Out Loud."
+  "message" : "Skipped to next track successfully. The current track is Dream On."
 }, {
   "command" : "status",
   "user" : "irene33",
   "timestamp" : 6780,
   "stats" : {
-    "name" : "Thinking Out Loud",
-    "remainedTime" : 281,
+    "name" : "Dream On",
+    "remainedTime" : 267,
     "repeat" : "Repeat Current Song",
     "shuffle" : true,
     "paused" : false
   }
 }, {
+  "command" : "prev",
+  "user" : "jack29",
+  "timestamp" : 6790,
+  "message" : "Returned to previous track successfully. The current track is Start Me Up."
+}, {
+  "command" : "prev",
+  "user" : "jack29",
+  "timestamp" : 6790,
+  "message" : "Returned to previous track successfully. The current track is Delicate."
+}, {
   "command" : "status",
   "user" : "jack29",
   "timestamp" : 6790,
   "stats" : {
-    "name" : "Begin Again",
-    "remainedTime" : 138,
+    "name" : "Delicate",
+    "remainedTime" : 232,
     "repeat" : "Repeat All",
     "shuffle" : true,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "switchVisibility",
@@ -6804,12 +6964,22 @@
   "timestamp" : 6800,
   "message" : "Visibility status updated successfully to private."
 }, {
+  "command" : "prev",
+  "user" : "alice22",
+  "timestamp" : 6800,
+  "message" : "Returned to previous track successfully. The current track is Sad But True."
+}, {
+  "command" : "prev",
+  "user" : "alice22",
+  "timestamp" : 6800,
+  "message" : "Returned to previous track successfully. The current track is Shape of You."
+}, {
   "command" : "status",
   "user" : "alice22",
   "timestamp" : 6800,
   "stats" : {
-    "name" : "Sad But True",
-    "remainedTime" : 190,
+    "name" : "Shape of You",
+    "remainedTime" : 233,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : false
@@ -6819,22 +6989,22 @@
   "user" : "bob35",
   "timestamp" : 6810,
   "stats" : {
-    "name" : "Sad But True",
-    "remainedTime" : 224,
-    "repeat" : "Repeat All",
-    "shuffle" : true,
-    "paused" : false
+    "name" : "",
+    "remainedTime" : 0,
+    "repeat" : "No Repeat",
+    "shuffle" : false,
+    "paused" : true
   }
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 6810,
   "stats" : {
-    "name" : "Sad But True",
-    "remainedTime" : 224,
-    "repeat" : "Repeat All",
-    "shuffle" : true,
-    "paused" : false
+    "name" : "",
+    "remainedTime" : 0,
+    "repeat" : "No Repeat",
+    "shuffle" : false,
+    "paused" : true
   }
 }, {
   "command" : "shuffle",
@@ -6847,37 +7017,47 @@
   "timestamp" : 6820,
   "stats" : {
     "name" : "Love Story",
-    "remainedTime" : 55,
+    "remainedTime" : 136,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
   }
 }, {
+  "command" : "prev",
+  "user" : "david27",
+  "timestamp" : 6830,
+  "message" : "Returned to previous track successfully. The current track is Dream On."
+}, {
+  "command" : "prev",
+  "user" : "david27",
+  "timestamp" : 6830,
+  "message" : "Returned to previous track successfully. The current track is Start Me Up."
+}, {
   "command" : "status",
   "user" : "david27",
   "timestamp" : 6830,
   "stats" : {
-    "name" : "Gimme Shelter",
-    "remainedTime" : 25,
+    "name" : "Start Me Up",
+    "remainedTime" : 212,
     "repeat" : "No Repeat",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "next",
   "user" : "emily30",
   "timestamp" : 6840,
-  "message" : "Skipped to next track successfully. The current track is Begin Again."
+  "message" : "Please load a source before skipping to the next track."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6840,
   "stats" : {
-    "name" : "Begin Again",
-    "remainedTime" : 238,
-    "repeat" : "No Repeat",
-    "shuffle" : true,
-    "paused" : false
+    "name" : "",
+    "remainedTime" : 0,
+    "repeat" : null,
+    "shuffle" : false,
+    "paused" : true
   }
 }, {
   "command" : "repeat",
@@ -6889,8 +7069,8 @@
   "user" : "frank21",
   "timestamp" : 6850,
   "stats" : {
-    "name" : "Delicate",
-    "remainedTime" : 199,
+    "name" : "Begin Again",
+    "remainedTime" : 138,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -6905,22 +7085,22 @@
   "user" : "grace25",
   "timestamp" : 6860,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
+    "name" : "Begin Again",
+    "remainedTime" : 138,
+    "repeat" : "Repeat All",
     "shuffle" : true,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 6860,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
+    "name" : "Begin Again",
+    "remainedTime" : 138,
+    "repeat" : "Repeat All",
     "shuffle" : true,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "like",
@@ -6953,8 +7133,8 @@
   "user" : "irene33",
   "timestamp" : 6880,
   "stats" : {
-    "name" : "Thinking Out Loud",
-    "remainedTime" : 181,
+    "name" : "Dream On",
+    "remainedTime" : 167,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : false
@@ -6963,30 +7143,30 @@
   "command" : "playPause",
   "user" : "jack29",
   "timestamp" : 6890,
-  "message" : "Playback resumed successfully."
+  "message" : "Playback paused successfully."
 }, {
   "command" : "status",
   "user" : "jack29",
   "timestamp" : 6890,
   "stats" : {
-    "name" : "Begin Again",
-    "remainedTime" : 138,
+    "name" : "Delicate",
+    "remainedTime" : 132,
     "repeat" : "Repeat All",
     "shuffle" : true,
-    "paused" : false
+    "paused" : true
   }
 }, {
   "command" : "next",
   "user" : "alice22",
   "timestamp" : 6900,
-  "message" : "Skipped to next track successfully. The current track is The Man."
+  "message" : "Skipped to next track successfully. The current track is Love Story."
 }, {
   "command" : "status",
   "user" : "alice22",
   "timestamp" : 6900,
   "stats" : {
-    "name" : "The Man",
-    "remainedTime" : 190,
+    "name" : "Love Story",
+    "remainedTime" : 236,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : false
@@ -6995,25 +7175,25 @@
   "command" : "repeat",
   "user" : "bob35",
   "timestamp" : 6910,
-  "message" : "Repeat mode changed to repeat current song."
+  "message" : "Please load a source before setting the repeat status."
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 6910,
   "stats" : {
-    "name" : "Sad But True",
-    "remainedTime" : 124,
-    "repeat" : "Repeat Current Song",
-    "shuffle" : true,
-    "paused" : false
+    "name" : "",
+    "remainedTime" : 0,
+    "repeat" : "No Repeat",
+    "shuffle" : false,
+    "paused" : true
   }
 }, {
   "command" : "status",
   "user" : "carol19",
   "timestamp" : 6920,
   "stats" : {
-    "name" : "Don't",
-    "remainedTime" : 174,
+    "name" : "Love Story",
+    "remainedTime" : 36,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -7023,8 +7203,8 @@
   "user" : "carol19",
   "timestamp" : 6920,
   "stats" : {
-    "name" : "Don't",
-    "remainedTime" : 174,
+    "name" : "Love Story",
+    "remainedTime" : 36,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -7038,41 +7218,41 @@
   "command" : "next",
   "user" : "david27",
   "timestamp" : 6930,
-  "message" : "Skipped to next track successfully. The current track is Begin Again."
+  "message" : "Skipped to next track successfully. The current track is Dream On."
 }, {
   "command" : "status",
   "user" : "david27",
   "timestamp" : 6930,
   "stats" : {
-    "name" : "Begin Again",
-    "remainedTime" : 238,
+    "name" : "Dream On",
+    "remainedTime" : 267,
     "repeat" : "No Repeat",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "like",
   "user" : "emily30",
   "timestamp" : 6940,
-  "message" : "Like registered successfully."
+  "message" : "Please load a source before liking or unliking."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6940,
   "stats" : {
-    "name" : "Begin Again",
-    "remainedTime" : 138,
-    "repeat" : "No Repeat",
-    "shuffle" : true,
-    "paused" : false
+    "name" : "",
+    "remainedTime" : 0,
+    "repeat" : null,
+    "shuffle" : false,
+    "paused" : true
   }
 }, {
   "command" : "status",
   "user" : "frank21",
   "timestamp" : 6950,
   "stats" : {
-    "name" : "Delicate",
-    "remainedTime" : 99,
+    "name" : "Begin Again",
+    "remainedTime" : 38,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -7082,8 +7262,8 @@
   "user" : "frank21",
   "timestamp" : 6950,
   "stats" : {
-    "name" : "Delicate",
-    "remainedTime" : 99,
+    "name" : "Begin Again",
+    "remainedTime" : 38,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -7092,17 +7272,17 @@
   "command" : "shuffle",
   "user" : "grace25",
   "timestamp" : 6960,
-  "message" : "Please load a source before using the shuffle function."
+  "message" : "Shuffle function activated successfully."
 }, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 6960,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
-    "shuffle" : false,
-    "paused" : true
+    "name" : "Begin Again",
+    "remainedTime" : 38,
+    "repeat" : "Repeat All",
+    "shuffle" : true,
+    "paused" : false
   }
 }, {
   "command" : "like",
@@ -7130,8 +7310,8 @@
   "user" : "irene33",
   "timestamp" : 6980,
   "stats" : {
-    "name" : "Thinking Out Loud",
-    "remainedTime" : 81,
+    "name" : "Dream On",
+    "remainedTime" : 67,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : false
@@ -7146,11 +7326,11 @@
   "user" : "jack29",
   "timestamp" : 6990,
   "stats" : {
-    "name" : "Begin Again",
-    "remainedTime" : 38,
+    "name" : "Delicate",
+    "remainedTime" : 132,
     "repeat" : "Repeat All",
     "shuffle" : true,
-    "paused" : false
+    "paused" : true
   }
 }, {
   "command" : "search",
@@ -9631,7 +9811,7 @@
   "command" : "showPreferredSongs",
   "user" : "david27",
   "timestamp" : 8520,
-  "result" : [ "Start Me Up", "Angie", "Gimme Shelter" ]
+  "result" : [ "Dream On" ]
 }, {
   "command" : "showPlaylists",
   "user" : "emily30",
@@ -9651,7 +9831,7 @@
   "command" : "showPreferredSongs",
   "user" : "emily30",
   "timestamp" : 8530,
-  "result" : [ "Shape of You", "Begin Again" ]
+  "result" : [ "Start Me Up" ]
 }, {
   "command" : "showPlaylists",
   "user" : "frank21",
@@ -9731,7 +9911,7 @@
   "command" : "showPreferredSongs",
   "user" : "irene33",
   "timestamp" : 8570,
-  "result" : [ "Don't", "Black Dog" ]
+  "result" : [ "Don't", "Thinking Out Loud" ]
 }, {
   "command" : "showPlaylists",
   "user" : "jack29",

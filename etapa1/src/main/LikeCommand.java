@@ -1,8 +1,5 @@
 package main;
 
-import fileio.input.SongInput;
-import fileio.input.UserInput;
-
 public class LikeCommand {
 
 	private String message;
@@ -11,12 +8,12 @@ public class LikeCommand {
 		return message;
 	}
 
-	public void setMessage(UserInput user) {
+	public void setMessage(User user) {
 		if(user.player.loadedItem == null) {
 			message = "Please load a source before liking or unliking.";
 			return;
 		}
-		if(!(user.player.playingNow instanceof SongInput)) {
+		if(!(user.player.playingNow instanceof Song)) {
 			message = "Loaded source is not a song.";
 			return;
 		}
@@ -24,17 +21,17 @@ public class LikeCommand {
 		boolean isLiked = false;
 
 		// see if it is in the Liked Songs list
-		for(SongInput song : user.getLikedSongs())
+		for(Song song : user.getLikedSongs())
 			if(song == user.player.playingNow)
 				isLiked = true;
 
 		if(isLiked) {
 			// remove from the liked list
-			user.getLikedSongs().remove(user.player.playingNow);
+			user.getLikedSongs().remove((Song) user.player.playingNow);
 			message = "Unlike registered successfully.";
 		} else {
 			// ad to the liked list
-			user.getLikedSongs().add((SongInput) user.player.playingNow);
+			user.getLikedSongs().add((Song) user.player.playingNow);
 			message = "Like registered successfully.";
 		}
 	}

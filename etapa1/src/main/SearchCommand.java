@@ -31,14 +31,14 @@ public class SearchCommand {
         return filters;
     }
 
-    public ArrayList<AudioFile> getSearchResults(LibraryInput library, UserInput user) {
+    public ArrayList<AudioFile> getSearchResults(Library library, User user) {
 
         filters.filterArray = filters.buildFilterArray();
         searchResults = new ArrayList<>();
 
         switch (type) {
             case "song": {
-                ArrayList<SongInput> songs = new ArrayList<>();
+                ArrayList<Song> songs = new ArrayList<>();
                 songs.addAll(library.getSongs());
 
                 // searchResults.addAll(songs);
@@ -82,7 +82,7 @@ public class SearchCommand {
                 break;
             }
             case "podcast": {
-                ArrayList<PodcastInput> podcasts = new ArrayList<>();
+                ArrayList<Podcast> podcasts = new ArrayList<>();
                 podcasts.addAll(library.getPodcasts());
                 for (int i = 0; i < filters.filterArray.size(); i++) {
                     if (filters.fields.get(i).equals("name")) {

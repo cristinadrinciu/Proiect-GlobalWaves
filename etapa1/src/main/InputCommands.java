@@ -17,10 +17,10 @@ public class InputCommands {
     private List<ObjectNode> commandList = new ArrayList<>();
 
     // User for this command
-    UserInput user;
+    User user;
 
-    void getUser(LibraryInput library) {
-        for(UserInput userContor : library.getUsers())
+    void getUser(Library library) {
+        for(User userContor : library.getUsers())
             if(userContor.getUsername().equals(username)) {
                 user = userContor;
                 break;
@@ -149,6 +149,22 @@ public class InputCommands {
     boolean createdNext = false;
     public NextCommand nextCommand;
 
+    // Prev Command
+    boolean createdPrev = false;
+    public PrevCommand prevCommand;
+
+    // Forward Command
+    boolean createdForward = false;
+    public ForwardCommand forwardCommand;
+
+    // Backward Command
+    boolean createdBackward = false;
+    public BackwardCommand backwardCommand;
+
+    // Get Top 5 Playlists Command
+    boolean createdGetTop5Playlists = false;
+    public GetTop5Playlists getTop5PlaylistsCommand;
+
     // setters and getters
 
     boolean createdLikeCommand = false;
@@ -182,9 +198,10 @@ public class InputCommands {
         return username;
     }
 
-    public void SearchExecute(LibraryInput library) {
+    public void SearchExecute(Library library) {
         ObjectMapper objectMapper = new ObjectMapper(); // Instantiate ObjectMapper here
         SearchCommand.searchResults = searchCommand.getSearchResults(library, user);
+
         // initialize the player or get out the track that is there
         if(user.player.repeatState == 0)
             user.player.setRemainingTime();
@@ -192,6 +209,7 @@ public class InputCommands {
             user.player.setRemainingTimeRepeat1();
         else if (user.player.repeatState == 2)
             user.player.setRemainingTimeRepeat2();
+
         user.player.initializePlayer();
 
         ArrayNode results = JsonNodeFactory.instance.arrayNode();
@@ -335,7 +353,7 @@ public class InputCommands {
         commandList.add(commandJson);
     }
 
-    public void CreatePlaylistExecute(LibraryInput library) {
+    public void CreatePlaylistExecute(Library library) {
         String message = createPlaylistCommand.message(user, library);
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -384,11 +402,11 @@ public class InputCommands {
             createdShowPreferred = true;
         }
         showPreferredSongsCommand.setPreferredSongs(user);
-        ArrayList<SongInput> songs = showPreferredSongsCommand.getPreferredSongs();
+        ArrayList<Song> songs = showPreferredSongsCommand.getPreferredSongs();
 
         ArrayNode results = JsonNodeFactory.instance.arrayNode();
 
-        for (SongInput song : songs) {
+        for (Song song : songs) {
             results.add(song.getName());
         }
 
@@ -419,7 +437,7 @@ public class InputCommands {
                     .put("name", playlist.getName());
 
             ArrayNode songsArray = JsonNodeFactory.instance.arrayNode();
-            for (SongInput song : playlist.songs) {
+            for (Song song : playlist.songs) {
                 songsArray.add(song.getName());
             }
 
@@ -504,7 +522,7 @@ public class InputCommands {
         commandList.add(commandJson);
     }
 
-    public void SwitchVisibilityExecute(LibraryInput library) {
+    public void SwitchVisibilityExecute(Library library) {
         switchVisibilityCommand.switchVisibility(user, library);
         String message = switchVisibilityCommand.message(user);
 
@@ -550,18 +568,26 @@ public class InputCommands {
 
         String message;
 
+        if(user.player.loadedItem != null) {
+            if (user.player.repeatState == 0)
+                user.player.setRemainingTime();
+            if (user.player.repeatState == 1)
+                user.player.setRemainingTimeRepeat1();
+            if (user.player.repeatState == 2)
+                user.player.setRemainingTimeRepeat2();
+        }
+
         if(user.player.loadedItem == null)
             message = "Please load a source before skipping to the next track.";
         else {
-            if (user.player.loadedItem instanceof SongInput)
+            if (user.player.loadedItem instanceof Song)
                 nextCommand.goToNextSong(user);
             else if (user.player.loadedItem instanceof Playlist)
                 nextCommand.goToNextPlaylist(user);
-            else if (user.player.loadedItem instanceof PodcastInput)
+            else if (user.player.loadedItem instanceof Podcast)
                 nextCommand.goToNextPodcast(user);
+            message = nextCommand.message;
         }
-
-        message = nextCommand.message;
 
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode commandJson = objectMapper.createObjectNode()
@@ -570,6 +596,135 @@ public class InputCommands {
                 .put("timestamp", getTimestamp())
                 .put("message", message);
 
+        commandList.add(commandJson);
+    }
+
+    public void PrevExecute() {
+        if(!createdPrev) {
+            prevCommand = new PrevCommand();
+            createdPrev = true;
+        }
+
+        String message;
+
+        if(user.player.loadedItem != null) {
+            if (user.player.repeatState == 0)
+                user.player.setRemainingTime();
+            if (user.player.repeatState == 1)
+                user.player.setRemainingTimeRepeat1();
+            if (user.player.repeatState == 2)
+                user.player.setRemainingTimeRepeat2();
+        }
+
+        if(user.player.loadedItem == null)
+            message = "Please load a source before returning to the previous track.";
+        else {
+            if (user.player.loadedItem instanceof Song)
+                prevCommand.goToPrevSong(user);
+            else if (user.player.loadedItem instanceof Playlist)
+                prevCommand.goToPrevPlaylist(user);
+            else if (user.player.loadedItem instanceof Podcast)
+                prevCommand.goToPrevPodcast(user);
+            message = prevCommand.message;
+        }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "prev")
+                .put("user", getUsername())
+                .put("timestamp", getTimestamp())
+                .put("message", message);
+
+        commandList.add(commandJson);
+    }
+
+    public void ForwardExecute() {
+        if(!createdForward) {
+            forwardCommand = new ForwardCommand();
+            createdForward = true;
+        }
+
+        String message;
+
+        if(user.player.loadedItem != null) {
+            if (user.player.repeatState == 0)
+                user.player.setRemainingTime();
+            if (user.player.repeatState == 1)
+                user.player.setRemainingTimeRepeat1();
+            if (user.player.repeatState == 2)
+                user.player.setRemainingTimeRepeat2();
+        }
+
+        forwardCommand.forwardPodcast(user);
+        message = forwardCommand.message;
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "forward")
+                .put("user", getUsername())
+                .put("timestamp", getTimestamp())
+                .put("message", message);
+
+        commandList.add(commandJson);
+    }
+
+    public void BackwardExecute() {
+        if(!createdBackward) {
+            backwardCommand = new BackwardCommand();
+            createdBackward = true;
+        }
+
+        String message;
+
+        if(user.player.loadedItem != null) {
+            if (user.player.repeatState == 0)
+                user.player.setRemainingTime();
+            if (user.player.repeatState == 1)
+                user.player.setRemainingTimeRepeat1();
+            if (user.player.repeatState == 2)
+                user.player.setRemainingTimeRepeat2();
+        }
+
+        backwardCommand.backwardPodcast(user);
+        message = backwardCommand.message;
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "backward")
+                .put("user", getUsername())
+                .put("timestamp", getTimestamp())
+                .put("message", message);
+
+        commandList.add(commandJson);
+    }
+
+    public void GetTop5PlaylistsExecute() {
+        if (!createdGetTop5Playlists) {
+            getTop5PlaylistsCommand = new GetTop5Playlists();
+            createdGetTop5Playlists = true;
+        }
+
+        getTop5PlaylistsCommand.setTop5Playlists();
+
+        ArrayList<Playlist> playlists = getTop5PlaylistsCommand.getTop5Playlists();
+
+        // Create an array node for the results
+        ArrayNode resultsArray = JsonNodeFactory.instance.arrayNode();
+
+        // Add the names of the playlists to the results array
+        for (Playlist playlist : playlists) {
+            resultsArray.add(playlist.getName());
+        }
+
+        // Create the command JSON structure
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "getTop5Playlists")
+                .put("user", (String) null)
+                .put("timestamp", getTimestamp())
+                .set("result", resultsArray);
+
+        // Add the commandJson to the commandList
         commandList.add(commandJson);
     }
 }

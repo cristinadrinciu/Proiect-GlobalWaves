@@ -2,14 +2,10 @@ package fileio.input;
 
 import java.util.ArrayList;
 
-public final class PodcastInput extends AudioFile{
+public final class PodcastInput {
     private String name;
     private String owner;
     private ArrayList<EpisodeInput> episodes;
-
-    private EpisodeInput lastEpisode;
-
-    private int watchedTime;
 
     public PodcastInput() {
     }
@@ -36,21 +32,5 @@ public final class PodcastInput extends AudioFile{
 
     public void setEpisodes(final ArrayList<EpisodeInput> episodes) {
         this.episodes = episodes;
-    }
-
-    public EpisodeInput getLastEpisode() {
-        return lastEpisode;
-    }
-
-    public void setLastEpisode(EpisodeInput lastEpisode) {
-        this.lastEpisode = lastEpisode;
-    }
-
-    public int getWatchedTime() {
-        return watchedTime;
-    }
-
-    public void setWatchedTime(int watchedTime) {
-        this.watchedTime = watchedTime;
     }
 }

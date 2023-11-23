@@ -1,7 +1,5 @@
 package main;
 
-import fileio.input.UserInput;
-
 import java.util.ArrayList;
 
 public class ShowPlaylistsCommand {
@@ -11,7 +9,7 @@ public class ShowPlaylistsCommand {
 		return playlists;
 	}
 
-	public void setPlaylists(UserInput user) {
+	public void setPlaylists(User user) {
 		this.playlists = user.getPlaylists();
 	}
 }

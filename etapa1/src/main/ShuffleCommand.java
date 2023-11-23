@@ -1,9 +1,5 @@
 package main;
 
-import fileio.input.LibraryInput;
-import fileio.input.SongInput;
-import fileio.input.UserInput;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -23,7 +19,7 @@ public class ShuffleCommand {
 		this.seed = seed;
 	}
 
-	public void shufflePlayer(UserInput user) {
+	public void shufflePlayer(User user) {
 		if(user.player.loadedItem == null) {
 			user.player.shuffle = false;
 			return;
@@ -40,7 +36,7 @@ public class ShuffleCommand {
 			user.player.shuffle = true;
 		}
 	}
-	public String message(UserInput user) {
+	public String message(User user) {
 		String message = null;
 		if(user.player.loadedItem == null) {
 			message = "Please load a source before using the shuffle function.";
@@ -58,12 +54,12 @@ public class ShuffleCommand {
 		return message;
 	}
 
-	public ArrayList<SongInput> shufflePlaylist(Playlist playlist) {
-		ArrayList<SongInput> originalPlaylist = new ArrayList<>();
-		ArrayList<SongInput> shuffledPlaylist = new ArrayList<>();
+	public ArrayList<Song> shufflePlaylist(Playlist playlist) {
+		ArrayList<Song> originalPlaylist = new ArrayList<>();
+		ArrayList<Song> shuffledPlaylist = new ArrayList<>();
 
 		// add the original order of the songs
-		for(SongInput song : playlist.songs)
+		for(Song song : playlist.songs)
 			originalPlaylist.add(song);
 		Collections.shuffle(originalPlaylist, new Random(seed));
 		shuffledPlaylist.addAll(originalPlaylist);

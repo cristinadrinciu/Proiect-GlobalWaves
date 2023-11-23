@@ -1,8 +1,5 @@
 package main;
 
-import fileio.input.PodcastInput;
-import fileio.input.SongInput;
-
 import java.util.ArrayList;
 
 public class StatusCommand {
@@ -31,9 +28,9 @@ public class StatusCommand {
 		String message = null;
 		if(player.repeatState == 0)
 			message = "No Repeat";
-		if(player.repeatState == 1 && (player.loadedItem instanceof SongInput || player.loadedItem instanceof PodcastInput))
+		if(player.repeatState == 1 && (player.loadedItem instanceof Song || player.loadedItem instanceof Podcast))
 			message = "Repeat Once";
-		if(player.repeatState == 2 && (player.loadedItem instanceof SongInput || player.loadedItem instanceof PodcastInput))
+		if(player.repeatState == 2 && (player.loadedItem instanceof Song || player.loadedItem instanceof Podcast))
 			message = "Repeat Infinite";
 		if(player.repeatState == 1 && (player.loadedItem instanceof Playlist))
 			message = "Repeat All";

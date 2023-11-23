@@ -1,7 +1,6 @@
 package main;
 
 import fileio.input.AudioFile;
-import fileio.input.UserInput;
 
 public class FollowCommand {
 	String message;
@@ -9,7 +8,7 @@ public class FollowCommand {
 	public FollowCommand() {
 	}
 
-	public void followPlaylist(UserInput user, AudioFile audioFile) {
+	public void followPlaylist(User user, AudioFile audioFile) {
 		if(audioFile == null) {
 			message = "Please select a source before following or unfollowing.";
 			return;

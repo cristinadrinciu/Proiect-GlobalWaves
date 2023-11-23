@@ -1,8 +1,6 @@
 package main;
 
 import fileio.input.AudioFile;
-import fileio.input.PodcastInput;
-import fileio.input.SongInput;
 
 public class LoadCommand {
 	static AudioFile loadedItem;
@@ -17,8 +15,8 @@ public class LoadCommand {
 
 	public String buildMessage (AudioFile audiofile) {
 		if (audiofile != null) {
-			if (audiofile instanceof PodcastInput)
-				if (((PodcastInput) audiofile).getEpisodes().isEmpty()) {
+			if (audiofile instanceof Podcast)
+				if (((Podcast) audiofile).getEpisodes().isEmpty()) {
 					return resultMessage = "You can't load an empty audio collection!";
 				}
 			if (audiofile instanceof Playlist)

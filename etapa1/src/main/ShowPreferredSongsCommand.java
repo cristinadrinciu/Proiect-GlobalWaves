@@ -1,21 +1,18 @@
 package main;
 
-import fileio.input.SongInput;
-import fileio.input.UserInput;
-
 import java.util.ArrayList;
 
 public class ShowPreferredSongsCommand {
-	private ArrayList<SongInput> preferredSongs = new ArrayList<>();
+	private ArrayList<Song> preferredSongs = new ArrayList<>();
 
 	public ShowPreferredSongsCommand() {
 	}
 
-	public ArrayList<SongInput> getPreferredSongs() {
+	public ArrayList<Song> getPreferredSongs() {
 		return preferredSongs;
 	}
 
-	public void setPreferredSongs(UserInput user) {
+	public void setPreferredSongs(User user) {
 		this.preferredSongs = user.getLikedSongs();
 	}
 }

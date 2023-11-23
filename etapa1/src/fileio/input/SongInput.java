@@ -2,7 +2,8 @@ package fileio.input;
 
 import java.util.ArrayList;
 
-public final class SongInput extends AudioFile{
+public final class SongInput {
+    private String name;
     private Integer duration;
     private String album;
     private ArrayList<String> tags;
@@ -12,6 +13,14 @@ public final class SongInput extends AudioFile{
     private String artist;
 
     public SongInput() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(final String name) {
+        this.name = name;
     }
 
     public Integer getDuration() {

@@ -87,18 +87,24 @@ public final class Main {
 
 		// TODO add your implementation
 		List<ObjectNode> commandList = new ArrayList<>();
-		for(UserInput user : library.getUsers())
+
+		// create the new library
+		Library newLibrary = new Library();
+		newLibrary.createLibrary(library);
+
+		for(User user : newLibrary.getUsers())
 			user.player = new Player();
+
 		InputCommands[] commands = objectMapper.readValue(new File("input/" + filePathInput), InputCommands[].class);
 
 		for(int i = 0; i < commands.length; i++) {
-			commands[i].getUser(library);
+			commands[i].getUser(newLibrary);
 			if(commands[i].user == null)
 				continue;
 			commands[i].user.player.timestamp = commands[i].getTimestamp();
 
 			if (commands[i].getCommand().equals("search")) {
-				commands[i].SearchExecute(library);
+				commands[i].SearchExecute(newLibrary);
 			}
 			if (commands[i].getCommand().equals("select")) {
 				commands[i].SelectExecute();
@@ -113,7 +119,7 @@ public final class Main {
 				commands[i].StatusExecute();
 			}
 			if (commands[i].getCommand().equals("createPlaylist")) {
-				commands[i].CreatePlaylistExecute(library);
+				commands[i].CreatePlaylistExecute(newLibrary);
 			}
 			if (commands[i].getCommand().equals("addRemoveInPlaylist")) {
 				commands[i].AddRemoveExecute();
@@ -134,13 +140,25 @@ public final class Main {
 				commands[i].ShuffleExecute();
 			}
 			if (commands[i].getCommand().equals("switchVisibility")) {
-				commands[i].SwitchVisibilityExecute(library);
+				commands[i].SwitchVisibilityExecute(newLibrary);
 			}
 			if (commands[i].getCommand().equals("follow")) {
 				commands[i].FollowExecute();
 			}
 			if (commands[i].getCommand().equals("next")) {
 				commands[i].NextExecute();
+			}
+			if (commands[i].getCommand().equals("prev")) {
+				commands[i].PrevExecute();
+			}
+			if(commands[i].getCommand().equals("forward")) {
+				commands[i].ForwardExecute();
+			}
+			if(commands[i].getCommand().equals("backward")) {
+				commands[i].BackwardExecute();
+			}
+			if(commands[i].getCommand().equals("getTop5Playlists")) {
+				commands[i].GetTop5PlaylistsExecute();
 			}
 			commandList.addAll(commands[i].getCommandList());
 		}

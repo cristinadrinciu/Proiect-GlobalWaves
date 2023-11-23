@@ -1,15 +1,13 @@
 package main;
 
 import fileio.input.AudioFile;
-import fileio.input.SongInput;
-import fileio.input.UserInput;
 
 import java.util.ArrayList;
 
 public class Playlist extends AudioFile {
-    private UserInput owner;
+    private User owner;
     private boolean isPublic;
-    ArrayList<SongInput> songs;
+    ArrayList<Song> songs;
     private int followers;
 
     public boolean getPublic() {
@@ -23,11 +21,11 @@ public class Playlist extends AudioFile {
     public Playlist() {
     }
 
-    public void setOwner(UserInput owner) {
+    public void setOwner(User owner) {
         this.owner = owner;
     }
 
-    public UserInput getOwner() {
+    public User getOwner() {
         return owner;
     }
 

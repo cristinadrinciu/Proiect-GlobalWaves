@@ -1,11 +1,8 @@
 package main;
 
-import fileio.input.PodcastInput;
-import fileio.input.SongInput;
-import fileio.input.UserInput;
 
 public class RepeatCommand {
-	public void setRepeatMode(UserInput user) {
+	public void setRepeatMode(User user) {
 		if (user.player.repeatState == 0) {
 			user.player.repeatState = 1;
 			user.player.repeatedOnce = 0;
@@ -16,7 +13,7 @@ public class RepeatCommand {
 		}
 	}
 
-	public String message(UserInput user) {
+	public String message(User user) {
 		String message;
 
 		switch (user.player.repeatState) {
@@ -24,13 +21,13 @@ public class RepeatCommand {
 				message = "Repeat mode changed to no repeat.";
 				break;
 			case 1:
-				if(user.player.loadedItem instanceof SongInput || user.player.loadedItem instanceof PodcastInput)
+				if(user.player.loadedItem instanceof Song || user.player.loadedItem instanceof Podcast)
 					message = "Repeat mode changed to repeat once.";
 				else
 					message = "Repeat mode changed to repeat all.";
 				break;
 			case 2:
-				if(user.player.loadedItem instanceof SongInput || user.player.loadedItem instanceof PodcastInput)
+				if(user.player.loadedItem instanceof Song || user.player.loadedItem instanceof Podcast)
 					message = "Repeat mode changed to repeat infinite.";
 				else
 					message = "Repeat mode changed to repeat current song.";

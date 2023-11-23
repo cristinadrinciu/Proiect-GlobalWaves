@@ -1,8 +1,5 @@
 package main;
 
-import fileio.input.LibraryInput;
-import fileio.input.UserInput;
-
 import java.util.ArrayList;
 
 public class CreatePlaylistCommand {
@@ -20,7 +17,7 @@ public class CreatePlaylistCommand {
 		this.playlistName = playlistName;
 	}
 
-	public boolean createPlaylist(UserInput user, LibraryInput library) {
+	public boolean createPlaylist(User user, Library library) {
 		// search if th playlist already exists
 		if(user.getPlaylists() != null)
 			for(Playlist playlistContor : user.getPlaylists())
@@ -40,16 +37,19 @@ public class CreatePlaylistCommand {
 		user.player.playlists.add(playlist);
 
 		// add in the player of the other users
-		ArrayList<UserInput> users = library.getUsers();
+		ArrayList<User> users = library.getUsers();
 
-		for(UserInput userParse : users) {
+		for(User userParse : users) {
 			if(userParse != user)
 				userParse.player.playlists.add(playlist);
 		}
+
+		// add in the public playlists
+		PublicPlaylists.playlists.add(playlist);
 		return true;
 	}
 
-	public String message(UserInput user, LibraryInput library) {
+	public String message(User user, Library library) {
 		String message;
 		boolean createdPlaylist = createPlaylist(user, library);
 		if(!createdPlaylist)
