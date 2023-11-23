@@ -4772,12 +4772,17 @@
     "paused" : true
   }
 }, {
+  "command" : "next",
+  "user" : "irene33",
+  "timestamp" : 5580,
+  "message" : "Skipped to next track successfully. The current track is Dream On."
+}, {
   "command" : "status",
   "user" : "irene33",
   "timestamp" : 5580,
   "stats" : {
-    "name" : "Blank Space",
-    "remainedTime" : 133,
+    "name" : "Dream On",
+    "remainedTime" : 267,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : false
@@ -4821,15 +4826,20 @@
     "paused" : false
   }
 }, {
+  "command" : "next",
+  "user" : "bob35",
+  "timestamp" : 5610,
+  "message" : "Please load a source before skipping to the next track."
+}, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 5610,
   "stats" : {
-    "name" : "Bohemian Rhapsody",
-    "remainedTime" : 157,
+    "name" : "",
+    "remainedTime" : 0,
     "repeat" : "No Repeat",
     "shuffle" : true,
-    "paused" : false
+    "paused" : true
   }
 }, {
   "command" : "switchVisibility",
@@ -4886,12 +4896,17 @@
     "paused" : false
   }
 }, {
+  "command" : "next",
+  "user" : "frank21",
+  "timestamp" : 5650,
+  "message" : "Skipped to next track successfully. The current track is Maps."
+}, {
   "command" : "status",
   "user" : "frank21",
   "timestamp" : 5650,
   "stats" : {
-    "name" : "Castle on the Hill",
-    "remainedTime" : 163,
+    "name" : "Maps",
+    "remainedTime" : 190,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : true
@@ -4938,8 +4953,8 @@
   "user" : "irene33",
   "timestamp" : 5680,
   "stats" : {
-    "name" : "Blank Space",
-    "remainedTime" : 33,
+    "name" : "Dream On",
+    "remainedTime" : 167,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : true
@@ -4983,15 +4998,20 @@
     "paused" : false
   }
 }, {
+  "command" : "next",
+  "user" : "bob35",
+  "timestamp" : 5710,
+  "message" : null
+}, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 5710,
   "stats" : {
-    "name" : "Bohemian Rhapsody",
-    "remainedTime" : 57,
+    "name" : "",
+    "remainedTime" : 0,
     "repeat" : "No Repeat",
     "shuffle" : true,
-    "paused" : false
+    "paused" : true
   }
 }, {
   "command" : "shuffle",
@@ -5010,12 +5030,17 @@
     "paused" : false
   }
 }, {
+  "command" : "next",
+  "user" : "david27",
+  "timestamp" : 5730,
+  "message" : "Skipped to next track successfully. The current track is Start Me Up."
+}, {
   "command" : "status",
   "user" : "david27",
   "timestamp" : 5730,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 69,
+    "name" : "Start Me Up",
+    "remainedTime" : 212,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : false
@@ -5041,8 +5066,8 @@
   "user" : "frank21",
   "timestamp" : 5750,
   "stats" : {
-    "name" : "Castle on the Hill",
-    "remainedTime" : 163,
+    "name" : "Maps",
+    "remainedTime" : 190,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : true
@@ -5052,8 +5077,8 @@
   "user" : "frank21",
   "timestamp" : 5750,
   "stats" : {
-    "name" : "Castle on the Hill",
-    "remainedTime" : 163,
+    "name" : "Maps",
+    "remainedTime" : 190,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : true
@@ -5090,8 +5115,8 @@
   "user" : "irene33",
   "timestamp" : 5780,
   "stats" : {
-    "name" : "Blank Space",
-    "remainedTime" : 33,
+    "name" : "Dream On",
+    "remainedTime" : 167,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : true
@@ -5161,12 +5186,17 @@
     "paused" : true
   }
 }, {
+  "command" : "next",
+  "user" : "david27",
+  "timestamp" : 5830,
+  "message" : "Skipped to next track successfully. The current track is Under Pressure."
+}, {
   "command" : "status",
   "user" : "david27",
   "timestamp" : 5830,
   "stats" : {
-    "name" : "Start Me Up",
-    "remainedTime" : 181,
+    "name" : "Under Pressure",
+    "remainedTime" : 244,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : false
@@ -5197,8 +5227,8 @@
   "user" : "frank21",
   "timestamp" : 5850,
   "stats" : {
-    "name" : "Castle on the Hill",
-    "remainedTime" : 163,
+    "name" : "Maps",
+    "remainedTime" : 190,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : true
@@ -5208,8 +5238,8 @@
   "user" : "frank21",
   "timestamp" : 5850,
   "stats" : {
-    "name" : "Castle on the Hill",
-    "remainedTime" : 163,
+    "name" : "Maps",
+    "remainedTime" : 190,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : true
@@ -5258,13 +5288,18 @@
     "shuffle" : false,
     "paused" : true
   }
+}, {
+  "command" : "next",
+  "user" : "irene33",
+  "timestamp" : 5880,
+  "message" : "Skipped to next track successfully. The current track is Don't."
 }, {
   "command" : "status",
   "user" : "irene33",
   "timestamp" : 5880,
   "stats" : {
-    "name" : "Blank Space",
-    "remainedTime" : 33,
+    "name" : "Don't",
+    "remainedTime" : 219,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : true
@@ -5358,8 +5393,8 @@
   "user" : "david27",
   "timestamp" : 5930,
   "stats" : {
-    "name" : "Start Me Up",
-    "remainedTime" : 81,
+    "name" : "Under Pressure",
+    "remainedTime" : 144,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : false
@@ -5385,8 +5420,8 @@
   "user" : "frank21",
   "timestamp" : 5950,
   "stats" : {
-    "name" : "Castle on the Hill",
-    "remainedTime" : 163,
+    "name" : "Maps",
+    "remainedTime" : 190,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : true
@@ -5433,8 +5468,8 @@
   "user" : "irene33",
   "timestamp" : 5980,
   "stats" : {
-    "name" : "Blank Space",
-    "remainedTime" : 33,
+    "name" : "Don't",
+    "remainedTime" : 219,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : true
@@ -5462,12 +5497,17 @@
     "paused" : false
   }
 }, {
+  "command" : "next",
+  "user" : "alice22",
+  "timestamp" : 6000,
+  "message" : "Skipped to next track successfully. The current track is Paint It Black."
+}, {
   "command" : "status",
   "user" : "alice22",
   "timestamp" : 6000,
   "stats" : {
-    "name" : "Bohemian Rhapsody",
-    "remainedTime" : 69,
+    "name" : "Paint It Black",
+    "remainedTime" : 202,
     "repeat" : "Repeat All",
     "shuffle" : false,
     "paused" : false
@@ -5505,15 +5545,20 @@
     "paused" : true
   }
 }, {
+  "command" : "next",
+  "user" : "david27",
+  "timestamp" : 6030,
+  "message" : "Please load a source before skipping to the next track."
+}, {
   "command" : "status",
   "user" : "david27",
   "timestamp" : 6030,
   "stats" : {
-    "name" : "Under Pressure",
-    "remainedTime" : 225,
+    "name" : "",
+    "remainedTime" : 0,
     "repeat" : "No Repeat",
     "shuffle" : true,
-    "paused" : false
+    "paused" : true
   }
 }, {
   "command" : "status",
@@ -5536,8 +5581,8 @@
   "user" : "frank21",
   "timestamp" : 6050,
   "stats" : {
-    "name" : "Castle on the Hill",
-    "remainedTime" : 163,
+    "name" : "Maps",
+    "remainedTime" : 190,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : true
@@ -5548,12 +5593,17 @@
   "timestamp" : 6060,
   "message" : "Visibility status updated successfully to private."
 }, {
+  "command" : "next",
+  "user" : "grace25",
+  "timestamp" : 6060,
+  "message" : "Skipped to next track successfully. The current track is Start Me Up."
+}, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 6060,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 169,
+    "name" : "Start Me Up",
+    "remainedTime" : 212,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : true
@@ -5584,19 +5634,24 @@
   "user" : "irene33",
   "timestamp" : 6080,
   "stats" : {
-    "name" : "Blank Space",
-    "remainedTime" : 33,
+    "name" : "Don't",
+    "remainedTime" : 219,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : true
   }
 }, {
+  "command" : "next",
+  "user" : "jack29",
+  "timestamp" : 6090,
+  "message" : "Skipped to next track successfully. The current track is Big Pimpin'."
+}, {
   "command" : "status",
   "user" : "jack29",
   "timestamp" : 6090,
   "stats" : {
-    "name" : "Blank Space",
-    "remainedTime" : 13,
+    "name" : "Big Pimpin'",
+    "remainedTime" : 284,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : false
@@ -5612,7 +5667,7 @@
   "timestamp" : 6100,
   "stats" : {
     "name" : "Paint It Black",
-    "remainedTime" : 171,
+    "remainedTime" : 102,
     "repeat" : "Repeat All",
     "shuffle" : false,
     "paused" : false
@@ -5653,14 +5708,14 @@
   "command" : "playPause",
   "user" : "david27",
   "timestamp" : 6130,
-  "message" : "Playback paused successfully."
+  "message" : "Please load a source before attempting to pause or resume playback."
 }, {
   "command" : "status",
   "user" : "david27",
   "timestamp" : 6130,
   "stats" : {
-    "name" : "Under Pressure",
-    "remainedTime" : 125,
+    "name" : "",
+    "remainedTime" : 0,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : true
@@ -5696,8 +5751,8 @@
   "user" : "frank21",
   "timestamp" : 6150,
   "stats" : {
-    "name" : "Castle on the Hill",
-    "remainedTime" : 163,
+    "name" : "Maps",
+    "remainedTime" : 190,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : true
@@ -5712,8 +5767,8 @@
   "user" : "grace25",
   "timestamp" : 6160,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 169,
+    "name" : "Start Me Up",
+    "remainedTime" : 212,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : true
@@ -5739,8 +5794,8 @@
   "user" : "irene33",
   "timestamp" : 6180,
   "stats" : {
-    "name" : "Blank Space",
-    "remainedTime" : 33,
+    "name" : "Don't",
+    "remainedTime" : 219,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : true
@@ -5750,8 +5805,8 @@
   "user" : "irene33",
   "timestamp" : 6180,
   "stats" : {
-    "name" : "Blank Space",
-    "remainedTime" : 33,
+    "name" : "Don't",
+    "remainedTime" : 219,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : true
@@ -5772,7 +5827,7 @@
   "timestamp" : 6190,
   "stats" : {
     "name" : "Big Pimpin'",
-    "remainedTime" : 197,
+    "remainedTime" : 184,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -5793,7 +5848,7 @@
   "timestamp" : 6200,
   "stats" : {
     "name" : "Paint It Black",
-    "remainedTime" : 71,
+    "remainedTime" : 2,
     "repeat" : "Repeat All",
     "shuffle" : false,
     "paused" : true
@@ -5839,25 +5894,30 @@
   "command" : "shuffle",
   "user" : "david27",
   "timestamp" : 6230,
-  "message" : "Shuffle function activated successfully."
+  "message" : "Please load a source before using the shuffle function."
 }, {
   "command" : "status",
   "user" : "david27",
   "timestamp" : 6230,
   "stats" : {
-    "name" : "Under Pressure",
-    "remainedTime" : 125,
+    "name" : "",
+    "remainedTime" : 0,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : true
   }
+}, {
+  "command" : "next",
+  "user" : "emily30",
+  "timestamp" : 6240,
+  "message" : "Skipped to next track successfully. The current track is The Man."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6240,
   "stats" : {
     "name" : "The Man",
-    "remainedTime" : 111,
+    "remainedTime" : 190,
     "repeat" : "Repeat Current Song",
     "shuffle" : true,
     "paused" : true
@@ -5872,8 +5932,8 @@
   "user" : "frank21",
   "timestamp" : 6250,
   "stats" : {
-    "name" : "Castle on the Hill",
-    "remainedTime" : 163,
+    "name" : "Maps",
+    "remainedTime" : 190,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : true
@@ -5883,8 +5943,8 @@
   "user" : "grace25",
   "timestamp" : 6260,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 169,
+    "name" : "Start Me Up",
+    "remainedTime" : 212,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : true
@@ -5920,8 +5980,8 @@
   "user" : "irene33",
   "timestamp" : 6280,
   "stats" : {
-    "name" : "Blank Space",
-    "remainedTime" : 33,
+    "name" : "Don't",
+    "remainedTime" : 219,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : false
@@ -5932,7 +5992,7 @@
   "timestamp" : 6290,
   "stats" : {
     "name" : "Big Pimpin'",
-    "remainedTime" : 97,
+    "remainedTime" : 84,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -5943,7 +6003,7 @@
   "timestamp" : 6290,
   "stats" : {
     "name" : "Big Pimpin'",
-    "remainedTime" : 97,
+    "remainedTime" : 84,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -5954,7 +6014,7 @@
   "timestamp" : 6300,
   "stats" : {
     "name" : "Paint It Black",
-    "remainedTime" : 71,
+    "remainedTime" : 2,
     "repeat" : "Repeat All",
     "shuffle" : false,
     "paused" : true
@@ -5965,7 +6025,7 @@
   "timestamp" : 6300,
   "stats" : {
     "name" : "Paint It Black",
-    "remainedTime" : 71,
+    "remainedTime" : 2,
     "repeat" : "Repeat All",
     "shuffle" : false,
     "paused" : true
@@ -6006,17 +6066,17 @@
   "command" : "playPause",
   "user" : "david27",
   "timestamp" : 6330,
-  "message" : "Playback resumed successfully."
+  "message" : "Please load a source before attempting to pause or resume playback."
 }, {
   "command" : "status",
   "user" : "david27",
   "timestamp" : 6330,
   "stats" : {
-    "name" : "Under Pressure",
-    "remainedTime" : 125,
+    "name" : "",
+    "remainedTime" : 0,
     "repeat" : "No Repeat",
-    "shuffle" : true,
-    "paused" : false
+    "shuffle" : false,
+    "paused" : true
   }
 }, {
   "command" : "status",
@@ -6024,18 +6084,23 @@
   "timestamp" : 6340,
   "stats" : {
     "name" : "The Man",
-    "remainedTime" : 111,
+    "remainedTime" : 190,
     "repeat" : "Repeat Current Song",
     "shuffle" : true,
     "paused" : true
   }
 }, {
+  "command" : "next",
+  "user" : "frank21",
+  "timestamp" : 6350,
+  "message" : "Skipped to next track successfully. The current track is Big Pimpin'."
+}, {
   "command" : "status",
   "user" : "frank21",
   "timestamp" : 6350,
   "stats" : {
-    "name" : "Castle on the Hill",
-    "remainedTime" : 163,
+    "name" : "Big Pimpin'",
+    "remainedTime" : 284,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : true
@@ -6045,8 +6110,8 @@
   "user" : "grace25",
   "timestamp" : 6360,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 169,
+    "name" : "Start Me Up",
+    "remainedTime" : 212,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : true
@@ -6083,11 +6148,11 @@
   "user" : "irene33",
   "timestamp" : 6380,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
+    "name" : "Don't",
+    "remainedTime" : 119,
     "repeat" : "No Repeat",
     "shuffle" : true,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "status",
@@ -6095,7 +6160,7 @@
   "timestamp" : 6390,
   "stats" : {
     "name" : "Money Trees",
-    "remainedTime" : 384,
+    "remainedTime" : 371,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -6104,14 +6169,14 @@
   "command" : "like",
   "user" : "alice22",
   "timestamp" : 6400,
-  "message" : "Like registered successfully."
+  "message" : "Unlike registered successfully."
 }, {
   "command" : "status",
   "user" : "alice22",
   "timestamp" : 6400,
   "stats" : {
     "name" : "Paint It Black",
-    "remainedTime" : 71,
+    "remainedTime" : 2,
     "repeat" : "Repeat All",
     "shuffle" : false,
     "paused" : true
@@ -6144,12 +6209,17 @@
   "timestamp" : 6420,
   "message" : "Visibility status updated successfully to public."
 }, {
+  "command" : "next",
+  "user" : "carol19",
+  "timestamp" : 6420,
+  "message" : "Skipped to next track successfully. The current track is Dream On."
+}, {
   "command" : "status",
   "user" : "carol19",
   "timestamp" : 6420,
   "stats" : {
-    "name" : "Happier",
-    "remainedTime" : 33,
+    "name" : "Dream On",
+    "remainedTime" : 267,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : true
@@ -6159,19 +6229,24 @@
   "user" : "david27",
   "timestamp" : 6430,
   "stats" : {
-    "name" : "Under Pressure",
-    "remainedTime" : 25,
+    "name" : "",
+    "remainedTime" : 0,
     "repeat" : "No Repeat",
-    "shuffle" : true,
-    "paused" : false
+    "shuffle" : false,
+    "paused" : true
   }
+}, {
+  "command" : "next",
+  "user" : "emily30",
+  "timestamp" : 6440,
+  "message" : "Skipped to next track successfully. The current track is The Man."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6440,
   "stats" : {
     "name" : "The Man",
-    "remainedTime" : 111,
+    "remainedTime" : 190,
     "repeat" : "Repeat Current Song",
     "shuffle" : true,
     "paused" : true
@@ -6186,8 +6261,8 @@
   "user" : "frank21",
   "timestamp" : 6450,
   "stats" : {
-    "name" : "Castle on the Hill",
-    "remainedTime" : 163,
+    "name" : "Big Pimpin'",
+    "remainedTime" : 284,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : true
@@ -6202,8 +6277,8 @@
   "user" : "grace25",
   "timestamp" : 6460,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 169,
+    "name" : "Start Me Up",
+    "remainedTime" : 212,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : true
@@ -6214,12 +6289,17 @@
   "timestamp" : 6470,
   "message" : "Visibility status updated successfully to private."
 }, {
+  "command" : "next",
+  "user" : "henry26",
+  "timestamp" : 6470,
+  "message" : "Skipped to next track successfully. The current track is The Man."
+}, {
   "command" : "status",
   "user" : "henry26",
   "timestamp" : 6470,
   "stats" : {
-    "name" : "Whatever You Need",
-    "remainedTime" : 12,
+    "name" : "The Man",
+    "remainedTime" : 190,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : true
@@ -6228,17 +6308,17 @@
   "command" : "shuffle",
   "user" : "irene33",
   "timestamp" : 6480,
-  "message" : "Please load a source before using the shuffle function."
+  "message" : "Shuffle function activated successfully."
 }, {
   "command" : "status",
   "user" : "irene33",
   "timestamp" : 6480,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
+    "name" : "Don't",
+    "remainedTime" : 19,
     "repeat" : "No Repeat",
-    "shuffle" : false,
-    "paused" : true
+    "shuffle" : true,
+    "paused" : false
   }
 }, {
   "command" : "like",
@@ -6251,7 +6331,7 @@
   "timestamp" : 6490,
   "stats" : {
     "name" : "Money Trees",
-    "remainedTime" : 284,
+    "remainedTime" : 271,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -6267,11 +6347,16 @@
   "timestamp" : 6500,
   "stats" : {
     "name" : "Paint It Black",
-    "remainedTime" : 71,
+    "remainedTime" : 2,
     "repeat" : "Repeat All",
     "shuffle" : false,
     "paused" : false
   }
+}, {
+  "command" : "next",
+  "user" : "bob35",
+  "timestamp" : 6510,
+  "message" : null
 }, {
   "command" : "status",
   "user" : "bob35",
@@ -6298,8 +6383,8 @@
   "user" : "carol19",
   "timestamp" : 6520,
   "stats" : {
-    "name" : "Happier",
-    "remainedTime" : 33,
+    "name" : "Dream On",
+    "remainedTime" : 267,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : false
@@ -6317,8 +6402,8 @@
     "name" : "",
     "remainedTime" : 0,
     "repeat" : "No Repeat",
-    "shuffle" : true,
-    "paused" : false
+    "shuffle" : false,
+    "paused" : true
   }
 }, {
   "command" : "status",
@@ -6326,7 +6411,7 @@
   "timestamp" : 6540,
   "stats" : {
     "name" : "The Man",
-    "remainedTime" : 111,
+    "remainedTime" : 190,
     "repeat" : "Repeat Current Song",
     "shuffle" : true,
     "paused" : true
@@ -6341,8 +6426,8 @@
   "user" : "frank21",
   "timestamp" : 6550,
   "stats" : {
-    "name" : "Castle on the Hill",
-    "remainedTime" : 163,
+    "name" : "Big Pimpin'",
+    "remainedTime" : 284,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : true
@@ -6352,8 +6437,8 @@
   "user" : "grace25",
   "timestamp" : 6560,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 169,
+    "name" : "Start Me Up",
+    "remainedTime" : 212,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : true
@@ -6368,8 +6453,8 @@
   "user" : "henry26",
   "timestamp" : 6570,
   "stats" : {
-    "name" : "Whatever You Need",
-    "remainedTime" : 12,
+    "name" : "The Man",
+    "remainedTime" : 190,
     "repeat" : "Repeat Current Song",
     "shuffle" : true,
     "paused" : true
@@ -6379,11 +6464,11 @@
   "user" : "irene33",
   "timestamp" : 6580,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
+    "name" : "Start Me Up",
+    "remainedTime" : 131,
     "repeat" : "No Repeat",
-    "shuffle" : false,
-    "paused" : true
+    "shuffle" : true,
+    "paused" : false
   }
 }, {
   "command" : "status",
@@ -6391,7 +6476,7 @@
   "timestamp" : 6590,
   "stats" : {
     "name" : "Money Trees",
-    "remainedTime" : 184,
+    "remainedTime" : 171,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -6402,7 +6487,7 @@
   "timestamp" : 6590,
   "stats" : {
     "name" : "Money Trees",
-    "remainedTime" : 184,
+    "remainedTime" : 171,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -6411,18 +6496,23 @@
   "command" : "like",
   "user" : "alice22",
   "timestamp" : 6600,
-  "message" : "Unlike registered successfully."
+  "message" : "Like registered successfully."
 }, {
   "command" : "status",
   "user" : "alice22",
   "timestamp" : 6600,
   "stats" : {
     "name" : "Start Me Up",
-    "remainedTime" : 183,
+    "remainedTime" : 114,
     "repeat" : "Repeat All",
     "shuffle" : false,
     "paused" : false
   }
+}, {
+  "command" : "next",
+  "user" : "bob35",
+  "timestamp" : 6610,
+  "message" : null
 }, {
   "command" : "status",
   "user" : "bob35",
@@ -6440,12 +6530,17 @@
   "timestamp" : 6620,
   "message" : "Visibility status updated successfully to private."
 }, {
+  "command" : "next",
+  "user" : "carol19",
+  "timestamp" : 6620,
+  "message" : "Skipped to next track successfully. The current track is Castle on the Hill."
+}, {
   "command" : "status",
   "user" : "carol19",
   "timestamp" : 6620,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 200,
+    "name" : "Castle on the Hill",
+    "remainedTime" : 261,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : false
@@ -6463,8 +6558,8 @@
     "name" : "",
     "remainedTime" : 0,
     "repeat" : "No Repeat",
-    "shuffle" : true,
-    "paused" : false
+    "shuffle" : false,
+    "paused" : true
   }
 }, {
   "command" : "shuffle",
@@ -6477,7 +6572,7 @@
   "timestamp" : 6640,
   "stats" : {
     "name" : "The Man",
-    "remainedTime" : 111,
+    "remainedTime" : 190,
     "repeat" : "Repeat Current Song",
     "shuffle" : true,
     "paused" : true
@@ -6497,8 +6592,8 @@
   "user" : "frank21",
   "timestamp" : 6650,
   "stats" : {
-    "name" : "Castle on the Hill",
-    "remainedTime" : 163,
+    "name" : "Big Pimpin'",
+    "remainedTime" : 284,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : true
@@ -6513,8 +6608,8 @@
   "user" : "grace25",
   "timestamp" : 6660,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 169,
+    "name" : "Start Me Up",
+    "remainedTime" : 212,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -6529,8 +6624,8 @@
   "user" : "henry26",
   "timestamp" : 6670,
   "stats" : {
-    "name" : "Whatever You Need",
-    "remainedTime" : 12,
+    "name" : "The Man",
+    "remainedTime" : 190,
     "repeat" : "Repeat Current Song",
     "shuffle" : true,
     "paused" : false
@@ -6540,11 +6635,11 @@
   "user" : "irene33",
   "timestamp" : 6680,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
+    "name" : "Start Me Up",
+    "remainedTime" : 31,
     "repeat" : "No Repeat",
-    "shuffle" : false,
-    "paused" : true
+    "shuffle" : true,
+    "paused" : false
   }
 }, {
   "command" : "playPause",
@@ -6557,7 +6652,7 @@
   "timestamp" : 6690,
   "stats" : {
     "name" : "Money Trees",
-    "remainedTime" : 84,
+    "remainedTime" : 71,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : true
@@ -6573,7 +6668,7 @@
   "timestamp" : 6700,
   "stats" : {
     "name" : "Start Me Up",
-    "remainedTime" : 83,
+    "remainedTime" : 14,
     "repeat" : "Repeat Current Song",
     "shuffle" : false,
     "paused" : false
@@ -6599,8 +6694,8 @@
   "user" : "carol19",
   "timestamp" : 6720,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 100,
+    "name" : "Castle on the Hill",
+    "remainedTime" : 161,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : false
@@ -6618,8 +6713,8 @@
     "name" : "",
     "remainedTime" : 0,
     "repeat" : "No Repeat",
-    "shuffle" : true,
-    "paused" : false
+    "shuffle" : false,
+    "paused" : true
   }
 }, {
   "command" : "status",
@@ -6629,8 +6724,8 @@
     "name" : "",
     "remainedTime" : 0,
     "repeat" : "No Repeat",
-    "shuffle" : true,
-    "paused" : false
+    "shuffle" : false,
+    "paused" : true
   }
 }, {
   "command" : "repeat",
@@ -6643,7 +6738,7 @@
   "timestamp" : 6740,
   "stats" : {
     "name" : "The Man",
-    "remainedTime" : 111,
+    "remainedTime" : 190,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : true
@@ -6658,8 +6753,8 @@
   "user" : "frank21",
   "timestamp" : 6750,
   "stats" : {
-    "name" : "Castle on the Hill",
-    "remainedTime" : 163,
+    "name" : "Big Pimpin'",
+    "remainedTime" : 284,
     "repeat" : "Repeat Current Song",
     "shuffle" : true,
     "paused" : true
@@ -6670,12 +6765,17 @@
   "timestamp" : 6760,
   "message" : "Visibility status updated successfully to public."
 }, {
+  "command" : "next",
+  "user" : "grace25",
+  "timestamp" : 6760,
+  "message" : "Skipped to next track successfully. The current track is Stairway to Heaven."
+}, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 6760,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 69,
+    "name" : "Stairway to Heaven",
+    "remainedTime" : 482,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -6685,8 +6785,8 @@
   "user" : "henry26",
   "timestamp" : 6770,
   "stats" : {
-    "name" : "Whatever You Need",
-    "remainedTime" : 122,
+    "name" : "The Man",
+    "remainedTime" : 90,
     "repeat" : "Repeat Current Song",
     "shuffle" : true,
     "paused" : false
@@ -6700,17 +6800,17 @@
   "command" : "like",
   "user" : "irene33",
   "timestamp" : 6780,
-  "message" : "Please load a source before liking or unliking."
+  "message" : "Like registered successfully."
 }, {
   "command" : "status",
   "user" : "irene33",
   "timestamp" : 6780,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
+    "name" : "Dream On",
+    "remainedTime" : 198,
     "repeat" : "No Repeat",
-    "shuffle" : false,
-    "paused" : true
+    "shuffle" : true,
+    "paused" : false
   }
 }, {
   "command" : "repeat",
@@ -6723,7 +6823,7 @@
   "timestamp" : 6790,
   "stats" : {
     "name" : "Money Trees",
-    "remainedTime" : 84,
+    "remainedTime" : 71,
     "repeat" : "Repeat Current Song",
     "shuffle" : true,
     "paused" : true
@@ -6734,7 +6834,7 @@
   "timestamp" : 6800,
   "stats" : {
     "name" : "Start Me Up",
-    "remainedTime" : 195,
+    "remainedTime" : 126,
     "repeat" : "Repeat Current Song",
     "shuffle" : false,
     "paused" : false
@@ -6745,7 +6845,7 @@
   "timestamp" : 6800,
   "stats" : {
     "name" : "Start Me Up",
-    "remainedTime" : 195,
+    "remainedTime" : 126,
     "repeat" : "Repeat Current Song",
     "shuffle" : false,
     "paused" : false
@@ -6771,8 +6871,8 @@
   "user" : "carol19",
   "timestamp" : 6820,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 0,
+    "name" : "Castle on the Hill",
+    "remainedTime" : 61,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -6790,8 +6890,8 @@
     "name" : "",
     "remainedTime" : 0,
     "repeat" : "No Repeat",
-    "shuffle" : true,
-    "paused" : false
+    "shuffle" : false,
+    "paused" : true
   }
 }, {
   "command" : "switchVisibility",
@@ -6809,7 +6909,7 @@
   "timestamp" : 6840,
   "stats" : {
     "name" : "The Man",
-    "remainedTime" : 111,
+    "remainedTime" : 190,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : true
@@ -6824,8 +6924,8 @@
   "user" : "frank21",
   "timestamp" : 6850,
   "stats" : {
-    "name" : "Castle on the Hill",
-    "remainedTime" : 163,
+    "name" : "Big Pimpin'",
+    "remainedTime" : 284,
     "repeat" : "Repeat Current Song",
     "shuffle" : true,
     "paused" : true
@@ -6835,19 +6935,24 @@
   "user" : "frank21",
   "timestamp" : 6850,
   "stats" : {
-    "name" : "Castle on the Hill",
-    "remainedTime" : 163,
+    "name" : "Big Pimpin'",
+    "remainedTime" : 284,
     "repeat" : "Repeat Current Song",
     "shuffle" : true,
     "paused" : true
   }
 }, {
+  "command" : "next",
+  "user" : "grace25",
+  "timestamp" : 6860,
+  "message" : "Skipped to next track successfully. The current track is Dream On."
+}, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 6860,
   "stats" : {
-    "name" : "Love Story",
-    "remainedTime" : 205,
+    "name" : "Dream On",
+    "remainedTime" : 267,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -6862,8 +6967,8 @@
   "user" : "henry26",
   "timestamp" : 6870,
   "stats" : {
-    "name" : "Whatever You Need",
-    "remainedTime" : 22,
+    "name" : "The Man",
+    "remainedTime" : 180,
     "repeat" : "Repeat Current Song",
     "shuffle" : true,
     "paused" : false
@@ -6872,17 +6977,17 @@
   "command" : "like",
   "user" : "irene33",
   "timestamp" : 6880,
-  "message" : "Please load a source before liking or unliking."
+  "message" : "Like registered successfully."
 }, {
   "command" : "status",
   "user" : "irene33",
   "timestamp" : 6880,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
+    "name" : "Dream On",
+    "remainedTime" : 98,
     "repeat" : "No Repeat",
-    "shuffle" : false,
-    "paused" : true
+    "shuffle" : true,
+    "paused" : false
   }
 }, {
   "command" : "like",
@@ -6895,18 +7000,23 @@
   "timestamp" : 6890,
   "stats" : {
     "name" : "Money Trees",
-    "remainedTime" : 84,
+    "remainedTime" : 71,
     "repeat" : "Repeat Current Song",
     "shuffle" : true,
     "paused" : true
   }
+}, {
+  "command" : "next",
+  "user" : "alice22",
+  "timestamp" : 6900,
+  "message" : "Skipped to next track successfully. The current track is Start Me Up."
 }, {
   "command" : "status",
   "user" : "alice22",
   "timestamp" : 6900,
   "stats" : {
     "name" : "Start Me Up",
-    "remainedTime" : 95,
+    "remainedTime" : 212,
     "repeat" : "Repeat Current Song",
     "shuffle" : false,
     "paused" : false
@@ -6942,8 +7052,8 @@
   "user" : "carol19",
   "timestamp" : 6920,
   "stats" : {
-    "name" : "Castle on the Hill",
-    "remainedTime" : 161,
+    "name" : "Gimme Shelter",
+    "remainedTime" : 232,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -6961,8 +7071,8 @@
     "name" : "",
     "remainedTime" : 0,
     "repeat" : "No Repeat",
-    "shuffle" : true,
-    "paused" : false
+    "shuffle" : false,
+    "paused" : true
   }
 }, {
   "command" : "status",
@@ -6972,8 +7082,8 @@
     "name" : "",
     "remainedTime" : 0,
     "repeat" : "No Repeat",
-    "shuffle" : true,
-    "paused" : false
+    "shuffle" : false,
+    "paused" : true
   }
 }, {
   "command" : "playPause",
@@ -6986,7 +7096,7 @@
   "timestamp" : 6940,
   "stats" : {
     "name" : "The Man",
-    "remainedTime" : 111,
+    "remainedTime" : 190,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -7001,19 +7111,24 @@
   "user" : "frank21",
   "timestamp" : 6950,
   "stats" : {
-    "name" : "Castle on the Hill",
-    "remainedTime" : 163,
+    "name" : "Big Pimpin'",
+    "remainedTime" : 284,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : true
   }
+}, {
+  "command" : "next",
+  "user" : "grace25",
+  "timestamp" : 6960,
+  "message" : "Skipped to next track successfully. The current track is Love Story."
 }, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 6960,
   "stats" : {
     "name" : "Love Story",
-    "remainedTime" : 105,
+    "remainedTime" : 236,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -7033,8 +7148,8 @@
   "user" : "henry26",
   "timestamp" : 6970,
   "stats" : {
-    "name" : "Whatever You Need",
-    "remainedTime" : 132,
+    "name" : "The Man",
+    "remainedTime" : 80,
     "repeat" : "Repeat Current Song",
     "shuffle" : true,
     "paused" : true
@@ -7043,17 +7158,17 @@
   "command" : "repeat",
   "user" : "irene33",
   "timestamp" : 6980,
-  "message" : "Please load a source before setting the repeat status."
+  "message" : "Repeat mode changed to repeat all."
 }, {
   "command" : "status",
   "user" : "irene33",
   "timestamp" : 6980,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
-    "shuffle" : false,
-    "paused" : true
+    "name" : "Blank Space",
+    "remainedTime" : 229,
+    "repeat" : "Repeat All",
+    "shuffle" : true,
+    "paused" : false
   }
 }, {
   "command" : "switchVisibility",
@@ -7071,7 +7186,7 @@
   "timestamp" : 6990,
   "stats" : {
     "name" : "Money Trees",
-    "remainedTime" : 84,
+    "remainedTime" : 71,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : true
@@ -9495,7 +9610,7 @@
   "command" : "showPreferredSongs",
   "user" : "alice22",
   "timestamp" : 8490,
-  "result" : [ "Bohemian Rhapsody" ]
+  "result" : [ "Paint It Black" ]
 }, {
   "command" : "showPlaylists",
   "user" : "bob35",
@@ -9535,7 +9650,7 @@
   "command" : "showPreferredSongs",
   "user" : "carol19",
   "timestamp" : 8510,
-  "result" : [ "Happier", "Dream On" ]
+  "result" : [ "Happier", "Castle on the Hill" ]
 }, {
   "command" : "showPlaylists",
   "user" : "david27",
@@ -9595,7 +9710,7 @@
   "command" : "showPreferredSongs",
   "user" : "frank21",
   "timestamp" : 8540,
-  "result" : [ "Castle on the Hill" ]
+  "result" : [ "Big Pimpin'" ]
 }, {
   "command" : "showPlaylists",
   "user" : "grace25",
@@ -9635,7 +9750,7 @@
   "command" : "showPreferredSongs",
   "user" : "henry26",
   "timestamp" : 8560,
-  "result" : [ "Whatever You Need" ]
+  "result" : [ "The Man" ]
 }, {
   "command" : "showPlaylists",
   "user" : "irene33",
@@ -9655,7 +9770,7 @@
   "command" : "showPreferredSongs",
   "user" : "irene33",
   "timestamp" : 8570,
-  "result" : [ ]
+  "result" : [ "Start Me Up", "Dream On" ]
 }, {
   "command" : "showPlaylists",
   "user" : "jack29",

@@ -145,6 +145,10 @@ public class InputCommands {
     boolean createdFollow = false;
     public FollowCommand followCommand;
 
+    // Next Command
+    boolean createdNext = false;
+    public NextCommand nextCommand;
+
     // setters and getters
 
     boolean createdLikeCommand = false;
@@ -531,6 +535,37 @@ public class InputCommands {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode commandJson = objectMapper.createObjectNode()
                 .put("command", "follow")
+                .put("user", getUsername())
+                .put("timestamp", getTimestamp())
+                .put("message", message);
+
+        commandList.add(commandJson);
+    }
+
+    public void NextExecute() {
+        if(!createdNext) {
+            nextCommand = new NextCommand();
+            createdNext = true;
+        }
+
+        String message;
+
+        if(user.player.loadedItem == null)
+            message = "Please load a source before skipping to the next track.";
+        else {
+            if (user.player.loadedItem instanceof SongInput)
+                nextCommand.goToNextSong(user);
+            else if (user.player.loadedItem instanceof Playlist)
+                nextCommand.goToNextPlaylist(user);
+            else if (user.player.loadedItem instanceof PodcastInput)
+                nextCommand.goToNextPodcast(user);
+        }
+
+        message = nextCommand.message;
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "next")
                 .put("user", getUsername())
                 .put("timestamp", getTimestamp())
                 .put("message", message);

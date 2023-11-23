@@ -139,6 +139,9 @@ public final class Main {
 			if (commands[i].getCommand().equals("follow")) {
 				commands[i].FollowExecute();
 			}
+			if (commands[i].getCommand().equals("next")) {
+				commands[i].NextExecute();
+			}
 			commandList.addAll(commands[i].getCommandList());
 		}
 
