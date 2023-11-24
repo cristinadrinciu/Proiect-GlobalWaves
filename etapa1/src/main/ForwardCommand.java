@@ -1,52 +1,78 @@
 package main;
 
+import AudioFiles.Podcast;
+import AudioFiles.User;
 import fileio.input.EpisodeInput;
 
 
 public class ForwardCommand {
-	String message;
+    private String message;
 
-	public ForwardCommand() {
-	}
+    public ForwardCommand() {
+    }
 
-	public void forwardPodcast (User user) {
-		if(user.player.loadedItem == null) {
-			message = "Please load a source before attempting to forward.";
-			return;
-		}
-		if(!(user.player.loadedItem instanceof Podcast)) {
-			message = "The loaded source is not a podcast.";
-			return;
-		}
+    /**
+     * @return the message
+     */
+    public String getMessage() {
+        return message;
+    }
 
-		// otherwise, we skip forward 90 seconds
-		user.player.listenedTime += 90;
+    /**
+     * @param message the new message
+     */
+    public void setMessage(final String message) {
+        this.message = message;
+    }
 
-		// check if we finished the episode
-		if(user.player.listenedTime >= ((EpisodeInput) user.player.playingNow).getDuration()) {
-			// check if we finished the podcast
-			if(user.player.playingNow == ((Podcast) user.player.loadedItem).getEpisodes().get(((Podcast) user.player.loadedItem).getEpisodes().size() - 1)) {
-				// we finished the podcast
-				user.player.loadedItem = null;
-				user.player.playingNow = null;
-				user.player.listenedTime = 0;
-				user.player.switchedTime = user.player.timestamp;
-				user.player.remainingTime = 0;
-				user.player.paused = true;
-				message = "Skipped forward successfully.";
-			} else {
-				// we finished the episode
-				user.player.playingNow = ((Podcast) user.player.loadedItem).getEpisodes().get(((Podcast) user.player.loadedItem).getEpisodes().indexOf((EpisodeInput) user.player.playingNow) + 1);
-				user.player.listenedTime = 0;
-				user.player.remainingTime = ((EpisodeInput) user.player.playingNow).getDuration();
-				user.player.switchedTime = user.player.timestamp;
-				message = "Skipped forward successfully.";
-			}
-		} else {
-			// we didn't finish the episode
-			user.player.remainingTime -= 90;
-			user.player.switchedTime = user.player.timestamp;
-			message = "Skipped forward successfully.";
-		}
-	}
+    /**
+     * @param user the user that wants to forward
+     */
+    public void forwardPodcast(final User user) {
+        if (user.getPlayer().loadedItem == null) {
+            message = "Please load a source before attempting to forward.";
+            return;
+        }
+        if (!(user.getPlayer().loadedItem instanceof Podcast)) {
+            message = "The loaded source is not a podcast.";
+            return;
+        }
+
+        final int forwardTime = 90;
+        // otherwise, we skip forward 90 seconds
+        user.getPlayer().listenedTime += forwardTime;
+
+        // check if we finished the episode
+        if (user.getPlayer().listenedTime >= ((EpisodeInput) user.getPlayer().playingNow).
+                getDuration()) {
+            // check if we finished the podcast
+            if (user.getPlayer().playingNow == ((Podcast) user.getPlayer().loadedItem).
+                    getEpisodes().get(((Podcast) user.getPlayer().loadedItem).
+                            getEpisodes().size() - 1)) {
+                // we finished the podcast
+                user.getPlayer().loadedItem = null;
+                user.getPlayer().playingNow = null;
+                user.getPlayer().listenedTime = 0;
+                user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                user.getPlayer().remainingTime = 0;
+                user.getPlayer().paused = true;
+                message = "Skipped forward successfully.";
+            } else {
+                // we finished the episode
+                user.getPlayer().playingNow = ((Podcast) user.getPlayer().loadedItem).getEpisodes().
+                        get(((Podcast) user.getPlayer().loadedItem).getEpisodes().
+                        indexOf((EpisodeInput) user.getPlayer().playingNow) + 1);
+                user.getPlayer().listenedTime = 0;
+                user.getPlayer().remainingTime = ((EpisodeInput) user.getPlayer().
+                        playingNow).getDuration();
+                user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                message = "Skipped forward successfully.";
+            }
+        } else {
+            // we didn't finish the episode
+            user.getPlayer().remainingTime -= forwardTime;
+            user.getPlayer().switchedTime = user.getPlayer().timestamp;
+            message = "Skipped forward successfully.";
+        }
+    }
 }

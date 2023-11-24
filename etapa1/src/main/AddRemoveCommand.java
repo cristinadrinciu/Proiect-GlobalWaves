@@ -1,55 +1,75 @@
 package main;
 
-import fileio.input.UserInput;
+import AudioFiles.Song;
+import AudioFiles.User;
 
 public class AddRemoveCommand {
-	public int getPlaylistId() {
-		return playlistId;
-	}
+    private int playlistId;
 
-	public void setPlaylistId(int playlistId) {
-		this.playlistId = playlistId;
-	}
+    /**
+     *
+     * @return the id of the playlist
+     */
+    public int getPlaylistId() {
+        return playlistId;
+    }
 
-	private int playlistId;
+    /**
+     *
+     * @param playlistId the id of the playlist
+     */
+    public void setPlaylistId(final int playlistId) {
+        this.playlistId = playlistId;
+    }
 
-	public AddRemoveCommand() {
-	}
 
-	public String addRemoveMessage(User user) {
-		String message;
-		if(user.player.loadedItem == null) {
-			message = "Please load a source before adding to or removing from the playlist.";
-			return message;
-		}
-		if(!(user.player.loadedItem instanceof Song)) {
-			message = "The loaded source is not a song.";
-			return message;
-		}
-		if(user.getPlaylists() == null) {
-			message = "The specified playlist does not exist.";
-			return message;
-		}
-		if(playlistId > user.getPlaylists().size() || playlistId < 0) {
-			message = "The specified playlist does not exist.";
-			return message;
-		}
+    public AddRemoveCommand() {
+    }
 
-		// search if the song is in the playlist
-		boolean isInPlaylist = false;
-		for(Song song : user.getPlaylists().get(playlistId - 1).songs)
-			if(song == user.player.loadedItem)
-				isInPlaylist = true;
-		if(isInPlaylist) {
-			// remove the song from the playlist
-			user.getPlaylists().get(playlistId - 1).songs.remove((Song) user.player.loadedItem);
-			message = "Successfully removed from playlist.";
-		} else {
-			// add in the playlist
-			user.getPlaylists().get(playlistId - 1).songs.add((Song) user.player.loadedItem);
-			message = "Successfully added to playlist.";
-		}
+    /**
+     * @param user the user that wants to add or remove a song from a playlist
+     * @return the message that will be displayed
+     */
+    public String addRemoveMessage(final User user) {
+        String message;
+        if (user.getPlayer().loadedItem == null) {
+            message = "Please load a source before adding to or removing from the playlist.";
+            return message;
+        }
+        if (!(user.getPlayer().loadedItem instanceof Song)) {
+            message = "The loaded source is not a song.";
+            return message;
+        }
+        if (user.getPlaylists() == null) {
+            message = "The specified playlist does not exist.";
+            return message;
+        }
+        if (playlistId > user.getPlaylists().size() || playlistId < 0) {
+            message = "The specified playlist does not exist.";
+            return message;
+        }
 
-		return message;
-	}
+        // search if the song is in the playlist
+        boolean isInPlaylist = false;
+        for (Song song : user.getPlaylists().get(playlistId - 1).getSongs()) {
+            if (song == user.getPlayer().loadedItem) {
+                isInPlaylist = true;
+                break;
+            }
+        }
+
+        if (isInPlaylist) {
+            // remove the song from the playlist
+            user.getPlaylists().get(playlistId - 1).getSongs().
+                    remove((Song) user.getPlayer().loadedItem);
+            message = "Successfully removed from playlist.";
+        } else {
+            // add in the playlist
+            user.getPlaylists().get(playlistId - 1).getSongs().
+                    add((Song) user.getPlayer().loadedItem);
+            message = "Successfully added to playlist.";
+        }
+
+        return message;
+    }
 }

@@ -1,25 +1,53 @@
 package main;
 
-import fileio.input.AudioFile;
+import AudioFiles.AudioFile;
 
 public class SelectCommand {
     private int itemNumber;
-    public static AudioFile selectedItem;
+    private static AudioFile selectedItem;
 
+    /**
+     *
+     * @return the number of the item to be selected
+     */
     public int getItemNumber() {
         return itemNumber;
     }
 
-    public void setItemNumber(int itemNumber) {
+    /**
+     *
+     * @param itemNumber the number of the item to be selected
+     */
+    public void setItemNumber(final int itemNumber) {
         this.itemNumber = itemNumber;
     }
 
     // need the last search
-    public AudioFile getSelectedItem () {
-        if(SearchCommand.searchResults != null && itemNumber > 0 && itemNumber <= SearchCommand.searchResults.size()) {
-            selectedItem = SearchCommand.searchResults.get(itemNumber - 1);
-        } else
+    /**
+     * Selects the item with the given number from the last search
+     */
+    public void provideSelectedItem() {
+        if (SearchCommand.getSearchResults() != null && itemNumber > 0
+                && itemNumber <= SearchCommand.getSearchResults().size()) {
+            selectedItem = SearchCommand.getSearchResults().get(itemNumber - 1);
+        } else {
             selectedItem = null;
+        }
+    }
+
+    /**
+     *
+     * @return the selected item
+     */
+    public static AudioFile getSelectedItem() {
         return selectedItem;
+    }
+
+    /**
+     *
+     * @param selectedItem the selected item
+     */
+    public static void setSelectedItem(final AudioFile selectedItem) {
+        SelectCommand.selectedItem = selectedItem;
     }
 }

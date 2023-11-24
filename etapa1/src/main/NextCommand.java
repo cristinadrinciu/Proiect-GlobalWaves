@@ -1,263 +1,357 @@
 package main;
 
+import AudioFiles.Playlist;
+import AudioFiles.Podcast;
+import AudioFiles.Song;
+import AudioFiles.User;
 import fileio.input.EpisodeInput;
 
 import java.util.ArrayList;
 
 public class NextCommand {
-	String message;
+    private String message;
 
-	/**
-	 *
-	 * @param user from which we get the player
-	 */
+    public NextCommand() {
+    }
 
-	public void goToNextSong(User user) {
-		// verify what we are currently playing
-		if (user.player.loadedItem instanceof Song) {
-			if (user.player.repeatState == 0 ) {
-				// if we are not repeating, then we stop the player
-				user.player.playingNow = null;
-				user.player.loadedItem = null;
-				user.player.listenedTime = 0;
-				user.player.remainingTime = 0;
-				user.player.paused = true;
-				user.player.switchedTime = user.player.timestamp;
-				message = "Please load a source before skipping to the next track.";
-			} else if (user.player.repeatState == 2) {
-				// if we are repeating the song, then we reset the listened time
-				user.player.listenedTime = 0;
-				user.player.remainingTime = ((Song) user.player.playingNow).getDuration();
-				user.player.switchedTime = user.player.timestamp;
-				message = "Skipped to next track successfully. The current track is " + user.player.playingNow.getName() + ".";
-			} else if (user.player.repeatState == 1) {
-				// check the repeatOnce state
-				if(user.player.repeatedOnce == 0) {
-					// if we are not repeating the song, then we repeat it
-					user.player.repeatedOnce = 1;
-					user.player.listenedTime = 0;
-					user.player.remainingTime = ((Song) user.player.playingNow).getDuration();
-					user.player.switchedTime = user.player.timestamp;
-					message = "Skipped to next track successfully. The current track is " + user.player.playingNow.getName() + ".";
-				} else {
-					// if we are repeating the song, then we stop the player
-					user.player.playingNow = null;
-					user.player.loadedItem = null;
-					user.player.listenedTime = 0;
-					user.player.remainingTime = 0;
-					user.player.paused = true;
-					user.player.switchedTime = user.player.timestamp;
-					message = "Please load a source before skipping to the next track.";
-				}
-			}
-		}
-	}
+    /**
+     *
+     * @return the message of the command
+     */
+    public String getMessage() {
+        return message;
+    }
 
-	/**
-	 *
-	 * @param user from which we get the player
-	 */
+    /**
+     *
+     * @param message the message of the command
+     */
+    public void setMessage(final String message) {
+        this.message = message;
+    }
+
+    /**
+     *
+     * @param user from which we get the player
+     */
+    public void goToNextSong(final User user) {
+        // verify what we are currently playing
+        if (user.getPlayer().loadedItem instanceof Song) {
+            if (user.getPlayer().repeatState == 0) {
+                // if we are not repeating, then we stop the player
+                user.getPlayer().playingNow = null;
+                user.getPlayer().loadedItem = null;
+                user.getPlayer().listenedTime = 0;
+                user.getPlayer().remainingTime = 0;
+                user.getPlayer().paused = true;
+                user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                message = "Please load a source before skipping to the next track.";
+            } else if (user.getPlayer().repeatState == 2) {
+                // if we are repeating the song, then we reset the listened time
+                user.getPlayer().listenedTime = 0;
+                user.getPlayer().remainingTime = ((Song) user.getPlayer().playingNow).getDuration();
+                user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                user.getPlayer().paused = false;
+                message = "Skipped to next track successfully. "
+                        + "The current track is " + user.getPlayer().playingNow.getName() + ".";
+            } else if (user.getPlayer().repeatState == 1) {
+                // check the repeatOnce state
+                if (user.getPlayer().repeatedOnce == 0) {
+                    // if we are not repeating the song, then we repeat it
+                    user.getPlayer().repeatedOnce = 1;
+                    user.getPlayer().listenedTime = 0;
+                    user.getPlayer().remainingTime = ((Song) user.getPlayer().
+                            playingNow).getDuration();
+                    user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                    user.getPlayer().paused = false;
+                    message = "Skipped to next track successfully. "
+                            + "The current track is " + user.getPlayer().playingNow.getName() + ".";
+                } else {
+                    // if we are repeating the song, then we stop the player
+                    user.getPlayer().playingNow = null;
+                    user.getPlayer().loadedItem = null;
+                    user.getPlayer().listenedTime = 0;
+                    user.getPlayer().remainingTime = 0;
+                    user.getPlayer().paused = true;
+                    user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                    message = "Please load a source before skipping to the next track.";
+                }
+            }
+        }
+    }
+
+    /**
+     *
+     * @param user from which we get the player
+     */
 
 
-	public void goToNextPlaylist(User user) {
-		// verify what we are currently playing
-		if (user.player.loadedItem instanceof Playlist) {
-			Playlist playlist = (Playlist) user.player.loadedItem;
-			if (user.player.repeatState == 0) {
-				if (!user.player.shuffle) {
-					// check if we are at the end of the playlist
-					if (playlist.songs.indexOf((Song) user.player.playingNow) == playlist.songs.size() - 1) {
-						// if we are at the end, then we stop the player
-						user.player.playingNow = null;
-						user.player.loadedItem = null;
-						user.player.listenedTime = 0;
-						user.player.remainingTime = 0;
-						user.player.paused = true;
-						user.player.switchedTime = user.player.timestamp;
-						message = "Please load a source before skipping to the next track.";
-					} else {
-						// if we are not at the end, then we go to the next song
-						user.player.playingNow = playlist.songs.get(playlist.songs.indexOf((Song) user.player.playingNow) + 1);
-						user.player.listenedTime = 0;
-						user.player.remainingTime = ((Song) user.player.playingNow).getDuration();
-						user.player.switchedTime = user.player.timestamp;
-						message = "Skipped to next track successfully. The current track is " + user.player.playingNow.getName() + ".";
-					}
-				} else {
-					// check if we are at the end of the playlist
-					ArrayList<Song> shuffledPlaylist = user.player.shuffledPlaylist;
-					if (shuffledPlaylist.indexOf((Song) user.player.playingNow) == shuffledPlaylist.size() - 1) {
-						// if we are at the end, then we stop the player
-						user.player.playingNow = null;
-						user.player.loadedItem = null;
-						user.player.listenedTime = 0;
-						user.player.remainingTime = 0;
-						user.player.paused = true;
-						user.player.switchedTime = user.player.timestamp;
-						message = "Please load a source before skipping to the next track.";
-					} else {
-						// if we are not at the end, then we go to the next song
-						user.player.playingNow = shuffledPlaylist.get(shuffledPlaylist.indexOf((Song) user.player.playingNow) + 1);
-						user.player.listenedTime = 0;
-						user.player.remainingTime = ((Song) user.player.playingNow).getDuration();
-						user.player.switchedTime = user.player.timestamp;
-						message = "Skipped to next track successfully. The current track is " + user.player.playingNow.getName() + ".";
-					}
+    public void goToNextPlaylist(final User user) {
+        // verify what we are currently playing
+        if (user.getPlayer().loadedItem instanceof Playlist) {
+            Playlist playlist = (Playlist) user.getPlayer().loadedItem;
+            if (user.getPlayer().repeatState == 0) {
+                if (!user.getPlayer().shuffle) {
+                    // check if we are at the end of the playlist
+                    if (playlist.getSongs().indexOf((Song) user.getPlayer().playingNow)
+                            == playlist.getSongs().size() - 1) {
+                        // if we are at the end, then we stop the player
+                        user.getPlayer().playingNow = null;
+                        user.getPlayer().loadedItem = null;
+                        user.getPlayer().listenedTime = 0;
+                        user.getPlayer().remainingTime = 0;
+                        user.getPlayer().paused = true;
+                        user.getPlayer().shuffle = false;
+                        user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                        message = "Please load a source before skipping to the next track.";
+                    } else {
+                        // if we are not at the end, then we go to the next song
+                        user.getPlayer().playingNow = playlist.getSongs().get(playlist.getSongs().
+                                indexOf((Song) user.getPlayer().playingNow) + 1);
+                        user.getPlayer().listenedTime = 0;
+                        user.getPlayer().remainingTime = ((Song) user.getPlayer().
+                                playingNow).getDuration();
+                        user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                        user.getPlayer().paused = false;
+                        message = "Skipped to next track successfully. "
+                                + "The current track is " + user.getPlayer().
+                                playingNow.getName() + ".";
+                    }
+                } else {
+                    // check if we are at the end of the playlist
+                    ArrayList<Song> shuffledPlaylist = user.getPlayer().shuffledPlaylist;
+                    if (shuffledPlaylist.indexOf((Song) user.getPlayer().playingNow)
+                            == shuffledPlaylist.size() - 1) {
+                        // if we are at the end, then we stop the player
+                        user.getPlayer().playingNow = null;
+                        user.getPlayer().loadedItem = null;
+                        user.getPlayer().listenedTime = 0;
+                        user.getPlayer().remainingTime = 0;
+                        user.getPlayer().paused = true;
+                        user.getPlayer().shuffle = false;
+                        user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                        message = "Please load a source before skipping to the next track.";
+                    } else {
+                        // if we are not at the end, then we go to the next song
+                        user.getPlayer().playingNow = shuffledPlaylist.get(shuffledPlaylist.indexOf(
+                                (Song) user.getPlayer().playingNow) + 1);
+                        user.getPlayer().listenedTime = 0;
+                        user.getPlayer().remainingTime = ((Song) user.getPlayer().
+                                playingNow).getDuration();
+                        user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                        user.getPlayer().paused = false;
+                        message = "Skipped to next track successfully. "
+                                + "The current track is " + user.getPlayer().playingNow.
+                                getName() + ".";
+                    }
 
-				}
-			}
-			if (user.player.repeatState == 1) {
-				// the playlist repeats itself
-				if(!user.player.shuffle) {
-					// check if we are at the end of the playlist
-					if (playlist.songs.indexOf((Song) user.player.playingNow) == playlist.songs.size() - 1) {
-						// if we are at the end, then we go to the first song
-						user.player.playingNow = playlist.songs.get(0);
-						user.player.listenedTime = 0;
-						user.player.remainingTime = ((Song) user.player.playingNow).getDuration();
-						user.player.switchedTime = user.player.timestamp;
-						message = "Skipped to next track successfully. The current track is " + user.player.playingNow.getName() + ".";
-					} else {
-						// if we are not at the end, then we go to the next song
-						user.player.playingNow = playlist.songs.get(playlist.songs.indexOf((Song) user.player.playingNow) + 1);
-						user.player.listenedTime = 0;
-						user.player.remainingTime = ((Song) user.player.playingNow).getDuration();
-						user.player.switchedTime = user.player.timestamp;
-						message = "Skipped to next track successfully. The current track is " + user.player.playingNow.getName() + ".";
-					}
-				} else {
-					// check if we are at the end of the playlist
-					ArrayList<Song> shuffledPlaylist = user.player.shuffledPlaylist;
-					if (shuffledPlaylist.indexOf((Song) user.player.playingNow) == shuffledPlaylist.size() - 1) {
-						// if we are at the end, then we go to the first song
-						user.player.playingNow = shuffledPlaylist.get(0);
-						user.player.listenedTime = 0;
-						user.player.remainingTime = ((Song) user.player.playingNow).getDuration();
-						user.player.switchedTime = user.player.timestamp;
-						message = "Skipped to next track successfully. The current track is " + user.player.playingNow.getName() + ".";
-					} else {
-						// if we are not at the end, then we go to the next song
-						user.player.playingNow = shuffledPlaylist.get(shuffledPlaylist.indexOf((Song) user.player.playingNow) + 1);
-						user.player.listenedTime = 0;
-						user.player.remainingTime = ((Song) user.player.playingNow).getDuration();
-						user.player.switchedTime = user.player.timestamp;
-						message = "Skipped to next track successfully. The current track is " + user.player.playingNow.getName() + ".";
-					}
-				}
-			}
-			if(user.player.repeatState == 2) {
-				// the song repeats itself
-				user.player.listenedTime = 0;
-				user.player.remainingTime = ((Song) user.player.playingNow).getDuration();
-				user.player.switchedTime = user.player.timestamp;
-				message = "Skipped to next track successfully. The current track is " + user.player.playingNow.getName() + ".";
-			}
-		}
-	}
+                }
+            }
+            if (user.getPlayer().repeatState == 1) {
+                // the playlist repeats itself
+                if (!user.getPlayer().shuffle) {
+                    // check if we are at the end of the playlist
+                    if (playlist.getSongs().indexOf((Song) user.getPlayer().playingNow)
+                            == playlist.getSongs().size() - 1) {
+                        // if we are at the end, then we go to the first song
+                        user.getPlayer().playingNow = playlist.getSongs().get(0);
+                        user.getPlayer().listenedTime = 0;
+                        user.getPlayer().remainingTime = ((Song) user.getPlayer().playingNow).
+                                getDuration();
+                        user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                        user.getPlayer().paused = false;
+                        message = "Skipped to next track successfully. "
+                                + "The current track is " + user.getPlayer().playingNow.
+                                getName() + ".";
+                    } else {
+                        // if we are not at the end, then we go to the next song
+                        user.getPlayer().playingNow = playlist.getSongs().get(playlist.
+                                getSongs().indexOf((Song) user.getPlayer().playingNow) + 1);
+                        user.getPlayer().listenedTime = 0;
+                        user.getPlayer().remainingTime = ((Song) user.getPlayer().playingNow).
+                                getDuration();
+                        user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                        user.getPlayer().paused = false;
+                        message = "Skipped to next track successfully. "
+                                + "The current track is " + user.getPlayer().playingNow.
+                                getName() + ".";
+                    }
+                } else {
+                    // check if we are at the end of the playlist
+                    ArrayList<Song> shuffledPlaylist = user.getPlayer().shuffledPlaylist;
+                    if (shuffledPlaylist.indexOf((Song) user.getPlayer().playingNow)
+                            == shuffledPlaylist.size() - 1) {
+                        // if we are at the end, then we go to the first song
+                        user.getPlayer().playingNow = shuffledPlaylist.get(0);
+                        user.getPlayer().listenedTime = 0;
+                        user.getPlayer().remainingTime = ((Song) user.getPlayer().playingNow).
+                                getDuration();
+                        user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                        user.getPlayer().paused = false;
+                        message = "Skipped to next track successfully. "
+                                + "The current track is " + user.getPlayer().playingNow.
+                                getName() + ".";
+                    } else {
+                        // if we are not at the end, then we go to the next song
+                        user.getPlayer().playingNow = shuffledPlaylist.get(shuffledPlaylist.indexOf(
+                                (Song) user.getPlayer().playingNow) + 1);
+                        user.getPlayer().listenedTime = 0;
+                        user.getPlayer().remainingTime = ((Song) user.getPlayer().playingNow).
+                                getDuration();
+                        user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                        user.getPlayer().paused = false;
+                        message = "Skipped to next track successfully. "
+                                + "The current track is " + user.getPlayer().playingNow.
+                                getName() + ".";
+                    }
+                }
+            }
+            if (user.getPlayer().repeatState == 2) {
+                // the song repeats itself
+                user.getPlayer().listenedTime = 0;
+                user.getPlayer().remainingTime = ((Song) user.getPlayer().playingNow).
+                        getDuration();
+                user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                user.getPlayer().paused = false;
+                message = "Skipped to next track successfully. "
+                        + "The current track is " + user.getPlayer().playingNow.
+                        getName() + ".";
+            }
+        }
+    }
 
-	/**
-	 *
-	 * @param user from which we get the player
-	 */
+    /**
+     *
+     * @param user from which we get the player
+     */
 
-	public void goToNextPodcast(User user) {
-		// verify what we are currently playing
-		if(user.player.loadedItem instanceof Podcast) {
-			if(user.player.repeatState == 0) {
-				// check if it is the last episode
-				EpisodeInput episode = (EpisodeInput) user.player.playingNow;
-				if(((Podcast) user.player.loadedItem).getEpisodes().indexOf(episode) ==
-						((Podcast) user.player.loadedItem).getEpisodes().size() - 1) {
-					// if it is the last episode, then we stop the player
-					user.player.playingNow = null;
-					user.player.loadedItem = null;
-					user.player.listenedTime = 0;
-					user.player.remainingTime = 0;
-					user.player.paused = true;
-					user.player.switchedTime = user.player.timestamp;
-					message = "Please load a source before skipping to the next track.";
-				} else {
-					// if it is not the last episode, then we go to the next episode
-					user.player.playingNow = ((Podcast) user.player.loadedItem).getEpisodes().get(
-							((Podcast) user.player.loadedItem).getEpisodes().indexOf(episode) + 1);
-					user.player.listenedTime = 0;
-					user.player.remainingTime = ((EpisodeInput) user.player.playingNow).getDuration();
-					user.player.switchedTime = user.player.timestamp;
-					message = "Skipped to next track successfully. The current track is " + user.player.playingNow.getName() + ".";
-				}
-			}
-			if(user.player.repeatState == 2) {
-				// the podcast repeats itself
-				// check if it is the last episode
-				EpisodeInput episode = (EpisodeInput) user.player.playingNow;
-				if(((Podcast) user.player.loadedItem).getEpisodes().indexOf(episode) ==
-						((Podcast) user.player.loadedItem).getEpisodes().size() - 1) {
-					// if it is the last episode, then we go to the first episode
-					user.player.playingNow = ((Podcast) user.player.loadedItem).getEpisodes().get(0);
-					user.player.listenedTime = 0;
-					user.player.remainingTime = ((EpisodeInput) user.player.playingNow).getDuration();
-					user.player.switchedTime = user.player.timestamp;
-					message = "Skipped to next track successfully. The current track is " + user.player.playingNow.getName() + ".";
-				} else {
-					// if it is not the last episode, then we go to the next episode
-					user.player.playingNow = ((Podcast) user.player.loadedItem).getEpisodes().get(
-							((Podcast) user.player.loadedItem).getEpisodes().indexOf(episode) + 1);
-					user.player.listenedTime = 0;
-					user.player.remainingTime = ((EpisodeInput) user.player.playingNow).getDuration();
-					user.player.switchedTime = user.player.timestamp;
-					message = "Skipped to next track successfully. The current track is " + user.player.playingNow.getName() + ".";
-				}
-			}
-			if(user.player.repeatState == 1) {
-				// the podcast repeats itself
-				if(user.player.repeatedOnce == 0) {
-					// not repeating
-					// check if it is the last episode
-					EpisodeInput episode = (EpisodeInput) user.player.playingNow;
-					if(((Podcast) user.player.loadedItem).getEpisodes().indexOf(episode) ==
-							((Podcast) user.player.loadedItem).getEpisodes().size() - 1) {
-						// if it is the last episode, then we go to the first episode
-						user.player.playingNow = ((Podcast) user.player.loadedItem).getEpisodes().get(0);
-						user.player.listenedTime = 0;
-						user.player.remainingTime = ((EpisodeInput) user.player.playingNow).getDuration();
-						user.player.switchedTime = user.player.timestamp;
-						user.player.repeatedOnce = 1;
-						message = "Skipped to next track successfully. The current track is " + user.player.playingNow.getName() + ".";
-					} else {
-						// if it is not the last episode, then we go to the next episode
-						user.player.playingNow = ((Podcast) user.player.loadedItem).getEpisodes().get(
-								((Podcast) user.player.loadedItem).getEpisodes().indexOf(episode) + 1);
-						user.player.listenedTime = 0;
-						user.player.remainingTime = ((EpisodeInput) user.player.playingNow).getDuration();
-						user.player.switchedTime = user.player.timestamp;
-						user.player.repeatedOnce = 1;
-						message = "Skipped to next track successfully. The current track is " + user.player.playingNow.getName() + ".";
-					}
-				} else {
-					// is repeating
-					//check if it is the last episode
-					EpisodeInput episode = (EpisodeInput) user.player.playingNow;
-					if(((Podcast) user.player.loadedItem).getEpisodes().indexOf(episode) ==
-							((Podcast) user.player.loadedItem).getEpisodes().size() - 1) {
-						// if it is the last episode, then we stop the player
-						user.player.playingNow = null;
-						user.player.loadedItem = null;
-						user.player.listenedTime = 0;
-						user.player.remainingTime = 0;
-						user.player.paused = true;
-						user.player.switchedTime = user.player.timestamp;
-						message = "Please load a source before skipping to the next track.";
-					} else {
-						// if it is not the last episode, then we go to the next episode
-						user.player.playingNow = ((Podcast) user.player.loadedItem).getEpisodes().get(
-								((Podcast) user.player.loadedItem).getEpisodes().indexOf(episode) + 1);
-						user.player.listenedTime = 0;
-						user.player.remainingTime = ((EpisodeInput) user.player.playingNow).getDuration();
-						user.player.switchedTime = user.player.timestamp;
-						message = "Skipped to next track successfully. The current track is " + user.player.playingNow.getName() + ".";
-					}
-				}
-			}
-		}
-	}
+    public void goToNextPodcast(final User user) {
+        // verify what we are currently playing
+        if (user.getPlayer().loadedItem instanceof Podcast) {
+            if (user.getPlayer().repeatState == 0) {
+                // check if it is the last episode
+                EpisodeInput episode = (EpisodeInput) user.getPlayer().playingNow;
+                if (((Podcast) user.getPlayer().loadedItem).getEpisodes().indexOf(episode)
+                        == ((Podcast) user.getPlayer().loadedItem).getEpisodes().size() - 1) {
+                    // if it is the last episode, then we stop the player
+                    user.getPlayer().playingNow = null;
+                    user.getPlayer().loadedItem = null;
+                    user.getPlayer().listenedTime = 0;
+                    user.getPlayer().remainingTime = 0;
+                    user.getPlayer().paused = true;
+                    user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                    message = "Please load a source before skipping to the next track.";
+                } else {
+                    // if it is not the last episode, then we go to the next episode
+                    user.getPlayer().playingNow = ((Podcast) user.getPlayer().loadedItem).
+                            getEpisodes().get(((Podcast) user.getPlayer().loadedItem).getEpisodes().
+                                    indexOf(episode) + 1);
+                    user.getPlayer().listenedTime = 0;
+                    user.getPlayer().remainingTime = ((EpisodeInput) user.getPlayer().playingNow).
+                            getDuration();
+                    user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                    user.getPlayer().paused = false;
+                    message = "Skipped to next track successfully. "
+                            + "The current track is " + user.getPlayer().playingNow.getName() + ".";
+                }
+            }
+            if (user.getPlayer().repeatState == 2) {
+                // the podcast repeats itself
+                // check if it is the last episode
+                EpisodeInput episode = (EpisodeInput) user.getPlayer().playingNow;
+                if (((Podcast) user.getPlayer().loadedItem).getEpisodes().indexOf(episode)
+                        == ((Podcast) user.getPlayer().loadedItem).getEpisodes().size() - 1) {
+                    // if it is the last episode, then we go to the first episode
+                    user.getPlayer().playingNow = ((Podcast) user.getPlayer().loadedItem).
+                            getEpisodes().get(0);
+                    user.getPlayer().listenedTime = 0;
+                    user.getPlayer().remainingTime = ((EpisodeInput) user.getPlayer().playingNow).
+                            getDuration();
+                    user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                    user.getPlayer().paused = false;
+                    message = "Skipped to next track successfully. "
+                            + "The current track is " + user.getPlayer().playingNow.getName() + ".";
+                } else {
+                    // if it is not the last episode, then we go to the next episode
+                    user.getPlayer().playingNow = ((Podcast) user.getPlayer().loadedItem).
+                            getEpisodes().get(((Podcast) user.getPlayer().loadedItem).getEpisodes().
+                                    indexOf(episode) + 1);
+                    user.getPlayer().listenedTime = 0;
+                    user.getPlayer().remainingTime = ((EpisodeInput) user.getPlayer().playingNow).
+                            getDuration();
+                    user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                    user.getPlayer().paused = false;
+                    message = "Skipped to next track successfully. "
+                            + "The current track is " + user.getPlayer().playingNow.getName() + ".";
+                }
+            }
+            if (user.getPlayer().repeatState == 1) {
+                // the podcast repeats itself
+                if (user.getPlayer().repeatedOnce == 0) {
+                    // not repeating
+                    // check if it is the last episode
+                    EpisodeInput episode = (EpisodeInput) user.getPlayer().playingNow;
+                    if (((Podcast) user.getPlayer().loadedItem).getEpisodes().indexOf(episode)
+                           == ((Podcast) user.getPlayer().loadedItem).getEpisodes().size() - 1) {
+                        // if it is the last episode, then we go to the first episode
+                        user.getPlayer().playingNow = ((Podcast) user.getPlayer().loadedItem).
+                                getEpisodes().get(0);
+                        user.getPlayer().listenedTime = 0;
+                        user.getPlayer().remainingTime = ((EpisodeInput) user.getPlayer().
+                                playingNow).
+                                getDuration();
+                        user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                        user.getPlayer().repeatedOnce = 1;
+                        user.getPlayer().paused = false;
+                        message = "Skipped to next track successfully. "
+                                + "The current track is " + user.getPlayer().playingNow.
+                                getName() + ".";
+                    } else {
+                        // if it is not the last episode, then we go to the next episode
+                        user.getPlayer().playingNow = ((Podcast) user.getPlayer().loadedItem).
+                                getEpisodes().get(((Podcast) user.getPlayer().loadedItem).
+                                        getEpisodes().indexOf(episode) + 1);
+                        user.getPlayer().listenedTime = 0;
+                        user.getPlayer().remainingTime = ((EpisodeInput) user.getPlayer().
+                                playingNow).
+                                getDuration();
+                        user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                        user.getPlayer().repeatedOnce = 1;
+                        user.getPlayer().paused = false;
+                        message = "Skipped to next track successfully. "
+                                + "The current track is " + user.getPlayer().playingNow.
+                                getName() + ".";
+                    }
+                } else {
+                    // is repeating
+                    //check if it is the last episode
+                    EpisodeInput episode = (EpisodeInput) user.getPlayer().playingNow;
+                    if (((Podcast) user.getPlayer().loadedItem).getEpisodes().indexOf(episode)
+                           == ((Podcast) user.getPlayer().loadedItem).getEpisodes().size() - 1) {
+                        // if it is the last episode, then we stop the player
+                        user.getPlayer().playingNow = null;
+                        user.getPlayer().loadedItem = null;
+                        user.getPlayer().listenedTime = 0;
+                        user.getPlayer().remainingTime = 0;
+                        user.getPlayer().paused = true;
+                        user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                        message = "Please load a source before skipping to the next track.";
+                    } else {
+                        // if it is not the last episode, then we go to the next episode
+                        user.getPlayer().playingNow = ((Podcast) user.getPlayer().loadedItem).
+                                getEpisodes().get(((Podcast) user.getPlayer().loadedItem).
+                                        getEpisodes().indexOf(episode) + 1);
+                        user.getPlayer().listenedTime = 0;
+                        user.getPlayer().remainingTime = ((EpisodeInput) user.getPlayer().
+                                playingNow).getDuration();
+                        user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                        user.getPlayer().paused = false;
+                        message = "Skipped to next track successfully. "
+                                + "The current track is " + user.getPlayer().playingNow.
+                                getName() + ".";
+                    }
+                }
+            }
+        }
+    }
 }

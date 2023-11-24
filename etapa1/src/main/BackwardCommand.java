@@ -1,40 +1,62 @@
 package main;
 
-import fileio.input.UserInput;
+import AudioFiles.Podcast;
+import AudioFiles.User;
 import fileio.input.EpisodeInput;
 
 public class BackwardCommand {
-	String message;
+    private String message;
 
-	public BackwardCommand() {
-	}
+    public BackwardCommand() {
+    }
 
-	public void backwardPodcast (User user) {
-		if(user.player.loadedItem == null) {
-			message = "Please load a source before skipping backward.";
-			return;
-		}
+    /**
+     * This method is used to skip backward 90 seconds in the current podcast.
+     * @param user the user that is currently logged in
+     */
+    public void backwardPodcast(final User user) {
+        if (user.getPlayer().loadedItem == null) {
+            message = "Please load a source before skipping backward.";
+            return;
+        }
 
-		if(!(user.player.loadedItem instanceof Podcast)) {
-			message = "The loaded source is not a podcast.";
-			return;
-		}
+        if (!(user.getPlayer().loadedItem instanceof Podcast)) {
+            message = "The loaded source is not a podcast.";
+            return;
+        }
+        final int backwardTime = 90;
+        // otherwise, we skip backward 90 seconds
+        user.getPlayer().listenedTime -= backwardTime;
 
-		// otherwise, we skip backward 90 seconds
-		user.player.listenedTime -= 90;
+        // check if we are at the beginning of the episode
+        if (user.getPlayer().listenedTime < 0) {
+            // is is at the beginning of the podcast, so restart the episode
+            user.getPlayer().remainingTime = ((EpisodeInput) user.getPlayer().
+                    playingNow).getDuration();
+            user.getPlayer().listenedTime = 0;
+            user.getPlayer().switchedTime = user.getPlayer().timestamp;
+            message = "Rewound successfully..";
+        } else {
+            // we didn't finish the episode
+            user.getPlayer().remainingTime += backwardTime;
+            user.getPlayer().switchedTime = user.getPlayer().timestamp;
+            message = "Rewound successfully.";
+        }
+    }
 
-		// check if we are at the beginning of the episode
-		if(user.player.listenedTime < 0) {
-			// is is at the beginning of the podcast, so restart the episode
-			user.player.remainingTime = ((EpisodeInput) user.player.playingNow).getDuration();
-			user.player.listenedTime = 0;
-			user.player.switchedTime = user.player.timestamp;
-			message = "Rewound successfully..";
-		} else {
-			// we didn't finish the episode
-			user.player.remainingTime += 90;
-			user.player.switchedTime = user.player.timestamp;
-			message = "Rewound successfully.";
-		}
-	}
+    /**
+     *
+     * @return the message that is displayed after the command is executed
+     */
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     *
+     * @param message the message that is displayed after the command is executed
+     */
+    public void setMessage(final String message) {
+        this.message = message;
+    }
 }

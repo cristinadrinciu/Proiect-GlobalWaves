@@ -1,63 +1,80 @@
 package main;
 
+import AudioFiles.Library;
+import AudioFiles.Playlist;
+import AudioFiles.User;
+
 import java.util.ArrayList;
 
 public class SwitchVisibilityCommand {
-	private int playlistId;
-	private Playlist playlist;
-	public SwitchVisibilityCommand() {
-	}
+    private int playlistId;
+    private Playlist playlist;
+    public SwitchVisibilityCommand() {
+    }
 
-	public int getPlaylistId() {
-		return playlistId;
-	}
+    /**
+     * @return the playlistId
+     */
+    public int getPlaylistId() {
+        return playlistId;
+    }
 
-	public void setPlaylistId(int playlistId) {
-		this.playlistId = playlistId;
-	}
+    /**
+     * @param playlistId the playlistId to set
+     */
+    public void setPlaylistId(final int playlistId) {
+        this.playlistId = playlistId;
+    }
 
-	public void switchVisibility(User user, Library library) {
-		if(user.getPlaylists().size() < playlistId) {
-			return;
-		}
-		playlist = user.getPlaylists().get(playlistId - 1);
-		if(playlist.getPublic()) {
-			playlist.setPublic(false);
-			ArrayList<User> users = library.getUsers();
-			if(user.player.timestamp == 1400)
-				System.out.println(playlist.getName());
+    /**
+     * @param user the user that wants to switch the visibility of the playlist
+     * @param library the library that contains the users
+     */
+    public void switchVisibility(final User user, final Library library) {
+        if (user.getPlaylists().size() < playlistId) {
+            return;
+        }
+        playlist = user.getPlaylists().get(playlistId - 1);
+        if (playlist.getPublic()) {
+            playlist.setPublic(false);
+            ArrayList<User> users = library.getUsers();
 
-			// remove the playlist from the public player of all users, except the owner
-			for(User userParse : users) {
-				if(userParse != user)
-					userParse.player.playlists.remove(playlist);
-			}
+            // remove the playlist from the public player of all users, except the owner
+            for (User userParse : users) {
+                if (userParse != user) {
+                    userParse.getPlayer().playlists.remove(playlist);
+                }
+            }
 
-			// remove the playlist from the public player
-			PublicPlaylists.playlists.remove(playlist);
-		}
-		else {
-			playlist.setPublic(true);
-			// add the playlist in the public player of all users, except the owner
-			ArrayList<User> users = library.getUsers();
+            // remove the playlist from the public player
+            PublicPlaylists.getPlaylists().remove(playlist);
+        } else {
+            playlist.setPublic(true);
+            // add the playlist in the public player of all users, except the owner
+            ArrayList<User> users = library.getUsers();
 
-			for(User userParse : users) {
-				if(userParse != user)
-					userParse.player.playlists.add(playlist);
-			}
+            for (User userParse : users) {
+                if (userParse != user) {
+                    userParse.getPlayer().playlists.add(playlist);
+                }
+            }
 
-			// add the playlist in the public player
-			PublicPlaylists.playlists.add(playlist);
-		}
-	}
+            // add the playlist in the public player
+            PublicPlaylists.getPlaylists().add(playlist);
+        }
+    }
 
-	public String message(User user) {
-		if(user.getPlaylists().size() < playlistId) {
-			return "The specified playlist ID is too high.";
-		}
-		if(playlist.getPublic())
-			return "Visibility status updated successfully to public.";
-		return "Visibility status updated successfully to private.";
-	}
-
+    /**
+     * @param user the user that wants to switch the visibility of the playlist
+     * @return the message that will be displayed
+     */
+    public String message(final User user) {
+        if (user.getPlaylists().size() < playlistId) {
+            return "The specified playlist ID is too high.";
+        }
+        if (playlist.getPublic()) {
+            return "Visibility status updated successfully to public.";
+        }
+        return "Visibility status updated successfully to private.";
+    }
 }

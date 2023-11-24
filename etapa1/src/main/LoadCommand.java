@@ -1,32 +1,60 @@
 package main;
 
-import fileio.input.AudioFile;
+import AudioFiles.AudioFile;
+import AudioFiles.Playlist;
+import AudioFiles.Podcast;
 
 public class LoadCommand {
-	static AudioFile loadedItem;
-	private String resultMessage;
+    private static AudioFile loadedItem;
+    private String resultMessage;
 
-	public LoadCommand() {
-	}
+    public LoadCommand() {
+    }
 
-	public String getResultMessage() {
-		return resultMessage;
-	}
+    /**
+     * @return the loadedItem
+     */
+    public static AudioFile getLoadedItem() {
+        return loadedItem;
+    }
 
-	public String buildMessage (AudioFile audiofile) {
-		if (audiofile != null) {
-			if (audiofile instanceof Podcast)
-				if (((Podcast) audiofile).getEpisodes().isEmpty()) {
-					return resultMessage = "You can't load an empty audio collection!";
-				}
-			if (audiofile instanceof Playlist)
-				if (((Playlist) audiofile).songs.isEmpty())
-					return resultMessage = "You can't load an empty audio collection!";
-			loadedItem = audiofile;
-			resultMessage = "Playback loaded successfully.";
-		} else
-			resultMessage = "Please select a source before attempting to load.";
+    /**
+     * @param loadedItem the loadedItem to set
+     */
+    public static void setLoadedItem(final AudioFile loadedItem) {
+        LoadCommand.loadedItem = loadedItem;
+    }
 
-		return resultMessage;
-	}
+    /**
+     * @return the resultMessage
+     */
+    public String getResultMessage() {
+        return resultMessage;
+    }
+
+    /**
+     * @param audiofile the audiofile to load
+     */
+    public String buildMessage(final AudioFile audiofile) {
+        if (audiofile != null) {
+            if (audiofile instanceof Podcast) {
+                if (((Podcast) audiofile).getEpisodes().isEmpty()) {
+                    resultMessage = "You can't load an empty audio collection!";
+                    return resultMessage;
+                }
+            }
+            if (audiofile instanceof Playlist) {
+                if (((Playlist) audiofile).getSongs().isEmpty()) {
+                    resultMessage = "You can't load an empty audio collection!";
+                    return resultMessage;
+                }
+            }
+            loadedItem = audiofile;
+            resultMessage = "Playback loaded successfully.";
+        } else {
+            resultMessage = "Please select a source before attempting to load.";
+        }
+
+        return resultMessage;
+    }
 }

@@ -1,39 +1,26 @@
-# Proiect GlobalWaves  - Etapa 1
+AudioPlayer Etapa 1
 
-<div align="center"><img src="https://tenor.com/view/listening-to-music-spongebob-gif-8009182.gif" width="300px"></div>
+The program has an additional package called AudioFiles.
+In this package, there are 6 clases: AudioFile, Song, Podcast, Library, User, Playlist.
+The AudioFile class is the superclass of Song, Podcast, Episode and Playlist.
+These classes are used to create the audio files and to test the creation of the audio files, being copies of the classes in "fileio.input", but with additional fields and methods.
 
-#### Assignment Link: [https://ocw.cs.pub.ro/courses/poo-ca-cd/teme/proiect/etapa1](https://ocw.cs.pub.ro/courses/poo-ca-cd/teme/proiect/etapa1)
+The program has a main class and also another most used class, named InputCommands. The package has classes for each command, that are used as objects in InputCommands class.
+Also, there are some other classes like Filters, Public Playlists, created for the ease of work.
 
+Each user has its own MusicPlayer. The player has a field named timestamp, which is update at each command given as input.
+The player works so that is updated as timestamp, so that the flow of the audio files is calculated right, such as the remaining time.
+The player has the loaded item from teh Load command and the playingNow field, which either a Song or an episode.
+Also, there is a field called switchedTime, which is updated at each modification of the player or status of it. It is really important at the calculation the remaining time.
 
-## Skel Structure
+Each user has its own list of playlists and liked songs. Its player has a list of playlists that are owned by the user and also the public ones from the other users.
+Every time the visibility of a playlist is changed, the list of public playlists is updated for each user.
 
-* src/
-  * checker/ - checker files
-  * fileio/ - contains classes used to read data from the json files
-  * main/
-      * Main - the Main class runs the checker on your implementation. Add the entry point to your implementation in it. Run Main to test your implementation from the IDE or from command line.
-      * Test - run the main method from Test class with the name of the input file from the command line and the result will be written
-        to the out.txt file. Thus, you can compare this result with ref.
-* input/ - contains the tests and library in JSON format
-* ref/ - contains all reference output for the tests in JSON format
+The command objects (searchCommand, selectCommand and so on) are created just once, by implementing a lazy Singleton pattern.
+In SearchCommand, the results are calculated by using filters. There are used lambda expressions for the ease of the work.
 
-## Tests:
-1. test01_searchBar_songs_podcasts - 4p
-2. test02_playPause_song - 4p
-3. test03_like_create_addRemove - 4p
-4. test04_like_create_addRemove_error - 4p
-5. test05_playPause_playlist_podcast - 4p
-6. test06_playPause_error -4p
-7. test07_repeat - 4p
-8. test08_repeat_error - 4p
-9. test09_shuffle - 4p
-10. test10_shuffle_error - 4p
-11. test11_next_prev_forward_backward - 4p
-12. test12_next_prev_forward_backward_error - 4p
-13. test13_searchPlaylist_follow ---  (+4)
-14. test14_searchPlaylist_follow_error - 4p
-15. test15_statistics - 4p
-16. test16_complex - 10p
-17. test17_complex - 10p
+The program has a class named Filters, which has static methods for each filter. The filters are used in SearchCommand class.
 
-<div align="center"><img src="https://tenor.com/view/homework-time-gif-24854817.gif" width="500px"></div>
+The program has a class named PublicPlaylists, which has static methods for each command that can be given to a public playlist. The commands are used in SelectCommand, CreatePlaylist and SwitchVisibilityCommand.
+
+For the output I took some inspiration from ChatGBT and the following link: https://attacomsian.com/blog/jackson-create-json-array .

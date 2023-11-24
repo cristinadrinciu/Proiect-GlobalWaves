@@ -4847,17 +4847,17 @@
   "command" : "prev",
   "user" : "bob35",
   "timestamp" : 5610,
-  "message" : "Please load a source before returning to the previous track."
+  "message" : "Returned to previous track successfully. The current track is Gimme Shelter."
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 5610,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
+    "name" : "Gimme Shelter",
+    "remainedTime" : 271,
     "repeat" : "No Repeat",
     "shuffle" : true,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "like",
@@ -5023,14 +5023,14 @@
   "command" : "playPause",
   "user" : "bob35",
   "timestamp" : 5710,
-  "message" : "Please load a source before attempting to pause or resume playback."
+  "message" : "Playback paused successfully."
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 5710,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
+    "name" : "Gimme Shelter",
+    "remainedTime" : 171,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : true
@@ -5203,20 +5203,20 @@
     "remainedTime" : 324,
     "repeat" : "Repeat All",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "like",
   "user" : "bob35",
   "timestamp" : 5810,
-  "message" : "Please load a source before liking or unliking."
+  "message" : "Like registered successfully."
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 5810,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
+    "name" : "Gimme Shelter",
+    "remainedTime" : 171,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : true
@@ -5381,26 +5381,26 @@
   "timestamp" : 5900,
   "stats" : {
     "name" : "Sad But True",
-    "remainedTime" : 324,
+    "remainedTime" : 224,
     "repeat" : "Repeat All",
     "shuffle" : true,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "prev",
   "user" : "bob35",
   "timestamp" : 5910,
-  "message" : "Please load a source before returning to the previous track."
+  "message" : "Returned to previous track successfully. The current track is Gimme Shelter."
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 5910,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
+    "name" : "Gimme Shelter",
+    "remainedTime" : 271,
     "repeat" : "No Repeat",
     "shuffle" : true,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "switchVisibility",
@@ -5566,17 +5566,17 @@
   "command" : "shuffle",
   "user" : "alice22",
   "timestamp" : 6000,
-  "message" : "Shuffle function activated successfully."
+  "message" : "Shuffle function deactivated successfully."
 }, {
   "command" : "status",
   "user" : "alice22",
   "timestamp" : 6000,
   "stats" : {
     "name" : "Sad But True",
-    "remainedTime" : 324,
+    "remainedTime" : 124,
     "repeat" : "Repeat All",
-    "shuffle" : true,
-    "paused" : true
+    "shuffle" : false,
+    "paused" : false
   }
 }, {
   "command" : "switchVisibility",
@@ -5587,17 +5587,17 @@
   "command" : "repeat",
   "user" : "bob35",
   "timestamp" : 6010,
-  "message" : "Please load a source before setting the repeat status."
+  "message" : "Repeat mode changed to repeat all."
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 6010,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
+    "name" : "Gimme Shelter",
+    "remainedTime" : 171,
+    "repeat" : "Repeat All",
     "shuffle" : true,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "like",
@@ -5748,33 +5748,33 @@
   "command" : "playPause",
   "user" : "alice22",
   "timestamp" : 6100,
-  "message" : "Playback resumed successfully."
+  "message" : "Playback paused successfully."
 }, {
   "command" : "status",
   "user" : "alice22",
   "timestamp" : 6100,
   "stats" : {
     "name" : "Sad But True",
-    "remainedTime" : 324,
+    "remainedTime" : 24,
     "repeat" : "Repeat All",
-    "shuffle" : true,
-    "paused" : false
+    "shuffle" : false,
+    "paused" : true
   }
 }, {
   "command" : "shuffle",
   "user" : "bob35",
   "timestamp" : 6110,
-  "message" : "Please load a source before using the shuffle function."
+  "message" : "Shuffle function deactivated successfully."
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 6110,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
+    "name" : "Gimme Shelter",
+    "remainedTime" : 71,
+    "repeat" : "Repeat All",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "switchVisibility",
@@ -5849,7 +5849,7 @@
   "command" : "like",
   "user" : "grace25",
   "timestamp" : 6160,
-  "message" : "Unlike registered successfully."
+  "message" : "Like registered successfully."
 }, {
   "command" : "status",
   "user" : "grace25",
@@ -5913,33 +5913,33 @@
   "command" : "next",
   "user" : "alice22",
   "timestamp" : 6200,
-  "message" : "Skipped to next track successfully. The current track is Shape of You."
+  "message" : "Skipped to next track successfully. The current track is Love Story."
 }, {
   "command" : "status",
   "user" : "alice22",
   "timestamp" : 6200,
   "stats" : {
-    "name" : "Shape of You",
-    "remainedTime" : 233,
+    "name" : "Love Story",
+    "remainedTime" : 236,
     "repeat" : "Repeat All",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
   "command" : "like",
   "user" : "bob35",
   "timestamp" : 6210,
-  "message" : "Please load a source before liking or unliking."
+  "message" : "Like registered successfully."
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 6210,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
+    "name" : "Money Trees",
+    "remainedTime" : 358,
+    "repeat" : "Repeat All",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "repeat",
@@ -5987,17 +5987,17 @@
   "command" : "prev",
   "user" : "emily30",
   "timestamp" : 6240,
-  "message" : "Please load a source before returning to the previous track."
+  "message" : "Returned to previous track successfully. The current track is Start Me Up."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6240,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : null,
+    "name" : "Start Me Up",
+    "remainedTime" : 212,
+    "repeat" : "Repeat Current Song",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "like",
@@ -6061,14 +6061,14 @@
   "command" : "prev",
   "user" : "irene33",
   "timestamp" : 6280,
-  "message" : "Returned to previous track successfully. The current track is Thinking Out Loud."
+  "message" : "Returned to previous track successfully. The current track is Don't."
 }, {
   "command" : "status",
   "user" : "irene33",
   "timestamp" : 6280,
   "stats" : {
-    "name" : "Thinking Out Loud",
-    "remainedTime" : 281,
+    "name" : "Don't",
+    "remainedTime" : 219,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -6104,33 +6104,33 @@
   "user" : "alice22",
   "timestamp" : 6300,
   "stats" : {
-    "name" : "Shape of You",
-    "remainedTime" : 133,
+    "name" : "Love Story",
+    "remainedTime" : 136,
     "repeat" : "Repeat Current Song",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
   "command" : "next",
   "user" : "bob35",
   "timestamp" : 6310,
-  "message" : "Please load a source before skipping to the next track."
+  "message" : "Skipped to next track successfully. The current track is Sad But True."
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 6310,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
+    "name" : "Sad But True",
+    "remainedTime" : 324,
+    "repeat" : "Repeat All",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "shuffle",
   "user" : "carol19",
   "timestamp" : 6320,
-  "message" : "Shuffle function activated successfully."
+  "message" : "Shuffle function deactivated successfully."
 }, {
   "command" : "status",
   "user" : "carol19",
@@ -6139,7 +6139,7 @@
     "name" : "Money Trees",
     "remainedTime" : 106,
     "repeat" : "Repeat All",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -6168,17 +6168,17 @@
   "command" : "next",
   "user" : "emily30",
   "timestamp" : 6340,
-  "message" : "Please load a source before skipping to the next track."
+  "message" : "Skipped to next track successfully. The current track is Start Me Up."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6340,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : null,
+    "name" : "Start Me Up",
+    "remainedTime" : 212,
+    "repeat" : "Repeat Current Song",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "repeat",
@@ -6243,14 +6243,14 @@
   "command" : "like",
   "user" : "irene33",
   "timestamp" : 6380,
-  "message" : "Like registered successfully."
+  "message" : "Unlike registered successfully."
 }, {
   "command" : "status",
   "user" : "irene33",
   "timestamp" : 6380,
   "stats" : {
-    "name" : "Thinking Out Loud",
-    "remainedTime" : 181,
+    "name" : "Don't",
+    "remainedTime" : 119,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -6286,8 +6286,8 @@
   "user" : "alice22",
   "timestamp" : 6400,
   "stats" : {
-    "name" : "Shape of You",
-    "remainedTime" : 33,
+    "name" : "Love Story",
+    "remainedTime" : 36,
     "repeat" : "Repeat Current Song",
     "shuffle" : true,
     "paused" : false
@@ -6296,17 +6296,17 @@
   "command" : "prev",
   "user" : "bob35",
   "timestamp" : 6410,
-  "message" : "Please load a source before returning to the previous track."
+  "message" : "Returned to previous track successfully. The current track is Sad But True."
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 6410,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
+    "name" : "Sad But True",
+    "remainedTime" : 324,
+    "repeat" : "Repeat All",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "playPause",
@@ -6321,7 +6321,7 @@
     "name" : "Money Trees",
     "remainedTime" : 6,
     "repeat" : "Repeat All",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : true
   }
 }, {
@@ -6344,17 +6344,17 @@
   "command" : "next",
   "user" : "emily30",
   "timestamp" : 6440,
-  "message" : "Please load a source before skipping to the next track."
+  "message" : "Skipped to next track successfully. The current track is Start Me Up."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6440,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : null,
+    "name" : "Start Me Up",
+    "remainedTime" : 212,
+    "repeat" : "Repeat Current Song",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "like",
@@ -6413,14 +6413,14 @@
   "command" : "next",
   "user" : "irene33",
   "timestamp" : 6480,
-  "message" : "Skipped to next track successfully. The current track is Dream On."
+  "message" : "Skipped to next track successfully. The current track is Black Dog."
 }, {
   "command" : "status",
   "user" : "irene33",
   "timestamp" : 6480,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 267,
+    "name" : "Black Dog",
+    "remainedTime" : 294,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -6429,7 +6429,7 @@
   "command" : "shuffle",
   "user" : "jack29",
   "timestamp" : 6490,
-  "message" : "Shuffle function activated successfully."
+  "message" : "Shuffle function deactivated successfully."
 }, {
   "command" : "status",
   "user" : "jack29",
@@ -6438,7 +6438,7 @@
     "name" : "Money Trees",
     "remainedTime" : 287,
     "repeat" : "Repeat All",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -6451,8 +6451,8 @@
   "user" : "alice22",
   "timestamp" : 6500,
   "stats" : {
-    "name" : "Shape of You",
-    "remainedTime" : 166,
+    "name" : "Love Story",
+    "remainedTime" : 172,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : false
@@ -6461,17 +6461,17 @@
   "command" : "like",
   "user" : "bob35",
   "timestamp" : 6510,
-  "message" : "Please load a source before liking or unliking."
+  "message" : "Like registered successfully."
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 6510,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
+    "name" : "Sad But True",
+    "remainedTime" : 224,
+    "repeat" : "Repeat All",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "prev",
@@ -6491,7 +6491,7 @@
     "name" : "Don't",
     "remainedTime" : 219,
     "repeat" : "Repeat All",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -6514,17 +6514,17 @@
   "command" : "repeat",
   "user" : "emily30",
   "timestamp" : 6540,
-  "message" : "Please load a source before setting the repeat status."
+  "message" : "Repeat mode changed to no repeat."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6540,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : null,
+    "name" : "Start Me Up",
+    "remainedTime" : 112,
+    "repeat" : "No Repeat",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "next",
@@ -6590,8 +6590,8 @@
   "user" : "irene33",
   "timestamp" : 6580,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 167,
+    "name" : "Black Dog",
+    "remainedTime" : 194,
     "repeat" : "Repeat Current Song",
     "shuffle" : true,
     "paused" : false
@@ -6600,16 +6600,16 @@
   "command" : "next",
   "user" : "jack29",
   "timestamp" : 6590,
-  "message" : "Skipped to next track successfully. The current track is Start Me Up."
+  "message" : "Skipped to next track successfully. The current track is Delicate."
 }, {
   "command" : "status",
   "user" : "jack29",
   "timestamp" : 6590,
   "stats" : {
-    "name" : "Start Me Up",
-    "remainedTime" : 212,
+    "name" : "Delicate",
+    "remainedTime" : 232,
     "repeat" : "Repeat All",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -6622,8 +6622,8 @@
   "user" : "alice22",
   "timestamp" : 6600,
   "stats" : {
-    "name" : "Shape of You",
-    "remainedTime" : 66,
+    "name" : "Love Story",
+    "remainedTime" : 72,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : false
@@ -6632,27 +6632,16 @@
   "command" : "like",
   "user" : "bob35",
   "timestamp" : 6610,
-  "message" : "Please load a source before liking or unliking."
+  "message" : "Unlike registered successfully."
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 6610,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
-    "shuffle" : false,
-    "paused" : true
-  }
-}, {
-  "command" : "status",
-  "user" : "carol19",
-  "timestamp" : 6620,
-  "stats" : {
-    "name" : "Don't",
-    "remainedTime" : 119,
+    "name" : "Sad But True",
+    "remainedTime" : 124,
     "repeat" : "Repeat All",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -6663,7 +6652,18 @@
     "name" : "Don't",
     "remainedTime" : 119,
     "repeat" : "Repeat All",
-    "shuffle" : true,
+    "shuffle" : false,
+    "paused" : false
+  }
+}, {
+  "command" : "status",
+  "user" : "carol19",
+  "timestamp" : 6620,
+  "stats" : {
+    "name" : "Don't",
+    "remainedTime" : 119,
+    "repeat" : "Repeat All",
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -6686,17 +6686,17 @@
   "command" : "shuffle",
   "user" : "emily30",
   "timestamp" : 6640,
-  "message" : "Please load a source before using the shuffle function."
+  "message" : "Shuffle function activated successfully."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6640,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : null,
-    "shuffle" : false,
-    "paused" : true
+    "name" : "Start Me Up",
+    "remainedTime" : 12,
+    "repeat" : "No Repeat",
+    "shuffle" : true,
+    "paused" : false
   }
 }, {
   "command" : "shuffle",
@@ -6750,16 +6750,16 @@
   "command" : "shuffle",
   "user" : "irene33",
   "timestamp" : 6680,
-  "message" : "Shuffle function activated successfully."
+  "message" : "Shuffle function deactivated successfully."
 }, {
   "command" : "status",
   "user" : "irene33",
   "timestamp" : 6680,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 67,
+    "name" : "Black Dog",
+    "remainedTime" : 94,
     "repeat" : "Repeat Current Song",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -6772,26 +6772,26 @@
   "user" : "jack29",
   "timestamp" : 6690,
   "stats" : {
-    "name" : "Start Me Up",
-    "remainedTime" : 112,
+    "name" : "Delicate",
+    "remainedTime" : 132,
     "repeat" : "Repeat All",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : true
   }
 }, {
   "command" : "shuffle",
   "user" : "alice22",
   "timestamp" : 6700,
-  "message" : "Shuffle function activated successfully."
+  "message" : "Shuffle function deactivated successfully."
 }, {
   "command" : "status",
   "user" : "alice22",
   "timestamp" : 6700,
   "stats" : {
-    "name" : "Sad But True",
-    "remainedTime" : 290,
+    "name" : "Money Trees",
+    "remainedTime" : 359,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -6803,15 +6803,15 @@
   "command" : "playPause",
   "user" : "bob35",
   "timestamp" : 6710,
-  "message" : "Please load a source before attempting to pause or resume playback."
+  "message" : "Playback paused successfully."
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 6710,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
+    "name" : "Sad But True",
+    "remainedTime" : 24,
+    "repeat" : "Repeat All",
     "shuffle" : false,
     "paused" : true
   }
@@ -6833,7 +6833,7 @@
     "name" : "Love Story",
     "remainedTime" : 236,
     "repeat" : "Repeat All",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -6856,17 +6856,17 @@
   "command" : "next",
   "user" : "emily30",
   "timestamp" : 6740,
-  "message" : "Please load a source before skipping to the next track."
+  "message" : "Skipped to next track successfully. The current track is Shape of You."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6740,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : null,
-    "shuffle" : false,
-    "paused" : true
+    "name" : "Shape of You",
+    "remainedTime" : 233,
+    "repeat" : "No Repeat",
+    "shuffle" : true,
+    "paused" : false
   }
 }, {
   "command" : "prev",
@@ -6925,37 +6925,37 @@
   "command" : "next",
   "user" : "irene33",
   "timestamp" : 6780,
-  "message" : "Skipped to next track successfully. The current track is Dream On."
+  "message" : "Skipped to next track successfully. The current track is Black Dog."
 }, {
   "command" : "status",
   "user" : "irene33",
   "timestamp" : 6780,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 267,
+    "name" : "Black Dog",
+    "remainedTime" : 294,
     "repeat" : "Repeat Current Song",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
   "command" : "prev",
   "user" : "jack29",
   "timestamp" : 6790,
-  "message" : "Returned to previous track successfully. The current track is Start Me Up."
+  "message" : "Returned to previous track successfully. The current track is Delicate."
 }, {
   "command" : "prev",
   "user" : "jack29",
   "timestamp" : 6790,
-  "message" : "Returned to previous track successfully. The current track is Delicate."
+  "message" : "Returned to previous track successfully. The current track is Money Trees."
 }, {
   "command" : "status",
   "user" : "jack29",
   "timestamp" : 6790,
   "stats" : {
-    "name" : "Delicate",
-    "remainedTime" : 232,
+    "name" : "Money Trees",
+    "remainedTime" : 387,
     "repeat" : "Repeat All",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -6967,21 +6967,21 @@
   "command" : "prev",
   "user" : "alice22",
   "timestamp" : 6800,
-  "message" : "Returned to previous track successfully. The current track is Sad But True."
+  "message" : "Returned to previous track successfully. The current track is Money Trees."
 }, {
   "command" : "prev",
   "user" : "alice22",
   "timestamp" : 6800,
-  "message" : "Returned to previous track successfully. The current track is Shape of You."
+  "message" : "Returned to previous track successfully. The current track is The Man."
 }, {
   "command" : "status",
   "user" : "alice22",
   "timestamp" : 6800,
   "stats" : {
-    "name" : "Shape of You",
-    "remainedTime" : 233,
+    "name" : "The Man",
+    "remainedTime" : 190,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -6989,9 +6989,9 @@
   "user" : "bob35",
   "timestamp" : 6810,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
+    "name" : "Sad But True",
+    "remainedTime" : 24,
+    "repeat" : "Repeat All",
     "shuffle" : false,
     "paused" : true
   }
@@ -7000,9 +7000,9 @@
   "user" : "bob35",
   "timestamp" : 6810,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
+    "name" : "Sad But True",
+    "remainedTime" : 24,
+    "repeat" : "Repeat All",
     "shuffle" : false,
     "paused" : true
   }
@@ -7047,17 +7047,17 @@
   "command" : "next",
   "user" : "emily30",
   "timestamp" : 6840,
-  "message" : "Please load a source before skipping to the next track."
+  "message" : "Skipped to next track successfully. The current track is Black Dog."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6840,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : null,
-    "shuffle" : false,
-    "paused" : true
+    "name" : "Black Dog",
+    "remainedTime" : 294,
+    "repeat" : "No Repeat",
+    "shuffle" : true,
+    "paused" : false
   }
 }, {
   "command" : "repeat",
@@ -7133,10 +7133,10 @@
   "user" : "irene33",
   "timestamp" : 6880,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 167,
+    "name" : "Black Dog",
+    "remainedTime" : 194,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -7149,41 +7149,41 @@
   "user" : "jack29",
   "timestamp" : 6890,
   "stats" : {
-    "name" : "Delicate",
-    "remainedTime" : 132,
+    "name" : "Money Trees",
+    "remainedTime" : 287,
     "repeat" : "Repeat All",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : true
   }
 }, {
   "command" : "next",
   "user" : "alice22",
   "timestamp" : 6900,
-  "message" : "Skipped to next track successfully. The current track is Love Story."
+  "message" : "Skipped to next track successfully. The current track is Money Trees."
 }, {
   "command" : "status",
   "user" : "alice22",
   "timestamp" : 6900,
   "stats" : {
-    "name" : "Love Story",
-    "remainedTime" : 236,
+    "name" : "Money Trees",
+    "remainedTime" : 387,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
   "command" : "repeat",
   "user" : "bob35",
   "timestamp" : 6910,
-  "message" : "Please load a source before setting the repeat status."
+  "message" : "Repeat mode changed to repeat current song."
 }, {
   "command" : "status",
   "user" : "bob35",
   "timestamp" : 6910,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
+    "name" : "Sad But True",
+    "remainedTime" : 24,
+    "repeat" : "Repeat Current Song",
     "shuffle" : false,
     "paused" : true
   }
@@ -7234,17 +7234,17 @@
   "command" : "like",
   "user" : "emily30",
   "timestamp" : 6940,
-  "message" : "Please load a source before liking or unliking."
+  "message" : "Like registered successfully."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6940,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : null,
-    "shuffle" : false,
-    "paused" : true
+    "name" : "Black Dog",
+    "remainedTime" : 194,
+    "repeat" : "No Repeat",
+    "shuffle" : true,
+    "paused" : false
   }
 }, {
   "command" : "status",
@@ -7272,7 +7272,7 @@
   "command" : "shuffle",
   "user" : "grace25",
   "timestamp" : 6960,
-  "message" : "Shuffle function activated successfully."
+  "message" : "Shuffle function deactivated successfully."
 }, {
   "command" : "status",
   "user" : "grace25",
@@ -7281,7 +7281,7 @@
     "name" : "Begin Again",
     "remainedTime" : 38,
     "repeat" : "Repeat All",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -7310,8 +7310,8 @@
   "user" : "irene33",
   "timestamp" : 6980,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 67,
+    "name" : "Black Dog",
+    "remainedTime" : 94,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : false
@@ -7326,8 +7326,8 @@
   "user" : "jack29",
   "timestamp" : 6990,
   "stats" : {
-    "name" : "Delicate",
-    "remainedTime" : 132,
+    "name" : "Money Trees",
+    "remainedTime" : 287,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : true
@@ -7529,12 +7529,12 @@
   "user" : "carol19",
   "timestamp" : 7110,
   "message" : "Search returned 2 results",
-  "results" : [ "Dynamic Tracks Adventure #2", "Groovy Vibes Odyssey #1" ]
+  "results" : [ "Groovy Vibes Odyssey #1", "Dynamic Tracks Adventure #2" ]
 }, {
   "command" : "select",
   "user" : "carol19",
   "timestamp" : 7110,
-  "message" : "Successfully selected Groovy Vibes Odyssey #1."
+  "message" : "Successfully selected Dynamic Tracks Adventure #2."
 }, {
   "command" : "follow",
   "user" : "carol19",
@@ -7657,12 +7657,12 @@
   "user" : "alice22",
   "timestamp" : 7190,
   "message" : "Search returned 2 results",
-  "results" : [ "Dynamic Tracks Adventure #2", "Groovy Vibes Odyssey #1" ]
+  "results" : [ "Groovy Vibes Odyssey #1", "Dynamic Tracks Adventure #2" ]
 }, {
   "command" : "select",
   "user" : "alice22",
   "timestamp" : 7190,
-  "message" : "Successfully selected Groovy Vibes Odyssey #1."
+  "message" : "Successfully selected Dynamic Tracks Adventure #2."
 }, {
   "command" : "follow",
   "user" : "alice22",
@@ -7817,12 +7817,12 @@
   "user" : "alice22",
   "timestamp" : 7290,
   "message" : "Search returned 2 results",
-  "results" : [ "Breezy Tunes Odyssey #2", "Dynamic Grooves Expedition #1" ]
+  "results" : [ "Dynamic Grooves Expedition #1", "Breezy Tunes Odyssey #2" ]
 }, {
   "command" : "select",
   "user" : "alice22",
   "timestamp" : 7290,
-  "message" : "Successfully selected Dynamic Grooves Expedition #1."
+  "message" : "Successfully selected Breezy Tunes Odyssey #2."
 }, {
   "command" : "follow",
   "user" : "alice22",
@@ -7897,7 +7897,7 @@
   "user" : "frank21",
   "timestamp" : 7340,
   "message" : "Search returned 2 results",
-  "results" : [ "Dynamic Tracks Adventure #2", "Groovy Vibes Odyssey #1" ]
+  "results" : [ "Groovy Vibes Odyssey #1", "Dynamic Tracks Adventure #2" ]
 }, {
   "command" : "select",
   "user" : "frank21",
@@ -8009,12 +8009,12 @@
   "user" : "carol19",
   "timestamp" : 7410,
   "message" : "Search returned 2 results",
-  "results" : [ "Dynamic Tracks Adventure #2", "Groovy Vibes Odyssey #1" ]
+  "results" : [ "Groovy Vibes Odyssey #1", "Dynamic Tracks Adventure #2" ]
 }, {
   "command" : "select",
   "user" : "carol19",
   "timestamp" : 7410,
-  "message" : "Successfully selected Groovy Vibes Odyssey #1."
+  "message" : "Successfully selected Dynamic Tracks Adventure #2."
 }, {
   "command" : "follow",
   "user" : "carol19",
@@ -8153,7 +8153,7 @@
   "user" : "bob35",
   "timestamp" : 7500,
   "message" : "Search returned 2 results",
-  "results" : [ "Dynamic Tracks Adventure #2", "Groovy Vibes Odyssey #1" ]
+  "results" : [ "Groovy Vibes Odyssey #1", "Dynamic Tracks Adventure #2" ]
 }, {
   "command" : "select",
   "user" : "bob35",
@@ -8281,7 +8281,7 @@
   "user" : "jack29",
   "timestamp" : 7580,
   "message" : "Search returned 2 results",
-  "results" : [ "Dynamic Tracks Adventure #2", "Groovy Vibes Odyssey #1" ]
+  "results" : [ "Groovy Vibes Odyssey #1", "Dynamic Tracks Adventure #2" ]
 }, {
   "command" : "select",
   "user" : "jack29",
@@ -8377,12 +8377,12 @@
   "user" : "frank21",
   "timestamp" : 7640,
   "message" : "Search returned 2 results",
-  "results" : [ "Breezy Tunes Odyssey #2", "Dynamic Grooves Expedition #1" ]
+  "results" : [ "Dynamic Grooves Expedition #1", "Breezy Tunes Odyssey #2" ]
 }, {
   "command" : "select",
   "user" : "frank21",
   "timestamp" : 7640,
-  "message" : "Successfully selected Breezy Tunes Odyssey #2."
+  "message" : "Successfully selected Dynamic Grooves Expedition #1."
 }, {
   "command" : "follow",
   "user" : "frank21",
@@ -8409,12 +8409,12 @@
   "user" : "henry26",
   "timestamp" : 7660,
   "message" : "Search returned 2 results",
-  "results" : [ "Dynamic Tracks Adventure #2", "Groovy Vibes Odyssey #1" ]
+  "results" : [ "Groovy Vibes Odyssey #1", "Dynamic Tracks Adventure #2" ]
 }, {
   "command" : "select",
   "user" : "henry26",
   "timestamp" : 7660,
-  "message" : "Successfully selected Groovy Vibes Odyssey #1."
+  "message" : "Successfully selected Dynamic Tracks Adventure #2."
 }, {
   "command" : "follow",
   "user" : "henry26",
@@ -8441,12 +8441,12 @@
   "user" : "jack29",
   "timestamp" : 7680,
   "message" : "Search returned 2 results",
-  "results" : [ "Dynamic Tracks Adventure #2", "Groovy Vibes Odyssey #1" ]
+  "results" : [ "Groovy Vibes Odyssey #1", "Dynamic Tracks Adventure #2" ]
 }, {
   "command" : "select",
   "user" : "jack29",
   "timestamp" : 7680,
-  "message" : "Successfully selected Groovy Vibes Odyssey #1."
+  "message" : "Successfully selected Dynamic Tracks Adventure #2."
 }, {
   "command" : "follow",
   "user" : "jack29",
@@ -8505,12 +8505,12 @@
   "user" : "david27",
   "timestamp" : 7720,
   "message" : "Search returned 2 results",
-  "results" : [ "Breezy Tunes Odyssey #2", "Dynamic Grooves Expedition #1" ]
+  "results" : [ "Dynamic Grooves Expedition #1", "Breezy Tunes Odyssey #2" ]
 }, {
   "command" : "select",
   "user" : "david27",
   "timestamp" : 7720,
-  "message" : "Successfully selected Breezy Tunes Odyssey #2."
+  "message" : "Successfully selected Dynamic Grooves Expedition #1."
 }, {
   "command" : "follow",
   "user" : "david27",
@@ -8537,7 +8537,7 @@
   "user" : "frank21",
   "timestamp" : 7740,
   "message" : "Search returned 2 results",
-  "results" : [ "Breezy Tunes Odyssey #2", "Dynamic Grooves Expedition #1" ]
+  "results" : [ "Dynamic Grooves Expedition #1", "Breezy Tunes Odyssey #2" ]
 }, {
   "command" : "select",
   "user" : "frank21",
@@ -8585,7 +8585,7 @@
   "user" : "irene33",
   "timestamp" : 7770,
   "message" : "Search returned 2 results",
-  "results" : [ "Dynamic Tracks Adventure #2", "Groovy Vibes Odyssey #1" ]
+  "results" : [ "Groovy Vibes Odyssey #1", "Dynamic Tracks Adventure #2" ]
 }, {
   "command" : "select",
   "user" : "irene33",
@@ -8873,7 +8873,7 @@
   "user" : "grace25",
   "timestamp" : 7950,
   "message" : "Search returned 2 results",
-  "results" : [ "Breezy Tunes Odyssey #2", "Dynamic Grooves Expedition #1" ]
+  "results" : [ "Dynamic Grooves Expedition #1", "Breezy Tunes Odyssey #2" ]
 }, {
   "command" : "select",
   "user" : "grace25",
@@ -8889,12 +8889,12 @@
   "user" : "henry26",
   "timestamp" : 7960,
   "message" : "Search returned 2 results",
-  "results" : [ "Dynamic Tracks Adventure #2", "Groovy Vibes Odyssey #1" ]
+  "results" : [ "Groovy Vibes Odyssey #1", "Dynamic Tracks Adventure #2" ]
 }, {
   "command" : "select",
   "user" : "henry26",
   "timestamp" : 7960,
-  "message" : "Successfully selected Dynamic Tracks Adventure #2."
+  "message" : "Successfully selected Groovy Vibes Odyssey #1."
 }, {
   "command" : "follow",
   "user" : "henry26",
@@ -8905,12 +8905,12 @@
   "user" : "irene33",
   "timestamp" : 7970,
   "message" : "Search returned 2 results",
-  "results" : [ "Dynamic Tracks Adventure #2", "Groovy Vibes Odyssey #1" ]
+  "results" : [ "Groovy Vibes Odyssey #1", "Dynamic Tracks Adventure #2" ]
 }, {
   "command" : "select",
   "user" : "irene33",
   "timestamp" : 7970,
-  "message" : "Successfully selected Dynamic Tracks Adventure #2."
+  "message" : "Successfully selected Groovy Vibes Odyssey #1."
 }, {
   "command" : "follow",
   "user" : "irene33",
@@ -8921,7 +8921,7 @@
   "user" : "jack29",
   "timestamp" : 7980,
   "message" : "Search returned 2 results",
-  "results" : [ "Breezy Tunes Odyssey #2", "Dynamic Grooves Expedition #1" ]
+  "results" : [ "Dynamic Grooves Expedition #1", "Breezy Tunes Odyssey #2" ]
 }, {
   "command" : "select",
   "user" : "jack29",
@@ -8953,12 +8953,12 @@
   "user" : "bob35",
   "timestamp" : 8000,
   "message" : "Search returned 2 results",
-  "results" : [ "Dynamic Tracks Adventure #2", "Groovy Vibes Odyssey #1" ]
+  "results" : [ "Groovy Vibes Odyssey #1", "Dynamic Tracks Adventure #2" ]
 }, {
   "command" : "select",
   "user" : "bob35",
   "timestamp" : 8000,
-  "message" : "Successfully selected Dynamic Tracks Adventure #2."
+  "message" : "Successfully selected Groovy Vibes Odyssey #1."
 }, {
   "command" : "follow",
   "user" : "bob35",
@@ -9065,7 +9065,7 @@
   "user" : "irene33",
   "timestamp" : 8070,
   "message" : "Search returned 2 results",
-  "results" : [ "Breezy Tunes Odyssey #2", "Dynamic Grooves Expedition #1" ]
+  "results" : [ "Dynamic Grooves Expedition #1", "Breezy Tunes Odyssey #2" ]
 }, {
   "command" : "select",
   "user" : "irene33",
@@ -9081,7 +9081,7 @@
   "user" : "jack29",
   "timestamp" : 8080,
   "message" : "Search returned 2 results",
-  "results" : [ "Dynamic Tracks Adventure #2", "Groovy Vibes Odyssey #1" ]
+  "results" : [ "Groovy Vibes Odyssey #1", "Dynamic Tracks Adventure #2" ]
 }, {
   "command" : "select",
   "user" : "jack29",
@@ -9113,12 +9113,12 @@
   "user" : "bob35",
   "timestamp" : 8100,
   "message" : "Search returned 2 results",
-  "results" : [ "Breezy Tunes Odyssey #2", "Dynamic Grooves Expedition #1" ]
+  "results" : [ "Dynamic Grooves Expedition #1", "Breezy Tunes Odyssey #2" ]
 }, {
   "command" : "select",
   "user" : "bob35",
   "timestamp" : 8100,
-  "message" : "Successfully selected Breezy Tunes Odyssey #2."
+  "message" : "Successfully selected Dynamic Grooves Expedition #1."
 }, {
   "command" : "follow",
   "user" : "bob35",
@@ -9145,12 +9145,12 @@
   "user" : "david27",
   "timestamp" : 8120,
   "message" : "Search returned 2 results",
-  "results" : [ "Dynamic Tracks Adventure #2", "Groovy Vibes Odyssey #1" ]
+  "results" : [ "Groovy Vibes Odyssey #1", "Dynamic Tracks Adventure #2" ]
 }, {
   "command" : "select",
   "user" : "david27",
   "timestamp" : 8120,
-  "message" : "Successfully selected Dynamic Tracks Adventure #2."
+  "message" : "Successfully selected Groovy Vibes Odyssey #1."
 }, {
   "command" : "follow",
   "user" : "david27",
@@ -9193,7 +9193,7 @@
   "user" : "grace25",
   "timestamp" : 8150,
   "message" : "Search returned 2 results",
-  "results" : [ "Breezy Tunes Odyssey #2", "Dynamic Grooves Expedition #1" ]
+  "results" : [ "Dynamic Grooves Expedition #1", "Breezy Tunes Odyssey #2" ]
 }, {
   "command" : "select",
   "user" : "grace25",
@@ -9305,7 +9305,7 @@
   "user" : "david27",
   "timestamp" : 8220,
   "message" : "Search returned 2 results",
-  "results" : [ "Breezy Tunes Odyssey #2", "Dynamic Grooves Expedition #1" ]
+  "results" : [ "Dynamic Grooves Expedition #1", "Breezy Tunes Odyssey #2" ]
 }, {
   "command" : "select",
   "user" : "david27",
@@ -9321,12 +9321,12 @@
   "user" : "emily30",
   "timestamp" : 8230,
   "message" : "Search returned 2 results",
-  "results" : [ "Dynamic Tracks Adventure #2", "Groovy Vibes Odyssey #1" ]
+  "results" : [ "Groovy Vibes Odyssey #1", "Dynamic Tracks Adventure #2" ]
 }, {
   "command" : "select",
   "user" : "emily30",
   "timestamp" : 8230,
-  "message" : "Successfully selected Groovy Vibes Odyssey #1."
+  "message" : "Successfully selected Dynamic Tracks Adventure #2."
 }, {
   "command" : "follow",
   "user" : "emily30",
@@ -9481,7 +9481,7 @@
   "user" : "emily30",
   "timestamp" : 8330,
   "message" : "Search returned 2 results",
-  "results" : [ "Dynamic Tracks Adventure #2", "Groovy Vibes Odyssey #1" ]
+  "results" : [ "Groovy Vibes Odyssey #1", "Dynamic Tracks Adventure #2" ]
 }, {
   "command" : "select",
   "user" : "emily30",
@@ -9497,12 +9497,12 @@
   "user" : "frank21",
   "timestamp" : 8340,
   "message" : "Search returned 2 results",
-  "results" : [ "Dynamic Tracks Adventure #2", "Groovy Vibes Odyssey #1" ]
+  "results" : [ "Groovy Vibes Odyssey #1", "Dynamic Tracks Adventure #2" ]
 }, {
   "command" : "select",
   "user" : "frank21",
   "timestamp" : 8340,
-  "message" : "Successfully selected Groovy Vibes Odyssey #1."
+  "message" : "Successfully selected Dynamic Tracks Adventure #2."
 }, {
   "command" : "follow",
   "user" : "frank21",
@@ -9609,12 +9609,12 @@
   "user" : "carol19",
   "timestamp" : 8410,
   "message" : "Search returned 2 results",
-  "results" : [ "Breezy Tunes Odyssey #2", "Dynamic Grooves Expedition #1" ]
+  "results" : [ "Dynamic Grooves Expedition #1", "Breezy Tunes Odyssey #2" ]
 }, {
   "command" : "select",
   "user" : "carol19",
   "timestamp" : 8410,
-  "message" : "Successfully selected Breezy Tunes Odyssey #2."
+  "message" : "Successfully selected Dynamic Grooves Expedition #1."
 }, {
   "command" : "follow",
   "user" : "carol19",
@@ -9705,12 +9705,12 @@
   "user" : "irene33",
   "timestamp" : 8470,
   "message" : "Search returned 2 results",
-  "results" : [ "Dynamic Tracks Adventure #2", "Groovy Vibes Odyssey #1" ]
+  "results" : [ "Groovy Vibes Odyssey #1", "Dynamic Tracks Adventure #2" ]
 }, {
   "command" : "select",
   "user" : "irene33",
   "timestamp" : 8470,
-  "message" : "Successfully selected Groovy Vibes Odyssey #1."
+  "message" : "Successfully selected Dynamic Tracks Adventure #2."
 }, {
   "command" : "follow",
   "user" : "irene33",
@@ -9751,7 +9751,7 @@
   "command" : "showPreferredSongs",
   "user" : "alice22",
   "timestamp" : 8490,
-  "result" : [ "Shape of You" ]
+  "result" : [ "Love Story" ]
 }, {
   "command" : "showPlaylists",
   "user" : "bob35",
@@ -9771,7 +9771,7 @@
   "command" : "showPreferredSongs",
   "user" : "bob35",
   "timestamp" : 8500,
-  "result" : [ ]
+  "result" : [ "Gimme Shelter", "Money Trees" ]
 }, {
   "command" : "showPlaylists",
   "user" : "carol19",
@@ -9831,7 +9831,7 @@
   "command" : "showPreferredSongs",
   "user" : "emily30",
   "timestamp" : 8530,
-  "result" : [ "Start Me Up" ]
+  "result" : [ "Start Me Up", "Black Dog" ]
 }, {
   "command" : "showPlaylists",
   "user" : "frank21",
@@ -9860,18 +9860,18 @@
     "name" : "Groovy Vibes Odyssey #1",
     "songs" : [ "Delicate", "Under Pressure", "Money Trees", "Love Story", "The Man", "Shape of You" ],
     "visibility" : "public",
-    "followers" : 6
+    "followers" : 4
   }, {
     "name" : "Dynamic Tracks Adventure #2",
     "songs" : [ "Begin Again", "Gimme Shelter", "Start Me Up" ],
     "visibility" : "public",
-    "followers" : 4
+    "followers" : 6
   } ]
 }, {
   "command" : "showPreferredSongs",
   "user" : "grace25",
   "timestamp" : 8550,
-  "result" : [ "Begin Again" ]
+  "result" : [ "Begin Again", "Gimme Shelter", "Start Me Up" ]
 }, {
   "command" : "showPlaylists",
   "user" : "henry26",
@@ -9880,12 +9880,12 @@
     "name" : "Dynamic Grooves Expedition #1",
     "songs" : [ "Dream On", "Stairway to Heaven", "Begin Again", "Under Pressure", "Thinking Out Loud", "Maps" ],
     "visibility" : "public",
-    "followers" : 1
+    "followers" : 4
   }, {
     "name" : "Breezy Tunes Odyssey #2",
     "songs" : [ "Dream On" ],
     "visibility" : "public",
-    "followers" : 4
+    "followers" : 1
   } ]
 }, {
   "command" : "showPreferredSongs",
@@ -9911,7 +9911,7 @@
   "command" : "showPreferredSongs",
   "user" : "irene33",
   "timestamp" : 8570,
-  "result" : [ "Don't", "Thinking Out Loud" ]
+  "result" : [ ]
 }, {
   "command" : "showPlaylists",
   "user" : "jack29",
@@ -9932,4 +9932,12 @@
   "user" : "jack29",
   "timestamp" : 8580,
   "result" : [ ]
+}, {
+  "command" : "getTop5Playlists",
+  "timestamp" : 8580,
+  "result" : [ "Chill Melodies Voyage #1", "Dynamic Tracks Adventure #2", "Stellar Tunes Quest #2", "Breezy Rhythms Trek #1", "Chill Sounds Journey #1" ]
+}, {
+  "command" : "getTop5Songs",
+  "timestamp" : 8580,
+  "result" : [ "Start Me Up", "Love Story", "Gimme Shelter", "Don't", "Money Trees" ]
 } ]

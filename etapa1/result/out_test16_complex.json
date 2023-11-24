@@ -4838,7 +4838,7 @@
     "name" : "",
     "remainedTime" : 0,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : true
   }
 }, {
@@ -4893,17 +4893,17 @@
   "command" : "prev",
   "user" : "emily30",
   "timestamp" : 5640,
-  "message" : "Please load a source before returning to the previous track."
+  "message" : "Returned to previous track successfully. The current track is Don't."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 5640,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : null,
+    "name" : "Don't",
+    "remainedTime" : 219,
+    "repeat" : "Repeat All",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "next",
@@ -4919,7 +4919,7 @@
     "remainedTime" : 190,
     "repeat" : "No Repeat",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "shuffle",
@@ -4995,7 +4995,7 @@
   "command" : "like",
   "user" : "alice22",
   "timestamp" : 5700,
-  "message" : "Unlike registered successfully."
+  "message" : "Like registered successfully."
 }, {
   "command" : "status",
   "user" : "alice22",
@@ -5020,14 +5020,14 @@
     "name" : "",
     "remainedTime" : 0,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : true
   }
 }, {
   "command" : "shuffle",
   "user" : "carol19",
   "timestamp" : 5720,
-  "message" : "Shuffle function activated successfully."
+  "message" : "Shuffle function deactivated successfully."
 }, {
   "command" : "status",
   "user" : "carol19",
@@ -5036,7 +5036,7 @@
     "name" : "Sad But True",
     "remainedTime" : 26,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -5059,15 +5059,15 @@
   "command" : "playPause",
   "user" : "emily30",
   "timestamp" : 5740,
-  "message" : "Please load a source before attempting to pause or resume playback."
+  "message" : "Playback paused successfully."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 5740,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : null,
+    "name" : "Don't",
+    "remainedTime" : 119,
+    "repeat" : "Repeat All",
     "shuffle" : false,
     "paused" : true
   }
@@ -5077,10 +5077,10 @@
   "timestamp" : 5750,
   "stats" : {
     "name" : "Maps",
-    "remainedTime" : 190,
+    "remainedTime" : 90,
     "repeat" : "No Repeat",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "status",
@@ -5088,10 +5088,10 @@
   "timestamp" : 5750,
   "stats" : {
     "name" : "Maps",
-    "remainedTime" : 190,
+    "remainedTime" : 90,
     "repeat" : "No Repeat",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "prev",
@@ -5102,17 +5102,17 @@
   "command" : "prev",
   "user" : "grace25",
   "timestamp" : 5760,
-  "message" : "Please load a source before returning to the previous track."
+  "message" : "Returned to previous track successfully. The current track is Dream On."
 }, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 5760,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
+    "name" : "Dream On",
+    "remainedTime" : 267,
     "repeat" : "No Repeat",
     "shuffle" : true,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "prev",
@@ -5201,7 +5201,7 @@
     "name" : "",
     "remainedTime" : 0,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : true
   }
 }, {
@@ -5214,10 +5214,10 @@
   "user" : "carol19",
   "timestamp" : 5820,
   "stats" : {
-    "name" : "Happier",
-    "remainedTime" : 133,
+    "name" : "Gimme Shelter",
+    "remainedTime" : 197,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : true
   }
 }, {
@@ -5245,15 +5245,15 @@
   "command" : "like",
   "user" : "emily30",
   "timestamp" : 5840,
-  "message" : "Please load a source before liking or unliking."
+  "message" : "Like registered successfully."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 5840,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : null,
+    "name" : "Don't",
+    "remainedTime" : 119,
+    "repeat" : "Repeat All",
     "shuffle" : false,
     "paused" : true
   }
@@ -5262,44 +5262,44 @@
   "user" : "frank21",
   "timestamp" : 5850,
   "stats" : {
-    "name" : "Maps",
-    "remainedTime" : 190,
+    "name" : "Blank Space",
+    "remainedTime" : 221,
     "repeat" : "No Repeat",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "status",
   "user" : "frank21",
   "timestamp" : 5850,
   "stats" : {
-    "name" : "Maps",
-    "remainedTime" : 190,
+    "name" : "Blank Space",
+    "remainedTime" : 221,
     "repeat" : "No Repeat",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 5860,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
+    "name" : "Dream On",
+    "remainedTime" : 167,
     "repeat" : "No Repeat",
     "shuffle" : true,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 5860,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
+    "name" : "Dream On",
+    "remainedTime" : 167,
     "repeat" : "No Repeat",
     "shuffle" : true,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "status",
@@ -5394,7 +5394,7 @@
     "name" : "",
     "remainedTime" : 0,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : true
   }
 }, {
@@ -5412,10 +5412,10 @@
   "user" : "carol19",
   "timestamp" : 5920,
   "stats" : {
-    "name" : "Happier",
-    "remainedTime" : 133,
+    "name" : "Gimme Shelter",
+    "remainedTime" : 197,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : true
   }
 }, {
@@ -5438,15 +5438,15 @@
   "command" : "repeat",
   "user" : "emily30",
   "timestamp" : 5940,
-  "message" : "Please load a source before setting the repeat status."
+  "message" : "Repeat mode changed to repeat current song."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 5940,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : null,
+    "name" : "Don't",
+    "remainedTime" : 119,
+    "repeat" : "Repeat Current Song",
     "shuffle" : false,
     "paused" : true
   }
@@ -5454,14 +5454,14 @@
   "command" : "prev",
   "user" : "frank21",
   "timestamp" : 5950,
-  "message" : "Returned to previous track successfully. The current track is Castle on the Hill."
+  "message" : "Returned to previous track successfully. The current track is Blank Space."
 }, {
   "command" : "status",
   "user" : "frank21",
   "timestamp" : 5950,
   "stats" : {
-    "name" : "Castle on the Hill",
-    "remainedTime" : 261,
+    "name" : "Blank Space",
+    "remainedTime" : 231,
     "repeat" : "No Repeat",
     "shuffle" : false,
     "paused" : false
@@ -5470,17 +5470,17 @@
   "command" : "shuffle",
   "user" : "grace25",
   "timestamp" : 5960,
-  "message" : "Please load a source before using the shuffle function."
+  "message" : "Shuffle function deactivated successfully."
 }, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 5960,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
+    "name" : "Dream On",
+    "remainedTime" : 67,
     "repeat" : "No Repeat",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "playPause",
@@ -5578,10 +5578,10 @@
   "user" : "carol19",
   "timestamp" : 6020,
   "stats" : {
-    "name" : "Happier",
-    "remainedTime" : 133,
+    "name" : "Gimme Shelter",
+    "remainedTime" : 197,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : true
   }
 }, {
@@ -5597,24 +5597,24 @@
     "name" : "",
     "remainedTime" : 0,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : true
   }
 }, {
   "command" : "prev",
   "user" : "emily30",
   "timestamp" : 6040,
-  "message" : "Please load a source before returning to the previous track."
+  "message" : "Returned to previous track successfully. The current track is Don't."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6040,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : null,
+    "name" : "Don't",
+    "remainedTime" : 219,
+    "repeat" : "Repeat Current Song",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "shuffle",
@@ -5626,8 +5626,8 @@
   "user" : "frank21",
   "timestamp" : 6050,
   "stats" : {
-    "name" : "Castle on the Hill",
-    "remainedTime" : 161,
+    "name" : "Blank Space",
+    "remainedTime" : 131,
     "repeat" : "No Repeat",
     "shuffle" : true,
     "paused" : false
@@ -5641,17 +5641,17 @@
   "command" : "next",
   "user" : "grace25",
   "timestamp" : 6060,
-  "message" : "Please load a source before skipping to the next track."
+  "message" : "Skipped to next track successfully. The current track is Stairway to Heaven."
 }, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 6060,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
+    "name" : "Stairway to Heaven",
+    "remainedTime" : 482,
     "repeat" : "No Repeat",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "playPause",
@@ -5743,10 +5743,10 @@
   "user" : "carol19",
   "timestamp" : 6120,
   "stats" : {
-    "name" : "Happier",
-    "remainedTime" : 133,
+    "name" : "Gimme Shelter",
+    "remainedTime" : 197,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -5762,24 +5762,24 @@
     "name" : "",
     "remainedTime" : 0,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : true
   }
 }, {
   "command" : "shuffle",
   "user" : "emily30",
   "timestamp" : 6140,
-  "message" : "Please load a source before using the shuffle function."
+  "message" : "Shuffle function activated successfully."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6140,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : null,
-    "shuffle" : false,
-    "paused" : true
+    "name" : "Don't",
+    "remainedTime" : 119,
+    "repeat" : "Repeat Current Song",
+    "shuffle" : true,
+    "paused" : false
   }
 }, {
   "command" : "switchVisibility",
@@ -5796,8 +5796,8 @@
   "user" : "frank21",
   "timestamp" : 6150,
   "stats" : {
-    "name" : "Castle on the Hill",
-    "remainedTime" : 61,
+    "name" : "Blank Space",
+    "remainedTime" : 31,
     "repeat" : "Repeat All",
     "shuffle" : true,
     "paused" : false
@@ -5806,17 +5806,17 @@
   "command" : "repeat",
   "user" : "grace25",
   "timestamp" : 6160,
-  "message" : "Please load a source before setting the repeat status."
+  "message" : "Repeat mode changed to repeat all."
 }, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 6160,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
+    "name" : "Stairway to Heaven",
+    "remainedTime" : 382,
+    "repeat" : "Repeat All",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "prev",
@@ -5929,10 +5929,10 @@
   "user" : "carol19",
   "timestamp" : 6220,
   "stats" : {
-    "name" : "Happier",
-    "remainedTime" : 33,
+    "name" : "Gimme Shelter",
+    "remainedTime" : 97,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : true
   }
 }, {
@@ -5960,54 +5960,54 @@
   "command" : "next",
   "user" : "emily30",
   "timestamp" : 6240,
-  "message" : "Please load a source before skipping to the next track."
+  "message" : "Skipped to next track successfully. The current track is Don't."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6240,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : null,
-    "shuffle" : false,
-    "paused" : true
+    "name" : "Don't",
+    "remainedTime" : 219,
+    "repeat" : "Repeat Current Song",
+    "shuffle" : true,
+    "paused" : false
   }
 }, {
   "command" : "shuffle",
   "user" : "frank21",
   "timestamp" : 6250,
-  "message" : "Shuffle function activated successfully."
+  "message" : "Shuffle function deactivated successfully."
 }, {
   "command" : "status",
   "user" : "frank21",
   "timestamp" : 6250,
   "stats" : {
-    "name" : "Blank Space",
-    "remainedTime" : 192,
+    "name" : "Big Pimpin'",
+    "remainedTime" : 215,
     "repeat" : "Repeat All",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
   "command" : "prev",
   "user" : "grace25",
   "timestamp" : 6260,
-  "message" : "Please load a source before returning to the previous track."
+  "message" : "Returned to previous track successfully. The current track is Stairway to Heaven."
 }, {
   "command" : "prev",
   "user" : "grace25",
   "timestamp" : 6260,
-  "message" : "Please load a source before returning to the previous track."
+  "message" : "Returned to previous track successfully. The current track is Start Me Up."
 }, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 6260,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
+    "name" : "Start Me Up",
+    "remainedTime" : 212,
+    "repeat" : "Repeat All",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "shuffle",
@@ -6116,10 +6116,10 @@
   "user" : "carol19",
   "timestamp" : 6320,
   "stats" : {
-    "name" : "Happier",
-    "remainedTime" : 33,
+    "name" : "Gimme Shelter",
+    "remainedTime" : 97,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : true
   }
 }, {
@@ -6142,17 +6142,17 @@
   "command" : "prev",
   "user" : "emily30",
   "timestamp" : 6340,
-  "message" : "Please load a source before returning to the previous track."
+  "message" : "Returned to previous track successfully. The current track is Don't."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6340,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : null,
-    "shuffle" : false,
-    "paused" : true
+    "name" : "Don't",
+    "remainedTime" : 219,
+    "repeat" : "Repeat Current Song",
+    "shuffle" : true,
+    "paused" : false
   }
 }, {
   "command" : "next",
@@ -6167,29 +6167,29 @@
     "name" : "Castle on the Hill",
     "remainedTime" : 261,
     "repeat" : "Repeat All",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
   "command" : "prev",
   "user" : "grace25",
   "timestamp" : 6360,
-  "message" : "Please load a source before returning to the previous track."
+  "message" : "Returned to previous track successfully. The current track is Start Me Up."
 }, {
   "command" : "prev",
   "user" : "grace25",
   "timestamp" : 6360,
-  "message" : "Please load a source before returning to the previous track."
+  "message" : "Returned to previous track successfully. The current track is Dream On."
 }, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 6360,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
+    "name" : "Dream On",
+    "remainedTime" : 267,
+    "repeat" : "Repeat All",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "status",
@@ -6292,17 +6292,17 @@
   "command" : "next",
   "user" : "carol19",
   "timestamp" : 6420,
-  "message" : "Skipped to next track successfully. The current track is Dream On."
+  "message" : "Skipped to next track successfully. The current track is Happier."
 }, {
   "command" : "status",
   "user" : "carol19",
   "timestamp" : 6420,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 267,
+    "name" : "Happier",
+    "remainedTime" : 207,
     "repeat" : "No Repeat",
-    "shuffle" : true,
-    "paused" : true
+    "shuffle" : false,
+    "paused" : false
   }
 }, {
   "command" : "prev",
@@ -6324,17 +6324,17 @@
   "command" : "next",
   "user" : "emily30",
   "timestamp" : 6440,
-  "message" : "Please load a source before skipping to the next track."
+  "message" : "Skipped to next track successfully. The current track is Don't."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6440,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : null,
-    "shuffle" : false,
-    "paused" : true
+    "name" : "Don't",
+    "remainedTime" : 219,
+    "repeat" : "Repeat Current Song",
+    "shuffle" : true,
+    "paused" : false
   }
 }, {
   "command" : "like",
@@ -6349,24 +6349,24 @@
     "name" : "Castle on the Hill",
     "remainedTime" : 161,
     "repeat" : "Repeat All",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
   "command" : "shuffle",
   "user" : "grace25",
   "timestamp" : 6460,
-  "message" : "Please load a source before using the shuffle function."
+  "message" : "Shuffle function activated successfully."
 }, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 6460,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
-    "shuffle" : false,
-    "paused" : true
+    "name" : "Dream On",
+    "remainedTime" : 167,
+    "repeat" : "Repeat All",
+    "shuffle" : true,
+    "paused" : false
   }
 }, {
   "command" : "switchVisibility",
@@ -6393,7 +6393,7 @@
   "command" : "shuffle",
   "user" : "irene33",
   "timestamp" : 6480,
-  "message" : "Shuffle function activated successfully."
+  "message" : "Shuffle function deactivated successfully."
 }, {
   "command" : "status",
   "user" : "irene33",
@@ -6402,7 +6402,7 @@
     "name" : "Blank Space",
     "remainedTime" : 50,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : true
   }
 }, {
@@ -6462,17 +6462,17 @@
   "command" : "playPause",
   "user" : "carol19",
   "timestamp" : 6520,
-  "message" : "Playback resumed successfully."
+  "message" : "Playback paused successfully."
 }, {
   "command" : "status",
   "user" : "carol19",
   "timestamp" : 6520,
   "stats" : {
-    "name" : "Dream On",
-    "remainedTime" : 267,
+    "name" : "Happier",
+    "remainedTime" : 107,
     "repeat" : "No Repeat",
-    "shuffle" : true,
-    "paused" : false
+    "shuffle" : false,
+    "paused" : true
   }
 }, {
   "command" : "playPause",
@@ -6494,17 +6494,17 @@
   "command" : "prev",
   "user" : "emily30",
   "timestamp" : 6540,
-  "message" : "Please load a source before returning to the previous track."
+  "message" : "Returned to previous track successfully. The current track is Don't."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6540,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : null,
-    "shuffle" : false,
-    "paused" : true
+    "name" : "Don't",
+    "remainedTime" : 219,
+    "repeat" : "Repeat Current Song",
+    "shuffle" : true,
+    "paused" : false
   }
 }, {
   "command" : "like",
@@ -6519,29 +6519,29 @@
     "name" : "Castle on the Hill",
     "remainedTime" : 61,
     "repeat" : "Repeat All",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
   "command" : "prev",
   "user" : "grace25",
   "timestamp" : 6560,
-  "message" : "Please load a source before returning to the previous track."
+  "message" : "Returned to previous track successfully. The current track is Dream On."
 }, {
   "command" : "prev",
   "user" : "grace25",
   "timestamp" : 6560,
-  "message" : "Please load a source before returning to the previous track."
+  "message" : "Returned to previous track successfully. The current track is Stairway to Heaven."
 }, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 6560,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
-    "shuffle" : false,
-    "paused" : true
+    "name" : "Stairway to Heaven",
+    "remainedTime" : 482,
+    "repeat" : "Repeat All",
+    "shuffle" : true,
+    "paused" : false
   }
 }, {
   "command" : "repeat",
@@ -6572,7 +6572,7 @@
     "name" : "Blank Space",
     "remainedTime" : 231,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -6601,7 +6601,7 @@
   "command" : "like",
   "user" : "alice22",
   "timestamp" : 6600,
-  "message" : "Like registered successfully."
+  "message" : "Unlike registered successfully."
 }, {
   "command" : "status",
   "user" : "alice22",
@@ -6638,16 +6638,16 @@
   "command" : "next",
   "user" : "carol19",
   "timestamp" : 6620,
-  "message" : "Skipped to next track successfully. The current track is Castle on the Hill."
+  "message" : "Skipped to next track successfully. The current track is Money Trees."
 }, {
   "command" : "status",
   "user" : "carol19",
   "timestamp" : 6620,
   "stats" : {
-    "name" : "Castle on the Hill",
-    "remainedTime" : 261,
+    "name" : "Money Trees",
+    "remainedTime" : 387,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -6670,17 +6670,17 @@
   "command" : "shuffle",
   "user" : "emily30",
   "timestamp" : 6640,
-  "message" : "Please load a source before using the shuffle function."
+  "message" : "Shuffle function deactivated successfully."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6640,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : null,
+    "name" : "Don't",
+    "remainedTime" : 119,
+    "repeat" : "Repeat Current Song",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "switchVisibility",
@@ -6697,26 +6697,26 @@
   "user" : "frank21",
   "timestamp" : 6650,
   "stats" : {
-    "name" : "Delicate",
-    "remainedTime" : 193,
+    "name" : "Maps",
+    "remainedTime" : 151,
     "repeat" : "Repeat All",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
   "command" : "playPause",
   "user" : "grace25",
   "timestamp" : 6660,
-  "message" : "Please load a source before attempting to pause or resume playback."
+  "message" : "Playback paused successfully."
 }, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 6660,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
-    "shuffle" : false,
+    "name" : "Stairway to Heaven",
+    "remainedTime" : 382,
+    "repeat" : "Repeat All",
+    "shuffle" : true,
     "paused" : true
   }
 }, {
@@ -6748,7 +6748,7 @@
     "name" : "Blank Space",
     "remainedTime" : 231,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -6803,21 +6803,21 @@
   "command" : "prev",
   "user" : "carol19",
   "timestamp" : 6720,
-  "message" : "Returned to previous track successfully. The current track is Castle on the Hill."
+  "message" : "Returned to previous track successfully. The current track is Money Trees."
 }, {
   "command" : "prev",
   "user" : "carol19",
   "timestamp" : 6720,
-  "message" : "Returned to previous track successfully. The current track is Money Trees."
+  "message" : "Returned to previous track successfully. The current track is Happier."
 }, {
   "command" : "status",
   "user" : "carol19",
   "timestamp" : 6720,
   "stats" : {
-    "name" : "Money Trees",
-    "remainedTime" : 387,
+    "name" : "Happier",
+    "remainedTime" : 207,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -6851,17 +6851,17 @@
   "command" : "repeat",
   "user" : "emily30",
   "timestamp" : 6740,
-  "message" : "Please load a source before setting the repeat status."
+  "message" : "Repeat mode changed to no repeat."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6740,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : null,
+    "name" : "Don't",
+    "remainedTime" : 19,
+    "repeat" : "No Repeat",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "repeat",
@@ -6873,10 +6873,10 @@
   "user" : "frank21",
   "timestamp" : 6750,
   "stats" : {
-    "name" : "Delicate",
-    "remainedTime" : 93,
+    "name" : "Maps",
+    "remainedTime" : 51,
     "repeat" : "Repeat Current Song",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -6888,17 +6888,17 @@
   "command" : "next",
   "user" : "grace25",
   "timestamp" : 6760,
-  "message" : "Please load a source before skipping to the next track."
+  "message" : "Skipped to next track successfully. The current track is Dream On."
 }, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 6760,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
-    "shuffle" : false,
-    "paused" : true
+    "name" : "Dream On",
+    "remainedTime" : 267,
+    "repeat" : "Repeat All",
+    "shuffle" : true,
+    "paused" : false
   }
 }, {
   "command" : "prev",
@@ -6934,7 +6934,7 @@
     "name" : "Blank Space",
     "remainedTime" : 131,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -7006,10 +7006,10 @@
   "user" : "carol19",
   "timestamp" : 6820,
   "stats" : {
-    "name" : "Money Trees",
-    "remainedTime" : 287,
+    "name" : "Happier",
+    "remainedTime" : 107,
     "repeat" : "Repeat All",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -7037,17 +7037,17 @@
   "command" : "repeat",
   "user" : "emily30",
   "timestamp" : 6840,
-  "message" : "Please load a source before setting the repeat status."
+  "message" : "Repeat mode changed to repeat all."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6840,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : null,
+    "name" : "The Man",
+    "remainedTime" : 109,
+    "repeat" : "Repeat All",
     "shuffle" : false,
-    "paused" : true
+    "paused" : false
   }
 }, {
   "command" : "switchVisibility",
@@ -7059,10 +7059,10 @@
   "user" : "frank21",
   "timestamp" : 6850,
   "stats" : {
-    "name" : "Delicate",
-    "remainedTime" : 225,
+    "name" : "Maps",
+    "remainedTime" : 141,
     "repeat" : "Repeat Current Song",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -7070,27 +7070,27 @@
   "user" : "frank21",
   "timestamp" : 6850,
   "stats" : {
-    "name" : "Delicate",
-    "remainedTime" : 225,
+    "name" : "Maps",
+    "remainedTime" : 141,
     "repeat" : "Repeat Current Song",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
   "command" : "next",
   "user" : "grace25",
   "timestamp" : 6860,
-  "message" : "Please load a source before skipping to the next track."
+  "message" : "Skipped to next track successfully. The current track is Love Story."
 }, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 6860,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
-    "shuffle" : false,
-    "paused" : true
+    "name" : "Love Story",
+    "remainedTime" : 236,
+    "repeat" : "Repeat All",
+    "shuffle" : true,
+    "paused" : false
   }
 }, {
   "command" : "like",
@@ -7121,7 +7121,7 @@
     "name" : "Blank Space",
     "remainedTime" : 31,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -7187,10 +7187,10 @@
   "user" : "carol19",
   "timestamp" : 6920,
   "stats" : {
-    "name" : "Money Trees",
-    "remainedTime" : 187,
+    "name" : "Happier",
+    "remainedTime" : 7,
     "repeat" : "Repeat All",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
@@ -7224,15 +7224,15 @@
   "command" : "playPause",
   "user" : "emily30",
   "timestamp" : 6940,
-  "message" : "Please load a source before attempting to pause or resume playback."
+  "message" : "Playback paused successfully."
 }, {
   "command" : "status",
   "user" : "emily30",
   "timestamp" : 6940,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : null,
+    "name" : "The Man",
+    "remainedTime" : 9,
+    "repeat" : "Repeat All",
     "shuffle" : false,
     "paused" : true
   }
@@ -7246,27 +7246,27 @@
   "user" : "frank21",
   "timestamp" : 6950,
   "stats" : {
-    "name" : "Delicate",
-    "remainedTime" : 125,
+    "name" : "Maps",
+    "remainedTime" : 41,
     "repeat" : "No Repeat",
-    "shuffle" : true,
+    "shuffle" : false,
     "paused" : false
   }
 }, {
   "command" : "next",
   "user" : "grace25",
   "timestamp" : 6960,
-  "message" : "Please load a source before skipping to the next track."
+  "message" : "Skipped to next track successfully. The current track is The Man."
 }, {
   "command" : "status",
   "user" : "grace25",
   "timestamp" : 6960,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : "No Repeat",
-    "shuffle" : false,
-    "paused" : true
+    "name" : "The Man",
+    "remainedTime" : 190,
+    "repeat" : "Repeat All",
+    "shuffle" : true,
+    "paused" : false
   }
 }, {
   "command" : "switchVisibility",
@@ -7299,11 +7299,11 @@
   "user" : "irene33",
   "timestamp" : 6980,
   "stats" : {
-    "name" : "",
-    "remainedTime" : 0,
-    "repeat" : null,
-    "shuffle" : true,
-    "paused" : true
+    "name" : "Dream On",
+    "remainedTime" : 198,
+    "repeat" : "Repeat All",
+    "shuffle" : false,
+    "paused" : false
   }
 }, {
   "command" : "switchVisibility",
@@ -7475,12 +7475,12 @@
   "user" : "jack29",
   "timestamp" : 7080,
   "message" : "Search returned 2 results",
-  "results" : [ "Classic Grooves Escape #2", "Groovy Beats Quest #1" ]
+  "results" : [ "Groovy Beats Quest #1", "Classic Grooves Escape #2" ]
 }, {
   "command" : "select",
   "user" : "jack29",
   "timestamp" : 7080,
-  "message" : "Successfully selected Groovy Beats Quest #1."
+  "message" : "Successfully selected Classic Grooves Escape #2."
 }, {
   "command" : "follow",
   "user" : "jack29",
@@ -7555,7 +7555,7 @@
   "user" : "emily30",
   "timestamp" : 7130,
   "message" : "Search returned 2 results",
-  "results" : [ "Classic Grooves Escape #2", "Groovy Beats Quest #1" ]
+  "results" : [ "Groovy Beats Quest #1", "Classic Grooves Escape #2" ]
 }, {
   "command" : "select",
   "user" : "emily30",
@@ -7635,7 +7635,7 @@
   "user" : "jack29",
   "timestamp" : 7180,
   "message" : "Search returned 2 results",
-  "results" : [ "Electric Tunes Dream #2", "Electric Bangers Dream #1" ]
+  "results" : [ "Electric Bangers Dream #1", "Electric Tunes Dream #2" ]
 }, {
   "command" : "select",
   "user" : "jack29",
@@ -7715,12 +7715,12 @@
   "user" : "emily30",
   "timestamp" : 7230,
   "message" : "Search returned 2 results",
-  "results" : [ "Classic Grooves Escape #2", "Groovy Beats Quest #1" ]
+  "results" : [ "Groovy Beats Quest #1", "Classic Grooves Escape #2" ]
 }, {
   "command" : "select",
   "user" : "emily30",
   "timestamp" : 7230,
-  "message" : "Successfully selected Groovy Beats Quest #1."
+  "message" : "Successfully selected Classic Grooves Escape #2."
 }, {
   "command" : "follow",
   "user" : "emily30",
@@ -7843,12 +7843,12 @@
   "user" : "carol19",
   "timestamp" : 7310,
   "message" : "Search returned 2 results",
-  "results" : [ "Electric Tunes Dream #2", "Electric Bangers Dream #1" ]
+  "results" : [ "Electric Bangers Dream #1", "Electric Tunes Dream #2" ]
 }, {
   "command" : "select",
   "user" : "carol19",
   "timestamp" : 7310,
-  "message" : "Successfully selected Electric Tunes Dream #2."
+  "message" : "Successfully selected Electric Bangers Dream #1."
 }, {
   "command" : "follow",
   "user" : "carol19",
@@ -8211,12 +8211,12 @@
   "user" : "frank21",
   "timestamp" : 7540,
   "message" : "Search returned 2 results",
-  "results" : [ "Electric Tunes Dream #2", "Electric Bangers Dream #1" ]
+  "results" : [ "Electric Bangers Dream #1", "Electric Tunes Dream #2" ]
 }, {
   "command" : "select",
   "user" : "frank21",
   "timestamp" : 7540,
-  "message" : "Successfully selected Electric Tunes Dream #2."
+  "message" : "Successfully selected Electric Bangers Dream #1."
 }, {
   "command" : "follow",
   "user" : "frank21",
@@ -8419,7 +8419,7 @@
   "user" : "irene33",
   "timestamp" : 7670,
   "message" : "Search returned 2 results",
-  "results" : [ "Classic Grooves Escape #2", "Groovy Beats Quest #1" ]
+  "results" : [ "Groovy Beats Quest #1", "Classic Grooves Escape #2" ]
 }, {
   "command" : "select",
   "user" : "irene33",
@@ -8579,12 +8579,12 @@
   "user" : "irene33",
   "timestamp" : 7770,
   "message" : "Search returned 2 results",
-  "results" : [ "Electric Tunes Dream #2", "Electric Bangers Dream #1" ]
+  "results" : [ "Electric Bangers Dream #1", "Electric Tunes Dream #2" ]
 }, {
   "command" : "select",
   "user" : "irene33",
   "timestamp" : 7770,
-  "message" : "Successfully selected Electric Tunes Dream #2."
+  "message" : "Successfully selected Electric Bangers Dream #1."
 }, {
   "command" : "follow",
   "user" : "irene33",
@@ -8659,12 +8659,12 @@
   "user" : "david27",
   "timestamp" : 7820,
   "message" : "Search returned 2 results",
-  "results" : [ "Electric Tunes Dream #2", "Electric Bangers Dream #1" ]
+  "results" : [ "Electric Bangers Dream #1", "Electric Tunes Dream #2" ]
 }, {
   "command" : "select",
   "user" : "david27",
   "timestamp" : 7820,
-  "message" : "Successfully selected Electric Tunes Dream #2."
+  "message" : "Successfully selected Electric Bangers Dream #1."
 }, {
   "command" : "follow",
   "user" : "david27",
@@ -8723,12 +8723,12 @@
   "user" : "henry26",
   "timestamp" : 7860,
   "message" : "Search returned 2 results",
-  "results" : [ "Electric Tunes Dream #2", "Electric Bangers Dream #1" ]
+  "results" : [ "Electric Bangers Dream #1", "Electric Tunes Dream #2" ]
 }, {
   "command" : "select",
   "user" : "henry26",
   "timestamp" : 7860,
-  "message" : "Successfully selected Electric Tunes Dream #2."
+  "message" : "Successfully selected Electric Bangers Dream #1."
 }, {
   "command" : "follow",
   "user" : "henry26",
@@ -8755,12 +8755,12 @@
   "user" : "jack29",
   "timestamp" : 7880,
   "message" : "Search returned 2 results",
-  "results" : [ "Electric Tunes Dream #2", "Electric Bangers Dream #1" ]
+  "results" : [ "Electric Bangers Dream #1", "Electric Tunes Dream #2" ]
 }, {
   "command" : "select",
   "user" : "jack29",
   "timestamp" : 7880,
-  "message" : "Successfully selected Electric Bangers Dream #1."
+  "message" : "Successfully selected Electric Tunes Dream #2."
 }, {
   "command" : "follow",
   "user" : "jack29",
@@ -8995,12 +8995,12 @@
   "user" : "emily30",
   "timestamp" : 8030,
   "message" : "Search returned 2 results",
-  "results" : [ "Classic Grooves Escape #2", "Groovy Beats Quest #1" ]
+  "results" : [ "Groovy Beats Quest #1", "Classic Grooves Escape #2" ]
 }, {
   "command" : "select",
   "user" : "emily30",
   "timestamp" : 8030,
-  "message" : "Successfully selected Groovy Beats Quest #1."
+  "message" : "Successfully selected Classic Grooves Escape #2."
 }, {
   "command" : "follow",
   "user" : "emily30",
@@ -9091,7 +9091,7 @@
   "user" : "alice22",
   "timestamp" : 8090,
   "message" : "Search returned 2 results",
-  "results" : [ "Electric Tunes Dream #2", "Electric Bangers Dream #1" ]
+  "results" : [ "Electric Bangers Dream #1", "Electric Tunes Dream #2" ]
 }, {
   "command" : "select",
   "user" : "alice22",
@@ -9107,12 +9107,12 @@
   "user" : "bob35",
   "timestamp" : 8100,
   "message" : "Search returned 2 results",
-  "results" : [ "Electric Tunes Dream #2", "Electric Bangers Dream #1" ]
+  "results" : [ "Electric Bangers Dream #1", "Electric Tunes Dream #2" ]
 }, {
   "command" : "select",
   "user" : "bob35",
   "timestamp" : 8100,
-  "message" : "Successfully selected Electric Tunes Dream #2."
+  "message" : "Successfully selected Electric Bangers Dream #1."
 }, {
   "command" : "follow",
   "user" : "bob35",
@@ -9139,7 +9139,7 @@
   "user" : "david27",
   "timestamp" : 8120,
   "message" : "Search returned 2 results",
-  "results" : [ "Classic Grooves Escape #2", "Groovy Beats Quest #1" ]
+  "results" : [ "Groovy Beats Quest #1", "Classic Grooves Escape #2" ]
 }, {
   "command" : "select",
   "user" : "david27",
@@ -9155,12 +9155,12 @@
   "user" : "emily30",
   "timestamp" : 8130,
   "message" : "Search returned 2 results",
-  "results" : [ "Classic Grooves Escape #2", "Groovy Beats Quest #1" ]
+  "results" : [ "Groovy Beats Quest #1", "Classic Grooves Escape #2" ]
 }, {
   "command" : "select",
   "user" : "emily30",
   "timestamp" : 8130,
-  "message" : "Successfully selected Classic Grooves Escape #2."
+  "message" : "Successfully selected Groovy Beats Quest #1."
 }, {
   "command" : "follow",
   "user" : "emily30",
@@ -9171,12 +9171,12 @@
   "user" : "frank21",
   "timestamp" : 8140,
   "message" : "Search returned 2 results",
-  "results" : [ "Classic Grooves Escape #2", "Groovy Beats Quest #1" ]
+  "results" : [ "Groovy Beats Quest #1", "Classic Grooves Escape #2" ]
 }, {
   "command" : "select",
   "user" : "frank21",
   "timestamp" : 8140,
-  "message" : "Successfully selected Classic Grooves Escape #2."
+  "message" : "Successfully selected Groovy Beats Quest #1."
 }, {
   "command" : "follow",
   "user" : "frank21",
@@ -9203,12 +9203,12 @@
   "user" : "henry26",
   "timestamp" : 8160,
   "message" : "Search returned 2 results",
-  "results" : [ "Classic Grooves Escape #2", "Groovy Beats Quest #1" ]
+  "results" : [ "Groovy Beats Quest #1", "Classic Grooves Escape #2" ]
 }, {
   "command" : "select",
   "user" : "henry26",
   "timestamp" : 8160,
-  "message" : "Successfully selected Groovy Beats Quest #1."
+  "message" : "Successfully selected Classic Grooves Escape #2."
 }, {
   "command" : "follow",
   "user" : "henry26",
@@ -9267,7 +9267,7 @@
   "user" : "bob35",
   "timestamp" : 8200,
   "message" : "Search returned 2 results",
-  "results" : [ "Classic Grooves Escape #2", "Groovy Beats Quest #1" ]
+  "results" : [ "Groovy Beats Quest #1", "Classic Grooves Escape #2" ]
 }, {
   "command" : "select",
   "user" : "bob35",
@@ -9299,7 +9299,7 @@
   "user" : "david27",
   "timestamp" : 8220,
   "message" : "Search returned 2 results",
-  "results" : [ "Electric Tunes Dream #2", "Electric Bangers Dream #1" ]
+  "results" : [ "Electric Bangers Dream #1", "Electric Tunes Dream #2" ]
 }, {
   "command" : "select",
   "user" : "david27",
@@ -9331,7 +9331,7 @@
   "user" : "frank21",
   "timestamp" : 8240,
   "message" : "Search returned 2 results",
-  "results" : [ "Electric Tunes Dream #2", "Electric Bangers Dream #1" ]
+  "results" : [ "Electric Bangers Dream #1", "Electric Tunes Dream #2" ]
 }, {
   "command" : "select",
   "user" : "frank21",
@@ -9347,12 +9347,12 @@
   "user" : "grace25",
   "timestamp" : 8250,
   "message" : "Search returned 2 results",
-  "results" : [ "Classic Grooves Escape #2", "Groovy Beats Quest #1" ]
+  "results" : [ "Groovy Beats Quest #1", "Classic Grooves Escape #2" ]
 }, {
   "command" : "select",
   "user" : "grace25",
   "timestamp" : 8250,
-  "message" : "Successfully selected Groovy Beats Quest #1."
+  "message" : "Successfully selected Classic Grooves Escape #2."
 }, {
   "command" : "follow",
   "user" : "grace25",
@@ -9379,12 +9379,12 @@
   "user" : "irene33",
   "timestamp" : 8270,
   "message" : "Search returned 2 results",
-  "results" : [ "Electric Tunes Dream #2", "Electric Bangers Dream #1" ]
+  "results" : [ "Electric Bangers Dream #1", "Electric Tunes Dream #2" ]
 }, {
   "command" : "select",
   "user" : "irene33",
   "timestamp" : 8270,
-  "message" : "Successfully selected Electric Bangers Dream #1."
+  "message" : "Successfully selected Electric Tunes Dream #2."
 }, {
   "command" : "follow",
   "user" : "irene33",
@@ -9395,12 +9395,12 @@
   "user" : "jack29",
   "timestamp" : 8280,
   "message" : "Search returned 2 results",
-  "results" : [ "Classic Grooves Escape #2", "Groovy Beats Quest #1" ]
+  "results" : [ "Groovy Beats Quest #1", "Classic Grooves Escape #2" ]
 }, {
   "command" : "select",
   "user" : "jack29",
   "timestamp" : 8280,
-  "message" : "Successfully selected Classic Grooves Escape #2."
+  "message" : "Successfully selected Groovy Beats Quest #1."
 }, {
   "command" : "follow",
   "user" : "jack29",
@@ -9491,12 +9491,12 @@
   "user" : "frank21",
   "timestamp" : 8340,
   "message" : "Search returned 2 results",
-  "results" : [ "Electric Tunes Dream #2", "Electric Bangers Dream #1" ]
+  "results" : [ "Electric Bangers Dream #1", "Electric Tunes Dream #2" ]
 }, {
   "command" : "select",
   "user" : "frank21",
   "timestamp" : 8340,
-  "message" : "Successfully selected Electric Tunes Dream #2."
+  "message" : "Successfully selected Electric Bangers Dream #1."
 }, {
   "command" : "follow",
   "user" : "frank21",
@@ -9745,7 +9745,7 @@
   "command" : "showPreferredSongs",
   "user" : "alice22",
   "timestamp" : 8490,
-  "result" : [ "Paint It Black" ]
+  "result" : [ "Bohemian Rhapsody" ]
 }, {
   "command" : "showPlaylists",
   "user" : "bob35",
@@ -9785,7 +9785,7 @@
   "command" : "showPreferredSongs",
   "user" : "carol19",
   "timestamp" : 8510,
-  "result" : [ "Happier", "Money Trees" ]
+  "result" : [ "Gimme Shelter", "Happier" ]
 }, {
   "command" : "showPlaylists",
   "user" : "david27",
@@ -9814,18 +9814,18 @@
     "name" : "Electric Bangers Dream #1",
     "songs" : [ "Don't", "The Man", "Blank Space", "Black Dog", "Whatever You Need", "Castle on the Hill" ],
     "visibility" : "public",
-    "followers" : 2
+    "followers" : 5
   }, {
     "name" : "Electric Tunes Dream #2",
     "songs" : [ "Bohemian Rhapsody", "The Man", "Delicate", "Angie", "Paint It Black", "Begin Again" ],
     "visibility" : "public",
-    "followers" : 5
+    "followers" : 2
   } ]
 }, {
   "command" : "showPreferredSongs",
   "user" : "emily30",
   "timestamp" : 8530,
-  "result" : [ ]
+  "result" : [ "Don't" ]
 }, {
   "command" : "showPlaylists",
   "user" : "frank21",
@@ -9845,7 +9845,7 @@
   "command" : "showPreferredSongs",
   "user" : "frank21",
   "timestamp" : 8540,
-  "result" : [ "Castle on the Hill" ]
+  "result" : [ "Maps" ]
 }, {
   "command" : "showPlaylists",
   "user" : "grace25",
@@ -9926,4 +9926,12 @@
   "user" : "jack29",
   "timestamp" : 8580,
   "result" : [ "The Man" ]
+}, {
+  "command" : "getTop5Playlists",
+  "timestamp" : 8580,
+  "result" : [ "Dynamic Tracks Trek #2", "Electric Bangers Dream #1", "Classic Tunes Dream #1", "Epic Tracks Safari #1", "Classic Harmonies Quest #1" ]
+}, {
+  "command" : "getTop5Songs",
+  "timestamp" : 8580,
+  "result" : [ "Don't", "Whatever You Need", "Maps", "The Man", "Happier" ]
 } ]
