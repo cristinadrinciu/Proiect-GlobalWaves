@@ -6,6 +6,7 @@ import AudioFiles.User;
 public class SelectCommand {
     private int itemNumber;
     private static AudioFile selectedItem;
+    private static User selectedUser;
 
     /**
      *
@@ -50,5 +51,33 @@ public class SelectCommand {
      */
     public static void setSelectedItem(final AudioFile selectedItem) {
         SelectCommand.selectedItem = selectedItem;
+    }
+
+    /**
+     * Selects the user with the given number from the last search
+     */
+    public void provideSelectedUser(User user) {
+        if (user.getLastSearchUsers() != null && itemNumber > 0
+                && itemNumber <= user.getLastSearchUsers().size()) {
+            selectedUser = user.getLastSearchUsers().get(itemNumber - 1);
+        } else {
+            selectedUser = null;
+        }
+    }
+
+    /**
+     *
+     * @return the selected user
+     */
+    public static User getSelectedUser() {
+        return selectedUser;
+    }
+
+    /**
+     *
+     * @param selectedUser the selected user
+     */
+    public static void setSelectedUser(final User selectedUser) {
+        SelectCommand.selectedUser = selectedUser;
     }
 }

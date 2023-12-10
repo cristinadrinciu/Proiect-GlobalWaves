@@ -153,4 +153,72 @@ public class PrevCommand {
             }
         }
     }
+
+    /**
+     * This method is used to go to the previous item in the player
+     * @param user the user that executes the command
+     */
+    public void goToPrevAlbum(final User user) {
+        // exactly the same as the playlist
+        if (user.getPlayer().listenedTime > 0) {
+            // restart the song
+            user.getPlayer().remainingTime = ((Song) user.getPlayer().playingNow).getDuration();
+            user.getPlayer().listenedTime = 0;
+            user.getPlayer().switchedTime = user.getPlayer().timestamp;
+            user.getPlayer().paused = false;
+            message = "Returned to previous track successfully. "
+                    + "The current track is " + user.getPlayer().playingNow.getName() + ".";
+        } else {
+            // check if it is the first song of the album
+            if (!user.getPlayer().shuffle) {
+                if (user.getPlayer().playingNow == ((Playlist) user.getPlayer().
+                        loadedItem).getSongs().get(0)) {
+                    // restart the song
+                    user.getPlayer().remainingTime = ((Song) user.getPlayer().
+                            playingNow).getDuration();
+                    user.getPlayer().listenedTime = 0;
+                    user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                    user.getPlayer().paused = false;
+                    message = "Returned to previous track successfully. "
+                            + "The current track is " + user.getPlayer().playingNow.getName() + ".";
+                } else {
+                    // we go to the previous song
+                    user.getPlayer().playingNow = ((Playlist) user.getPlayer().loadedItem).
+                            getSongs().get(((Playlist) user.
+                                    getPlayer().loadedItem).getSongs().
+                                    indexOf((Song) user.getPlayer().playingNow) - 1);
+                    user.getPlayer().listenedTime = 0;
+                    user.getPlayer().remainingTime = ((Song) user.getPlayer().playingNow).
+                            getDuration();
+                    user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                    user.getPlayer().paused = false;
+                    message = "Returned to previous track successfully. "
+                            + "The current track is " + user.getPlayer().playingNow.getName() + ".";
+                }
+            } else {
+                if (user.getPlayer().playingNow == user.getPlayer().shuffledPlaylist.get(0)) {
+                    // restart the song
+                    user.getPlayer().remainingTime = ((Song) user.getPlayer().playingNow).
+                            getDuration();
+                    user.getPlayer().listenedTime = 0;
+                    user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                    user.getPlayer().paused = false;
+                    message = "Returned to previous track successfully. "
+                            + "The current track is " + user.getPlayer().playingNow.getName() + ".";
+                } else {
+                    // we go to the previous song
+                    user.getPlayer().playingNow = user.getPlayer().shuffledPlaylist.get(user.
+                            getPlayer().shuffledPlaylist.indexOf(
+                                    (Song) user.getPlayer().playingNow) - 1);
+                    user.getPlayer().listenedTime = 0;
+                    user.getPlayer().remainingTime = ((Song) user.getPlayer().playingNow).
+                            getDuration();
+                    user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                    user.getPlayer().paused = false;
+                    message = "Returned to previous track successfully. "
+                            + "The current track is " + user.getPlayer().playingNow.getName() + ".";
+                }
+            }
+        }
+    }
 }

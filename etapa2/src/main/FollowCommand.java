@@ -20,18 +20,17 @@ public class FollowCommand {
     /**
      * Follows or unfollows a playlist
      * @param user the user that wants to follow or unfollow a playlist
-     * @param audioFile the playlist that the user wants to follow or unfollow
      */
-    public void followPlaylist(final User user, final AudioFile audioFile) {
-        if (audioFile == null) {
+    public void followPlaylist(final User user) {
+        if (user.getSelectedItem() == null) {
             message = "Please select a source before following or unfollowing.";
             return;
         }
-        if (!(audioFile instanceof Playlist)) {
+        if (!(user.getSelectedItem() instanceof Playlist)) {
             message = "The selected source is not a playlist.";
             return;
         }
-        Playlist playlist = (Playlist) audioFile;
+        Playlist playlist = (Playlist) user.getSelectedItem();
         if (user.getPlaylists().contains(playlist)) {
             message = "You cannot follow or unfollow your own playlist.";
             return;
@@ -59,5 +58,7 @@ public class FollowCommand {
             user.getFollowedPlaylists().add(playlist);
             message = "Playlist followed successfully.";
         }
+
+        user.setHomePage();
     }
 }

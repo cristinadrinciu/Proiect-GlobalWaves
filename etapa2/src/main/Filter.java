@@ -11,6 +11,7 @@ public class Filter {
     private String releaseYear = null;
     private String artist = null;
     private String owner = null;
+    private String username;
 
 
     private ArrayList<String> fields =  new ArrayList<>();
@@ -156,6 +157,10 @@ public class Filter {
             filterArray.add(name);
             fields.add("name");
         }
+        if (username != null) {
+            filterArray.add(username);
+            fields.add("username");
+        }
         if (album != null) {
             filterArray.add(album);
             fields.add("album");
@@ -217,5 +222,21 @@ public class Filter {
      */
     public void setFilterArray(final ArrayList<Object> filterArray) {
         this.filterArray = filterArray;
+    }
+
+    /**
+     * Sets the username
+     * @param username the username
+     */
+    public void setUsername(final String username) {
+        this.username = username;
+    }
+
+    /**
+     *
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
     }
 }

@@ -1,9 +1,6 @@
 package main;
 
-import AudioFiles.AudioFile;
-import AudioFiles.Playlist;
-import AudioFiles.Podcast;
-import AudioFiles.Song;
+import AudioFiles.*;
 import fileio.input.EpisodeInput;
 import java.util.ArrayList;
 
@@ -22,6 +19,8 @@ public class Player {
     int repeatedOnce = 0;
 
     public ArrayList<Song> shuffledPlaylist;
+
+    public ArrayList<Podcast> playedPodcasts = new ArrayList<>();
 
     public ArrayList<Playlist> playlists = new ArrayList<>();
     // list of public playlists and user's created playlist
@@ -51,13 +50,40 @@ public class Player {
             switchedTime = timestamp;
             return;
         }
+        if (loadedItem instanceof Album) {
+            // from the beginning
+            playingNow = ((Album) loadedItem).getSongs().get(0);
+            remainingTime = ((Song) playingNow).getDuration();
+            paused = false;
+            listenedTime = 0;
+            switchedTime = timestamp;
+            return;
+
+        }
         if (loadedItem instanceof Podcast) {
             // check if it was played before
-            if (((Podcast) loadedItem).getLastEpisode() != null) {
-                playingNow = ((Podcast) loadedItem).getEpisodes().get(0);
-                listenedTime = ((Podcast) loadedItem).getWatchedTime();
+            boolean found = false;
+            Podcast foundPodcast = null;
+            for (Podcast podcast : playedPodcasts) {
+                if (podcast.getName().equals(((Podcast) loadedItem).getName())) {
+                    found = true;
+                    foundPodcast = podcast;
+                    break;
+                }
+            }
+
+            if(found) {
+                // if it was played before, resume from the last episode played
+                playingNow = foundPodcast.getLastEpisode();
+                listenedTime = foundPodcast.getWatchedTime();
                 remainingTime = ((EpisodeInput) playingNow).getDuration() - listenedTime;
             } else {
+                // add in the list of played podcasts
+                Podcast newPodcast = new Podcast();
+                newPodcast.setName(((Podcast) loadedItem).getName());
+                newPodcast.setOwner(((Podcast) loadedItem).getOwner());
+                newPodcast.setEpisodes(((Podcast) loadedItem).getEpisodes());
+                playedPodcasts.add(newPodcast);
                 playingNow = ((Podcast) loadedItem).getEpisodes().get(0);
                 listenedTime = 0;
                 remainingTime = ((EpisodeInput) playingNow).getDuration();
@@ -93,8 +119,14 @@ public class Player {
             } else if (playingNow instanceof EpisodeInput) {
                 listenedTime += elapsedTime;
                 remainingTime = ((EpisodeInput) playingNow).getDuration() - listenedTime;
-                ((Podcast) loadedItem).setLastEpisode((EpisodeInput) playingNow);
-                ((Podcast) loadedItem).setWatchedTime(listenedTime);
+                // get the podcast from the list of played podcasts
+                for (Podcast podcast : playedPodcasts) {
+                    if (podcast.getName().equals(((Podcast) loadedItem).getName())) {
+                        podcast.setWatchedTime(listenedTime);
+                        podcast.setLastEpisode((EpisodeInput) playingNow);
+                        break;
+                    }
+                }
             }
         }
 
@@ -118,6 +150,7 @@ public class Player {
                             loadedItem = null;
                             remainingTime = 0;
                             playingNow = null;
+                            shuffle = false;
                             return;
                         }
                         listenedTime = -remainingTime; // time listened from the next track
@@ -132,6 +165,42 @@ public class Player {
                             loadedItem = null;
                             remainingTime = 0;
                             playingNow = null;
+                            shuffle = false;
+                            return;
+                        }
+                        listenedTime = -remainingTime; // time listened from the next track
+                        playingNow = shuffledPlaylist.get(index + 1); // go to the next track
+                        remainingTime = ((Song) playingNow).getDuration() - listenedTime;
+                    }
+                }
+            }
+            if (loadedItem instanceof Album) {
+                // exactly the same as Playlist
+                while (remainingTime < 0) {
+                    if (!shuffle) {
+                        int index = ((Album) loadedItem).getSongs().indexOf((Song) playingNow);
+                        if (index == ((Album) loadedItem).getSongs().size() - 1) {
+                            paused = true;
+                            listenedTime = 0;
+                            loadedItem = null;
+                            remainingTime = 0;
+                            playingNow = null;
+                            shuffle = false;
+                            return;
+                        }
+                        listenedTime = -remainingTime; // time listened from the next track
+                        playingNow = ((Album) loadedItem).getSongs().get(index + 1);
+                        // go to the next track
+                        remainingTime = ((Song) playingNow).getDuration() - listenedTime;
+                    } else {
+                        int index = shuffledPlaylist.indexOf((Song) playingNow);
+                        if (index == shuffledPlaylist.size() - 1) {
+                            paused = true;
+                            listenedTime = 0;
+                            loadedItem = null;
+                            remainingTime = 0;
+                            playingNow = null;
+                            shuffle = false;
                             return;
                         }
                         listenedTime = -remainingTime; // time listened from the next track
@@ -174,8 +243,14 @@ public class Player {
             } else if (playingNow instanceof EpisodeInput) {
                 listenedTime += elapsedTime;
                 remainingTime = ((EpisodeInput) playingNow).getDuration() - listenedTime;
-                ((Podcast) loadedItem).setLastEpisode((EpisodeInput) playingNow);
-                ((Podcast) loadedItem).setWatchedTime(listenedTime);
+                // get the podcast from the list of played podcasts
+                for (Podcast podcast : playedPodcasts) {
+                    if (podcast.getName().equals(((Podcast) loadedItem).getName())) {
+                        podcast.setWatchedTime(listenedTime);
+                        podcast.setLastEpisode((EpisodeInput) playingNow);
+                        break;
+                    }
+                }
             }
         }
 
@@ -205,6 +280,12 @@ public class Player {
                     remainingTime = ((Song) playingNow).getDuration() - listenedTime;
                 }
             }
+            if (loadedItem instanceof Album) {
+                while (remainingTime < 0) {
+                    listenedTime = -remainingTime;
+                    remainingTime = ((Song) playingNow).getDuration() - listenedTime;
+                }
+            }
         }
     }
 
@@ -220,8 +301,14 @@ public class Player {
             } else if (playingNow instanceof EpisodeInput) {
                 listenedTime += elapsedTime;
                 remainingTime = ((EpisodeInput) playingNow).getDuration() - listenedTime;
-                ((Podcast) loadedItem).setLastEpisode((EpisodeInput) playingNow);
-                ((Podcast) loadedItem).setWatchedTime(listenedTime);
+                // get the podcast from the list of played podcasts
+                for (Podcast podcast : playedPodcasts) {
+                    if (podcast.getName().equals(((Podcast) loadedItem).getName())) {
+                        podcast.setWatchedTime(listenedTime);
+                        podcast.setLastEpisode((EpisodeInput) playingNow);
+                        break;
+                    }
+                }
             }
         }
 
@@ -281,59 +368,50 @@ public class Player {
             if (loadedItem instanceof Playlist) {
                 while (remainingTime < 0) {
                     if (!shuffle) {
-                        if (repeatedOnce == 0) {
-                            int index = ((Playlist) loadedItem).getSongs().
-                                    indexOf((Song) playingNow);
-                            if (index == ((Playlist) loadedItem).getSongs().size() - 1) {
-                                playingNow = ((Playlist) loadedItem).getSongs().get(0);
-                                repeatedOnce = 1;
-                            } else {
-                                playingNow = ((Playlist) loadedItem).getSongs().get(index + 1);
-                            }
-                            listenedTime = -remainingTime; // time listened from the next track
-                            remainingTime = ((Song) playingNow).getDuration() - listenedTime;
+                        int index = ((Playlist) loadedItem).getSongs().
+                                indexOf((Song) playingNow);
+                        if (index == ((Playlist) loadedItem).getSongs().size() - 1) {
+                            playingNow = ((Playlist) loadedItem).getSongs().get(0);
                         } else {
-                            int index = ((Playlist) loadedItem).getSongs().
-                                    indexOf((Song) playingNow);
-                            if (index == ((Playlist) loadedItem).getSongs().size() - 1) {
-                                paused = true;
-                                listenedTime = 0;
-                                loadedItem = null;
-                                remainingTime = 0;
-                                playingNow = null;
-                                repeatedOnce = 0;
-                                return;
-                            }
-                            listenedTime = -remainingTime; // time listened from the next track
-                            playingNow = ((Playlist) loadedItem).getSongs().get(index + 1); // go to the next track
-                            remainingTime = ((Song) playingNow).getDuration() - listenedTime;
+                            playingNow = ((Playlist) loadedItem).getSongs().get(index + 1);
                         }
+                        listenedTime = -remainingTime; // time listened from the next track
+                        remainingTime = ((Song) playingNow).getDuration() - listenedTime;
                     } else {
-                        if (repeatedOnce == 0) {
-                            int index = shuffledPlaylist.indexOf((Song) playingNow);
-                            if (index == shuffledPlaylist.size() - 1) {
-                                playingNow = shuffledPlaylist.get(0);
-                                repeatedOnce = 1;
-                            } else {
-                                playingNow = shuffledPlaylist.get(index + 1);
-                            }
-                            listenedTime = -remainingTime; // time listened from the next track
-                            remainingTime = ((Song) playingNow).getDuration() - listenedTime;
+                        int index = shuffledPlaylist.indexOf((Song) playingNow);
+                        if (index == shuffledPlaylist.size() - 1) {
+                            playingNow = shuffledPlaylist.get(0);
                         } else {
-                            int index = shuffledPlaylist.indexOf((Song) playingNow);
-                            if (index == shuffledPlaylist.size() - 1) {
-                                paused = true;
-                                listenedTime = 0;
-                                loadedItem = null;
-                                remainingTime = 0;
-                                playingNow = null;
-                                repeatedOnce = 0;
-                                return;
-                            }
-                            listenedTime = -remainingTime; // time listened from the next track
-                            playingNow = shuffledPlaylist.get(index + 1); // go to the next track
-                            remainingTime = ((Song) playingNow).getDuration() - listenedTime;
+                            playingNow = shuffledPlaylist.get(index + 1);
                         }
+                        listenedTime = -remainingTime; // time listened from the next track
+                        remainingTime = ((Song) playingNow).getDuration() - listenedTime;
+                    }
+                }
+            }
+            if(loadedItem instanceof Album) {
+                // exactly the same as Playlist
+                while (remainingTime < 0) {
+                    if (!shuffle) {
+                        int index = ((Album) loadedItem).getSongs().
+                                indexOf((Song) playingNow);
+                        if (index == ((Album) loadedItem).getSongs().size() - 1) {
+                            playingNow = ((Album) loadedItem).getSongs().get(0);
+                        } else {
+                            playingNow = ((Album) loadedItem).getSongs().get(index + 1);
+                        }
+                        listenedTime = -remainingTime; // time listened from the next track
+                        remainingTime = ((Song) playingNow).getDuration() - listenedTime;
+                    } else {
+                        int index = shuffledPlaylist.indexOf((Song) playingNow);
+                        if (index == shuffledPlaylist.size() - 1) {
+                            playingNow = shuffledPlaylist.get(0);
+                            repeatedOnce = 1;
+                        } else {
+                            playingNow = shuffledPlaylist.get(index + 1);
+                        }
+                        listenedTime = -remainingTime; // time listened from the next track
+                        remainingTime = ((Song) playingNow).getDuration() - listenedTime;
                     }
                 }
             }

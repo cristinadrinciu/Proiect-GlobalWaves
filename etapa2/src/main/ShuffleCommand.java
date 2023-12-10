@@ -1,5 +1,6 @@
 package main;
 
+import AudioFiles.Album;
 import AudioFiles.Playlist;
 import AudioFiles.Song;
 import AudioFiles.User;
@@ -37,7 +38,8 @@ public class ShuffleCommand {
             user.getPlayer().shuffle = false;
             return;
         }
-        if (!(user.getPlayer().loadedItem instanceof Playlist)) {
+        if (!(user.getPlayer().loadedItem instanceof Playlist)
+                && !(user.getPlayer().loadedItem instanceof Album)) {
             user.getPlayer().shuffle = false;
             return;
         }
@@ -61,8 +63,9 @@ public class ShuffleCommand {
             message = "Please load a source before using the shuffle function.";
             return message;
         }
-        if (!(user.getPlayer().loadedItem instanceof Playlist)) {
-            message = "The loaded source is not a playlist.";
+        if (!(user.getPlayer().loadedItem instanceof Playlist)
+                && !(user.getPlayer().loadedItem instanceof Album)) {
+            message = "The loaded source is not a playlist or an album.";
             return message;
         }
         if (user.getPlayer().shuffle) {
@@ -84,5 +87,17 @@ public class ShuffleCommand {
         Collections.shuffle(shuffledPlaylist, new Random(seed));
 
         return shuffledPlaylist;
+    }
+
+    /**
+     * @param album the album to be shuffled
+     * @return the shuffled album
+     */
+    public ArrayList<Song> shuffleAlbum(final Album album) {
+        ArrayList<Song> shuffledAlbum = new ArrayList<>(album.getSongs());
+
+        Collections.shuffle(shuffledAlbum, new Random(seed));
+
+        return shuffledAlbum;
     }
 }

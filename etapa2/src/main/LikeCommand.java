@@ -42,11 +42,13 @@ public class LikeCommand {
             int likes = ((Song) user.getPlayer().playingNow).getLikes();
             ((Song) user.getPlayer().playingNow).setLikes(likes - 1);
         } else {
-            // ad to the liked list
+            // add to the liked list
             user.getLikedSongs().add((Song) user.getPlayer().playingNow);
             message = "Like registered successfully.";
             int likes = ((Song) user.getPlayer().playingNow).getLikes();
             ((Song) user.getPlayer().playingNow).setLikes(likes + 1);
         }
+
+        user.setHomePage();
     }
 }

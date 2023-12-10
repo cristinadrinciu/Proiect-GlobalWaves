@@ -1,6 +1,7 @@
 package main;
 
 import AudioFiles.Playlist;
+import main.PublicPlaylists;
 
 import java.util.ArrayList;
 

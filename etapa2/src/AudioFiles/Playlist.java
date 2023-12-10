@@ -9,6 +9,8 @@ public class Playlist extends AudioFile {
     private int followers;
     private int createdTimestamp;
 
+    private int totalLikes;
+
     /**
      *
      * @return public state
@@ -98,6 +100,20 @@ public class Playlist extends AudioFile {
      */
     public void setSongs(final ArrayList<Song> songs) {
         this.songs = songs;
+    }
+
+    /**
+     *
+     * @return total likes from the songs
+     */
+    public int getTotalLikes() {
+        // total likes from the songs
+        int totalLikes = 0;
+        for (Song song : this.songs) {
+            totalLikes += song.getLikes();
+        }
+
+        return totalLikes;
     }
 }
 

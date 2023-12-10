@@ -1,5 +1,7 @@
 package main;
 
+import main.Player;
+
 public class PlayPauseCommand {
     private String message;
     public PlayPauseCommand() {

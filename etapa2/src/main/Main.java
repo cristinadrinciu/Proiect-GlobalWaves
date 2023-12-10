@@ -84,28 +84,72 @@ public final class Main {
 
         // TODO add your implementation
         List<ObjectNode> commandList = new ArrayList<>();
+        OnlineUsers.getOnlineUsers().clear();
 
         // create the new library
         Library newLibrary = new Library();
         newLibrary.createLibrary(library);
 
-        for (User user : newLibrary.getUsers()) {
-            user.setPlayer(new Player());
-        }
+        PublicAlbums.getPublicAlbums().clear();
+
+        // add the users to the online users list
+        OnlineUsers.setOnlineUsers(new ArrayList<>());
+        OnlineUsers.getOnlineUsers().addAll(newLibrary.getUsers());
 
         PublicPlaylists.getPlaylists().clear();
-        InputCommands[] commands = objectMapper.readValue(new File(
-                "input/" + filePathInput), InputCommands[].class);
-        InputCommands prevCommand = new InputCommands();
+        InputCommands[] commands = objectMapper.readValue(new File("input/" + filePathInput), InputCommands[].class);
         for (User user : newLibrary.getUsers()) {
             user.getLikedSongs().clear();
             user.getPlaylists().clear();
         }
 
         for (int i = 0; i < commands.length; i++) {
-            if (commands[i].getUsername() != null) {
+            if (!commands[i].getCommand().equals("addUser") && !commands[i].getCommand().equals("deleteUser")
+                    && commands[i].getUsername() != null) {
                 commands[i].getUser(newLibrary);
-                commands[i].getUser().getPlayer().timestamp = commands[i].getTimestamp();
+                if(commands[i].getUser() == null) {
+                    // create the output for the command
+                    ObjectNode commandOutput = objectMapper.createObjectNode();
+                    commandOutput.put("command", commands[i].getCommand());
+                    commandOutput.put("user", commands[i].getUsername());
+                    commandOutput.put("timestamp", commands[i].getTimestamp());
+                    commandOutput.put("message", "The username " + commands[i].getUsername() + " doesn't exist.");
+                    commandList.add(commandOutput);
+                    continue;
+                }
+            }
+
+            // update the timestamp of all online users' players
+            for(User user : OnlineUsers.getOnlineUsers()) {
+                user.getPlayer().timestamp = commands[i].getTimestamp();
+            }
+
+            // check if the user is online
+            if (commands[i].getUser() != null && !commands[i].getUser().getStatusOnline()) {
+                if (commands[i].getCommand().equals("search") || commands[i].getCommand().equals("select")
+                        || commands[i].getCommand().equals("load") || commands[i].getCommand().equals("playPause")
+                        || commands[i].getCommand().equals("repeat") || commands[i].getCommand().equals("shuffle")
+                        || commands[i].getCommand().equals("forward") || commands[i].getCommand().equals("backward")
+                        || commands[i].getCommand().equals("like") || commands[i].getCommand().equals("next")
+                        || commands[i].getCommand().equals("prev") || commands[i].getCommand().equals("createPlaylist")
+                        || commands[i].getCommand().equals("addRemoveInPlaylist") || commands[i].getCommand().equals("follow")
+                        || commands[i].getCommand().equals("switchVisibility") || commands[i].getCommand().equals("changePage")
+                        || commands[i].getCommand().equals("printCurrentPage")) {
+                    // create the output for this case
+                    ObjectNode commandOutput = objectMapper.createObjectNode();
+                    commandOutput.put("command", commands[i].getCommand());
+                    commandOutput.put("user", commands[i].getUsername());
+                    commandOutput.put("timestamp", commands[i].getTimestamp());
+                    commandOutput.put("message", commands[i].getUsername() + " is offline.");
+                    if (commands[i].getCommand().equals("search")) {
+                        // the array of results is empty
+                        ArrayNode results = objectMapper.createArrayNode();
+
+                        commandOutput.put("results", results);
+                    }
+                    commandList.add(commandOutput);
+                    continue;
+                }
             }
 
             if (commands[i].getCommand().equals("search")) {
@@ -168,8 +212,67 @@ public final class Main {
             if (commands[i].getCommand().equals("getTop5Songs")) {
                 commands[i].getTop5SongsExecute(newLibrary);
             }
+            if (commands[i].getCommand().equals("switchConnectionStatus")) {
+                commands[i].switchConnectionStatusExecute();
+            }
+            if (commands[i].getCommand().equals("getOnlineUsers")) {
+                commands[i].getOnlineUsersExecute();
+            }
+            if(commands[i].getCommand().equals("addUser")) {
+                commands[i].addUserExecute(newLibrary);
+            }
+            if(commands[i].getCommand().equals("addAlbum")) {
+                commands[i].addAlbumExecute(newLibrary);
+            }
+            if(commands[i].getCommand().equals("showAlbums")) {
+                commands[i].showAlbumsExecute(newLibrary);
+            }
+            if(commands[i].getCommand().equals("printCurrentPage")) {
+                commands[i].printCurrentPageExecute(newLibrary);
+            }
+            if(commands[i].getCommand().equals("addEvent")) {
+                commands[i].addEventExecute();
+            }
+            if(commands[i].getCommand().equals("addMerch")) {
+                commands[i].addMerchExecute();
+            }
+            if(commands[i].getCommand().equals("getAllUsers")) {
+                commands[i].getAllUsersExecute(newLibrary);
+            }
+            if(commands[i].getCommand().equals("deleteUser")) {
+                commands[i].deleteUserExecute(newLibrary);
+            }
+            if(commands[i].getCommand().equals("addPodcast")) {
+                commands[i].addPodcastExecute(newLibrary);
+            }
+            if(commands[i].getCommand().equals("addAnnouncement")) {
+                commands[i].addAnnouncementExecute(newLibrary);
+            }
+            if(commands[i].getCommand().equals("removeAnnouncement")) {
+                commands[i].removeAnnouncementExecute();
+            }
+            if(commands[i].getCommand().equals("showPodcasts")) {
+                commands[i].showPodcastsExecute(newLibrary);
+            }
+            if(commands[i].getCommand().equals("removeAlbum")) {
+                commands[i].removeAlbumExecute(newLibrary);
+            }
+            if(commands[i].getCommand().equals("changePage")) {
+                commands[i].changePageExecute();
+            }
+            if(commands[i].getCommand().equals("removePodcast")) {
+                commands[i].removePodcastExecute(newLibrary);
+            }
+            if(commands[i].getCommand().equals("removeEvent")) {
+                commands[i].removeEventExecute();
+            }
+            if(commands[i].getCommand().equals("getTop5Artists")) {
+                commands[i].getTop5ArtistsExecute(newLibrary);
+            }
+            if(commands[i].getCommand().equals("getTop5Albums")) {
+                commands[i].getTop5AlbumsExecute();
+            }
             commandList.addAll(commands[i].getCommandList());
-            prevCommand = commands[i];
         }
 
         System.out.println();

@@ -1,5 +1,7 @@
 package main;
 
+import AudioFiles.Album;
+import AudioFiles.Playlist;
 import AudioFiles.Song;
 import AudioFiles.User;
 
@@ -36,7 +38,9 @@ public class AddRemoveCommand {
             message = "Please load a source before adding to or removing from the playlist.";
             return message;
         }
-        if (!(user.getPlayer().loadedItem instanceof Song)) {
+        if (!(user.getPlayer().loadedItem instanceof Song)
+                && !(user.getPlayer().loadedItem instanceof Album)
+                && !(user.getPlayer().loadedItem instanceof Playlist)) {
             message = "The loaded source is not a song.";
             return message;
         }
@@ -52,7 +56,7 @@ public class AddRemoveCommand {
         // search if the song is in the playlist
         boolean isInPlaylist = false;
         for (Song song : user.getPlaylists().get(playlistId - 1).getSongs()) {
-            if (song == user.getPlayer().loadedItem) {
+            if (song == user.getPlayer().playingNow) {
                 isInPlaylist = true;
                 break;
             }
@@ -61,12 +65,12 @@ public class AddRemoveCommand {
         if (isInPlaylist) {
             // remove the song from the playlist
             user.getPlaylists().get(playlistId - 1).getSongs().
-                    remove((Song) user.getPlayer().loadedItem);
+                    remove((Song) user.getPlayer().playingNow);
             message = "Successfully removed from playlist.";
         } else {
             // add in the playlist
             user.getPlaylists().get(playlistId - 1).getSongs().
-                    add((Song) user.getPlayer().loadedItem);
+                    add((Song) user.getPlayer().playingNow);
             message = "Successfully added to playlist.";
         }
 

@@ -4,6 +4,7 @@ import AudioFiles.Playlist;
 import AudioFiles.Podcast;
 import AudioFiles.Song;
 import AudioFiles.User;
+import AudioFiles.Album;
 import fileio.input.EpisodeInput;
 
 import java.util.ArrayList;
@@ -351,6 +352,129 @@ public class NextCommand {
                                 getName() + ".";
                     }
                 }
+            }
+        }
+    }
+
+    /**
+     *
+     * @param user from which we get the player
+     */
+    public void goToNextAlbum(final User user) {
+        // exactly the same as the playlist
+        if (user.getPlayer().loadedItem instanceof Album) {
+            Album album = (Album) user.getPlayer().loadedItem;
+            if (user.getPlayer().repeatState == 0) {
+                if (!user.getPlayer().shuffle) {
+                    if (album.getSongs().indexOf((Song) user.getPlayer().playingNow)
+                            == album.getSongs().size() - 1) {
+                        user.getPlayer().playingNow = null;
+                        user.getPlayer().loadedItem = null;
+                        user.getPlayer().listenedTime = 0;
+                        user.getPlayer().remainingTime = 0;
+                        user.getPlayer().paused = true;
+                        user.getPlayer().shuffle = false;
+                        user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                        message = "Please load a source before skipping to the next track.";
+                    } else {
+                        user.getPlayer().playingNow = album.getSongs().get(album.getSongs().
+                                indexOf((Song) user.getPlayer().playingNow) + 1);
+                        user.getPlayer().listenedTime = 0;
+                        user.getPlayer().remainingTime = ((Song) user.getPlayer().
+                                playingNow).getDuration();
+                        user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                        user.getPlayer().paused = false;
+                        message = "Skipped to next track successfully. "
+                                + "The current track is " + user.getPlayer().
+                                playingNow.getName() + ".";
+                    }
+                } else {
+                    ArrayList<Song> shuffledAlbum = user.getPlayer().shuffledPlaylist;
+                    if (shuffledAlbum.indexOf((Song) user.getPlayer().playingNow)
+                            == shuffledAlbum.size() - 1) {
+                        user.getPlayer().playingNow = null;
+                        user.getPlayer().loadedItem = null;
+                        user.getPlayer().listenedTime = 0;
+                        user.getPlayer().remainingTime = 0;
+                        user.getPlayer().paused = true;
+                        user.getPlayer().shuffle = false;
+                        user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                        message = "Please load a source before skipping to the next track.";
+                    } else {
+                        user.getPlayer().playingNow = shuffledAlbum.get(shuffledAlbum.indexOf(
+                                (Song) user.getPlayer().playingNow) + 1);
+                        user.getPlayer().listenedTime = 0;
+                        user.getPlayer().remainingTime = ((Song) user.getPlayer().
+                                playingNow).getDuration();
+                        user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                        user.getPlayer().paused = false;
+                        message = "Skipped to next track successfully. "
+                                + "The current track is " + user.getPlayer().playingNow.
+                                getName() + ".";
+                    }
+                }
+            }
+            if (user.getPlayer().repeatState == 1) {
+                if (!user.getPlayer().shuffle) {
+                    if (album.getSongs().indexOf((Song) user.getPlayer().playingNow)
+                            == album.getSongs().size() - 1) {
+                        user.getPlayer().playingNow = album.getSongs().get(0);
+                        user.getPlayer().listenedTime = 0;
+                        user.getPlayer().remainingTime = ((Song) user.getPlayer().
+                                playingNow).getDuration();
+                        user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                        user.getPlayer().paused = false;
+                        message = "Skipped to next track successfully. "
+                                + "The current track is " + user.getPlayer().
+                                playingNow.getName() + ".";
+                    } else {
+                        user.getPlayer().playingNow = album.getSongs().get(album.getSongs().
+                                indexOf((Song) user.getPlayer().playingNow) + 1);
+                        user.getPlayer().listenedTime = 0;
+                        user.getPlayer().remainingTime = ((Song) user.getPlayer().
+                                playingNow).getDuration();
+                        user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                        user.getPlayer().paused = false;
+                        message = "Skipped to next track successfully. "
+                                + "The current track is " + user.getPlayer().playingNow.
+                                getName() + ".";
+                    }
+                } else {
+                    ArrayList<Song> shuffledAlbum = user.getPlayer().shuffledPlaylist;
+                    if (shuffledAlbum.indexOf((Song) user.getPlayer().playingNow)
+                            == shuffledAlbum.size() - 1) {
+                        user.getPlayer().playingNow = shuffledAlbum.get(0);
+                        user.getPlayer().listenedTime = 0;
+                        user.getPlayer().remainingTime = ((Song) user.getPlayer().
+                                playingNow).getDuration();
+                        user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                        user.getPlayer().paused = false;
+                        message = "Skipped to next track successfully. "
+                                + "The current track is " + user.getPlayer().playingNow.
+                                getName() + ".";
+                    } else {
+                        user.getPlayer().playingNow = shuffledAlbum.get(shuffledAlbum.indexOf(
+                                (Song) user.getPlayer().playingNow) + 1);
+                        user.getPlayer().listenedTime = 0;
+                        user.getPlayer().remainingTime = ((Song) user.getPlayer().
+                                playingNow).getDuration();
+                        user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                        user.getPlayer().paused = false;
+                        message = "Skipped to next track successfully. "
+                                + "The current track is " + user.getPlayer().playingNow.
+                                getName() + ".";
+                    }
+                }
+            }
+            if (user.getPlayer().repeatState == 2) {
+                user.getPlayer().listenedTime = 0;
+                user.getPlayer().remainingTime = ((Song) user.getPlayer().playingNow).
+                        getDuration();
+                user.getPlayer().switchedTime = user.getPlayer().timestamp;
+                user.getPlayer().paused = false;
+                message = "Skipped to next track successfully. "
+                        + "The current track is " + user.getPlayer().playingNow.
+                        getName() + ".";
             }
         }
     }

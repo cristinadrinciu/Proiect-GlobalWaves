@@ -4,6 +4,7 @@ import fileio.input.LibraryInput;
 import fileio.input.PodcastInput;
 import fileio.input.SongInput;
 import fileio.input.UserInput;
+import main.Player;
 
 import java.util.ArrayList;
 
@@ -93,7 +94,11 @@ public class Library {
             newUser.setUsername(user.getUsername());
             newUser.setAge(user.getAge());
             newUser.setCity(user.getCity());
-
+            newUser.setType("user");
+            newUser.setStatusOnline(true);
+            newUser.setHomePage();
+            newUser.setCurrentPage(newUser.getHomePage());
+            newUser.setPlayer(new Player());
             users.add(newUser);
         }
     }

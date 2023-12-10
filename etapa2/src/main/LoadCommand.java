@@ -1,5 +1,6 @@
 package main;
 
+import AudioFiles.Album;
 import AudioFiles.AudioFile;
 import AudioFiles.Playlist;
 import AudioFiles.Podcast;
@@ -45,6 +46,12 @@ public class LoadCommand {
             }
             if (audiofile instanceof Playlist) {
                 if (((Playlist) audiofile).getSongs().isEmpty()) {
+                    resultMessage = "You can't load an empty audio collection!";
+                    return resultMessage;
+                }
+            }
+            if (audiofile instanceof Album) {
+                if (((Album) audiofile).getSongs().isEmpty()) {
                     resultMessage = "You can't load an empty audio collection!";
                     return resultMessage;
                 }
