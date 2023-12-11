@@ -678,6 +678,8 @@ public class InputCommands {
         if (LoadCommand.getLoadedItem() != null) {
             user.getPlayer().loadedItem = LoadCommand.getLoadedItem();
             user.getPlayer().setPlayingNow();
+            user.getPlayer().shuffle = false;
+            user.getPlayer().repeatState = 0;
         }
         user.setSelectedItem(null);
         LoadCommand.setLoadedItem(null);
@@ -743,12 +745,14 @@ public class InputCommands {
             createdStatus = true;
         }
 
-        if (user.getPlayer().repeatState == 0) {
-            user.getPlayer().setRemainingTime();
-        } else if (user.getPlayer().repeatState == 1) {
-            user.getPlayer().setRemainingTimeRepeat1();
-        } else if (user.getPlayer().repeatState == 2) {
-            user.getPlayer().setRemainingTimeRepeat2();
+        if(user.getStatusOnline()) {
+            if (user.getPlayer().repeatState == 0) {
+                user.getPlayer().setRemainingTime();
+            } else if (user.getPlayer().repeatState == 1) {
+                user.getPlayer().setRemainingTimeRepeat1();
+            } else if (user.getPlayer().repeatState == 2) {
+                user.getPlayer().setRemainingTimeRepeat2();
+            }
         }
 
         ArrayList<Object> statusArray = statusCommand.buildStatusArray(user.getPlayer());
@@ -1285,7 +1289,17 @@ public class InputCommands {
             createdSwitchConnectionStatus = true;
         }
 
-        switchConnectionStatusCommand.switchConnectionStatus(user);
+        if(user.getStatusOnline()) {
+            if (user.getPlayer().repeatState == 0) {
+                user.getPlayer().setRemainingTime();
+            } else if (user.getPlayer().repeatState == 1) {
+                user.getPlayer().setRemainingTimeRepeat1();
+            } else if (user.getPlayer().repeatState == 2) {
+                user.getPlayer().setRemainingTimeRepeat2();
+            }
+        }
+
+        switchConnectionStatusCommand.switchConnectionStatus(user, timestamp);
 
         String message = switchConnectionStatusCommand.getMessage();
 

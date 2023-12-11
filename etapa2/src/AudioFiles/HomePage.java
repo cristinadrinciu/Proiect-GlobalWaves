@@ -14,12 +14,44 @@ public class HomePage implements Page{
 	 */
 	public void setLikedSongs(ArrayList<Song> likedSongs) {
 		this.likedSongs.clear();
-		// get maximum the first 5 liked songs
+		// get maximum the first 5 liked songs ordered by the total number of likes
 		if (likedSongs.size() < 5) {
 			this.likedSongs.addAll(likedSongs);
+			this.likedSongs.sort((Song s1, Song s2) -> s2.getLikes() - s1.getLikes());
+
+			// in case of equality, order by the order in the given list(the given list is ordered by the time they were likes, from oldest to newest)
+			for (int i = 0; i < this.likedSongs.size() - 1; i++) {
+				if (this.likedSongs.get(i).getLikes() == this.likedSongs.get(i + 1).getLikes()) {
+					int index1 = likedSongs.indexOf(this.likedSongs.get(i));
+					int index2 = likedSongs.indexOf(this.likedSongs.get(i + 1));
+					if (index1 > index2) {
+						Song aux = this.likedSongs.get(i);
+						this.likedSongs.set(i, this.likedSongs.get(i + 1));
+						this.likedSongs.set(i + 1, aux);
+					}
+				}
+			}
 			return;
 		}
-		likedSongs.addAll(likedSongs.subList(0, 5));
+
+		this.likedSongs.addAll(likedSongs);
+		this.likedSongs.sort((Song s1, Song s2) -> s2.getLikes() - s1.getLikes());
+
+		// in case of equality, order by the order in the given list(the given list is ordered by the time they were likes, from oldest to newest)
+		for (int i = 0; i < this.likedSongs.size() - 1; i++) {
+			if (this.likedSongs.get(i).getLikes() == this.likedSongs.get(i + 1).getLikes()) {
+				int index1 = likedSongs.indexOf(this.likedSongs.get(i));
+				int index2 = likedSongs.indexOf(this.likedSongs.get(i + 1));
+				if (index1 > index2) {
+					Song aux = this.likedSongs.get(i);
+					this.likedSongs.set(i, this.likedSongs.get(i + 1));
+					this.likedSongs.set(i + 1, aux);
+				}
+			}
+		}
+
+		// keep just the first 5 songs
+		this.likedSongs = new ArrayList<>(this.likedSongs.subList(0, 5));
 	}
 
 
@@ -34,8 +66,25 @@ public class HomePage implements Page{
 			this.followedPlaylists.sort((Playlist p1, Playlist p2) -> p2.getTotalLikes() - p1.getTotalLikes());
 			return;
 		}
-		followedPlaylists.sort((Playlist p1, Playlist p2) -> p2.getTotalLikes() - p1.getTotalLikes());
-		this.followedPlaylists.addAll(followedPlaylists.subList(0, 5));
+
+		this.followedPlaylists.addAll(followedPlaylists);
+		this.followedPlaylists.sort((Playlist p1, Playlist p2) -> p2.getTotalLikes() - p1.getTotalLikes());
+
+		// in case of equality, order by the order in the given list(the given list is ordered by the time they were followed, from oldest to newest)
+		for (int i = 0; i < this.followedPlaylists.size() - 1; i++) {
+			if (this.followedPlaylists.get(i).getTotalLikes() == this.followedPlaylists.get(i + 1).getTotalLikes()) {
+				int index1 = followedPlaylists.indexOf(this.followedPlaylists.get(i));
+				int index2 = followedPlaylists.indexOf(this.followedPlaylists.get(i + 1));
+				if (index1 > index2) {
+					Playlist aux = this.followedPlaylists.get(i);
+					this.followedPlaylists.set(i, this.followedPlaylists.get(i + 1));
+					this.followedPlaylists.set(i + 1, aux);
+				}
+			}
+		}
+
+		// keep just the first 5 playlists
+		this.followedPlaylists = new ArrayList<>(this.followedPlaylists.subList(0, 5));
 	}
 
 	/**

@@ -26,6 +26,10 @@ public class RepeatCommand {
      */
     public String message(final User user) {
         String message;
+        if (user.getPlayer().loadedItem == null) {
+            message = "Please load a source before setting the repeat status.";
+            return message;
+        }
 
         switch (user.getPlayer().repeatState) {
             case 0:

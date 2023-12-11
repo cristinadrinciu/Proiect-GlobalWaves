@@ -22,6 +22,7 @@ public class StatusCommand {
         String name;
         if (player.loadedItem == null) {
             name = "";
+            player.paused = true;
         } else {
             name = player.playingNow.getName();
         }
@@ -41,7 +42,7 @@ public class StatusCommand {
      */
     private String getRepeatString(final Player player) {
         String message = null;
-        if (player.repeatState == 0) {
+        if (player.repeatState == 0 || player.loadedItem == null) {
             message = "No Repeat";
         }
         if (player.repeatState == 1 && (player.loadedItem instanceof Song

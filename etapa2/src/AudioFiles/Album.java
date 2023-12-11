@@ -52,5 +52,6 @@ public class Album extends AudioFile{
 		for (Song song : this.songs) {
 			likes += song.getLikes();
 		}
+		this.likes = likes;
 	}
 }

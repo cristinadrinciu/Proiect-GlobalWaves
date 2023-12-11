@@ -22,5 +22,8 @@ public class GetOnlineUsers {
 		for (User user : OnlineUsers.getOnlineUsers()) {
 			onlineUsersNames.add(user.getUsername());
 		}
+
+		// sort the list by name of the users
+		onlineUsersNames.sort(String::compareToIgnoreCase);
 	}
 }
