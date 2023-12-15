@@ -1,11 +1,15 @@
 package commands;
-import audio.files.*;
-import audio.files.*;
+import audio.files.Album;
+import audio.files.AudioFile;
+import audio.files.Library;
+import audio.files.Playlist;
+import audio.files.Podcast;
+import audio.files.Song;
 import fileio.input.Filter;
 import main.InputCommands;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
-import publicFiles.PublicAlbums;
+import platform.data.PublicAlbums;
 import user.types.Artist;
 import user.types.Host;
 import user.types.User;
@@ -123,7 +127,7 @@ public class SearchCommand implements Visitable {
 
         if ("artist".equals(type)) {
             processArtist(library, user);
-        } else if("host".equals(type)) {
+        } else if ("host".equals(type)) {
             processHost(library, user);
         } else {
             throw new IllegalArgumentException("Invalid type: " + type);
@@ -248,6 +252,9 @@ public class SearchCommand implements Visitable {
         }
     }
 
+    /**
+     * The method processes the albums
+     */
     public void processAlbum() {
         ArrayList<Album> albums = new ArrayList<>();
         albums.addAll(PublicAlbums.getPublicAlbums());
@@ -324,8 +331,14 @@ public class SearchCommand implements Visitable {
         searchUsers.addAll(hosts);
     }
 
+    /**
+     * The method accepts the visitor
+     * @param command the command
+     * @param visitor the visitor
+     * @param library the library
+     */
     @Override
-    public void accept(InputCommands command, final Visitor visitor, Library library) {
+    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
         visitor.visit(command, this, library);
     }
 }

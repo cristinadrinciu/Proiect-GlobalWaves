@@ -8,43 +8,70 @@ import pages.ArtistPage;
 import java.util.ArrayList;
 
 public class Artist extends User {
-	// add the new fields of the artist
-	private ArrayList<Album> albums = new ArrayList<Album>();
-	private ArrayList<Event> events = new ArrayList<Event>();
-	private ArrayList<Merch> merchs = new ArrayList<Merch>();
-	private ArtistPage artistPage = new ArtistPage();
+    // add the new fields of the artist
+    private ArrayList<Album> albums = new ArrayList<Album>();
+    private ArrayList<Event> events = new ArrayList<Event>();
+    private ArrayList<Merch> merchs = new ArrayList<Merch>();
+    private ArtistPage artistPage = new ArtistPage();
 
-	public ArrayList<Album> getAlbums() {
-		return albums;
-	}
+    public Artist() {
+    }
 
-	public void setAlbums(ArrayList<Album> albums) {
-		this.albums = albums;
-	}
+    /**
+     * @return the albums
+     */
+    public ArrayList<Album> getAlbums() {
+        return albums;
+    }
 
-	public ArrayList<Event> getEvents() {
-		return events;
-	}
+    /**
+     * @param albums the albums to set
+     */
+    public void setAlbums(final ArrayList<Album> albums) {
+        this.albums = albums;
+    }
 
-	public void setEvents(ArrayList<Event> events) {
-		this.events = events;
-	}
+    /**
+     * @return the events
+     */
+    public ArrayList<Event> getEvents() {
+        return events;
+    }
 
-	public ArrayList<Merch> getMerch() {
-		return merchs;
-	}
+    /**
+     * @param events the events to set
+     */
+    public void setEvents(final ArrayList<Event> events) {
+        this.events = events;
+    }
 
-	public void setMerch(ArrayList<Merch> merch) {
-		this.merchs = merchs;
-	}
+    /**
+     * @return the merch
+     */
+    public ArrayList<Merch> getMerch() {
+        return merchs;
+    }
 
-	public ArtistPage getArtistPage() {
-		return artistPage;
-	}
+    /**
+     * @param merch the merch to set
+     */
+    public void setMerch(final ArrayList<Merch> merch) {
+        this.merchs = merchs;
+    }
 
-	public void setArtistPage() {
-		this.artistPage.setAlbums(this.albums);
-		this.artistPage.setEvents(this.events);
-		this.artistPage.setMerch(this.merchs);
-	}
+    /**
+     * @return the artistPage
+     */
+    public ArtistPage getArtistPage() {
+        return artistPage;
+    }
+
+    /**
+     * This method sets the artist page
+     */
+    public void setArtistPage() {
+        this.artistPage.setAlbums(this.albums);
+        this.artistPage.setEvents(this.events);
+        this.artistPage.setMerch(this.merchs);
+    }
 }

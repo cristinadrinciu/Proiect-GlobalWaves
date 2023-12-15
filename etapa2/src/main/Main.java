@@ -2,9 +2,9 @@ package main;
 
 import audio.files.Library;
 import visit.pattern.CommandExecute;
-import publicFiles.OnlineUsers;
-import publicFiles.PublicAlbums;
-import publicFiles.PublicPlaylists;
+import platform.data.OnlineUsers;
+import platform.data.PublicAlbums;
+import platform.data.PublicPlaylists;
 import user.types.User;
 import checker.Checker;
 import checker.CheckerConstants;
@@ -101,45 +101,55 @@ public final class Main {
         OnlineUsers.getOnlineUsers().addAll(newLibrary.getUsers());
 
         PublicPlaylists.getPlaylists().clear();
-        InputCommands[] commands = objectMapper.readValue(new File("input/" + filePathInput), InputCommands[].class);
+        InputCommands[] commands = objectMapper.readValue(new File(
+                "input/" + filePathInput), InputCommands[].class);
         for (User user : newLibrary.getUsers()) {
             user.getLikedSongs().clear();
             user.getPlaylists().clear();
         }
 
         for (int i = 0; i < commands.length; i++) {
-
             // treat the case when the user doesn't exist or is an admin command
-            if (!commands[i].getCommand().equals("addUser") && !commands[i].getCommand().equals("deleteUser")
+            if (!commands[i].getCommand().equals("addUser")
+                    && !commands[i].getCommand().equals("deleteUser")
                     && commands[i].getUsername() != null) {
                 commands[i].getUser(newLibrary);
-                if(commands[i].getUser() == null) {
+                if (commands[i].getUser() == null) {
                     // create the output for the command
                     ObjectNode commandOutput = objectMapper.createObjectNode();
                     commandOutput.put("command", commands[i].getCommand());
                     commandOutput.put("user", commands[i].getUsername());
                     commandOutput.put("timestamp", commands[i].getTimestamp());
-                    commandOutput.put("message", "The username " + commands[i].getUsername() + " doesn't exist.");
+                    commandOutput.put("message", "The username "
+                            + commands[i].getUsername() + " doesn't exist.");
                     commandList.add(commandOutput);
                     continue;
                 }
             }
 
             // update the timestamp of all online users' players
-            for(User user : OnlineUsers.getOnlineUsers()) {
+            for (User user : OnlineUsers.getOnlineUsers()) {
                 user.getPlayer().timestamp = commands[i].getTimestamp();
             }
 
             // check if the user is offline, so that he can't execute the following commands
             if (commands[i].getUser() != null && !commands[i].getUser().getStatusOnline()) {
-                if (commands[i].getCommand().equals("search") || commands[i].getCommand().equals("select")
-                        || commands[i].getCommand().equals("load") || commands[i].getCommand().equals("playPause")
-                        || commands[i].getCommand().equals("repeat") || commands[i].getCommand().equals("shuffle")
-                        || commands[i].getCommand().equals("forward") || commands[i].getCommand().equals("backward")
-                        || commands[i].getCommand().equals("like") || commands[i].getCommand().equals("next")
-                        || commands[i].getCommand().equals("prev") || commands[i].getCommand().equals("createPlaylist")
-                        || commands[i].getCommand().equals("addRemoveInPlaylist") || commands[i].getCommand().equals("follow")
-                        || commands[i].getCommand().equals("switchVisibility") || commands[i].getCommand().equals("changePage")
+                if (commands[i].getCommand().equals("search") || commands[i].
+                        getCommand().equals("select")
+                        || commands[i].getCommand().equals("load") || commands[i].getCommand().
+                        equals("playPause")
+                        || commands[i].getCommand().equals("repeat") || commands[i].getCommand().
+                        equals("shuffle")
+                        || commands[i].getCommand().equals("forward") || commands[i].getCommand().
+                        equals("backward")
+                        || commands[i].getCommand().equals("like") || commands[i].getCommand().
+                        equals("next")
+                        || commands[i].getCommand().equals("prev") || commands[i].getCommand().
+                        equals("createPlaylist")
+                        || commands[i].getCommand().equals("addRemoveInPlaylist") || commands[i].
+                        getCommand().equals("follow")
+                        || commands[i].getCommand().equals("switchVisibility") || commands[i].
+                        getCommand().equals("changePage")
                         || commands[i].getCommand().equals("printCurrentPage")) {
                     // create the output for this case
                     ObjectNode commandOutput = objectMapper.createObjectNode();

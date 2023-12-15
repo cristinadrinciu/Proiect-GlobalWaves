@@ -217,6 +217,9 @@ public class User {
         this.currentPage = currentPage;
     }
 
+    /**
+     * This method sets the home page of the user
+     */
     public void setHomePage() {
         this.homePage.setLikedSongs(this.likedSongs);
         this.homePage.setFollowedPlaylists(this.followedPlaylists);

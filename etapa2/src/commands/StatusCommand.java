@@ -68,6 +68,12 @@ public class StatusCommand implements Visitable {
         return message;
     }
 
+    /**
+     * Accepts the visitor
+     * @param command the command that is accepted
+     * @param visitor the visitor that is accepted
+     * @param library the library that is accepted
+     */
     @Override
     public void accept(final InputCommands command, final Visitor visitor, final Library library) {
         visitor.visit(command, this, library);

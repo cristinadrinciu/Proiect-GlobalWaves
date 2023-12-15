@@ -3,7 +3,7 @@ package commands;
 import audio.files.Library;
 import audio.files.Playlist;
 import main.InputCommands;
-import publicFiles.PublicPlaylists;
+import platform.data.PublicPlaylists;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
 import user.types.User;
@@ -86,6 +86,12 @@ public class CreatePlaylistCommand implements Visitable {
         return message;
     }
 
+    /**
+     * Accept method for the visitor
+     * @param command the command to be executed
+     * @param visitor the visitor
+     * @param library the library
+     */
     @Override
     public void accept(final InputCommands command, final Visitor visitor, final Library library) {
         visitor.visit(command, this, library);

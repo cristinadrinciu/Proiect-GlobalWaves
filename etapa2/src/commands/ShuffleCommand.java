@@ -4,7 +4,6 @@ import audio.files.Album;
 import audio.files.Library;
 import audio.files.Playlist;
 import audio.files.Song;
-import audio.files.*;
 import main.InputCommands;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
@@ -106,8 +105,15 @@ public class ShuffleCommand implements Visitable {
         return shuffledAlbum;
     }
 
+    /**
+     * The accept method for the visitor pattern
+     * @param command the command to be executed
+     * @param visitor the visitor
+     * @param library the library
+     */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
+    public void accept(final InputCommands command,
+                       final Visitor visitor, final Library library) {
         visitor.visit(command, this, library);
     }
 }

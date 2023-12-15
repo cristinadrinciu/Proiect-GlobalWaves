@@ -10,33 +10,56 @@ import audio.files.Library;
 import java.util.ArrayList;
 
 public class ShowAlbums implements Visitable {
-	private String username;
-	private ArrayList<Album> albums;
+    private String username;
+    private ArrayList<Album> albums;
 
-	public String getUsername() {
-		return username;
-	}
+    public ShowAlbums() {
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
+    }
 
-	public ArrayList<Album> getAlbums() {
-		return albums;
-	}
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(final String username) {
+        this.username = username;
+    }
 
-	public void setAlbums(Library library) {
-		// find the user
-		for (int i = 0; i < library.getUsers().size(); i++) {
-			if (library.getUsers().get(i).getUsername().equals(this.username)) {
-				this.albums = ((Artist)(library.getUsers().get(i))).getAlbums();
-				return;
-			}
-		}
-	}
+    /**
+     * getter for albums
+     * @return the albums
+     */
+    public ArrayList<Album> getAlbums() {
+        return albums;
+    }
 
-	@Override
-	public void accept(InputCommands command, Visitor visitor, Library library) {
-		visitor.visit(command, this, library);
-	}
+    /**
+     * setter for albums
+     * @param library the library
+     */
+    public void setAlbums(final Library library) {
+        // find the user
+        for (int i = 0; i < library.getUsers().size(); i++) {
+            if (library.getUsers().get(i).getUsername().equals(this.username)) {
+                this.albums = ((Artist) (library.getUsers().get(i))).getAlbums();
+                return;
+            }
+        }
+    }
+
+    /**
+     * Accept method for visitor
+     * @param command the command
+     * @param visitor the visitor
+     * @param library the library
+     */
+    @Override
+    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
+        visitor.visit(command, this, library);
+    }
 }

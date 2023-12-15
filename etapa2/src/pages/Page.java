@@ -1,5 +1,8 @@
 package pages;
 
 public interface Page {
-	public String printPage();
+    /**
+     * This method prints the page
+     */
+    String printPage();
 }

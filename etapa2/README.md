@@ -1,20 +1,32 @@
 # Proiect GlobalWaves  - Etapa 2
+## Drinciu Cristina 324CA
 
-<div align="center"><img src="https://tenor.com/view/listening-to-music-spongebob-gif-8009182.gif" width="300px"></div>
+### Description
+In this project I used my implementation of the previous assignment. The program is now changed, including a visitor patter for the execution of the commands.
+Using this patter, the main method is cleaner, and also the InputCommands class.
 
-#### Assignment Link: [https://ocw.cs.pub.ro/courses/poo-ca-cd/teme/proiect/etapa1](https://ocw.cs.pub.ro/courses/poo-ca-cd/teme/proiect/etapa1)
+### Visitor Pattern
+The visitor pattern is used to execute the commands. The main method is cleaner, and the InputCommands class is also cleaner.
+The commands implement the interface visitable, and override the accept method.
+The visitor interface is implemented by the class *CommandExecute*, which has a method for execution for each command.
+Is command is an object, has its own class, and the visit methods differ by the type of the command.
+The execute method constructs the command output into JSON format.
 
+### InputCommands
+This class receives the input from for each command and the necessary data for the execution of the command(fields like type, description and so on).
+This class has an object for each command and a Visitable commandToExecute, which is set by the command name.
 
-## Skel Structure
+### Main
+The main method is cleaner, and the execution of the commands is done by the visitor pattern. There are added the cases of the offline user and also the nonexistent user.
+The visitor executeCommand is created and the InputCommands.commandToExecute calls the accept visitor method.
 
-* src/
-  * checker/ - checker files
-  * fileio/ - contains classes used to read data from the json files
-  * main/
-      * Main - the Main class runs the checker on your implementation. Add the entry point to your implementation in it. Run Main to test your implementation from the IDE or from command line.
-      * Test - run the main method from Test class with the name of the input file from the command line and the result will be written
-        to the out.txt file. Thus, you can compare this result with ref.
-* input/ - contains the tests and library in JSON format
-* ref/ - contains all reference output for the tests in JSON format
-
-<div align="center"><img src="https://tenor.com/view/homework-time-gif-24854817.gif" width="500px"></div>
+### Packages
+Now the code is structured in more packages with suggestive names.
+* **user.types** - contains the classes for each type of user
+* **pages** - contains the classes for each type of page
+* **commands** - contains the classes for each type of command
+* **visit.pattern** - contains the classes for the visitor pattern
+* **player** - contains the class for the player
+* **platfrom.data** - contains the classes for the data of the platform, like public data(Albums, Playlists, OnlineUsers)
+* **audio.files** - contains the classes for the audio files(Songs, Podcasts, Albums, Playlists)
+* **page.content** - contains the classes for the content of the pages(Merch, Events, Announcements)

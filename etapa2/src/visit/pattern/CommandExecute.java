@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import commands.*;
 import fileio.input.EpisodeInput;
 import main.InputCommands;
-import publicFiles.OnlineUsers;
+import platform.data.OnlineUsers;
 import user.types.Artist;
 import user.types.Host;
 import user.types.User;
@@ -64,7 +64,8 @@ public class CommandExecute implements Visitor {
                 // clear the user search
                 user.setLastSearchUsers(null);
             }
-        } else if (searchCommand.getType().equals("artist") || searchCommand.getType().equals("host")) {
+        } else if (searchCommand.getType().equals("artist")
+                || searchCommand.getType().equals("host")) {
             SearchCommand.setSearchUsers(searchCommand.getSearchUsers(library, user));
             if (SearchCommand.getSearchUsers() != null) {
                 user.setLastSearchUsers(SearchCommand.getSearchUsers());
@@ -95,7 +96,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final AddAlbumCommand addAlbumCommand, final Library library) {
+    public void visit(final InputCommands command, final AddAlbumCommand addAlbumCommand,
+                      final Library library) {
         User user = command.getUser();
         addAlbumCommand.addAlbum(user, library);
 
@@ -118,7 +120,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final AddAnnouncementCommand addAnnouncementCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final AddAnnouncementCommand addAnnouncementCommand, final Library library) {
         User user = command.getUser();
         addAnnouncementCommand.addAnnouncement(user, library);
 
@@ -141,7 +144,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(InputCommands command, AddEventCommand addEventCommand, Library library) {
+    public void visit(final InputCommands command,
+                      final AddEventCommand addEventCommand, final Library library) {
         User user = command.getUser();
         addEventCommand.addEvent(user);
 
@@ -164,7 +168,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(InputCommands command, AddMerchCommand addMerchCommand, Library library) {
+    public void visit(final InputCommands command,
+                      final AddMerchCommand addMerchCommand, final Library library) {
         User user = command.getUser();
         addMerchCommand.addMerch(user);
 
@@ -187,7 +192,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final AddPodcastCommand addPodcastCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final AddPodcastCommand addPodcastCommand, final Library library) {
         User user = command.getUser();
         addPodcastCommand.addPodcast(user, library);
 
@@ -210,7 +216,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final AddRemoveCommand addRemoveCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final AddRemoveCommand addRemoveCommand, final Library library) {
         User user = command.getUser();
         String message = addRemoveCommand.addRemoveMessage(user);
 
@@ -231,7 +238,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final AddUserCommand addUserCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final AddUserCommand addUserCommand, final Library library) {
         addUserCommand.addUser(library);
 
         String message = addUserCommand.getMessage();
@@ -253,7 +261,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final BackwardCommand backwardCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final BackwardCommand backwardCommand, final Library library) {
         User user = command.getUser();
         String message;
 
@@ -289,7 +298,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final ChangePageCommand changePageCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final ChangePageCommand changePageCommand, final Library library) {
         User user = command.getUser();
         changePageCommand.changePage(user);
 
@@ -312,7 +322,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final CreatePlaylistCommand createPlaylistCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final CreatePlaylistCommand createPlaylistCommand, final Library library) {
         User user = command.getUser();
         String message = createPlaylistCommand.message(user, library);
 
@@ -334,15 +345,16 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final DeleteUser deleteUserCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final DeleteUser deleteUserCommand, final Library library) {
         // update the player for each user
-        for(User user1 : OnlineUsers.getOnlineUsers()) {
+        for (User user1 : OnlineUsers.getOnlineUsers()) {
             user1.getPlayer().timestamp = command.getTimestamp();
-            if(user1.getPlayer().repeatState == 0) {
+            if (user1.getPlayer().repeatState == 0) {
                 user1.getPlayer().setRemainingTime();
-            } else if(user1.getPlayer().repeatState == 1) {
+            } else if (user1.getPlayer().repeatState == 1) {
                 user1.getPlayer().setRemainingTimeRepeat1();
-            } else if(user1.getPlayer().repeatState == 2) {
+            } else if (user1.getPlayer().repeatState == 2) {
                 user1.getPlayer().setRemainingTimeRepeat2();
             }
         }
@@ -368,7 +380,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final FollowCommand followCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final FollowCommand followCommand, final Library library) {
         User user = command.getUser();
         followCommand.followPlaylist(user);
 
@@ -391,7 +404,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final ForwardCommand forwardCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final ForwardCommand forwardCommand, final Library library) {
         User user = command.getUser();
         String message;
 
@@ -428,7 +442,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final GetAllUsers getAllUsersCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final GetAllUsers getAllUsersCommand, final Library library) {
         getAllUsersCommand.setAllUsersNames(library);
 
         // Create an array node for the results
@@ -459,7 +474,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final GetOnlineUsers getOnlineUsersCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final GetOnlineUsers getOnlineUsersCommand, final Library library) {
         getOnlineUsersCommand.setOnlineUsersNames();
 
         ArrayList<String> onlineUsers = getOnlineUsersCommand.getOnlineUsersNames();
@@ -490,7 +506,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final GetTop5Albums getTop5AlbumsCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final GetTop5Albums getTop5AlbumsCommand, final Library library) {
         getTop5AlbumsCommand.setTop5Albums();
 
         ArrayList<Album> albums = getTop5AlbumsCommand.getTop5Albums();
@@ -521,7 +538,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final GetTop5Artists getTop5ArtistsCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final GetTop5Artists getTop5ArtistsCommand, final Library library) {
         getTop5ArtistsCommand.setTop5Artists(library);
 
         ArrayList<Artist> artists = getTop5ArtistsCommand.getTop5Artists();
@@ -552,7 +570,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final GetTop5Playlists getTop5PlaylistsCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final GetTop5Playlists getTop5PlaylistsCommand, final Library library) {
         getTop5PlaylistsCommand.setTop5Playlists();
 
         ArrayList<Playlist> playlists = getTop5PlaylistsCommand.getTop5Playlists();
@@ -583,7 +602,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final GetTop5Songs getTop5SongsCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final GetTop5Songs getTop5SongsCommand, final Library library) {
         getTop5SongsCommand.setTop5Songs(library);
 
         ArrayList<Song> songs = getTop5SongsCommand.getTop5Songs();
@@ -614,7 +634,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final LikeCommand likeCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final LikeCommand likeCommand, final Library library) {
         User user = command.getUser();
         user.getPlayer().timestamp = command.getTimestamp();
         if (user.getPlayer().loadedItem != null) {
@@ -648,7 +669,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final LoadCommand loadCommand, final Library library) {
+    public void visit(final InputCommands command,
+                        final LoadCommand loadCommand, final Library library) {
         User user = command.getUser();
         String message = loadCommand.buildMessage(user.getSelectedItem());
         if (LoadCommand.getLoadedItem() != null) {
@@ -677,7 +699,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final NextCommand nextCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final NextCommand nextCommand, final Library library) {
         User user = command.getUser();
         String message;
 
@@ -725,7 +748,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final PlayPauseCommand playPauseCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final PlayPauseCommand playPauseCommand, final Library library) {
         User user = command.getUser();
 
         if (user.getPlayer().loadedItem != null) {
@@ -768,7 +792,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final PrevCommand prevCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final PrevCommand prevCommand, final Library library) {
         User user = command.getUser();
         String message;
 
@@ -816,7 +841,9 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final PrintCurrentPageCommand printCurrentPageCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final PrintCurrentPageCommand printCurrentPageCommand,
+                      final Library library) {
         User user = command.getUser();
 
         // update before printing the pages
@@ -845,17 +872,18 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final RemoveAlbumCommand removeAlbumCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final RemoveAlbumCommand removeAlbumCommand, final Library library) {
         User user = command.getUser();
 
         // update the player for each user
-        for(User user1 : OnlineUsers.getOnlineUsers()) {
+        for (User user1 : OnlineUsers.getOnlineUsers()) {
             user1.getPlayer().timestamp = command.getTimestamp();
-            if(user1.getPlayer().repeatState == 0) {
+            if (user1.getPlayer().repeatState == 0) {
                 user1.getPlayer().setRemainingTime();
-            } else if(user1.getPlayer().repeatState == 1) {
+            } else if (user1.getPlayer().repeatState == 1) {
                 user1.getPlayer().setRemainingTimeRepeat1();
-            } else if(user1.getPlayer().repeatState == 2) {
+            } else if (user1.getPlayer().repeatState == 2) {
                 user1.getPlayer().setRemainingTimeRepeat2();
             }
         }
@@ -881,7 +909,9 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final RemoveAnnouncementCommand removeAnnouncementCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final RemoveAnnouncementCommand removeAnnouncementCommand,
+                      final Library library) {
         User user = command.getUser();
         removeAnnouncementCommand.removeAnnouncement(user);
 
@@ -904,7 +934,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final RemoveEventCommand removeEventCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final RemoveEventCommand removeEventCommand, final Library library) {
         User user = command.getUser();
         removeEventCommand.removeEvent(user);
 
@@ -927,17 +958,18 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final RemovePodcastCommand removePodcastCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final RemovePodcastCommand removePodcastCommand, final Library library) {
         User user = command.getUser();
 
         // update the player for each user
-        for(User user1 : OnlineUsers.getOnlineUsers()) {
+        for (User user1 : OnlineUsers.getOnlineUsers()) {
             user1.getPlayer().timestamp = command.getTimestamp();
-            if(user1.getPlayer().repeatState == 0) {
+            if (user1.getPlayer().repeatState == 0) {
                 user1.getPlayer().setRemainingTime();
-            } else if(user1.getPlayer().repeatState == 1) {
+            } else if (user1.getPlayer().repeatState == 1) {
                 user1.getPlayer().setRemainingTimeRepeat1();
-            } else if(user1.getPlayer().repeatState == 2) {
+            } else if (user1.getPlayer().repeatState == 2) {
                 user1.getPlayer().setRemainingTimeRepeat2();
             }
         }
@@ -962,7 +994,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final RepeatCommand repeatCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final RepeatCommand repeatCommand, final Library library) {
         User user = command.getUser();
         String message;
         if (user.getPlayer().loadedItem == null) {
@@ -998,48 +1031,53 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final SelectCommand selectCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final SelectCommand selectCommand, final Library library) {
         User user = command.getUser();
         String message = null;
         if (selectCommand != null) {
-            if(user.getLastSearch() == null && user.getLastSearchUsers() == null) {
+            if (user.getLastSearch() == null && user.getLastSearchUsers() == null) {
                 message = "Please conduct a search before making a selection.";
-            } else if(user.getLastSearch() != null && user.getLastSearchUsers() == null) {
+            } else if (user.getLastSearch() != null && user.getLastSearchUsers() == null) {
                 // searched an audio file
                 selectCommand.provideSelectedItem(user);
                 if (SelectCommand.getSelectedItem() != null) {
                     user.setSelectedItem(SelectCommand.getSelectedItem());
-                    message = "Successfully selected " + SelectCommand.getSelectedItem().getName() + ".";
+                    message = "Successfully selected "
+                            + SelectCommand.getSelectedItem().getName() + ".";
                     user.setLastSearch(null);
                     SelectCommand.setSelectedItem(null);
                 } else {
-                    if(selectCommand.getItemNumber() > user.getLastSearch().size()) {
+                    if (selectCommand.getItemNumber() > user.getLastSearch().size()) {
                         message = "The selected ID is too high.";
                         SelectCommand.setSelectedItem(null);
                         user.setLastSearch(null);
                         user.setSelectedItem(null);
-                    }
-                    else {
+                    } else {
                         message = "Please conduct a search before making a selection.";
                     }
                 }
-            } else if(user.getLastSearchUsers() != null && user.getLastSearch() == null) {
+            } else if (user.getLastSearchUsers() != null && user.getLastSearch() == null) {
                 // searched a user
                 selectCommand.provideSelectedUser(user);
                 if (SelectCommand.getSelectedUser() != null) {
-                    message = "Successfully selected " + SelectCommand.getSelectedUser().getUsername() + "'s page.";
+                    message = "Successfully selected "
+                            + SelectCommand.getSelectedUser().getUsername() + "'s page.";
                     user.setLastSearchUsers(null);
                     // set the current page
-                    if(SelectCommand.getSelectedUser() instanceof Artist) {
-                        user.setCurrentPage(((Artist) SelectCommand.getSelectedUser()).getArtistPage());
-                    } else if(SelectCommand.getSelectedUser() instanceof Host) {
-                        user.setCurrentPage(((Host) SelectCommand.getSelectedUser()).getHostPage());
+                    if (SelectCommand.getSelectedUser() instanceof Artist) {
+                        user.setCurrentPage(((Artist) SelectCommand.
+                                getSelectedUser()).getArtistPage());
+                    } else if (SelectCommand.getSelectedUser() instanceof Host) {
+                        user.setCurrentPage(((Host) SelectCommand.getSelectedUser()).
+                                getHostPage());
                     }
                 } else {
-                    if(selectCommand.getItemNumber() > user.getLastSearchUsers().size())
+                    if (selectCommand.getItemNumber() > user.getLastSearchUsers().size()) {
                         message = "The selected ID is too high.";
-                    else
+                    } else {
                         message = "Please conduct a search before making a selection.";
+                    }
                 }
             }
         }
@@ -1061,7 +1099,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final ShowAlbums showAlbumsCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final ShowAlbums showAlbumsCommand, final Library library) {
 
         showAlbumsCommand.setAlbums(library);
 
@@ -1103,7 +1142,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final ShowPlaylistsCommand showPlaylistsCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final ShowPlaylistsCommand showPlaylistsCommand, final Library library) {
         User user = command.getUser();
         showPlaylistsCommand.setPlaylists(user);
 
@@ -1143,7 +1183,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final ShowPodcasts showPodcastsCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final ShowPodcasts showPodcastsCommand, final Library library) {
         showPodcastsCommand.setPodcasts(library);
 
         ArrayList<Podcast> podcasts = showPodcastsCommand.getPodcasts();
@@ -1184,7 +1225,9 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final ShowPreferredSongsCommand showPreferredSongsCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final ShowPreferredSongsCommand showPreferredSongsCommand,
+                      final Library library) {
         User user = command.getUser();
         showPreferredSongsCommand.setPreferredSongs(user);
         ArrayList<Song> songs = showPreferredSongsCommand.getPreferredSongs();
@@ -1212,7 +1255,8 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final ShuffleCommand shuffleCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final ShuffleCommand shuffleCommand, final Library library) {
         User user = command.getUser();
 
         if (user.getPlayer().repeatState == 0) {
@@ -1229,15 +1273,17 @@ public class CommandExecute implements Visitor {
         String message = shuffleCommand.message(user);
 
         // Check if shuffleCommand is not null before accessing its methods
-        if (shuffleCommand != null && user.getPlayer().loadedItem != null) {
+        if (user.getPlayer().loadedItem != null) {
             if (user.getPlayer().shuffle) {
                 // Update the shuffled Playlist from player
-                if(user.getPlayer().loadedItem instanceof Playlist)
+                if (user.getPlayer().loadedItem instanceof Playlist) {
                     user.getPlayer().shuffledPlaylist = shuffleCommand.
                             shufflePlaylist((Playlist) user.getPlayer().loadedItem);
-                if(user.getPlayer().loadedItem instanceof Album)
+                }
+                if (user.getPlayer().loadedItem instanceof Album) {
                     user.getPlayer().shuffledPlaylist = shuffleCommand.
                             shuffleAlbum((Album) user.getPlayer().loadedItem);
+                }
                 shuffleCommand.setSeed(0);
             }
         }
@@ -1259,9 +1305,10 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final StatusCommand statusCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final StatusCommand statusCommand, final Library library) {
         User user = command.getUser();
-        if(user.getStatusOnline()) {
+        if (user.getStatusOnline()) {
             if (user.getPlayer().repeatState == 0) {
                 user.getPlayer().setRemainingTime();
             } else if (user.getPlayer().repeatState == 1) {
@@ -1308,9 +1355,11 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final SwitchConnectionStatusCommand switchConnectionStatusCommand, final Library library) {
+    public void visit(final InputCommands command, final
+                      SwitchConnectionStatusCommand switchConnectionStatusCommand,
+                      final Library library) {
         User user = command.getUser();
-        if(user.getStatusOnline()) {
+        if (user.getStatusOnline()) {
             if (user.getPlayer().repeatState == 0) {
                 user.getPlayer().setRemainingTime();
             } else if (user.getPlayer().repeatState == 1) {
@@ -1341,7 +1390,9 @@ public class CommandExecute implements Visitor {
      * @param library the library of the application
      */
     @Override
-    public void visit(final InputCommands command, final SwitchVisibilityCommand switchVisibilityCommand, final Library library) {
+    public void visit(final InputCommands command,
+                      final SwitchVisibilityCommand switchVisibilityCommand,
+                      final Library library) {
         User user = command.getUser();
         switchVisibilityCommand.switchVisibility(user, library);
         String message = switchVisibilityCommand.message(user);

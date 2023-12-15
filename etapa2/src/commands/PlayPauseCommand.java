@@ -27,8 +27,15 @@ public class PlayPauseCommand implements Visitable {
         return message;
     }
 
+    /**
+     * The accept method for the visitor pattern
+     * @param command the command to be executed
+     * @param visitor the visitor
+     * @param library the library
+     */
     @Override
-    public void accept(InputCommands command, final Visitor visitor, Library library) {
+    public void accept(final InputCommands command, final Visitor visitor,
+                        final Library library) {
         visitor.visit(command, this, library);
     }
 }

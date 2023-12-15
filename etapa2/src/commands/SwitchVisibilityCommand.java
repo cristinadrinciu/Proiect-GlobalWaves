@@ -5,7 +5,7 @@ import audio.files.Playlist;
 import main.InputCommands;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
-import publicFiles.PublicPlaylists;
+import platform.data.PublicPlaylists;
 import user.types.User;
 
 import java.util.ArrayList;
@@ -82,6 +82,12 @@ public class SwitchVisibilityCommand implements Visitable {
         return "Visibility status updated successfully to private.";
     }
 
+    /**
+     * Accept method for the visitor
+     * @param command the command to be executed
+     * @param visitor the visitor
+     * @param library the library
+     */
     @Override
     public void accept(final InputCommands command, final Visitor visitor, final Library library) {
         visitor.visit(command, this, library);

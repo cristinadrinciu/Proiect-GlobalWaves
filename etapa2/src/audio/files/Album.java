@@ -4,56 +4,85 @@ import user.types.Artist;
 
 import java.util.ArrayList;
 
-public class Album extends AudioFile{
-	private int releaseYear;
-	private String description;
-	private ArrayList<Song> songs;
+public class Album extends AudioFile {
+    private int releaseYear;
+    private String description;
+    private ArrayList<Song> songs;
 
-	private Artist owner;
-	private int likes;
+    private Artist owner;
+    private int likes;
 
-	public int getReleaseYear() {
-		return releaseYear;
-	}
+    /**
+     * @return the release year of the album
+     */
+    public int getReleaseYear() {
+        return releaseYear;
+    }
 
-	public void setReleaseYear(int releaseYear) {
-		this.releaseYear = releaseYear;
-	}
+    /**
+     * @param releaseYear the release year of the album
+     */
+    public void setReleaseYear(final int releaseYear) {
+        this.releaseYear = releaseYear;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    /**
+     * @return the description of the album
+     */
+    public String getDescription() {
+        return description;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    /**
+     * @param description the description of the album
+     */
+    public void setDescription(final String description) {
+        this.description = description;
+    }
 
-	public ArrayList<Song> getSongs() {
-		return songs;
-	}
+    /**
+     * @return the songs of the album
+     */
+    public ArrayList<Song> getSongs() {
+        return songs;
+    }
 
-	public void setSongs(ArrayList<Song> songs) {
-		this.songs = songs;
-	}
+    /**
+     * @param songs the songs of the album
+     */
+    public void setSongs(final ArrayList<Song> songs) {
+        this.songs = songs;
+    }
 
-	public Artist getOwner() {
-		return owner;
-	}
+    /**
+     * @return the owner of the album
+     */
+    public Artist getOwner() {
+        return owner;
+    }
 
-	public void setOwner(Artist owner) {
-		this.owner = owner;
-	}
+    /**
+     * @param owner the owner of the album
+     */
+    public void setOwner(final Artist owner) {
+        this.owner = owner;
+    }
 
-	public int getLikes() {
-		return likes;
-	}
+    /**
+     * @return the number of likes of the album
+     */
+    public int getLikes() {
+        return likes;
+    }
 
-	public void setLikes() {
-		// count the number of likes
-		int likes = 0;
-		for (Song song : this.songs) {
-			likes += song.getLikes();
-		}
-		this.likes = likes;
-	}
+    /**
+     * This method sets the number of likes of the album
+     */
+    public void setLikes() {
+        // count the number of likes
+        this.likes = 0;
+        for (Song song : this.songs) {
+            likes += song.getLikes();
+        }
+    }
 }

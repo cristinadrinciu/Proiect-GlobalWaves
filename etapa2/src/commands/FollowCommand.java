@@ -3,7 +3,7 @@ package commands;
 import audio.files.Library;
 import audio.files.Playlist;
 import main.InputCommands;
-import publicFiles.PublicPlaylists;
+import platform.data.PublicPlaylists;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
 import user.types.User;
@@ -66,8 +66,14 @@ public class FollowCommand implements Visitable {
         user.setHomePage();
     }
 
+    /**
+     * Accepts the visitor
+     * @param command the command to be accepted
+     * @param visitor the visitor
+     * @param library the library
+     */
     @Override
-    public void accept(InputCommands command, Visitor visitor, Library library) {
+    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
         visitor.visit(command, this, library);
     }
 }

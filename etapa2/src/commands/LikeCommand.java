@@ -56,6 +56,12 @@ public class LikeCommand implements Visitable {
         user.setHomePage();
     }
 
+    /**
+     * the accept method for the visitor
+     * @param command the command that is being accepted
+     * @param visitor the visitor that visits the command
+     * @param library the library that contains the users
+     */
     @Override
     public void accept(final InputCommands command, final Visitor visitor, final Library library) {
         visitor.visit(command, this, library);

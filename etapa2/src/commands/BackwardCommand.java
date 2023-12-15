@@ -64,6 +64,12 @@ public class BackwardCommand implements Visitable {
         this.message = message;
     }
 
+    /**
+     * This method is used to accept the command and send it to the visitor.
+     * @param command the command that is accepted
+     * @param visitor the visitor that accepts the command
+     * @param library the library that is used to execute the command
+     */
     @Override
     public void accept(final InputCommands command, final Visitor visitor, final Library library) {
         visitor.visit(command, this, library);

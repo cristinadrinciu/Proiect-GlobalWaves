@@ -3,7 +3,7 @@ package commands;
 import audio.files.Library;
 import audio.files.Playlist;
 import main.InputCommands;
-import publicFiles.PublicPlaylists;
+import platform.data.PublicPlaylists;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
 
@@ -67,8 +67,14 @@ public class GetTop5Playlists implements Visitable {
         return this.top5Playlists;
     }
 
+    /**
+     * Accept method for the visitor
+     * @param command the command to be executed
+     * @param visitor the visitor that executes the command
+     * @param library the library of the user
+     */
     @Override
-    public void accept(InputCommands command, Visitor visitor, Library library) {
+    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
         visitor.visit(command, this, library);
     }
 }

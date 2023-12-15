@@ -10,7 +10,6 @@ public class Playlist extends AudioFile {
     private ArrayList<Song> songs;
     private int followers;
     private int createdTimestamp;
-
     private int totalLikes;
 
     /**
@@ -110,7 +109,6 @@ public class Playlist extends AudioFile {
      */
     public int getTotalLikes() {
         // total likes from the songs
-        int totalLikes = 0;
         for (Song song : this.songs) {
             totalLikes += song.getLikes();
         }

@@ -80,6 +80,12 @@ public class ForwardCommand implements Visitable {
         }
     }
 
+    /**
+     * Accept method for the visitor
+     * @param command the command to be executed
+     * @param visitor the visitor
+     * @param library the library
+     */
     @Override
     public void accept(final InputCommands command, final Visitor visitor, final Library library) {
         visitor.visit(command, this, library);

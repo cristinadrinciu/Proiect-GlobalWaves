@@ -1,7 +1,10 @@
 package commands;
 
-import audio.files.*;
-import audio.files.*;
+import audio.files.Album;
+import audio.files.AudioFile;
+import audio.files.Library;
+import audio.files.Playlist;
+import audio.files.Podcast;
 import main.InputCommands;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
@@ -66,6 +69,12 @@ public class LoadCommand implements Visitable {
         return resultMessage;
     }
 
+    /**
+     * Accepts the visitor
+     * @param command the command that will be executed
+     * @param visitor the visitor that will visit this command
+     * @param library the library that will be used
+     */
     @Override
     public void accept(final InputCommands command, final Visitor visitor, final Library library) {
         visitor.visit(command, this, library);

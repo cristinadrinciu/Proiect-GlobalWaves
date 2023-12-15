@@ -2,7 +2,6 @@ package main;
 
 import audio.files.Library;
 import audio.files.Song;
-import audio.files.*;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import commands.*;
 import fileio.input.EpisodeInput;
@@ -25,7 +24,8 @@ public class InputCommands {
 
     private Visitable commandToExecute = new Visitable() {
         @Override
-        public void accept(InputCommands inputCommands, Visitor visitor, Library library) {
+        public void accept(final InputCommands inputCommands, final Visitor visitor,
+                           final Library library) {
             // do nothing
         }
     };
@@ -58,7 +58,7 @@ public class InputCommands {
      * @param type the type for the search
      */
     public void setType(final String type) {
-        if(command.equals("search")) {
+        if (command.equals("search")) {
             this.searchCommand.setType(type);
         } else if (command.equals("addUser")) {
             this.addUserCommand.setType(type);
@@ -168,7 +168,8 @@ public class InputCommands {
     private GetTop5Songs getTop5SongsCommand = new GetTop5Songs();
 
     // Switch Connection Status Command
-    private SwitchConnectionStatusCommand switchConnectionStatusCommand = new SwitchConnectionStatusCommand();
+    private SwitchConnectionStatusCommand switchConnectionStatusCommand
+            = new SwitchConnectionStatusCommand();
 
     // Get Online Users Command
     private GetOnlineUsers getOnlineUsersCommand = new GetOnlineUsers();
@@ -176,23 +177,35 @@ public class InputCommands {
     // Add User Command
     private AddUserCommand addUserCommand = new AddUserCommand();
 
-    public void setAge(int age) {
+    /**
+    * This method sets the age for the add user command
+    * @param age the age for the add user command
+    */
+    public void setAge(final int age) {
         this.addUserCommand.setAge(age);
     }
 
-    public void setCity(String city) {
+    /**
+     * This method sets the city for the add user command
+     * @param city the city for the add user command
+     */
+    public void setCity(final String city) {
         this.addUserCommand.setCity(city);
     }
 
     // Add Album Command
     private AddAlbumCommand addAlbumCommand = new AddAlbumCommand();
 
-    public void setName(String name) {
-        if(command.equals("addAlbum")) {
+    /**
+     * This method sets the name field for the following commands:
+     * @param name the name field for the following commands:
+     */
+    public void setName(final String name) {
+        if (command.equals("addAlbum")) {
             this.addAlbumCommand.setName(name);
-        } else if(command.equals("addEvent")) {
+        } else if (command.equals("addEvent")) {
             this.addEventCommand.setName(name);
-        } else if(command.equals("addMerch")) {
+        } else if (command.equals("addMerch")) {
             this.addMerchCommand.setName(name);
         } else if (command.equals("addPodcast")) {
             this.addPodcastCommand.setName(name);
@@ -209,23 +222,35 @@ public class InputCommands {
         }
     }
 
-    public void setReleaseYear(int releaseYear) {
+    /**
+     * This method sets the release year for the add album command
+     * @param releaseYear the release year for the add album command
+     */
+    public void setReleaseYear(final int releaseYear) {
         this.addAlbumCommand.setReleaseYear(releaseYear);
     }
 
-    public void setDescription(String description) {
-        if(command.equals("addEvent")) {
+    /**
+     * This method sets the description field for the following commands:
+     * @param description the description field for the following commands:
+     */
+    public void setDescription(final String description) {
+        if (command.equals("addEvent")) {
             this.addEventCommand.setDescription(description);
-        } else if(command.equals("addAlbum")) {
+        } else if (command.equals("addAlbum")) {
             this.addAlbumCommand.setDescription(description);
-        } else if(command.equals("addMerch")) {
+        } else if (command.equals("addMerch")) {
             this.addMerchCommand.setDescription(description);
         } else if (command.equals("addAnnouncement")) {
             this.addAnnouncementCommand.setDescription(description);
         }
     }
 
-    public void setSongs(ArrayList<Song> songs) {
+    /**
+     * This method sets the songs for the add album command
+     * @param songs the songs for the add album command
+     */
+    public void setSongs(final ArrayList<Song> songs) {
         this.addAlbumCommand.setSongs(songs);
     }
 
@@ -238,14 +263,22 @@ public class InputCommands {
     // Add Event Command
     private AddEventCommand addEventCommand = new AddEventCommand();
 
-    public void setDate(String date) {
+    /**
+     * This method sets the date for the add event command
+     * @param date the date for the add event command
+     */
+    public void setDate(final String date) {
         this.addEventCommand.setDate(date);
     }
 
     // Add Merch Command
     private AddMerchCommand addMerchCommand = new AddMerchCommand();
 
-    public void setPrice(int price) {
+    /**
+     * This method sets the price for the add merch command
+     * @param price the price for the add merch command
+     */
+    public void setPrice(final int price) {
         this.addMerchCommand.setPrice(price);
     }
 
@@ -258,7 +291,11 @@ public class InputCommands {
     // Add Podcast Command
     private AddPodcastCommand addPodcastCommand = new AddPodcastCommand();
 
-    public void setEpisodes(ArrayList<EpisodeInput> episodes) {
+    /**
+     * This method sets the episodes for the add podcast command
+     * @param episodes the episodes for the add podcast command
+     */
+    public void setEpisodes(final ArrayList<EpisodeInput> episodes) {
         this.addPodcastCommand.setEpisodes(episodes);
     }
 
@@ -277,7 +314,11 @@ public class InputCommands {
     // Change Current Page Command
     private ChangePageCommand changeCurrentPageCommand = new ChangePageCommand();
 
-    public void setNextPage(String nextPage) {
+    /**
+     * This method sets the next page for the change current page command
+     * @param nextPage the next page for the change current page command
+     */
+    public void setNextPage(final String nextPage) {
         this.changeCurrentPageCommand.setNextPage(nextPage);
     }
 
@@ -342,19 +383,19 @@ public class InputCommands {
      * @param username the username
      */
     public void setUsername(final String username) {
-        if(command.equals("addUser")) {
+        if (command.equals("addUser")) {
             this.addUserCommand.setUsername(username);
             return;
         }
-        if(command.equals("showAlbums")) {
+        if (command.equals("showAlbums")) {
             this.showAlbumsCommand.setUsername(username);
             return;
         }
-        if(command.equals("deleteUser")) {
+        if (command.equals("deleteUser")) {
             this.deleteUserCommand.setUsername(username);
             return;
         }
-        if(command.equals("showPodcasts")) {
+        if (command.equals("showPodcasts")) {
             this.showPodcastsCommand.setUsername(username);
             return;
         }
@@ -389,124 +430,124 @@ public class InputCommands {
      * This method sets the command to execute
      */
     public void setCommandToExecute() {
-        if(command.equals("addAlbum")) {
+        if (command.equals("addAlbum")) {
             commandToExecute = addAlbumCommand;
         }
-        if(command.equals("addAnnouncement")) {
+        if (command.equals("addAnnouncement")) {
             commandToExecute = addAnnouncementCommand;
         }
-        if(command.equals("addEvent")) {
+        if (command.equals("addEvent")) {
             commandToExecute = addEventCommand;
         }
-        if(command.equals("addMerch")) {
+        if (command.equals("addMerch")) {
             commandToExecute = addMerchCommand;
         }
-        if(command.equals("addPodcast")) {
+        if (command.equals("addPodcast")) {
             commandToExecute = addPodcastCommand;
         }
-        if(command.equals("addRemoveInPlaylist")) {
+        if (command.equals("addRemoveInPlaylist")) {
             commandToExecute = addRemoveCommand;
         }
-        if(command.equals("addUser")) {
+        if (command.equals("addUser")) {
             commandToExecute = addUserCommand;
         }
-        if(command.equals("backward")) {
+        if (command.equals("backward")) {
             commandToExecute = backwardCommand;
         }
-        if(command.equals("changePage")) {
+        if (command.equals("changePage")) {
             commandToExecute = changeCurrentPageCommand;
         }
-        if(command.equals("createPlaylist")) {
+        if (command.equals("createPlaylist")) {
             commandToExecute = createPlaylistCommand;
         }
-        if(command.equals("deleteUser")) {
+        if (command.equals("deleteUser")) {
             commandToExecute = deleteUserCommand;
         }
-        if(command.equals("follow")) {
+        if (command.equals("follow")) {
             commandToExecute = followCommand;
         }
-        if(command.equals("forward")) {
+        if (command.equals("forward")) {
             commandToExecute = forwardCommand;
         }
-        if(command.equals("getAllUsers")) {
+        if (command.equals("getAllUsers")) {
             commandToExecute = getAllUsersCommand;
         }
-        if(command.equals("getOnlineUsers")) {
+        if (command.equals("getOnlineUsers")) {
             commandToExecute = getOnlineUsersCommand;
         }
-        if(command.equals("getTop5Albums")) {
+        if (command.equals("getTop5Albums")) {
             commandToExecute = getTop5AlbumsCommand;
         }
-        if(command.equals("getTop5Artists")) {
+        if (command.equals("getTop5Artists")) {
             commandToExecute = getTop5ArtistsCommand;
         }
-        if(command.equals("getTop5Playlists")) {
+        if (command.equals("getTop5Playlists")) {
             commandToExecute = getTop5PlaylistsCommand;
         }
-        if(command.equals("getTop5Songs")) {
+        if (command.equals("getTop5Songs")) {
             commandToExecute = getTop5SongsCommand;
         }
-        if(command.equals("like")) {
+        if (command.equals("like")) {
             commandToExecute = likeCommand;
         }
-        if(command.equals("load")) {
+        if (command.equals("load")) {
             commandToExecute = loadCommand;
         }
-        if(command.equals("next")) {
+        if (command.equals("next")) {
             commandToExecute = nextCommand;
         }
-        if(command.equals("playPause")) {
+        if (command.equals("playPause")) {
             commandToExecute = playPauseCommand;
         }
-        if(command.equals("prev")) {
+        if (command.equals("prev")) {
             commandToExecute = prevCommand;
         }
-        if(command.equals("printCurrentPage")) {
+        if (command.equals("printCurrentPage")) {
             commandToExecute = printCurrentPageCommand;
         }
-        if(command.equals("removeAlbum")) {
+        if (command.equals("removeAlbum")) {
             commandToExecute = removeAlbumCommand;
         }
-        if(command.equals("removeAnnouncement")) {
+        if (command.equals("removeAnnouncement")) {
             commandToExecute = removeAnnouncementCommand;
         }
-        if(command.equals("removeEvent")) {
+        if (command.equals("removeEvent")) {
             commandToExecute = removeEventCommand;
         }
-        if(command.equals("removePodcast")) {
+        if (command.equals("removePodcast")) {
             commandToExecute = removePodcastCommand;
         }
-        if(command.equals("repeat")) {
+        if (command.equals("repeat")) {
             commandToExecute = repeatCommand;
         }
-        if(command.equals("search")) {
+        if (command.equals("search")) {
             commandToExecute = searchCommand;
         }
-        if(command.equals("select")) {
+        if (command.equals("select")) {
             commandToExecute = selectCommand;
         }
-        if(command.equals("showAlbums")) {
+        if (command.equals("showAlbums")) {
             commandToExecute = showAlbumsCommand;
         }
-        if(command.equals("showPlaylists")) {
+        if (command.equals("showPlaylists")) {
             commandToExecute = showPlaylistsCommand;
         }
-        if(command.equals("showPodcasts")) {
+        if (command.equals("showPodcasts")) {
             commandToExecute = showPodcastsCommand;
         }
-        if(command.equals("showPreferredSongs")) {
+        if (command.equals("showPreferredSongs")) {
             commandToExecute = showPreferredSongsCommand;
         }
-        if(command.equals("shuffle")) {
+        if (command.equals("shuffle")) {
             commandToExecute = shuffleCommand;
         }
-        if(command.equals("status")) {
+        if (command.equals("status")) {
             commandToExecute = statusCommand;
         }
-        if(command.equals("switchConnectionStatus")) {
+        if (command.equals("switchConnectionStatus")) {
             commandToExecute = switchConnectionStatusCommand;
         }
-        if(command.equals("switchVisibility")) {
+        if (command.equals("switchVisibility")) {
             commandToExecute = switchVisibilityCommand;
         }
     }

@@ -1,34 +1,52 @@
 package page.content;
 
 public class Event {
-	private String name;
-	private String description;
-	private String date;
+    private String name;
+    private String description;
+    private String date;
 
-	public Event() {
-	}
+    public Event() {
+    }
 
-	public String getName() {
-		return name;
-	}
+    /**
+     * @return name
+     */
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    /**
+     * @param name for the name of the event
+     */
+    public void setName(final String name) {
+        this.name = name;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    /**
+     * @return description
+     */
+    public String getDescription() {
+        return description;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    /**
+     * @param description for the description of the event
+     */
+    public void setDescription(final String description) {
+        this.description = description;
+    }
 
-	public String getDate() {
-		return date;
-	}
+    /**
+     * @return date
+     */
+    public String getDate() {
+        return date;
+    }
 
-	public void setDate(String date) {
-		this.date = date;
-	}
+    /**
+     * @param date for the date of the event
+     */
+    public void setDate(final String date) {
+        this.date = date;
+    }
 }

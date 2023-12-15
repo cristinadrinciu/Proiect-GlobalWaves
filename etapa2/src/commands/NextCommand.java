@@ -1,7 +1,10 @@
 package commands;
 
-import audio.files.*;
-import audio.files.*;
+import audio.files.Album;
+import audio.files.Library;
+import audio.files.Playlist;
+import audio.files.Podcast;
+import audio.files.Song;
 import fileio.input.EpisodeInput;
 import main.InputCommands;
 import visit.pattern.Visitable;
@@ -481,8 +484,10 @@ public class NextCommand implements Visitable {
     }
 
     /**
-     *
+     * The accept method for the visitor
+     * @param command the command
      * @param visitor the visitor
+     * @param library the library of the application
      */
     @Override
     public void accept(final InputCommands command, final Visitor visitor, final Library library) {

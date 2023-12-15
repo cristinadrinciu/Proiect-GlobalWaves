@@ -32,7 +32,7 @@ public class SelectCommand implements Visitable {
     /**
      * Selects the item with the given number from the last search
      */
-    public void provideSelectedItem(User user) {
+    public void provideSelectedItem(final User user) {
         if (user.getLastSearch() != null && itemNumber > 0
                 && itemNumber <= user.getLastSearch().size()) {
             selectedItem = user.getLastSearch().get(itemNumber - 1);
@@ -60,7 +60,7 @@ public class SelectCommand implements Visitable {
     /**
      * Selects the user with the given number from the last search
      */
-    public void provideSelectedUser(User user) {
+    public void provideSelectedUser(final User user) {
         if (user.getLastSearchUsers() != null && itemNumber > 0
                 && itemNumber <= user.getLastSearchUsers().size()) {
             selectedUser = user.getLastSearchUsers().get(itemNumber - 1);
@@ -85,8 +85,14 @@ public class SelectCommand implements Visitable {
         SelectCommand.selectedUser = selectedUser;
     }
 
+    /**
+     * Accepts the visitor
+     * @param command the command to be executed
+     * @param visitor the visitor
+     * @param library the library of the user
+     */
     @Override
-    public void accept(InputCommands command, Visitor visitor, Library library) {
+    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
         visitor.visit(command, this, library);
     }
 }

@@ -1,4 +1,4 @@
-package publicFiles;
+package platform.data;
 
 import audio.files.Playlist;
 

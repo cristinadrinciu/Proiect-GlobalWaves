@@ -70,6 +70,12 @@ public class GetTop5Songs implements Visitable {
         return this.top5Songs;
     }
 
+    /**
+     * Accepts the visitor
+     * @param command the command to be executed
+     * @param visitor the visitor
+     * @param library the library
+     */
     @Override
     public void accept(final InputCommands command, final Visitor visitor, final Library library) {
         visitor.visit(command, this, library);
