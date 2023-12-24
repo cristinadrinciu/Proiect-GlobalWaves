@@ -199,7 +199,7 @@ public class Player {
                     remainingTime = ((EpisodeInput) playingNow).getDuration() - listenedTime;
                 }
             }
-            if(loadedItem instanceof Playlist) {
+            if (loadedItem instanceof Playlist) {
                 while (remainingTime < 0) {
                     listenedTime = -remainingTime;
                     remainingTime = ((Song) playingNow).getDuration() - listenedTime;
@@ -249,7 +249,8 @@ public class Player {
             if (loadedItem instanceof Podcast) {
                 while (remainingTime < 0) {
                     if (repeatedOnce == 0) {
-                        int index = ((Podcast) loadedItem).getEpisodes().indexOf((EpisodeInput) playingNow);
+                        int index = ((Podcast) loadedItem).getEpisodes().
+                                indexOf((EpisodeInput) playingNow);
                         if (index == ((Podcast) loadedItem).getEpisodes().size() - 1) {
                             playingNow = ((Podcast) loadedItem).getEpisodes().get(0);
                             repeatedOnce = 1;
@@ -259,7 +260,8 @@ public class Player {
                         listenedTime = -remainingTime; // time listened from the next track
                         remainingTime = ((EpisodeInput) playingNow).getDuration() - listenedTime;
                     } else {
-                        int index = ((Podcast) loadedItem).getEpisodes().indexOf((EpisodeInput) playingNow);
+                        int index = ((Podcast) loadedItem).getEpisodes().
+                                indexOf((EpisodeInput) playingNow);
                         if (index == ((Podcast) loadedItem).getEpisodes().size() - 1) {
                             paused = true;
                             listenedTime = 0;
@@ -280,7 +282,8 @@ public class Player {
                 while (remainingTime < 0) {
                     if (!shuffle) {
                         if (repeatedOnce == 0) {
-                            int index = ((Playlist) loadedItem).getSongs().indexOf((Song) playingNow);
+                            int index = ((Playlist) loadedItem).getSongs().
+                                    indexOf((Song) playingNow);
                             if (index == ((Playlist) loadedItem).getSongs().size() - 1) {
                                 playingNow = ((Playlist) loadedItem).getSongs().get(0);
                                 repeatedOnce = 1;
@@ -290,7 +293,8 @@ public class Player {
                             listenedTime = -remainingTime; // time listened from the next track
                             remainingTime = ((Song) playingNow).getDuration() - listenedTime;
                         } else {
-                            int index = ((Playlist) loadedItem).getSongs().indexOf((Song) playingNow);
+                            int index = ((Playlist) loadedItem).getSongs().
+                                    indexOf((Song) playingNow);
                             if (index == ((Playlist) loadedItem).getSongs().size() - 1) {
                                 paused = true;
                                 listenedTime = 0;

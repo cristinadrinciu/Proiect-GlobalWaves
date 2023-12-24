@@ -292,6 +292,9 @@ public class InputCommands {
             user.getPlayer().setRemainingTimeRepeat2();
         }
 
+        if(SearchCommand.getSearchResults() != null)
+            user.setLastSearch(SearchCommand.getSearchResults());
+
         user.getPlayer().initializePlayer();
 
         ArrayNode results = JsonNodeFactory.instance.arrayNode();
@@ -318,10 +321,10 @@ public class InputCommands {
         String message = null;
         if (selectCommand != null) {
             //SelectCommand.selectedItem = selectCommand.getSelectedItem();
-            selectCommand.provideSelectedItem();
+            selectCommand.provideSelectedItem(user);
 
             if (SelectCommand.getSelectedItem() == null) {
-                if (SearchCommand.getSearchResults() == null) {
+                if (user.getLastSearch() == null) {
                     message = "Please conduct a search before making a selection.";
                 } else if (selectCommand.getItemNumber()
                         > SearchCommand.getSearchResults().size()) {
@@ -357,6 +360,7 @@ public class InputCommands {
         if (LoadCommand.getLoadedItem() != null) {
             user.getPlayer().loadedItem = LoadCommand.getLoadedItem();
             user.getPlayer().setPlayingNow();
+            user.setLastSearch(null);
         }
         SelectCommand.setSelectedItem(null);
         LoadCommand.setLoadedItem(null);

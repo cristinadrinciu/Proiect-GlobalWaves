@@ -15,6 +15,8 @@ public class User {
     private ArrayList<Playlist> followedPlaylists = new ArrayList<>();
     private Player player;
 
+    private ArrayList<AudioFile> lastSearch = new ArrayList<>();
+
     public User() {
     }
 
@@ -125,5 +127,21 @@ public class User {
      */
     public void setPlayer(final Player player) {
         this.player = player;
+    }
+
+    /**
+     *
+     * @return the lastSearch
+     */
+    public ArrayList<AudioFile> getLastSearch() {
+        return lastSearch;
+    }
+
+    /**
+     *
+     * @param lastSearch the lastSearch to set
+     */
+    public void setLastSearch(final ArrayList<AudioFile> lastSearch) {
+        this.lastSearch = lastSearch;
     }
 }

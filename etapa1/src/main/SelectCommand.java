@@ -1,6 +1,7 @@
 package main;
 
 import AudioFiles.AudioFile;
+import AudioFiles.User;
 
 public class SelectCommand {
     private int itemNumber;
@@ -26,10 +27,10 @@ public class SelectCommand {
     /**
      * Selects the item with the given number from the last search
      */
-    public void provideSelectedItem() {
-        if (SearchCommand.getSearchResults() != null && itemNumber > 0
-                && itemNumber <= SearchCommand.getSearchResults().size()) {
-            selectedItem = SearchCommand.getSearchResults().get(itemNumber - 1);
+    public void provideSelectedItem(User user) {
+        if (user.getLastSearch() != null && itemNumber > 0
+                && itemNumber <= user.getLastSearch().size()) {
+            selectedItem = user.getLastSearch().get(itemNumber - 1);
         } else {
             selectedItem = null;
         }
