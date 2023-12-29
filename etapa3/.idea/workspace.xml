@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="53d20739-522b-42d8-8a62-da46ad36f96f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../checkstyle.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../etapa3.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ref/ref_test00_etapa3_wrapped_one_user_one_artist.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ref/ref_test01_etapa3_wrapped_one_user_n_artist.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ref/ref_test02_etapa3_wrapped_n_user_one_artist.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ref/ref_test03_etapa3_wrapped_n_user_n_artist.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ref/ref_test04_etapa3_monetization_premium.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ref/ref_test05_etapa3_monetization_free.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ref/ref_test06_etapa3_monetization_all.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ref/ref_test07_etapa3_notifications_simple.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ref/ref_test08_etapa3_notifications_more.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ref/ref_test09_etapa3_merch_buy.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ref/ref_test10_etapa3_wrapped_host.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ref/ref_test11_etapa3_basicPageNavigation.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ref/ref_test12_etapa3_recommendations.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ref/ref_test13_etapa3_basic_recommendation.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ref/ref_test14_etapa3_page_navigation.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ref/ref_test15_etapa3_complex.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ref/ref_test16_etapa3_complex.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result/out_test00_etapa3_wrapped_one_user_one_artist.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result/out_test01_etapa3_wrapped_one_user_n_artist.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result/out_test02_etapa3_wrapped_n_user_one_artist.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result/out_test03_etapa3_wrapped_n_user_n_artist.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result/out_test04_etapa3_monetization_premium.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result/out_test05_etapa3_monetization_free.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result/out_test06_etapa3_monetization_all.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result/out_test07_etapa3_notifications_simple.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result/out_test08_etapa3_notifications_more.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result/out_test09_etapa3_merch_buy.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result/out_test10_etapa3_wrapped_host.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result/out_test11_etapa3_basicPageNavigation.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result/out_test12_etapa3_recommendations.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result/out_test13_etapa3_basic_recommendation.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result/out_test14_etapa3_page_navigation.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result/out_test15_etapa3_complex.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../result/out_test16_etapa3_complex.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/audio/files/Album.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/audio/files/AudioFile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/audio/files/Library.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/audio/files/Playlist.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/audio/files/Podcast.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/audio/files/Song.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/checker/Checker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/checker/CheckerConstants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/checker/Checkstyle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/checker/checkstyle.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/checker/poo_checks.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/AddAlbumCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/AddAnnouncementCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/AddEventCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/AddMerchCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/AddPodcastCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/AddRemoveCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/AddUserCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/BackwardCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/BuyPremiumCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/CancelPremiumCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/ChangePageCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/CreatePlaylistCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/DeleteUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/EndProgramCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/FollowCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/ForwardCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/GetAllUsers.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/GetOnlineUsers.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/GetTop5Albums.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/GetTop5Artists.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/GetTop5Playlists.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/GetTop5Songs.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/LikeCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/LoadCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/NextCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/PlayPauseCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/PrevCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/PrintCurrentPageCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/RemoveAlbumCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/RemoveAnnouncementCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/RemoveEventCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/RemovePodcastCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/RepeatCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/SearchCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/SelectCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/ShowAlbums.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/ShowPlaylistsCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/ShowPodcasts.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/ShowPreferredSongsCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/ShuffleCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/StatusCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/SwitchConnectionStatusCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/SwitchVisibilityCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/commands/WrappedCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/fileio/input/EpisodeInput.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/fileio/input/Filter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/fileio/input/LibraryInput.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/fileio/input/PodcastInput.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/fileio/input/SongInput.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/fileio/input/UserInput.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/InputCommands.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/page/content/Announcement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/page/content/Event.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/page/content/Merch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/pages/ArtistPage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/pages/HomePage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/pages/HostPage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/pages/LikedContentPage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/pages/Page.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/platform/data/OnlineUsers.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/platform/data/PublicAlbums.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/platform/data/PublicPlaylists.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/player/Player.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/user/types/Artist.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/user/types/ArtistStatistics.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/user/types/GhostUsers.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/user/types/Host.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/user/types/StatisticsUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/user/types/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/visit/pattern/CommandExecute.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/visit/pattern/Visitable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/visit/pattern/Visitor.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="2aDnRqNw4XAyGFOF4AWjOGsnP0S" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-19.0.2-corretto-19.0.2-249ae16d76d6-fcaa1fe2" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="53d20739-522b-42d8-8a62-da46ad36f96f" name="Changes" comment="" />
+      <created>1703862013176</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1703862013176</updated>
+    </task>
+    <servers />
+  </component>
+</project>
