@@ -367,12 +367,12 @@ public class User {
      * @param song the song to be added
      */
     public void addPremiumSongs(final Song song) {
-        // check if the song is already in the list
-        for (Song premiumSong : this.premiumSongs) {
-            if (premiumSong.getName().equals(song.getName())) {
-                return;
-            }
-        }
+//        // check if the song is already in the list
+//        for (Song premiumSong : this.premiumSongs) {
+//            if (premiumSong.getName().equals(song.getName())) {
+//                return;
+//            }
+//        }
         this.premiumSongs.add(song);
     }
 }

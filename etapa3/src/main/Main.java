@@ -1,14 +1,7 @@
 package main;
 
-import audio.files.Album;
 import audio.files.Library;
-import audio.files.Playlist;
-import audio.files.Song;
 import commands.EndProgramCommand;
-import player.Player;
-import user.types.Artist;
-import user.types.ArtistStatistics;
-import user.types.GhostUsers;
 import visit.pattern.CommandExecute;
 import platform.data.OnlineUsers;
 import platform.data.PublicAlbums;
@@ -108,20 +101,9 @@ public final class Main {
         OnlineUsers.setOnlineUsers(new ArrayList<>());
         OnlineUsers.getOnlineUsers().addAll(newLibrary.getUsers());
 
-        // add the artists that appear in the songs of the library to the ghost artists list
-        for (Song song : newLibrary.getSongs()) {
-            // create arist for the song
-            Artist newArtist = new Artist();
-            newArtist.setUsername(song.getArtist());
-            newArtist.setType("artist");
-            newArtist.setAlbums(new ArrayList<Album>());
-            newArtist.setArtistStatistics(new ArtistStatistics());
-            GhostUsers.getGhostArtists().add(newArtist);
-        }
-
         PublicPlaylists.getPlaylists().clear();
         InputCommands[] commands = objectMapper.readValue(new File(
-                "input/test03_etapa3_wrapped_n_user_n_artist.json"), InputCommands[].class);
+                "input/test04_etapa3_monetization_premium.json"), InputCommands[].class);
         for (User user : newLibrary.getUsers()) {
             user.getLikedSongs().clear();
             user.getPlaylists().clear();
@@ -207,6 +189,6 @@ public final class Main {
 
         ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
         objectWriter.writeValue(new File(filePathOutput), commandList);
-        //System.out.println();
+        System.out.println();
     }
 }

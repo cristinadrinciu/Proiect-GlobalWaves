@@ -18,7 +18,7 @@ public class BuyPremiumCommand implements Visitable {
 
     public void buyPremium(User user) {
         if(user.isPremium()) {
-            message = "User " + user.getUsername() + " is already premium";
+            message = user.getUsername() + " is already a premium user.";
         } else {
             user.setPremium(true);
             message = user.getUsername() + " bought the subscription successfully.";

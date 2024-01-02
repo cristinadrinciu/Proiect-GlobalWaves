@@ -15,7 +15,7 @@ public class CancelPremiumCommand implements Visitable {
 
     public void cancelPremium(user.types.User user) {
         if(!user.isPremium()) {
-            message = "User " + user.getUsername() + " is not premium";
+            message = user.getUsername() + " is not a premium user.";
         } else {
             user.setPremium(false);
             message = user.getUsername() + " cancelled the subscription successfully.";

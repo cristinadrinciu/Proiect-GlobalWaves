@@ -337,6 +337,12 @@ public class InputCommands {
     // Wrapped Command
     private WrappedCommand wrappedCommand = new WrappedCommand();
 
+    // Buy Premium Command
+    private BuyPremiumCommand buyPremiumCommand = new BuyPremiumCommand();
+
+    // Cancel Premium Command
+    private CancelPremiumCommand cancelPremiumCommand = new CancelPremiumCommand();
+
     // setters and getters
 
     /**
@@ -555,6 +561,12 @@ public class InputCommands {
         }
         if (command.equals("wrapped")) {
             commandToExecute = wrappedCommand;
+        }
+        if (command.equals("buyPremium")) {
+            commandToExecute = buyPremiumCommand;
+        }
+        if (command.equals("cancelPremium")) {
+            commandToExecute = cancelPremiumCommand;
         }
     }
 

@@ -3,7 +3,6 @@ package player;
 import audio.files.*;
 import fileio.input.EpisodeInput;
 import user.types.Artist;
-import user.types.GhostUsers;
 import user.types.User;
 
 import java.util.ArrayList;
@@ -168,6 +167,11 @@ public class Player {
                         playingNow = ((Playlist) loadedItem).getSongs().get(index + 1);
                         // go to the next track
                         remainingTime = ((Song) playingNow).getDuration() - listenedTime;
+
+                        // add in the list of songs listened while premium
+                        if(user.isPremium())
+                            user.addPremiumSongs((Song) playingNow);
+
                         // update the listens of the song
                         user.setListensToSong(playingNow.getName());
                         user.setListensToArtist(((Song) playingNow).getArtist());
@@ -195,6 +199,11 @@ public class Player {
                         listenedTime = -remainingTime; // time listened from the next track
                         playingNow = shuffledPlaylist.get(index + 1); // go to the next track
                         remainingTime = ((Song) playingNow).getDuration() - listenedTime;
+
+                        // add in the list of songs listened while premium
+                        if(user.isPremium())
+                            user.addPremiumSongs((Song) playingNow);
+
                         // update the listens of the song
                         user.setListensToSong(playingNow.getName());
                         user.setListensToArtist(((Song) playingNow).getArtist());
@@ -229,6 +238,11 @@ public class Player {
                         playingNow = ((Album) loadedItem).getSongs().get(index + 1);
                         // go to the next track
                         remainingTime = ((Song) playingNow).getDuration() - listenedTime;
+
+                        // add in the list of songs listened while premium
+                        if(user.isPremium())
+                            user.addPremiumSongs((Song) playingNow);
+
                         // update the listens of the song
                         user.setListensToSong(playingNow.getName());
                         user.setListensToArtist(((Song) playingNow).getArtist());
@@ -256,6 +270,11 @@ public class Player {
                         listenedTime = -remainingTime; // time listened from the next track
                         playingNow = shuffledPlaylist.get(index + 1); // go to the next track
                         remainingTime = ((Song) playingNow).getDuration() - listenedTime;
+
+                        // add in the list of songs listened while premium
+                        if(user.isPremium())
+                            user.addPremiumSongs((Song) playingNow);
+
                         // update the listens of the song
                         user.setListensToSong(playingNow.getName());
                         user.setListensToArtist(((Song) playingNow).getArtist());
@@ -323,6 +342,11 @@ public class Player {
                 while (remainingTime <= 0) {
                     listenedTime = -remainingTime;
                     remainingTime = ((Song) playingNow).getDuration() - listenedTime;
+
+                    // add in the list of songs listened while premium
+                    if(user.isPremium())
+                        user.addPremiumSongs((Song) playingNow);
+
                     // update the listens of the song
                     user.setListensToSong(playingNow.getName());
                     user.setListensToArtist(((Song) playingNow).getArtist());
@@ -357,6 +381,11 @@ public class Player {
                 while (remainingTime <= 0) {
                     listenedTime = -remainingTime;
                     remainingTime = ((Song) playingNow).getDuration() - listenedTime;
+
+                    // add in the list of songs listened while premium
+                    if(user.isPremium())
+                        user.addPremiumSongs((Song) playingNow);
+
                     // update the listens of the song
                     user.setListensToSong(playingNow.getName());
                     user.setListensToArtist(((Song) playingNow).getArtist());
@@ -376,6 +405,11 @@ public class Player {
                 while (remainingTime <= 0) {
                     listenedTime = -remainingTime;
                     remainingTime = ((Song) playingNow).getDuration() - listenedTime;
+
+                    // add in the list of songs listened while premium
+                    if(user.isPremium())
+                        user.addPremiumSongs((Song) playingNow);
+
                     // update the listens of the song
                     user.setListensToSong(playingNow.getName());
                     user.setListensToArtist(((Song) playingNow).getArtist());
@@ -426,6 +460,11 @@ public class Player {
                         remainingTime = ((Song) playingNow).getDuration() - listenedTime;
                         repeatedOnce = 1;
                         repeatState = 0;
+
+                        // add in the list of songs listened while premium
+                        if(user.isPremium())
+                            user.addPremiumSongs((Song) playingNow);
+
                         // update the listens of the song
                         user.setListensToSong(playingNow.getName());
                         user.setListensToArtist(((Song) playingNow).getArtist());
@@ -498,6 +537,11 @@ public class Player {
                         }
                         listenedTime = -remainingTime; // time listened from the next track
                         remainingTime = ((Song) playingNow).getDuration() - listenedTime;
+
+                        // add in the list of songs listened while premium
+                        if(user.isPremium())
+                            user.addPremiumSongs((Song) playingNow);
+
                         // update the listens of the song
                         user.setListensToSong(playingNow.getName());
                         user.setListensToArtist(((Song) playingNow).getArtist());
@@ -520,6 +564,11 @@ public class Player {
                         }
                         listenedTime = -remainingTime; // time listened from the next track
                         remainingTime = ((Song) playingNow).getDuration() - listenedTime;
+
+                        // add in the list of songs listened while premium
+                        if(user.isPremium())
+                            user.addPremiumSongs((Song) playingNow);
+
                         // update the listens of the song
                         user.setListensToSong(playingNow.getName());
                         user.setListensToArtist(((Song) playingNow).getArtist());
@@ -549,6 +598,11 @@ public class Player {
                         }
                         listenedTime = -remainingTime; // time listened from the next track
                         remainingTime = ((Song) playingNow).getDuration() - listenedTime;
+
+                        // add in the list of songs listened while premium
+                        if(user.isPremium())
+                            user.addPremiumSongs((Song) playingNow);
+
                         // update the listens of the song
                         user.setListensToSong(playingNow.getName());
                         user.setListensToArtist(((Song) playingNow).getArtist());
@@ -572,6 +626,11 @@ public class Player {
                         }
                         listenedTime = -remainingTime; // time listened from the next track
                         remainingTime = ((Song) playingNow).getDuration() - listenedTime;
+
+                        // add in the list of songs listened while premium
+                        if(user.isPremium())
+                            user.addPremiumSongs((Song) playingNow);
+
                         // update the listens of the song
                         user.setListensToSong(playingNow.getName());
                         user.setListensToArtist(((Song) playingNow).getArtist());
@@ -601,12 +660,6 @@ public class Player {
                 if (artist.getUsername().equals(song.getArtist())) {
                     return (Artist) artist;
                 }
-            }
-        }
-        // search also in the ghost artists
-        for (Artist artist : GhostUsers.getGhostArtists()) {
-            if (artist.getUsername().equals(song.getArtist())) {
-                return artist;
             }
         }
         return null;

@@ -4,7 +4,6 @@ import audio.files.Library;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import user.types.Artist;
-import user.types.GhostUsers;
 import user.types.User;
 
 import java.util.ArrayList;
@@ -22,19 +21,18 @@ public class EndProgramCommand {
                 }
             }
         }
-        // add also the ghost artists
-        for(Artist artist : GhostUsers.getGhostArtists()) {
-            if(!artist.getArtistStatistics().getTopSongs().isEmpty()
-                    || !artist.getArtistStatistics().getBoughtMerch().isEmpty()) {
-                artists.add(artist);
-            }
-        }
 
         ObjectMapper objectMapper = new ObjectMapper();
         commandJson = objectMapper.createObjectNode();
         ObjectNode resultJson = objectMapper.createObjectNode();
         commandJson.put("command", "endProgram");
 
+        // calculate the revenue for each artist
+        for(Artist artist : artists) {
+            artist.calculateMerchRevenue();
+            artist.calculateSongRevenue(library);
+            artist.findMostProfitableSong(library);
+        }
         // sort the artists by their total revenue
         artists.sort((artist1, artist2) -> {
             if(artist1.getSongRevenue() + artist1.getMerchRevenue() > artist2.getSongRevenue() + artist2.getMerchRevenue()) {
@@ -59,10 +57,6 @@ public class EndProgramCommand {
         });
 
         for(int i = 0; i < artists.size(); i++) {
-            artists.get(i).calculateMerchRevenue();
-            artists.get(i).calculateSongRevenue(library);
-            artists.get(i).findMostProfitableSong(library);
-
             ObjectNode artistJson = objectMapper.createObjectNode();
             resultJson.set(artists.get(i).getUsername(), artistJson);
             artistJson.put("merchRevenue", artists.get(i).getMerchRevenue());

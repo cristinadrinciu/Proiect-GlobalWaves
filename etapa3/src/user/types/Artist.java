@@ -180,7 +180,6 @@ public class Artist extends User {
         }
 
         songRevenue = 0.0;
-        double max = 0.0;
         for (User user : library.getUsers()) {
             // get the total number of songs listened by the user
             int songTotal = user.getPremiumSongs().size();
@@ -188,11 +187,25 @@ public class Artist extends User {
             // get the number of songs listened by the user from this artist
             int songListened = 0;
             for (Song song : user.getPremiumSongs()) {
-                if (song.getArtist().equals(this.getUsername())) {
-                    songListened++;
+                if(song.getArtist().equals(this.getUsername())) {
+                    songListened ++;
                 }
             }
+
+            // calculate the value of the song revenue
+            if (songListened == 0) {
+                continue;
+            }
+            double value = (double) songListened * 1000000/ songTotal;
+
+            // round the song revenue to 2 decimals
+            //value = Math.round(value * 100.0) / 100.0;
+
+            songRevenue += value;
         }
+
+        // round the song revenue to 2 decimals
+        songRevenue = Math.round(songRevenue * 100.0) / 100.0;
     }
 
     /**
@@ -223,26 +236,25 @@ public class Artist extends User {
         // get the most listened song from this artist from the premium users
         ArrayList<Song> mostListenedSongs = new ArrayList<>();
         for (User user : library.getUsers()) {
-            if (user.isPremium()) {
-                Song mostListenedSong = null;
-                int max = 0;
-                // get the most listened song from this artist from the premium user
-                for (String song : user.getStatistics().getTopSongs().keySet()) {
-                    // find the song in the library
-                    for (Song song1 : library.getSongs()) {
-                        if (song1.getName().equals(song)) {
-                            if (song1.getArtist().equals(this.getUsername())) {
-                                if (user.getStatistics().getTopSongs().get(song) > max) {
-                                    max = user.getStatistics().getTopSongs().get(song);
-                                    mostListenedSong = song1;
-                                }
-                            }
+            // search in the premium songs list and get the song from the artist with the most appearances
+            int max = 0;
+            Song mostListenedSong = null;
+            for (Song song : user.getPremiumSongs()) {
+                if (song.getArtist().equals(this.getUsername())) {
+                    int appearances = 0;
+                    for (Song song1 : user.getPremiumSongs()) {
+                        if (song1.getName().equals(song.getName())) {
+                            appearances++;
                         }
                     }
+                    if (appearances > max) {
+                        max = appearances;
+                        mostListenedSong = song;
+                    }
                 }
-                if (mostListenedSong != null) {
-                    mostListenedSongs.add(mostListenedSong);
-                }
+            }
+            if (mostListenedSong != null) {
+                mostListenedSongs.add(mostListenedSong);
             }
         }
 

@@ -687,6 +687,10 @@ public class CommandExecute implements Visitor {
             if(user.getPlayer().loadedItem instanceof Song
                 || user.getPlayer().loadedItem instanceof Playlist
                 || user.getPlayer().loadedItem instanceof Album) {
+                // add in the list of songs listened while premium
+                if(user.isPremium())
+                    user.addPremiumSongs((Song) user.getPlayer().playingNow);
+
                 // update the listens of the song
                 user.setListensToSong(user.getPlayer().playingNow.getName());
                 user.setListensToArtist(((Song) user.getPlayer().playingNow).getArtist());
