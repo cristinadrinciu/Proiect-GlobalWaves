@@ -219,6 +219,8 @@ public class InputCommands {
             this.removePodcastCommand.setName(name);
         } else if (command.equals("removeEvent")) {
             this.removeEventCommand.setName(name);
+        } else if (command.equals("buyMerch")) {
+            this.buyMerchCommand.setName(name);
         }
     }
 
@@ -279,7 +281,10 @@ public class InputCommands {
      * @param price the price for the add merch command
      */
     public void setPrice(final int price) {
-        this.addMerchCommand.setPrice(price);
+        if(command.equals("addMerch"))
+            this.addMerchCommand.setPrice(price);
+        else if(command.equals("adBreak"))
+            AdBreakCommand.setPrice(price);
     }
 
     // Get All Users Command
@@ -342,6 +347,35 @@ public class InputCommands {
 
     // Cancel Premium Command
     private CancelPremiumCommand cancelPremiumCommand = new CancelPremiumCommand();
+
+    // Ad Break Command
+    private AdBreakCommand adBreakCommand = new AdBreakCommand();
+
+    // Subscribe Command
+    private SubscribeCommand subscribeCommand = new SubscribeCommand();
+
+    // Get Notification Command
+    private GetNotifications getNotificationCommand = new GetNotifications();
+
+    // Buy Merch Command
+    private BuyMerch buyMerchCommand = new BuyMerch();
+
+    // See My Merch Command
+    private SeeMyMerchCommand seeMyMerchCommand = new SeeMyMerchCommand();
+
+    // Update Recommendations Command
+    private UpdateRecommendationsCommand updateRecommendationsCommand = new UpdateRecommendationsCommand();
+
+    // Previous Page Command
+    private PreviousPageCommand previousPageCommand = new PreviousPageCommand();
+
+    // Next Page Command
+    private NextPageCommand nextPageCommand = new NextPageCommand();
+
+    // Load Recommendation Command
+    private LoadRecommendationCommand loadRecommendationsCommand = new LoadRecommendationCommand();
+
+
 
     // setters and getters
 
@@ -433,6 +467,9 @@ public class InputCommands {
      */
     public String getUsername() {
         return username;
+    }
+    public void setRecommendationType(String recommendationType) {
+        this.updateRecommendationsCommand.setRecommendationType(recommendationType);
     }
 
     /**
@@ -567,6 +604,33 @@ public class InputCommands {
         }
         if (command.equals("cancelPremium")) {
             commandToExecute = cancelPremiumCommand;
+        }
+        if (command.equals("adBreak")) {
+            commandToExecute = adBreakCommand;
+        }
+        if (command.equals("subscribe")) {
+            commandToExecute = subscribeCommand;
+        }
+        if (command.equals("getNotifications")) {
+            commandToExecute = getNotificationCommand;
+        }
+        if (command.equals("buyMerch")) {
+            commandToExecute = buyMerchCommand;
+        }
+        if (command.equals("seeMerch")) {
+            commandToExecute = seeMyMerchCommand;
+        }
+        if (command.equals("updateRecommendations")) {
+            commandToExecute = updateRecommendationsCommand;
+        }
+        if (command.equals("previousPage")) {
+            commandToExecute = previousPageCommand;
+        }
+        if (command.equals("nextPage")) {
+            commandToExecute = nextPageCommand;
+        }
+        if (command.equals("loadRecommendations")) {
+            commandToExecute = loadRecommendationsCommand;
         }
     }
 

@@ -5,6 +5,7 @@ import audio.files.Song;
 import main.InputCommands;
 import org.checkerframework.checker.units.qual.A;
 import user.types.Artist;
+import user.types.Host;
 import user.types.User;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
@@ -17,7 +18,7 @@ public class WrappedCommand implements Visitable {
     private ArrayList<String> topGenres = new ArrayList<>();
     private ArrayList<String> topSongs = new ArrayList<>();
     private ArrayList<String> topAlbums = new ArrayList<>();
-    private ArrayList<String> topPodcasts = new ArrayList<>();
+    private ArrayList<String> topEpisodes = new ArrayList<>();
     private ArrayList<String> topFans = new ArrayList<>();
     private int listeners;
 
@@ -38,7 +39,7 @@ public class WrappedCommand implements Visitable {
         // check if the user has any data in his statistics
         if(user.getStatistics().getTopArtists().isEmpty() && user.getStatistics().getTopGenres().isEmpty() &&
                 user.getStatistics().getTopSongs().isEmpty() && user.getStatistics().getTopAlbums().isEmpty() &&
-                user.getStatistics().getTopPodcasts().isEmpty()) {
+                user.getStatistics().getTopEpisodes().isEmpty()) {
             message = "No data to show for user " + user.getUsername() + ".";
             return;
         }
@@ -48,7 +49,7 @@ public class WrappedCommand implements Visitable {
         topArtists.addAll(user.getStatistics().topArtists());
         topGenres.addAll(user.getStatistics().topGenres());
         topAlbums.addAll(user.getStatistics().topAlbums());
-        topPodcasts.addAll(user.getStatistics().topPodcasts());
+        topEpisodes.addAll(user.getStatistics().topEpisodes());
     }
 
     public void setStatisticsArtist(Artist artist) {
@@ -66,6 +67,20 @@ public class WrappedCommand implements Visitable {
         topFans.addAll(artist.getArtistStatistics().topFans());
         artist.getArtistStatistics().setListeners();
         listeners = artist.getArtistStatistics().getListeners();
+    }
+
+    public void setStatisticsHost(Host host) {
+        // if there are no data in the host's statistics, the message is "No data to show for host ${host_name}.", otherwise is null
+        // check if the host has any data in his statistics
+        if(host.getHostStatistics().getTopEpisodes().isEmpty() && host.getHostStatistics().getTopFans().isEmpty() &&
+                host.getHostStatistics().getListeners() == 0) {
+            message = "No data to show for host " + host.getUsername() + ".";
+            return;
+        }
+        message = null;
+        topEpisodes.addAll(host.getHostStatistics().topEpisodes());
+        host.getHostStatistics().setListeners();
+        listeners = host.getHostStatistics().getListeners();
     }
 
     /**
@@ -99,8 +114,8 @@ public class WrappedCommand implements Visitable {
     /**
      * @return the topPodcasts
      */
-    public ArrayList<String> getTopPodcasts() {
-        return topPodcasts;
+    public ArrayList<String> getTopEpisodes() {
+        return topEpisodes;
     }
 
     /**

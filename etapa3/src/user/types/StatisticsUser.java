@@ -13,14 +13,14 @@ public class StatisticsUser {
     private HashMap<String, Integer> topGenres; // the key is the genre and the value is the number of listens
     private HashMap<String, Integer> topSongs; // the key is the song and the value is the number of listens
     private HashMap<String, Integer> topAlbums; // the key is the album and the value is the number of listens
-    private HashMap<String, Integer> topPodcasts; // the key is the podcast and the value is the number of listens
+    private HashMap<String, Integer> topEpisodes; // the key is the podcast and the value is the number of listens
 
     public StatisticsUser() {
         topArtists = new HashMap<>();
         topGenres = new HashMap<>();
         topSongs = new HashMap<>();
         topAlbums = new HashMap<>();
-        topPodcasts = new HashMap<>();
+        topEpisodes = new HashMap<>();
     }
 
     /**
@@ -82,15 +82,15 @@ public class StatisticsUser {
     /**
      * @return the hashmap of top podcasts
      */
-    public HashMap<String, Integer> getTopPodcasts() {
-        return topPodcasts;
+    public HashMap<String, Integer> getTopEpisodes() {
+        return topEpisodes;
     }
 
     /**
-     * @param topPodcasts the hashmap of top podcasts to set
+     * @param topEpisodes the hashmap of top podcasts to set
      */
-    public void setTopPodcasts(HashMap<String, Integer> topPodcasts) {
-        this.topPodcasts = topPodcasts;
+    public void setTopEpisodes(HashMap<String, Integer> topEpisodes) {
+        this.topEpisodes = topEpisodes;
     }
 
     /**
@@ -223,33 +223,32 @@ public class StatisticsUser {
     /**
      * @return the list of top podcasts
      */
-    public ArrayList<String> topPodcasts() {
-        ArrayList<String> topPodcasts = new ArrayList<>();
+    public ArrayList<String> topEpisodes() {
+        ArrayList<String> topEpisodes = new ArrayList<>();
 
         // get the list of podcasts from the hashmap
-        List<String> podcasts = new ArrayList<>(this.topPodcasts.keySet());
+        List<String> episodes = new ArrayList<>(this.topEpisodes.keySet());
 
         // sort the list of podcasts by the number of listens they have (the value in the hashmap)
-        podcasts.sort((podcast1, podcast2) -> this.topPodcasts.get(podcast2) - this.topPodcasts.get(podcast1));
+        episodes.sort((episode1, episode2) -> this.topEpisodes.get(episode2) - this.topEpisodes.get(episode1));
 
         // in case of a tie, sort by name
-        podcasts.sort((podcast1, podcast2) -> {
-            if(this.topPodcasts.get(podcast1).equals(this.topPodcasts.get(podcast2))) {
-                return podcast1.compareTo(podcast2);
+        episodes.sort((episode1, episode2) -> {
+            if(this.topEpisodes.get(episode1).equals(this.topEpisodes.get(episode2))) {
+                return episode1.compareTo(episode2);
             }
             return 0;
         });
 
         // add the top 5 podcasts to the list or all of them if there are less than 5
-        if(podcasts.size() > 5) {
+        if(episodes.size() > 5) {
             for(int i = 0; i < 5; i++) {
-                topPodcasts.add(podcasts.get(i));
+                topEpisodes.add(episodes.get(i));
             }
         } else {
-            topPodcasts.addAll(podcasts);
+            topEpisodes.addAll(episodes);
         }
 
-        return topPodcasts;
+        return topEpisodes;
     }
-
 }

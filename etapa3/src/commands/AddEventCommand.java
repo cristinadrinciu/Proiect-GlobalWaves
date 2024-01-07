@@ -1,6 +1,7 @@
 package commands;
 
 import main.InputCommands;
+import notification.Notification;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
 import user.types.Artist;
@@ -103,6 +104,14 @@ public class AddEventCommand implements Visitable {
         events.add(event);
         message = user.getUsername()
                     + " has added new event successfully.";
+
+        // send notification to subscribers
+        for (User subscriber : ((Artist) user).getSubscribers()) {
+            Notification newNotification = new Notification();
+            newNotification.setName("New Event");
+            newNotification.setDescription("New Event from " + user.getUsername() + ".");
+            subscriber.getNotifications().add(newNotification);
+        }
 
         // update the artist page
         ((Artist) user).setArtistPage();

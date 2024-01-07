@@ -99,6 +99,7 @@ public class Library {
             newUser.setStatusOnline(true);
             newUser.setHomePage();
             newUser.setCurrentPage(newUser.getHomePage());
+            newUser.getNavigationHistory().add(newUser.getHomePage());
             newUser.setPlayer(new Player(newUser, this));
             users.add(newUser);
         }

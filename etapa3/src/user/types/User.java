@@ -1,6 +1,7 @@
 package user.types;
 
 import audio.files.*;
+import notification.Notification;
 import pages.LikedContentPage;
 import platform.data.PublicAlbums;
 import player.Player;
@@ -32,6 +33,12 @@ public class User {
     private StatisticsUser statistics = new StatisticsUser();
     private boolean premium = false;
     private ArrayList<Song> premiumSongs = new ArrayList<>();
+    private ArrayList<Song> songsBetweenAds = new ArrayList<>();
+    private ArrayList<Notification> notifications = new ArrayList<>();
+    private ArrayList<String> boughtMerch = new ArrayList<>();
+    private AudioFile lastRecommendation;
+    private ArrayList<Page> navigationHistory = new ArrayList<>();
+    private int indexNavigationHistory = 0;
 
     public User() {
     }
@@ -303,19 +310,6 @@ public class User {
     }
 
     /**
-     * @param podcast the podcast to set the number of listens to in the statistics
-     */
-    public void setListensToPodcast(final String podcast) {
-        // add the podcast to the topPodcasts hashmap if it is not already there
-        if (!statistics.getTopPodcasts().containsKey(podcast)) {
-            statistics.getTopPodcasts().put(podcast, 1);
-        } else {
-            // if the podcast is already in the hashmap, increment the number of listens
-            statistics.getTopPodcasts().put(podcast, statistics.getTopPodcasts().get(podcast) + 1);
-        }
-    }
-
-    /**
      * @param artist the artist to set the number of listens to in the statistics
      */
     public void setListensToArtist(final String artist) {
@@ -338,6 +332,19 @@ public class User {
         } else {
             // if the genre is already in the hashmap, increment the number of listens
             statistics.getTopGenres().put(genre, statistics.getTopGenres().get(genre) + 1);
+        }
+    }
+
+    /**
+     * @param episode the episode to set the number of listens to in the statistics
+     */
+    public void setListensToEpisode(final String episode) {
+        // add the episode to the topEpisodes hashmap if it is not already there
+        if (!statistics.getTopEpisodes().containsKey(episode)) {
+            statistics.getTopEpisodes().put(episode, 1);
+        } else {
+            // if the episode is already in the hashmap, increment the number of listens
+            statistics.getTopEpisodes().put(episode, statistics.getTopEpisodes().get(episode) + 1);
         }
     }
 
@@ -367,12 +374,69 @@ public class User {
      * @param song the song to be added
      */
     public void addPremiumSongs(final Song song) {
-//        // check if the song is already in the list
-//        for (Song premiumSong : this.premiumSongs) {
-//            if (premiumSong.getName().equals(song.getName())) {
-//                return;
-//            }
-//        }
         this.premiumSongs.add(song);
+    }
+
+    /**
+     * @return the songsBetweenAds
+     */
+    public ArrayList<Song> getSongsBetweenAds() {
+        return songsBetweenAds;
+    }
+
+    /**
+     * @return the notifications
+     */
+    public ArrayList<Notification> getNotifications() {
+        return notifications;
+    }
+
+    /**
+     * @return the boughtMerch
+     */
+    public ArrayList<String> getBoughtMerch() {
+        return boughtMerch;
+    }
+
+    /**
+     * @param lastRecommendation the last recommendation to set
+     */
+    public void setLastRecommendation(final AudioFile lastRecommendation) {
+        this.lastRecommendation = lastRecommendation;
+    }
+
+    /**
+     * @return the last recommendation
+     */
+    public AudioFile getLastRecommendation() {
+        return lastRecommendation;
+    }
+
+    /**
+     * @return the navigationHistory
+     */
+    public ArrayList<Page> getNavigationHistory() {
+        return navigationHistory;
+    }
+
+    /**
+     * @param navigationHistory the navigationHistory to set
+     */
+    public void setNavigationHistory(final ArrayList<Page> navigationHistory) {
+        this.navigationHistory = navigationHistory;
+    }
+
+    /**
+     * @return the indexNavigationHistory
+     */
+    public int getIndexNavigationHistory() {
+        return indexNavigationHistory;
+    }
+
+    /**
+     * @param indexNavigationHistory the indexNavigationHistory to set
+     */
+    public void setIndexNavigationHistory(final int indexNavigationHistory) {
+        this.indexNavigationHistory = indexNavigationHistory;
     }
 }

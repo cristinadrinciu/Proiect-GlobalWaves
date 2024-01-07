@@ -8,6 +8,8 @@ import java.util.ArrayList;
 public class HomePage implements Page {
     private ArrayList<Song> likedSongs = new ArrayList<>();
     private ArrayList<Playlist> followedPlaylists = new ArrayList<>();
+    private ArrayList<Song> songRecommendations = new ArrayList<>();
+    private ArrayList<Playlist> playlistRecommendations = new ArrayList<>();
 
     public HomePage() {
     }
@@ -113,20 +115,44 @@ public class HomePage implements Page {
     }
 
     /**
+     * @return the songRecommendations array
+     */
+    public ArrayList<Song> getSongRecommendations() {
+        return songRecommendations;
+    }
+
+    /**
+     * @return the playlistRecommendations array
+     */
+    public ArrayList<Playlist> getPlaylistRecommendations() {
+        return playlistRecommendations;
+    }
+
+    /**
      * This method is used to print the home page
      */
     @Override
     public String printPage() {
         ArrayList<String> songNames = new ArrayList<>();
         ArrayList<String> playlistNames = new ArrayList<>();
+        ArrayList<String> songRecommendationsNames = new ArrayList<>();
+        ArrayList<String> playlistRecommendationsNames = new ArrayList<>();
+
         for (Song song : likedSongs) {
             songNames.add(song.getName());
         }
         for (Playlist playlist : followedPlaylists) {
             playlistNames.add(playlist.getName());
         }
+        for (Song song : songRecommendations) {
+            songRecommendationsNames.add(song.getName());
+        }
+        for (Playlist playlist : playlistRecommendations) {
+            playlistRecommendationsNames.add(playlist.getName());
+        }
         return "Liked songs:\n\t" + songNames.toString() + "\n\nFollowed playlists:\n\t"
-                + playlistNames.toString();
+                + playlistNames.toString() + "\n\nSong recommendations:\n\t" + songRecommendationsNames.toString()
+                + "\n\nPlaylists recommendations:\n\t" + playlistRecommendationsNames.toString();
     }
 
 }

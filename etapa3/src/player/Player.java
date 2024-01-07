@@ -1,8 +1,10 @@
 package player;
 
 import audio.files.*;
+import commands.AdBreakCommand;
 import fileio.input.EpisodeInput;
 import user.types.Artist;
+import user.types.Host;
 import user.types.User;
 
 import java.util.ArrayList;
@@ -168,9 +170,26 @@ public class Player {
                         // go to the next track
                         remainingTime = ((Song) playingNow).getDuration() - listenedTime;
 
+                        // skip the statistics if it is an ad
+                        if(playingNow.getName().equals("Ad Break")) {
+                            // check if it is an ad
+                            for (User user1 : library.getUsers()) {
+                                if (user1.getType().equals("artist")) {
+                                    ((Artist) user1).calculateAddRevenue(AdBreakCommand.getPrice(), user);
+                                }
+                            }
+                            // clear the list of songs between ads
+                            user.getSongsBetweenAds().clear();
+                            continue;
+                        }
+
+                        // add in the list of songs between ads
+                        user.getSongsBetweenAds().add((Song) playingNow);
+
                         // add in the list of songs listened while premium
                         if(user.isPremium())
                             user.addPremiumSongs((Song) playingNow);
+
 
                         // update the listens of the song
                         user.setListensToSong(playingNow.getName());
@@ -199,6 +218,23 @@ public class Player {
                         listenedTime = -remainingTime; // time listened from the next track
                         playingNow = shuffledPlaylist.get(index + 1); // go to the next track
                         remainingTime = ((Song) playingNow).getDuration() - listenedTime;
+
+                        // skip the statistics if it is an ad
+                        if(playingNow.getName().equals("Ad Break")) {
+                            // it means the whole ad was listened, so monetize
+                            for (User user1 : library.getUsers()) {
+                                if (user1.getType().equals("artist")) {
+                                    ((Artist) user1).calculateAddRevenue(AdBreakCommand.getPrice(), user);
+                                }
+                            }
+
+                            // clear the list of songs between ads
+                            user.getSongsBetweenAds().clear();
+                            continue;
+                        }
+
+                        // add in the list of songs between ads
+                        user.getSongsBetweenAds().add((Song) playingNow);
 
                         // add in the list of songs listened while premium
                         if(user.isPremium())
@@ -239,6 +275,23 @@ public class Player {
                         // go to the next track
                         remainingTime = ((Song) playingNow).getDuration() - listenedTime;
 
+                        // skip the statistics if it is an ad
+                        if(playingNow.getName().equals("Ad Break")) {
+                            // it means the whole ad was listened, so monetize
+                            for (User user1 : library.getUsers()) {
+                                if (user1.getType().equals("artist")) {
+                                    ((Artist) user1).calculateAddRevenue(AdBreakCommand.getPrice(), user);
+                                }
+                            }
+
+                            // clear the list of songs between ads
+                            user.getSongsBetweenAds().clear();
+                            continue;
+                        }
+
+                        // add in the list of songs between ads
+                        user.getSongsBetweenAds().add((Song) playingNow);
+
                         // add in the list of songs listened while premium
                         if(user.isPremium())
                             user.addPremiumSongs((Song) playingNow);
@@ -271,6 +324,23 @@ public class Player {
                         playingNow = shuffledPlaylist.get(index + 1); // go to the next track
                         remainingTime = ((Song) playingNow).getDuration() - listenedTime;
 
+                        // skip the statistics if it is an ad
+                        if(playingNow.getName().equals("Ad Break")) {
+                            // it means the whole ad was listened, so monetize
+                            for (User user1 : library.getUsers()) {
+                                if (user1.getType().equals("artist")) {
+                                    ((Artist) user1).calculateAddRevenue(AdBreakCommand.getPrice(), user);
+                                }
+                            }
+
+                            // clear the list of songs between ads
+                            user.getSongsBetweenAds().clear();
+                            continue;
+                        }
+
+                        // add in the list of songs between ads
+                        user.getSongsBetweenAds().add((Song) playingNow);
+
                         // add in the list of songs listened while premium
                         if(user.isPremium())
                             user.addPremiumSongs((Song) playingNow);
@@ -291,25 +361,35 @@ public class Player {
                     }
                 }
             }
-             if (loadedItem instanceof Podcast) {
-                 while (remainingTime <= 0) {
-                     int index = ((Podcast) loadedItem).getEpisodes().indexOf(
-                             (EpisodeInput) playingNow);
-                     if (index == ((Podcast) loadedItem).getEpisodes().size() - 1) {
-                         paused = true;
-                         listenedTime = 0;
-                         loadedItem = null;
-                         remainingTime = 0;
-                         playingNow = null;
-                         return;
-                     }
-                     listenedTime = -remainingTime; // time listened from the next track
-                     playingNow = ((Podcast) loadedItem).getEpisodes().get(index + 1);
-                     // go to the next track
-                     remainingTime = ((EpisodeInput) playingNow).
-                             getDuration() - listenedTime;
-                 }
-             }
+            if (loadedItem instanceof Podcast) {
+                while (remainingTime <= 0) {
+                    int index = ((Podcast) loadedItem).getEpisodes().indexOf(
+                            (EpisodeInput) playingNow);
+                    if (index == ((Podcast) loadedItem).getEpisodes().size() - 1) {
+                        paused = true;
+                        listenedTime = 0;
+                        loadedItem = null;
+                        remainingTime = 0;
+                        playingNow = null;
+                        return;
+                    }
+                    listenedTime = -remainingTime; // time listened from the next track
+                    playingNow = ((Podcast) loadedItem).getEpisodes().get(index + 1);
+                    // go to the next track
+                    remainingTime = ((EpisodeInput) playingNow).
+                            getDuration() - listenedTime;
+
+                    // update the statistics
+                    user.setListensToEpisode(playingNow.getName());
+
+                    // update the statistics for the host
+                    Host host = findHost((Podcast) loadedItem);
+                    if (host != null) {
+                        host.setListensToEpisode(playingNow.getName());
+                        host.setListensToFan(user.getUsername());
+                    }
+                }
+            }
         }
     }
 
@@ -368,13 +448,20 @@ public class Player {
                             indexOf((EpisodeInput) playingNow);
                     if (index == ((Podcast) loadedItem).getEpisodes().size() - 1) {
                         playingNow = ((Podcast) loadedItem).getEpisodes().get(0);
-                        // the podcast is repeated once, increment the listens
-                        user.setListensToPodcast(loadedItem.getName());
                     } else {
                         playingNow = ((Podcast) loadedItem).getEpisodes().get(index + 1);
                     }
                     listenedTime = -remainingTime; // time listened from the next track
                     remainingTime = ((EpisodeInput) playingNow).getDuration() - listenedTime;
+                    // update the statistics
+                    user.setListensToEpisode(playingNow.getName());
+
+                    // update the statistics for the host
+                    Host host = findHost((Podcast) loadedItem);
+                    if (host != null) {
+                        host.setListensToEpisode(playingNow.getName());
+                        host.setListensToFan(user.getUsername());
+                    }
                 }
             }
             if (loadedItem instanceof Playlist) {
@@ -497,14 +584,21 @@ public class Player {
                                 indexOf((EpisodeInput) playingNow);
                         if (index == ((Podcast) loadedItem).getEpisodes().size() - 1) {
                             playingNow = ((Podcast) loadedItem).getEpisodes().get(0);
-                            // the podcast is repeated once, increment the listens
-                            user.setListensToPodcast(loadedItem.getName());
                             repeatedOnce = 1;
                         } else {
                             playingNow = ((Podcast) loadedItem).getEpisodes().get(index + 1);
                         }
                         listenedTime = -remainingTime; // time listened from the next track
                         remainingTime = ((EpisodeInput) playingNow).getDuration() - listenedTime;
+                        // update the statistics
+                        user.setListensToEpisode(playingNow.getName());
+
+                        // update the statistics for the host
+                        Host host = findHost((Podcast) loadedItem);
+                        if (host != null) {
+                            host.setListensToEpisode(playingNow.getName());
+                            host.setListensToFan(user.getUsername());
+                        }
                     } else {
                         int index = ((Podcast) loadedItem).getEpisodes().
                                 indexOf((EpisodeInput) playingNow);
@@ -522,6 +616,15 @@ public class Player {
                         // go to the next track
                         playingNow = ((Podcast) loadedItem).getEpisodes().get(index + 1);
                         remainingTime = ((EpisodeInput) playingNow).getDuration() - listenedTime;
+                        // update the statistics
+                        user.setListensToEpisode(playingNow.getName());
+
+                        // update the statistics for the host
+                        Host host = findHost((Podcast) loadedItem);
+                        if (host != null) {
+                            host.setListensToEpisode(playingNow.getName());
+                            host.setListensToFan(user.getUsername());
+                        }
                     }
                 }
             }
@@ -659,6 +762,17 @@ public class Player {
             if(artist.getType().equals("artist")) {
                 if (artist.getUsername().equals(song.getArtist())) {
                     return (Artist) artist;
+                }
+            }
+        }
+        return null;
+    }
+
+    public Host findHost(final Podcast podcast) {
+        for (User host : library.getUsers()) {
+            if(host.getType().equals("host")) {
+                if (host.getUsername().equals(podcast.getOwner())) {
+                    return (Host) host;
                 }
             }
         }

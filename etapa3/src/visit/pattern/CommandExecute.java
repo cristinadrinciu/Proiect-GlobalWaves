@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import commands.*;
 import fileio.input.EpisodeInput;
 import main.InputCommands;
+import notification.Notification;
 import platform.data.OnlineUsers;
 import user.types.Artist;
 import user.types.Host;
@@ -672,6 +673,19 @@ public class CommandExecute implements Visitor {
     public void visit(final InputCommands command,
                         final LoadCommand loadCommand, final Library library) {
         User user = command.getUser();
+        // update the player for the user
+        if (user.getPlayer().loadedItem != null) {
+            if (user.getPlayer().repeatState == 0) {
+                user.getPlayer().setRemainingTime();
+            }
+            if (user.getPlayer().repeatState == 1) {
+                user.getPlayer().setRemainingTimeRepeat1();
+            }
+            if (user.getPlayer().repeatState == 2) {
+                user.getPlayer().setRemainingTimeRepeat2();
+            }
+        }
+
         String message = loadCommand.buildMessage(user.getSelectedItem());
         if (LoadCommand.getLoadedItem() != null) {
             user.getPlayer().loadedItem = LoadCommand.getLoadedItem();
@@ -687,6 +701,10 @@ public class CommandExecute implements Visitor {
             if(user.getPlayer().loadedItem instanceof Song
                 || user.getPlayer().loadedItem instanceof Playlist
                 || user.getPlayer().loadedItem instanceof Album) {
+                // add in the list of songs between ads
+                if(user.getPlayer().playingNow != null)
+                    user.getSongsBetweenAds().add((Song) user.getPlayer().playingNow);
+
                 // add in the list of songs listened while premium
                 if(user.isPremium())
                     user.addPremiumSongs((Song) user.getPlayer().playingNow);
@@ -706,8 +724,15 @@ public class CommandExecute implements Visitor {
                 }
             }
             if(user.getPlayer().loadedItem instanceof Podcast) {
-                // update the listens of the podcast
-                user.setListensToPodcast(user.getPlayer().loadedItem.getName());
+                // update the listens of the episode
+                user.setListensToEpisode(user.getPlayer().playingNow.getName());
+
+                // update the host statistics
+                Host host = user.getPlayer().findHost((Podcast) user.getPlayer().loadedItem);
+                if (host != null) {
+                    host.setListensToEpisode(user.getPlayer().playingNow.getName());
+                    host.setListensToFan(user.getUsername());
+                }
             }
         }
 
@@ -1472,13 +1497,13 @@ public class CommandExecute implements Visitor {
                 ObjectNode topGenres = objectMapper.createObjectNode();
                 ObjectNode topSongs = objectMapper.createObjectNode();
                 ObjectNode topAlbums = objectMapper.createObjectNode();
-                ObjectNode topPodcasts = objectMapper.createObjectNode();
+                ObjectNode topEpisodes = objectMapper.createObjectNode();
 
                 ArrayList<String> topArtistsList = wrappedCommand.getTopArtists();
                 ArrayList<String> topGenresList = wrappedCommand.getTopGenres();
                 ArrayList<String> topSongsList = wrappedCommand.getTopSongs();
                 ArrayList<String> topAlbumsList = wrappedCommand.getTopAlbums();
-                ArrayList<String> topPodcastsList = wrappedCommand.getTopPodcasts();
+                ArrayList<String> topEpisodesList = wrappedCommand.getTopEpisodes();
 
                 for (String artist : topArtistsList) {
                     topArtists.put(artist, user.getStatistics().getTopArtists().get(artist));
@@ -1492,15 +1517,15 @@ public class CommandExecute implements Visitor {
                 for (String album : topAlbumsList) {
                     topAlbums.put(album, user.getStatistics().getTopAlbums().get(album));
                 }
-                for (String podcast : topPodcastsList) {
-                    topPodcasts.put(podcast, user.getStatistics().getTopPodcasts().get(podcast));
+                for (String episode : topEpisodesList) {
+                    topEpisodes.put(episode, user.getStatistics().getTopEpisodes().get(episode));
                 }
 
                 result.set("topArtists", topArtists);
                 result.set("topGenres", topGenres);
                 result.set("topSongs", topSongs);
                 result.set("topAlbums", topAlbums);
-                result.set("topEpisodes", topPodcasts);
+                result.set("topEpisodes", topEpisodes);
 
                 commandJson.set("result", result);
             }
@@ -1546,6 +1571,40 @@ public class CommandExecute implements Visitor {
                 result.set("topAlbums", topAlbums);
                 result.set("topSongs", topSongs);
                 result.set("topFans", topFans);
+                result.put("listeners", (wrappedCommand.getListeners()));
+
+                commandJson.set("result", result);
+            }
+        } else if (user.getType().equals("host")) {
+            // update the player of each user in the library
+            for (User user1 : OnlineUsers.getOnlineUsers()) {
+                user1.getPlayer().timestamp = command.getTimestamp();
+                if (user1.getPlayer().repeatState == 0) {
+                    user1.getPlayer().setRemainingTime();
+                } else if (user1.getPlayer().repeatState == 1) {
+                    user1.getPlayer().setRemainingTimeRepeat1();
+                } else if (user1.getPlayer().repeatState == 2) {
+                    user1.getPlayer().setRemainingTimeRepeat2();
+                }
+            }
+
+            wrappedCommand.setStatisticsHost((Host) user);
+
+            String message = wrappedCommand.getMessage();
+
+            if (message != null) {
+                commandJson.put("message", message);
+            } else {
+                ObjectNode result = objectMapper.createObjectNode();
+                ObjectNode topEpisodes = objectMapper.createObjectNode();
+
+                ArrayList<String> topEpisodesList = wrappedCommand.getTopEpisodes();
+
+                for (String episode : topEpisodesList) {
+                    topEpisodes.put(episode, ((Host) user).getHostStatistics().getTopEpisodes().get(episode));
+                }
+
+                result.set("topEpisodes", topEpisodes);
                 result.put("listeners", (wrappedCommand.getListeners()));
 
                 commandJson.set("result", result);
@@ -1600,4 +1659,267 @@ public class CommandExecute implements Visitor {
                 .put("message", message);
         command.getCommandList().add(commandJson);
     }
+
+    /**
+     * This method is used to execute the adBreak command received from the client.
+     * @param command the command received from the client
+     * @param adBreakCommand the adBreak command
+     * @param library the library of the application
+     */
+    @Override
+    public void visit(final InputCommands command,
+                      final AdBreakCommand adBreakCommand, final Library library) {
+        User user = command.getUser();
+        // update the player for the user
+        if (user.getPlayer().loadedItem != null) {
+            if (user.getPlayer().repeatState == 0) {
+                user.getPlayer().setRemainingTime();
+            }
+            if (user.getPlayer().repeatState == 1) {
+                user.getPlayer().setRemainingTimeRepeat1();
+            }
+            if (user.getPlayer().repeatState == 2) {
+                user.getPlayer().setRemainingTimeRepeat2();
+            }
+        }
+
+        adBreakCommand.adBreak(user, library);
+
+        String message = adBreakCommand.getMessage();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "adBreak")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+        command.getCommandList().add(commandJson);
+    }
+
+    /**
+     * This method is used to execute the subscribe command received from the client.
+     * @param command the command received from the client
+     * @param subscribeCommand the subscribe command
+     * @param library the library of the application
+     */
+    @Override
+    public void visit(final InputCommands command,
+                      final SubscribeCommand subscribeCommand, final Library library) {
+        User user = command.getUser();
+        subscribeCommand.subscribe(user);
+
+        String message = subscribeCommand.getMessage();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "subscribe")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+        command.getCommandList().add(commandJson);
+    }
+
+    /**
+     * This method is used to execute the get notifications command received from the client.
+     * @param command the command received from the client
+     * @param getNotificationsCommand the get notifications command
+     * @param library the library of the application
+     */
+    @Override
+    public void visit(final InputCommands command,
+                      final GetNotifications getNotificationsCommand,
+                      final Library library) {
+        User user = command.getUser();
+        getNotificationsCommand.showNotifications(user);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "getNotifications")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp());
+
+        ArrayNode notificationsArray = JsonNodeFactory.instance.arrayNode();
+
+        for (Notification notification : getNotificationsCommand.getNotifications()) {
+            ObjectNode notificationNode = JsonNodeFactory.instance.objectNode()
+                    .put("name", notification.getName())
+                    .put("description", notification.getDescription());
+            notificationsArray.add(notificationNode);
+        }
+
+        commandJson.set("notifications", notificationsArray);
+
+        command.getCommandList().add(commandJson);
+    }
+
+    /**
+     * This method is used to execute the buy merch command received from the client.
+     * @param command the command received from the client
+     * @param buyMerch the buy merchandise command
+     * @param library the library of the application
+     */
+    @Override
+    public void visit(final InputCommands command,
+                      final BuyMerch buyMerch, final Library library) {
+        User user = command.getUser();
+        buyMerch.buyMerch(user);
+
+        String message = buyMerch.getMessage();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "buyMerch")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+        command.getCommandList().add(commandJson);
+    }
+
+    /**
+     * This method is used to execute the see my merch command received from the client.
+     * @param command the command received from the client
+     * @param seeMyMerch the see my merch command
+     * @param library the library of the application
+     */
+    @Override
+    public void visit(final InputCommands command,
+                      final SeeMyMerchCommand seeMyMerch, final Library library) {
+        User user = command.getUser();
+        ArrayList<String> merch = seeMyMerch.getBoughtMerch(user);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "seeMerch")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp());
+
+        ArrayNode merchArray = JsonNodeFactory.instance.arrayNode();
+
+        for (String merchItem : merch) {
+            merchArray.add(merchItem);
+        }
+
+        commandJson.set("result", merchArray);
+
+        command.getCommandList().add(commandJson);
+    }
+
+    /**
+     * This method is used to execute the updateRecommendation command received from the client.
+     * @param command the command received from the client
+     * @param updateRecommendationCommand the updateRecommendation command
+     * @param library the library of the application
+     */
+    @Override
+    public void visit(final InputCommands command,
+                      final UpdateRecommendationsCommand updateRecommendationCommand,
+                      final Library library) {
+        User user = command.getUser();
+
+        // update the player for the user
+        if (user.getPlayer().loadedItem != null) {
+            if (user.getPlayer().repeatState == 0) {
+                user.getPlayer().setRemainingTime();
+            }
+            if (user.getPlayer().repeatState == 1) {
+                user.getPlayer().setRemainingTimeRepeat1();
+            }
+            if (user.getPlayer().repeatState == 2) {
+                user.getPlayer().setRemainingTimeRepeat2();
+            }
+        }
+
+        if(updateRecommendationCommand.getRecommendationType().equals("fans_playlist")) {
+            updateRecommendationCommand.updateFansPlaylist(user, library);
+        } else if (updateRecommendationCommand.getRecommendationType().equals("random_song")) {
+            updateRecommendationCommand.updateRandomSong(user, library);
+        } else if (updateRecommendationCommand.getRecommendationType().equals("random_playlist")) {
+            updateRecommendationCommand.updateRandomPlaylist(user, library);
+        }
+
+        String message = updateRecommendationCommand.getMessage();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "updateRecommendations")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+        command.getCommandList().add(commandJson);
+    }
+
+    /**
+     * This method is used to execute the previousPage command received from the client.
+     * @param command the command received from the client
+     * @param previousPageCommand the previousPage command
+     * @param library the library of the application
+     */
+    @Override
+    public void visit(final InputCommands command,
+                      final PreviousPageCommand previousPageCommand, final Library library) {
+        User user = command.getUser();
+        previousPageCommand.goToPreviousPage(user);
+
+        String message = previousPageCommand.getMessage();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "previousPage")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+        command.getCommandList().add(commandJson);
+    }
+
+    /**
+     * This method is used to execute the nextPage command received from the client.
+     * @param command the command received from the client
+     * @param nextPageCommand the nextPage command
+     * @param library the library of the application
+     */
+    @Override
+    public void visit(final InputCommands command,
+                      final NextPageCommand nextPageCommand, final Library library) {
+        User user = command.getUser();
+        nextPageCommand.goToNextPage(user);
+
+        String message = nextPageCommand.getMessage();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "nextPage")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+        command.getCommandList().add(commandJson);
+    }
+
+    /**
+     * This method is used to execute the loadRecommendation command received from the client.
+     * @param command the command received from the client
+     * @param loadRecommendationCommand the loadRecommendation command
+     * @param library the library of the application
+     */
+    @Override
+    public void visit(final InputCommands command,
+                      final LoadRecommendationCommand loadRecommendationCommand,
+                      final Library library) {
+        User user = command.getUser();
+        loadRecommendationCommand.loadRecommendation(user);
+
+        String message = loadRecommendationCommand.getMessage();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "loadRecommendations")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+        command.getCommandList().add(commandJson);
+
+    }
+
 }
+

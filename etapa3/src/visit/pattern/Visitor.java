@@ -317,4 +317,76 @@ public interface Visitor {
      */
     void visit(InputCommands command, CancelPremiumCommand cancelPremiumCommand,
                Library library);
+
+    /**
+     * @param command the command to be visited
+     * @param adBreakCommand the command to be visited
+     * @param library the library
+     */
+    void visit(InputCommands command, AdBreakCommand adBreakCommand,
+               Library library);
+
+    /**
+     * @param command the command to be visited
+     * @param subscribeCommand the command to be visited
+     * @param library the library
+     */
+    void visit(InputCommands command, SubscribeCommand subscribeCommand,
+               Library library);
+
+    /**
+     * @param command the command to be visited
+     * @param getNotifications the command to be visited
+     * @param library the library
+     */
+    void visit(InputCommands command, GetNotifications getNotifications,
+               Library library);
+
+    /**
+     * @param command the command to be visited
+     * @param buyMerch the command to be visited
+     * @param library the library
+     */
+    void visit(InputCommands command, BuyMerch buyMerch,
+               Library library);
+
+    /**
+     * @param command the command to be visited
+     * @param seeMyMerch the command to be visited
+     * @param library the library
+     */
+    void visit(InputCommands command, SeeMyMerchCommand seeMyMerch,
+               Library library);
+
+    /**
+     * @param command the command to be visited
+     * @param updateRecommendationsCommand the command to be visited
+     * @param library the library
+     */
+    void visit(InputCommands command, UpdateRecommendationsCommand updateRecommendationsCommand,
+               Library library);
+
+    /**
+     * @param command the command to be visited
+     * @param previousPageCommand the command to be visited
+     * @param library the library
+     */
+    void visit(InputCommands command, PreviousPageCommand previousPageCommand,
+               Library library);
+
+    /**
+     * @param command the command to be visited
+     * @param nextPageCommand the command to be visited
+     * @param library the library
+     */
+    void visit(InputCommands command, NextPageCommand nextPageCommand,
+               Library library);
+
+    /**
+     * @param command the command to be visited
+     * @param loadRecommendationCommand the command to be visited
+     * @param library the library
+     */
+    void visit(InputCommands command, LoadRecommendationCommand loadRecommendationCommand,
+               Library library);
 }

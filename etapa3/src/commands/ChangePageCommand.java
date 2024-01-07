@@ -1,7 +1,11 @@
 package commands;
 
 import audio.files.Library;
+import audio.files.Podcast;
+import audio.files.Song;
 import main.InputCommands;
+import user.types.Artist;
+import user.types.Host;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
 import user.types.User;
@@ -48,10 +52,32 @@ public class ChangePageCommand implements Visitable {
                 user.setCurrentPage(user.getLikedContentPage());
                 this.message = user.getUsername() + " accessed " + this.nextPage + " successfully.";
                 break;
-            default:
-                this.message = user.getUsername() + " is trying to access a non-existent page.\n";
+            case "Artist":
+                // change to artist's page of the current Song
+                if(user.getPlayer().playingNow == null) {
+                    this.message = "You are not listening to any song.";
+                    return;
+                }
+                Artist artist = user.getPlayer().findArtist((Song) user.getPlayer().playingNow);
+                user.setCurrentPage(artist.getArtistPage());
+                this.message = user.getUsername() + " accessed " + this.nextPage + " successfully.";
+                break;
+            case "Host":
+                // change to host's page of the current Podcast
+                if(user.getPlayer().playingNow == null) {
+                    this.message = "You are not listening to any song.";
+                    return;
+                }
+                Host host = user.getPlayer().findHost((Podcast) user.getPlayer().loadedItem);
+                user.setCurrentPage(host.getHostPage());
+                this.message = user.getUsername() + " accessed " + this.nextPage + " successfully.";
                 break;
         }
+        // put in the navigation history the current page
+        user.getNavigationHistory().add(user.getCurrentPage());
+
+        // update the index of the navigation history
+        user.setIndexNavigationHistory(user.getNavigationHistory().size() - 1);
     }
 
     /**

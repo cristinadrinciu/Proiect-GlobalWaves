@@ -7,10 +7,16 @@ import java.util.ArrayList;
 public class Playlist extends AudioFile {
     private User owner;
     private boolean isPublic;
-    private ArrayList<Song> songs;
+    private ArrayList<Song> songs = new ArrayList<>();
     private int followers;
     private int createdTimestamp;
     private int totalLikes;
+
+    public Playlist() {
+        this.isPublic = true;
+        this.followers = 0;
+        this.totalLikes = 0;
+    }
 
     /**
      *
@@ -26,9 +32,6 @@ public class Playlist extends AudioFile {
      */
     public void setPublic(final boolean aPublic) {
         isPublic = aPublic;
-    }
-
-    public Playlist() {
     }
 
     /**

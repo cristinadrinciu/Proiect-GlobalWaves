@@ -4,6 +4,7 @@ import audio.files.Album;
 import audio.files.Library;
 import audio.files.Song;
 import main.InputCommands;
+import notification.Notification;
 import platform.data.PublicAlbums;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
@@ -140,6 +141,14 @@ public class AddAlbumCommand implements Visitable {
         PublicAlbums.getPublicAlbums().add(album);
 
         message = artist.getUsername() + " has added new album successfully.";
+
+        // send notification to the subscribers
+        for (User subscriber : artist.getSubscribers()) {
+            Notification newNotification = new Notification();
+            newNotification.setName("New Album");
+            newNotification.setDescription("New Album from " + artist.getUsername() + ".");
+            subscriber.getNotifications().add(newNotification);
+        }
 
         // update the artist page
         artist.setArtistPage();

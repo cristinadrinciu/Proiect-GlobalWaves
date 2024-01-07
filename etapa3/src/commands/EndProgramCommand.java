@@ -16,7 +16,7 @@ public class EndProgramCommand {
         for(User user : library.getUsers()) {
             if(user.getType().equals("artist")) {
                 if(!((Artist) user).getArtistStatistics().getTopSongs().isEmpty()
-                        || !((Artist) user).getArtistStatistics().getBoughtMerch().isEmpty()) {
+                        || ((Artist) user).getMerchRevenue() != 0) {
                     artists.add((Artist) user);
                 }
             }
@@ -29,9 +29,12 @@ public class EndProgramCommand {
 
         // calculate the revenue for each artist
         for(Artist artist : artists) {
-            artist.calculateMerchRevenue();
-            artist.calculateSongRevenue(library);
-            artist.findMostProfitableSong(library);
+            // calculate the song revenue from each user
+            for(User user : library.getUsers()) {
+                if(user.isPremium()) {
+                    artist.calculateSongRevenue(user);
+                }
+            }
         }
         // sort the artists by their total revenue
         artists.sort((artist1, artist2) -> {
@@ -60,13 +63,13 @@ public class EndProgramCommand {
             ObjectNode artistJson = objectMapper.createObjectNode();
             resultJson.set(artists.get(i).getUsername(), artistJson);
             artistJson.put("merchRevenue", artists.get(i).getMerchRevenue());
-            artistJson.put("songRevenue", artists.get(i).getSongRevenue());
+            artistJson.put("songRevenue", Math.round(artists.get(i).getSongRevenue() * 100.0) / 100.0);
             artistJson.put("ranking", i + 1);
 
-            if(artists.get(i).getSongRevenue() == 0)
+            if(artists.get(i).getSongRevenue() == 0 || artists.get(i).getMostProfitableSong() == null)
                 artistJson.put("mostProfitableSong", "N/A");
             else
-                artistJson.put("mostProfitableSong", artists.get(i).getMostProfitableSong().getName());
+                artistJson.put("mostProfitableSong", artists.get(i).getMostProfitableSong());
         }
 
         commandJson.set("result", resultJson);

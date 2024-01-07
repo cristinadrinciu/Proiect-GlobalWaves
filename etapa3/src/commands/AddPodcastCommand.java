@@ -4,6 +4,7 @@ import audio.files.Library;
 import audio.files.Podcast;
 import fileio.input.EpisodeInput;
 import main.InputCommands;
+import notification.Notification;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
 import user.types.Host;
@@ -103,6 +104,14 @@ public class AddPodcastCommand implements Visitable {
 
         // set the message
         message = host.getUsername() + " has added new podcast successfully.";
+
+        // send  notification to all subscribers
+        for (User subscriber : host.getSubscribers()) {
+            Notification newNotification = new Notification();
+            newNotification.setName("New podcast");
+            newNotification.setDescription("New podcast from " + host.getUsername() + ".");
+            subscriber.getNotifications().add(newNotification);
+        }
 
     }
 

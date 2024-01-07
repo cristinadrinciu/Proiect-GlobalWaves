@@ -122,6 +122,7 @@ public class AddUserCommand implements Visitable {
             user.setLastSearchUsers(new ArrayList<User>());
             user.setHomePage(new HomePage());
             user.setCurrentPage(user.getHomePage());
+            user.getNavigationHistory().add(user.getCurrentPage());
 
             // add the user to the library
             library.getUsers().add(user);
@@ -143,6 +144,7 @@ public class AddUserCommand implements Visitable {
             user.setAlbums(new ArrayList<Album>());
             user.setHomePage(new HomePage());
             user.setCurrentPage(user.getHomePage());
+            user.getNavigationHistory().add(user.getCurrentPage());
 
             // add the artist to the library
             library.getUsers().add(user);
@@ -162,6 +164,7 @@ public class AddUserCommand implements Visitable {
             user.setAnnouncements(new ArrayList<Announcement>());
             user.setHomePage(new HomePage());
             user.setCurrentPage(user.getHomePage());
+            user.getNavigationHistory().add(user.getCurrentPage());
 
             // add the host to the library
             library.getUsers().add(user);

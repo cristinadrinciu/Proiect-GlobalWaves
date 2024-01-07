@@ -3,6 +3,7 @@ package commands;
 import audio.files.Library;
 import audio.files.Playlist;
 import main.InputCommands;
+import notification.Notification;
 import platform.data.PublicPlaylists;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
@@ -61,6 +62,12 @@ public class FollowCommand implements Visitable {
             // add in the list of followed playlist
             user.getFollowedPlaylists().add(playlist);
             message = "Playlist followed successfully.";
+
+            // send notification to the owner of the playlist
+            Notification notification = new Notification();
+            notification.setName("New Follower");
+            notification.setDescription(user.getUsername() + " followed your playlist " + playlist.getName() + ".");
+            playlist.getOwner().getNotifications().add(notification);
         }
 
         user.setHomePage();

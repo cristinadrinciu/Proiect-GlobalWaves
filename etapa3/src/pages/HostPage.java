@@ -3,14 +3,17 @@ package pages;
 import page.content.Announcement;
 import audio.files.Podcast;
 import fileio.input.EpisodeInput;
+import user.types.Host;
 
 import java.util.ArrayList;
 
 public class HostPage implements Page {
     private ArrayList<Podcast> podcasts = new ArrayList<>();
     private ArrayList<Announcement> announcements = new ArrayList<>();
+    private Host host;
 
-    public HostPage() {
+    public HostPage(Host host) {
+        this.host = host;
     }
 
     /**
@@ -78,4 +81,12 @@ public class HostPage implements Page {
         message += "]";
         return message;
     }
+
+    /**
+     * @return the host
+     */
+    public Host getHost() {
+        return host;
+    }
+
 }

@@ -1,6 +1,7 @@
 package commands;
 
 import main.InputCommands;
+import notification.Notification;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
 import user.types.Artist;
@@ -102,6 +103,14 @@ public class AddMerchCommand implements Visitable {
         // add the merch to the artist's merchs
         merch.add(item);
         message = user.getUsername() + " has added new merchandise successfully.";
+
+        // send notification to all subscribers
+        for (User subscriber : ((Artist) user).getSubscribers()) {
+            Notification newNotification = new Notification();
+            newNotification.setName("New Merchandise");
+            newNotification.setDescription("New Merchandise from " + user.getUsername() + ".");
+            subscriber.getNotifications().add(newNotification);
+        }
 
         // update the artist page
         ((Artist) user).setArtistPage();

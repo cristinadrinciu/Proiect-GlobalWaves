@@ -3,15 +3,18 @@ package pages;
 import audio.files.Album;
 import page.content.Event;
 import page.content.Merch;
+import user.types.Artist;
 
 import java.util.ArrayList;
 
 public class ArtistPage implements Page {
+    private Artist artist;
     private ArrayList<Album> albums = new ArrayList<>();
     private ArrayList<Merch> merch = new ArrayList<>();
     private ArrayList<Event> events = new ArrayList<>();
 
-    public ArtistPage() {
+    public ArtistPage(Artist artist) {
+        this.artist = artist;
     }
 
     /**
@@ -101,4 +104,12 @@ public class ArtistPage implements Page {
         message = message.concat("]");
         return message;
     }
+
+    /**
+     * @return the artist
+     */
+    public Artist getArtist() {
+        return artist;
+    }
+
 }

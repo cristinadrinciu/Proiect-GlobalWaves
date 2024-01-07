@@ -103,7 +103,7 @@ public final class Main {
 
         PublicPlaylists.getPlaylists().clear();
         InputCommands[] commands = objectMapper.readValue(new File(
-                "input/test04_etapa3_monetization_premium.json"), InputCommands[].class);
+                "input/test05_etapa3_monetization_free.json"), InputCommands[].class);
         for (User user : newLibrary.getUsers()) {
             user.getLikedSongs().clear();
             user.getPlaylists().clear();

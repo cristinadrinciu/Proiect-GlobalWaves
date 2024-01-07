@@ -1,5 +1,6 @@
 package commands;
 
+import notification.Notification;
 import page.content.Announcement;
 import main.InputCommands;
 import visit.pattern.Visitable;
@@ -80,6 +81,14 @@ public class AddAnnouncementCommand implements Visitable {
 
         // set the message
         message = user.getUsername() + " has successfully added new announcement.";
+
+        // send notification to all subscribers
+        for (User subscriber : ((Host) user).getSubscribers()) {
+            Notification notification = new Notification();
+            notification.setName("New announcement");
+            notification.setDescription("New announcement from " + user.getUsername() + ".");
+            subscriber.getNotifications().add(notification);
+        }
     }
 
     /**

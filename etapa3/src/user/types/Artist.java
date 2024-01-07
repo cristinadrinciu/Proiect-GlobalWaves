@@ -14,15 +14,15 @@ public class Artist extends User {
     private ArrayList<Album> albums = new ArrayList<Album>();
     private ArrayList<Event> events = new ArrayList<Event>();
     private ArrayList<Merch> merchs = new ArrayList<Merch>();
-    private ArtistPage artistPage = new ArtistPage();
+    private ArtistPage artistPage = new ArtistPage(this);
     private ArtistStatistics artistStatistics = new ArtistStatistics();
     private double merchRevenue = 0.0;
     private double songRevenue = 0.0;
-    private Song mostProfitableSong; // melodie pe care artistul a scos cei mai multi bani (bazat pe suma revenue-urilor)
+    private String mostProfitableSong; // melodie pe care artistul a scos cei mai multi bani (bazat pe suma revenue-urilor)
+    private ArrayList<User> subscribers = new ArrayList<User>();
 
     public Artist() {
     }
-
 
     /**
      * @return the albums
@@ -143,69 +143,71 @@ public class Artist extends User {
     }
 
     /**
-     * @param merch the merch to set the number of buys to in the statistics
-     */
-    public void setBuysMerch(final Merch merch) {
-        // add the merch to the boughtMerch hashmap if it is not already there
-        if (!artistStatistics.getBoughtMerch().containsKey(merch)) {
-            artistStatistics.getBoughtMerch().put(merch, 1);
-        } else {
-            // if the merch is already in the hashmap, increment the number of buys
-            artistStatistics.getBoughtMerch().put(merch, artistStatistics.getBoughtMerch().get(merch) + 1);
-        }
-    }
-
-    /**
      * Calculates the Song Revenue
      */
-    public void calculateMerchRevenue() {
+    public void calculateSongRevenue(User user) {
         // check first of the artist has any songs listened or any merch bought
-        if (artistStatistics.getTopSongs().isEmpty() && artistStatistics.getBoughtMerch().isEmpty()) {
+        if (artistStatistics.getTopSongs().isEmpty() && merchRevenue == 0) {
             return;
         }
 
-        merchRevenue = 0.0;
-        for (Merch merch : artistStatistics.getBoughtMerch().keySet()) {
-            merchRevenue += merch.getPrice() * artistStatistics.getBoughtMerch().get(merch);
-        }
-    }
+        // get the songs listened while premium by the user
+        ArrayList<Song> songs = user.getPremiumSongs();
 
-    /**
-     * Calculates the Song Revenue
-     */
-    public void calculateSongRevenue(Library library) {
-        // check first of the artist has any songs listened or any merch bought
-        if (artistStatistics.getTopSongs().isEmpty() && artistStatistics.getBoughtMerch().isEmpty()) {
+        int totalSongs = songs.size();
+
+        int artistSongs = 0;
+        for (Song song : songs) {
+            if (song.getArtist().equals(this.getUsername())) {
+                artistSongs++;
+            }
+        }
+
+        if(totalSongs == 0) {
             return;
         }
 
-        songRevenue = 0.0;
-        for (User user : library.getUsers()) {
-            // get the total number of songs listened by the user
-            int songTotal = user.getPremiumSongs().size();
+        double value = 1000000 * (double) artistSongs / totalSongs;
 
-            // get the number of songs listened by the user from this artist
-            int songListened = 0;
-            for (Song song : user.getPremiumSongs()) {
-                if(song.getArtist().equals(this.getUsername())) {
-                    songListened ++;
+        songRevenue += value;
+
+        ArrayList<Song> tmpSongs = new ArrayList<Song>();
+
+        // add the songs listened while premium, but just once
+        for (Song song : songs) {
+            if (!tmpSongs.contains(song)) {
+                tmpSongs.add(song);
+            }
+        }
+
+        // calculate the song revenue for each song
+        for (Song song : tmpSongs) {
+            if (song.getArtist().equals(this.getUsername())) {
+                // get the number of occurrences of the song in the user's premium songs list
+                int occurrences = 0;
+                for (Song song1 : songs) {
+                    if (song1.equals(song)) {
+                        occurrences++;
+                    }
                 }
+
+                if (occurrences == 0) {
+                    continue;
+                }
+
+                // calculate the revenue for the song
+                double revenue = 1000000 * (double) occurrences / totalSongs;
+
+                // add the revenue to the hashmap
+                if (!artistStatistics.getSongsRevenue().containsKey(song.getName())) {
+                    artistStatistics.getSongsRevenue().put(song.getName(), revenue);
+                } else {
+                    artistStatistics.getSongsRevenue().put(song.getName(), artistStatistics.getSongsRevenue().get(song.getName()) + revenue);
+                }
+
+
             }
-
-            // calculate the value of the song revenue
-            if (songListened == 0) {
-                continue;
-            }
-            double value = (double) songListened * 1000000/ songTotal;
-
-            // round the song revenue to 2 decimals
-            //value = Math.round(value * 100.0) / 100.0;
-
-            songRevenue += value;
         }
-
-        // round the song revenue to 2 decimals
-        songRevenue = Math.round(songRevenue * 100.0) / 100.0;
     }
 
     /**
@@ -225,52 +227,48 @@ public class Artist extends User {
     /**
      * @return the mostProfitableSong
      */
-    public Song getMostProfitableSong() {
-        return mostProfitableSong;
+    public String getMostProfitableSong() {
+        return artistStatistics.mostProfitableSong();
     }
 
     /**
-     * Find the most profitable song
+     *
      */
-    public void findMostProfitableSong(Library library) {
-        // get the most listened song from this artist from the premium users
-        ArrayList<Song> mostListenedSongs = new ArrayList<>();
-        for (User user : library.getUsers()) {
-            // search in the premium songs list and get the song from the artist with the most appearances
-            int max = 0;
-            Song mostListenedSong = null;
-            for (Song song : user.getPremiumSongs()) {
-                if (song.getArtist().equals(this.getUsername())) {
-                    int appearances = 0;
-                    for (Song song1 : user.getPremiumSongs()) {
-                        if (song1.getName().equals(song.getName())) {
-                            appearances++;
-                        }
-                    }
-                    if (appearances > max) {
-                        max = appearances;
-                        mostListenedSong = song;
-                    }
-                }
-            }
-            if (mostListenedSong != null) {
-                mostListenedSongs.add(mostListenedSong);
+    public void calculateAddRevenue(int price, User user) {
+        // calculate the monetization
+        int songTotal = user.getSongsBetweenAds().size();
+        int songArtist = 0;
+
+        for (Song song : user.getSongsBetweenAds()) {
+            if (song.getArtist().equals(this.getUsername())) {
+                songArtist++;
             }
         }
 
-        // get the most profitable song from the most listened songs(the song with the most appearances)
-        int max = 0;
-        for (Song song : mostListenedSongs) {
-            int appearances = 0;
-            for (Song song1 : mostListenedSongs) {
-                if (song1.getName().equals(song.getName())) {
-                    appearances++;
-                }
-            }
-            if (appearances > max) {
-                max = appearances;
-                mostProfitableSong = song;
-            }
+        if (songTotal == 0) {
+            return;
         }
+
+        double value = (double) songArtist * price / songTotal;
+
+        songRevenue += value;
+    }
+
+    /**
+     * @return the subscribers
+     */
+    public ArrayList<User> getSubscribers() {
+        return subscribers;
+    }
+
+    /**
+     * @param subscribers the subscribers to set
+     */
+    public void setSubscribers(final ArrayList<User> subscribers) {
+        this.subscribers = subscribers;
+    }
+
+    public void setMerchRevenue(double value) {
+        this.merchRevenue = value;
     }
 }
