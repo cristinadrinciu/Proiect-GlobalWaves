@@ -1,5 +1,7 @@
 package commands;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import notification.Notification;
 import visit.pattern.Visitable;
@@ -11,7 +13,7 @@ import user.types.User;
 
 import java.util.ArrayList;
 
-public class AddEventCommand implements Visitable {
+public class AddEventCommand implements Command {
     private String name;
     private String description;
     private String date;
@@ -106,12 +108,8 @@ public class AddEventCommand implements Visitable {
                     + " has added new event successfully.";
 
         // send notification to subscribers
-        for (User subscriber : ((Artist) user).getSubscribers()) {
-            Notification newNotification = new Notification();
-            newNotification.setName("New Event");
-            newNotification.setDescription("New Event from " + user.getUsername() + ".");
-            subscriber.getNotifications().add(newNotification);
-        }
+        ((Artist) user).notifyObservers("New Event",
+                "New Event from " + user.getUsername() + ".");
 
         // update the artist page
         ((Artist) user).setArtistPage();
@@ -170,14 +168,22 @@ public class AddEventCommand implements Visitable {
 
 
     /**
-     * The accept method for the visitor
-     * @param command the command to execute
-     * @param visitor the visitor
-     * @param library the library of the application
+     * Executes the command
+     * @param command the input command
+     * @param library the main library
      */
     @Override
-    public void accept(final InputCommands command,
-                        final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+        addEvent(user);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "addEvent")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+
+        command.getCommandList().add(commandJson);
     }
 }

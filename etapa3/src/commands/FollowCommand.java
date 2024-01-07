@@ -2,6 +2,8 @@ package commands;
 
 import audio.files.Library;
 import audio.files.Playlist;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import notification.Notification;
 import platform.data.PublicPlaylists;
@@ -9,7 +11,7 @@ import visit.pattern.Visitable;
 import visit.pattern.Visitor;
 import user.types.User;
 
-public class FollowCommand implements Visitable {
+public class FollowCommand implements Command {
     private String message;
 
     public FollowCommand() {
@@ -74,13 +76,22 @@ public class FollowCommand implements Visitable {
     }
 
     /**
-     * Accepts the visitor
-     * @param command the command to be accepted
-     * @param visitor the visitor
-     * @param library the library
+     * Executes the follow command
+     * @param command the input command
+     * @param library the main library
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+        followPlaylist(user);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "follow")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+
+        command.getCommandList().add(commandJson);
     }
 }

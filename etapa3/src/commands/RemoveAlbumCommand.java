@@ -4,7 +4,10 @@ import audio.files.Album;
 import audio.files.Library;
 import audio.files.Playlist;
 import audio.files.Song;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
+import platform.data.OnlineUsers;
 import player.Player;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
@@ -15,7 +18,7 @@ import user.types.User;
 
 import java.util.ArrayList;
 
-public class RemoveAlbumCommand implements Visitable {
+public class RemoveAlbumCommand implements Command {
     private String name;
     private String message;
 
@@ -226,13 +229,35 @@ public class RemoveAlbumCommand implements Visitable {
     }
 
     /**
-     * Accept method for the visitor
-     * @param command the command that will be executed
-     * @param visitor the visitor that will visit this command
+     * Execute the command
+     * @param command the input command
      * @param library the library that contains the users
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+
+        // update the player for each user
+        for (User user1 : OnlineUsers.getOnlineUsers()) {
+            user1.getPlayer().timestamp = command.getTimestamp();
+            if (user1.getPlayer().repeatState == 0) {
+                user1.getPlayer().setRemainingTime();
+            } else if (user1.getPlayer().repeatState == 1) {
+                user1.getPlayer().setRemainingTimeRepeat1();
+            } else if (user1.getPlayer().repeatState == 2) {
+                user1.getPlayer().setRemainingTimeRepeat2();
+            }
+        }
+
+        removeAlbum(user, library);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "removeAlbum")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+
+        command.getCommandList().add(commandJson);
     }
 }

@@ -1,5 +1,7 @@
 package commands;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import notification.Notification;
 import visit.pattern.Visitable;
@@ -11,7 +13,7 @@ import user.types.User;
 
 import java.util.ArrayList;
 
-public class AddMerchCommand implements Visitable {
+public class AddMerchCommand implements Command {
     private String name;
     private String description;
     private int price;
@@ -105,25 +107,30 @@ public class AddMerchCommand implements Visitable {
         message = user.getUsername() + " has added new merchandise successfully.";
 
         // send notification to all subscribers
-        for (User subscriber : ((Artist) user).getSubscribers()) {
-            Notification newNotification = new Notification();
-            newNotification.setName("New Merchandise");
-            newNotification.setDescription("New Merchandise from " + user.getUsername() + ".");
-            subscriber.getNotifications().add(newNotification);
-        }
+        ((Artist) user).notifyObservers("New Merchandise",
+                "New Merchandise from " + user.getUsername() + ".");
 
         // update the artist page
         ((Artist) user).setArtistPage();
     }
 
     /**
-     * Accept method for the visitor
-     * @param command  the command to be executed
-     * @param visitor  the visitor
-     * @param library  the library
+     * Executes the command
+     * @param command the input command
+     * @param library the main library
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+        addMerch(user);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "addMerch")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+
+        command.getCommandList().add(commandJson);
     }
 }

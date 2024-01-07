@@ -4,12 +4,14 @@ package commands;
 import audio.files.Library;
 import audio.files.Podcast;
 import audio.files.Song;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
 import user.types.User;
 
-public class RepeatCommand implements Visitable {
+public class RepeatCommand implements Command {
     /**
      * @param user the user that wants to change the repeat mode
      */
@@ -63,13 +65,37 @@ public class RepeatCommand implements Visitable {
     }
 
     /**
-     * The accept method for the visitor pattern
-     * @param command the command to be executed
-     * @param visitor the visitor
-     * @param library the library
+     * Execute the command.
+     * @param command the input command
+     * @param library the main library
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+        String message;
+        if (user.getPlayer().loadedItem == null) {
+            message = "Please load a source before setting the repeat status.";
+        } else {
+            if (user.getPlayer().repeatState == 0) {
+                user.getPlayer().setRemainingTime();
+            }
+            if (user.getPlayer().repeatState == 1) {
+                user.getPlayer().setRemainingTimeRepeat1();
+            }
+            if (user.getPlayer().repeatState == 2) {
+                user.getPlayer().setRemainingTimeRepeat2();
+            }
+            setRepeatMode(user);
+            message = message(user);
+        }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "repeat")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+
+        command.getCommandList().add(commandJson);
     }
 }

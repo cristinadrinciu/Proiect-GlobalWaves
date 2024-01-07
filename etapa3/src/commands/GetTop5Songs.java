@@ -2,13 +2,17 @@ package commands;
 
 import audio.files.Library;
 import audio.files.Song;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
 
 import java.util.ArrayList;
 
-public class GetTop5Songs implements Visitable {
+public class GetTop5Songs implements Command {
     private ArrayList<Song> top5Songs = new ArrayList<>();
 
     public GetTop5Songs() {
@@ -71,13 +75,32 @@ public class GetTop5Songs implements Visitable {
     }
 
     /**
-     * Accepts the visitor
-     * @param command the command to be executed
-     * @param visitor the visitor
-     * @param library the library
+     * Executes the command
+     * @param command the input command
+     * @param library the library of the user
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        setTop5Songs(library);
+
+        ArrayList<Song> songs = getTop5Songs();
+
+        // Create an array node for the results
+        ArrayNode resultsArray = JsonNodeFactory.instance.arrayNode();
+
+        // Add the names of the songs to the results array
+        for (Song song : songs) {
+            resultsArray.add(song.getName());
+        }
+
+        // Create the command JSON structure
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "getTop5Songs")
+                .put("timestamp", command.getTimestamp())
+                .set("result", resultsArray);
+
+        // Add the commandJson to the commandList
+        command.getCommandList().add(commandJson);
     }
 }

@@ -2,6 +2,10 @@ package commands;
 
 import audio.files.Album;
 import audio.files.Library;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import platform.data.PublicAlbums;
 import visit.pattern.Visitable;
@@ -9,7 +13,7 @@ import visit.pattern.Visitor;
 
 import java.util.ArrayList;
 
-public class GetTop5Albums implements Visitable {
+public class GetTop5Albums implements Command {
     private final ArrayList<Album> top5Albums = new ArrayList<>();
 
     public GetTop5Albums() {
@@ -74,14 +78,32 @@ public class GetTop5Albums implements Visitable {
     }
 
     /**
-     * Accept method for the visitor
-     * @param command the command to be executed
-     * @param visitor the visitor
-     * @param library the library of the user
+     * Execute the command
+     * @param command the input command
+     * @param library the main library
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor,
-                       final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        setTop5Albums();
+
+        ArrayList<Album> albums = getTop5Albums();
+
+        // Create an array node for the results
+        ArrayNode resultsArray = JsonNodeFactory.instance.arrayNode();
+
+        // Add the names of the online users to the results array
+        for (Album album : albums) {
+            resultsArray.add(album.getName());
+        }
+
+        // Create the command JSON structure
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "getTop5Albums")
+                .put("timestamp", command.getTimestamp())
+                .set("result", resultsArray);
+
+        // Add the commandJson to the commandList
+        command.getCommandList().add(commandJson);
     }
 }

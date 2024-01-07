@@ -3,13 +3,15 @@ package user.types;
 import audio.files.Album;
 import audio.files.Library;
 import audio.files.Song;
+import observer.Observer;
+import observer.Subject;
 import page.content.Event;
 import page.content.Merch;
 import pages.ArtistPage;
 
 import java.util.ArrayList;
 
-public class Artist extends User {
+public class Artist extends User implements Subject {
     // add the new fields of the artist
     private ArrayList<Album> albums = new ArrayList<Album>();
     private ArrayList<Event> events = new ArrayList<Event>();
@@ -156,22 +158,7 @@ public class Artist extends User {
 
         int totalSongs = songs.size();
 
-        int artistSongs = 0;
-        for (Song song : songs) {
-            if (song.getArtist().equals(this.getUsername())) {
-                artistSongs++;
-            }
-        }
-
-        if(totalSongs == 0) {
-            return;
-        }
-
-        double value = 1000000 * (double) artistSongs / totalSongs;
-
-        songRevenue += value;
-
-        ArrayList<Song> tmpSongs = new ArrayList<Song>();
+        ArrayList<Song> tmpSongs = new ArrayList<>();
 
         // add the songs listened while premium, but just once
         for (Song song : songs) {
@@ -204,8 +191,6 @@ public class Artist extends User {
                 } else {
                     artistStatistics.getSongsRevenue().put(song.getName(), artistStatistics.getSongsRevenue().get(song.getName()) + revenue);
                 }
-
-
             }
         }
     }
@@ -235,23 +220,19 @@ public class Artist extends User {
      *
      */
     public void calculateAddRevenue(int price, User user) {
-        // calculate the monetization
-        int songTotal = user.getSongsBetweenAds().size();
-        int songArtist = 0;
-
+        // calculate the revenue for the artist for each song
         for (Song song : user.getSongsBetweenAds()) {
             if (song.getArtist().equals(this.getUsername())) {
-                songArtist++;
+                double revenue = ((double) price) * 1.0 / user.getSongsBetweenAds().size();
+
+                // add the revenue to the hashmap
+                if (!artistStatistics.getSongsRevenue().containsKey(song.getName())) {
+                    artistStatistics.getSongsRevenue().put(song.getName(), revenue);
+                } else {
+                    artistStatistics.getSongsRevenue().put(song.getName(), artistStatistics.getSongsRevenue().get(song.getName()) + revenue);
+                }
             }
         }
-
-        if (songTotal == 0) {
-            return;
-        }
-
-        double value = (double) songArtist * price / songTotal;
-
-        songRevenue += value;
     }
 
     /**
@@ -270,5 +251,24 @@ public class Artist extends User {
 
     public void setMerchRevenue(double value) {
         this.merchRevenue = value;
+    }
+
+    /**
+     * @param value the songRevenue to set
+     */
+    public void setSongRevenue(double value) {
+        this.songRevenue = value;
+    }
+
+    @Override
+    public void addObserver(Observer observer) {
+        subscribers.add((User) observer);
+    }
+
+    @Override
+    public void notifyObservers(String name, String description) {
+        for (User user : subscribers) {
+            user.update(name, description);
+        }
     }
 }

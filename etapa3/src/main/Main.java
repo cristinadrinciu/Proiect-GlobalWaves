@@ -2,7 +2,6 @@ package main;
 
 import audio.files.Library;
 import commands.EndProgramCommand;
-import visit.pattern.CommandExecute;
 import platform.data.OnlineUsers;
 import platform.data.PublicAlbums;
 import platform.data.PublicPlaylists;
@@ -103,7 +102,7 @@ public final class Main {
 
         PublicPlaylists.getPlaylists().clear();
         InputCommands[] commands = objectMapper.readValue(new File(
-                "input/test05_etapa3_monetization_free.json"), InputCommands[].class);
+                "input/" + filePathInput), InputCommands[].class);
         for (User user : newLibrary.getUsers()) {
             user.getLikedSongs().clear();
             user.getPlaylists().clear();
@@ -171,21 +170,19 @@ public final class Main {
                 }
             }
 
-            // create Visitor to execute the command
-            CommandExecute commandExecute = new CommandExecute();
-
             // set the command to execute
             commands[i].setCommandToExecute();
 
             // execute the command
-            commands[i].executeCommand(newLibrary, commandExecute);
+            commands[i].executeCommand(newLibrary);
 
             // add the output of the command to the list of outputs
             commandList.addAll(commands[i].getCommandList());
         }
 
         // endProgram command
-        commandList.add(EndProgramCommand.execute(newLibrary));
+        commandList.add(EndProgramCommand.execute(newLibrary, commands[commands.length - 1].
+                getTimestamp()));
 
         ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
         objectWriter.writeValue(new File(filePathOutput), commandList);

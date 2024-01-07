@@ -1,12 +1,14 @@
 package commands;
 
 import audio.files.Library;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import user.types.User;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
 
-public class PreviousPageCommand implements Visitable {
+public class PreviousPageCommand implements Command {
     private String message;
 
     public PreviousPageCommand() {
@@ -35,8 +37,22 @@ public class PreviousPageCommand implements Visitable {
         message = "The user " + user.getUsername() + " has navigated successfully to the previous page.";
     }
 
+    /**
+     * Executes the command
+     * @param command the input command
+     * @param library the library that will be modified
+     */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(InputCommands command, Library library) {
+        User user = command.getUser();
+        goToPreviousPage(user);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "previousPage")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+        command.getCommandList().add(commandJson);
     }
 }

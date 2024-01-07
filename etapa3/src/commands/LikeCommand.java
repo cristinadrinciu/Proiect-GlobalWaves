@@ -2,12 +2,14 @@ package commands;
 
 import audio.files.Library;
 import audio.files.Song;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
 import user.types.User;
 
-public class LikeCommand implements Visitable {
+public class LikeCommand implements Command {
 
     private String message;
 
@@ -57,13 +59,35 @@ public class LikeCommand implements Visitable {
     }
 
     /**
-     * the accept method for the visitor
-     * @param command the command that is being accepted
-     * @param visitor the visitor that visits the command
-     * @param library the library that contains the users
+     * Executes the like command
+     * @param command the input command
+     * @param library the library
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+        user.getPlayer().timestamp = command.getTimestamp();
+        if (user.getPlayer().loadedItem != null) {
+            if (user.getPlayer().repeatState == 0) {
+                user.getPlayer().setRemainingTime();
+            }
+            if (user.getPlayer().repeatState == 1) {
+                user.getPlayer().setRemainingTimeRepeat1();
+            }
+            if (user.getPlayer().repeatState == 2) {
+                user.getPlayer().setRemainingTimeRepeat2();
+            }
+        }
+
+        setMessage(user);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "like")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+
+        command.getCommandList().add(commandJson);
     }
 }

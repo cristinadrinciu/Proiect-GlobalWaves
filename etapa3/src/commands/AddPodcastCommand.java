@@ -2,6 +2,8 @@ package commands;
 
 import audio.files.Library;
 import audio.files.Podcast;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.input.EpisodeInput;
 import main.InputCommands;
 import notification.Notification;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class AddPodcastCommand implements Visitable {
+public class AddPodcastCommand implements Command {
     private String name;
     private ArrayList<EpisodeInput> episodes;
     private String message;
@@ -106,12 +108,8 @@ public class AddPodcastCommand implements Visitable {
         message = host.getUsername() + " has added new podcast successfully.";
 
         // send  notification to all subscribers
-        for (User subscriber : host.getSubscribers()) {
-            Notification newNotification = new Notification();
-            newNotification.setName("New podcast");
-            newNotification.setDescription("New podcast from " + host.getUsername() + ".");
-            subscriber.getNotifications().add(newNotification);
-        }
+        host.notifyObservers("New Podcast",
+                "New Podcast from " + host.getUsername() + ".");
 
     }
 
@@ -135,13 +133,22 @@ public class AddPodcastCommand implements Visitable {
     }
 
     /**
-     * The accept method for the visitor
-     * @param command the command
-     * @param visitor the visitor
-     * @param library the library
+     * Executes the command
+     * @param command the input command
+     * @param library the main library
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+        addPodcast(user, library);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "addPodcast")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+
+        command.getCommandList().add(commandJson);
     }
 }

@@ -5,6 +5,10 @@ import audio.files.Library;
 import audio.files.Playlist;
 import audio.files.Podcast;
 import audio.files.Song;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.input.Filter;
 import main.InputCommands;
 import visit.pattern.Visitable;
@@ -16,7 +20,7 @@ import user.types.User;
 
 import java.util.ArrayList;
 
-public class SearchCommand implements Visitable {
+public class SearchCommand implements Command {
     private String type;
     private Filter filters = new Filter();
 
@@ -345,14 +349,69 @@ public class SearchCommand implements Visitable {
     }
 
     /**
-     * The method accepts the visitor
-     * @param command the command
-     * @param visitor the visitor
+     * Execute the search command
+     * @param command the input command
      * @param library the library
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        ObjectMapper objectMapper = new ObjectMapper(); // Instantiate ObjectMapper here
+        User user = command.getUser();
+        // initialize the new search
+        user.setLastSearch(new ArrayList<>());
+        user.setLastSearchUsers(new ArrayList<>());
+
+        // initialize the player or get out the track that is there
+        if (user.getPlayer().repeatState == 0) {
+            user.getPlayer().setRemainingTime();
+        } else if (user.getPlayer().repeatState == 1) {
+            user.getPlayer().setRemainingTimeRepeat1();
+        } else if (user.getPlayer().repeatState == 2) {
+            user.getPlayer().setRemainingTimeRepeat2();
+        }
+
+        user.getPlayer().initializePlayer();
+        int size = 0;
+
+        ArrayNode results = JsonNodeFactory.instance.arrayNode();
+
+        if (type.equals("song")
+                || type.equals("podcast")
+                || type.equals("playlist")
+                || type.equals("album")) {
+            SearchCommand.setSearchResults(getSearchResults(library, user));
+            if (SearchCommand.getSearchResults() != null) {
+                user.setLastSearch(SearchCommand.getSearchResults());
+                for (AudioFile audioFile : SearchCommand.getSearchResults()) {
+                    results.add(audioFile.getName());
+                }
+                size = SearchCommand.getSearchResults().size();
+                // clear the user search
+                user.setLastSearchUsers(null);
+            }
+        } else if (type.equals("artist")
+                || type.equals("host")) {
+            SearchCommand.setSearchUsers(getSearchUsers(library, user));
+            if (SearchCommand.getSearchUsers() != null) {
+                user.setLastSearchUsers(SearchCommand.getSearchUsers());
+                for (User user1 : SearchCommand.getSearchUsers()) {
+                    results.add(user1.getUsername());
+                }
+                size = SearchCommand.getSearchUsers().size();
+
+                // clear the audiofile search
+                user.setLastSearch(null);
+            }
+        }
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "search")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", "Search returned "
+                        + size + " results")
+                .set("results", results);
+
+        command.getCommandList().add(commandJson);
     }
 }
 

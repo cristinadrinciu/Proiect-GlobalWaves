@@ -2,6 +2,9 @@ package commands;
 
 import audio.files.Library;
 import audio.files.Song;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import main.InputCommands;
 import user.types.Artist;
 import user.types.User;
 import visit.pattern.Visitable;
@@ -9,7 +12,7 @@ import visit.pattern.Visitor;
 
 import java.util.ArrayList;
 
-public class CancelPremiumCommand implements Visitable {
+public class CancelPremiumCommand implements Command {
     private String message;
 
     public CancelPremiumCommand() {
@@ -48,8 +51,36 @@ public class CancelPremiumCommand implements Visitable {
         }
     }
 
+    /**
+     * Execute the command
+     * @param command the input command
+     * @param library the main library
+     */
     @Override
-    public void accept(main.InputCommands command, Visitor visitor, audio.files.Library library) {
-        visitor.visit(command, this, library);
+    public void execute(InputCommands command, Library library) {
+        User user = command.getUser();
+
+        // update the player of the user
+        if (user.getPlayer().loadedItem != null) {
+            if (user.getPlayer().repeatState == 0) {
+                user.getPlayer().setRemainingTime();
+            }
+            if (user.getPlayer().repeatState == 1) {
+                user.getPlayer().setRemainingTimeRepeat1();
+            }
+            if (user.getPlayer().repeatState == 2) {
+                user.getPlayer().setRemainingTimeRepeat2();
+            }
+        }
+
+        cancelPremium(user);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "cancelPremium")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+        command.getCommandList().add(commandJson);
     }
 }

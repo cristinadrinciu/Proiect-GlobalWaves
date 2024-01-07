@@ -1,13 +1,15 @@
 package user.types;
 
 import fileio.input.EpisodeInput;
+import observer.Observer;
+import observer.Subject;
 import page.content.Announcement;
 import audio.files.Podcast;
 import pages.HostPage;
 
 import java.util.ArrayList;
 
-public class Host extends User {
+public class Host extends User implements Subject {
     private ArrayList<Podcast> podcasts;
     private ArrayList<Announcement> announcements;
     private HostPage hostPage = new HostPage(this);
@@ -106,5 +108,17 @@ public class Host extends User {
      */
     public HostStatistics getHostStatistics() {
         return hostStatistics;
+    }
+
+    @Override
+    public void notifyObservers(final String name, final String description) {
+        for (User subscriber : subscribers) {
+            subscriber.update(name, description);
+        }
+    }
+
+    @Override
+    public void addObserver(Observer observer) {
+        subscribers.add((User) observer);
     }
 }

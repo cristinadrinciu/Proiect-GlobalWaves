@@ -3,6 +3,8 @@ package commands;
 import audio.files.Album;
 import audio.files.Library;
 import audio.files.Song;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import notification.Notification;
 import platform.data.PublicAlbums;
@@ -15,7 +17,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class AddAlbumCommand implements Visitable {
+public class AddAlbumCommand implements Command {
     private String name;
     private int releaseYear;
     private String description;
@@ -143,12 +145,7 @@ public class AddAlbumCommand implements Visitable {
         message = artist.getUsername() + " has added new album successfully.";
 
         // send notification to the subscribers
-        for (User subscriber : artist.getSubscribers()) {
-            Notification newNotification = new Notification();
-            newNotification.setName("New Album");
-            newNotification.setDescription("New Album from " + artist.getUsername() + ".");
-            subscriber.getNotifications().add(newNotification);
-        }
+        artist.notifyObservers("New Album", "New Album from " + artist.getUsername() + ".");
 
         // update the artist page
         artist.setArtistPage();
@@ -183,13 +180,22 @@ public class AddAlbumCommand implements Visitable {
     }
 
     /**
-     * Accepts the command
-     * @param command the command to accept
-     * @param visitor the visitor
-     * @param library the library
+     * Executes the command
+     * @param command the input command
+     * @param library the library that contains the songs
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+        addAlbum(user, library);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "addAlbum")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+
+        command.getCommandList().add(commandJson);
     }
 }

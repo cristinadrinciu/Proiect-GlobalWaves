@@ -1,12 +1,15 @@
 package commands;
 
 import audio.files.Library;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
+import user.types.User;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
 import pages.Page;
 
-public class PrintCurrentPageCommand implements Visitable {
+public class PrintCurrentPageCommand implements Command {
     private String username;
     private Page page;
 
@@ -48,13 +51,30 @@ public class PrintCurrentPageCommand implements Visitable {
     }
 
     /**
-     * Accept method for the visitor
-     * @param command the command to set
-     * @param visitor the visitor to set
+     * Execute the command
+     * @param command the input command
      * @param library the library to set
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+
+        // update before printing the pages
+        user.setHomePage();
+        user.setLikedContentPage();
+
+        setUsername(user.getUsername());
+        setCurrentPage(library);
+
+        String message = getCurrentPage().printPage();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("user", username)
+                .put("command", "printCurrentPage")
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+
+        command.getCommandList().add(commandJson);
     }
 }

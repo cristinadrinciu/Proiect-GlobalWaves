@@ -1,5 +1,7 @@
 package commands;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import notification.Notification;
 import page.content.Announcement;
 import main.InputCommands;
@@ -9,7 +11,7 @@ import user.types.Host;
 import audio.files.Library;
 import user.types.User;
 
-public class AddAnnouncementCommand implements Visitable {
+public class AddAnnouncementCommand implements Command {
     private String name;
     private String description;
     private String message;
@@ -83,22 +85,27 @@ public class AddAnnouncementCommand implements Visitable {
         message = user.getUsername() + " has successfully added new announcement.";
 
         // send notification to all subscribers
-        for (User subscriber : ((Host) user).getSubscribers()) {
-            Notification notification = new Notification();
-            notification.setName("New announcement");
-            notification.setDescription("New announcement from " + user.getUsername() + ".");
-            subscriber.getNotifications().add(notification);
-        }
+        ((Host) user).notifyObservers("New Announcement",
+                "New Announcement from " + user.getUsername() + ".");
     }
 
     /**
-     * Accepts the command to be executed
-     * @param command the command to be executed
-     * @param visitor the visitor
+     * @param command the input command
      * @param library the library
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+        addAnnouncement(user, library);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "addAnnouncement")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+
+        command.getCommandList().add(commandJson);
     }
+
 }

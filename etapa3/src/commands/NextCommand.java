@@ -5,6 +5,8 @@ import audio.files.Library;
 import audio.files.Playlist;
 import audio.files.Podcast;
 import audio.files.Song;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import fileio.input.EpisodeInput;
 import main.InputCommands;
 import visit.pattern.Visitable;
@@ -13,7 +15,7 @@ import user.types.User;
 
 import java.util.ArrayList;
 
-public class NextCommand implements Visitable {
+public class NextCommand implements Command {
     private String message;
 
     public NextCommand() {
@@ -484,13 +486,47 @@ public class NextCommand implements Visitable {
     }
 
     /**
-     * The accept method for the visitor
-     * @param command the command
-     * @param visitor the visitor
-     * @param library the library of the application
+     * Executes the next command
+     * @param command the input command
+     * @param library the main database
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+
+        if (user.getPlayer().loadedItem != null) {
+            if (user.getPlayer().repeatState == 0) {
+                user.getPlayer().setRemainingTime();
+            }
+            if (user.getPlayer().repeatState == 1) {
+                user.getPlayer().setRemainingTimeRepeat1();
+            }
+            if (user.getPlayer().repeatState == 2) {
+                user.getPlayer().setRemainingTimeRepeat2();
+            }
+        }
+
+        if (user.getPlayer().loadedItem == null) {
+            message = "Please load a source before skipping to the next track.";
+        } else {
+            if (user.getPlayer().loadedItem instanceof Song) {
+                goToNextSong(user);
+            } else if (user.getPlayer().loadedItem instanceof Playlist) {
+                goToNextPlaylist(user);
+            } else if (user.getPlayer().loadedItem instanceof Podcast) {
+                goToNextPodcast(user);
+            } else if (user.getPlayer().loadedItem instanceof Album) {
+                goToNextAlbum(user);
+            }
+        }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "next")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+
+        command.getCommandList().add(commandJson);
     }
 }

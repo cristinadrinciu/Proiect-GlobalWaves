@@ -2,12 +2,16 @@ package commands;
 
 import audio.files.AudioFile;
 import audio.files.Library;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
+import user.types.Artist;
+import user.types.Host;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
 import user.types.User;
 
-public class SelectCommand implements Visitable {
+public class SelectCommand implements Command {
     private int itemNumber;
     private static AudioFile selectedItem;
     private static User selectedUser;
@@ -86,13 +90,67 @@ public class SelectCommand implements Visitable {
     }
 
     /**
-     * Accepts the visitor
-     * @param command the command to be executed
-     * @param visitor the visitor
-     * @param library the library of the user
+     * Executes the select command
+     * @param command the input command
+     * @param library the library
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+        String message = null;
+
+        if (user.getLastSearch() == null && user.getLastSearchUsers() == null) {
+            message = "Please conduct a search before making a selection.";
+        } else if (user.getLastSearch() != null && user.getLastSearchUsers() == null) {
+            // searched an audio file
+            provideSelectedItem(user);
+            if (SelectCommand.getSelectedItem() != null) {
+                user.setSelectedItem(SelectCommand.getSelectedItem());
+                message = "Successfully selected "
+                        + SelectCommand.getSelectedItem().getName() + ".";
+                user.setLastSearch(null);
+                SelectCommand.setSelectedItem(null);
+            } else {
+                if (itemNumber > user.getLastSearch().size()) {
+                    message = "The selected ID is too high.";
+                    SelectCommand.setSelectedItem(null);
+                    user.setLastSearch(null);
+                    user.setSelectedItem(null);
+                } else {
+                    message = "Please conduct a search before making a selection.";
+                }
+            }
+        } else if (user.getLastSearchUsers() != null && user.getLastSearch() == null) {
+            // searched a user
+            provideSelectedUser(user);
+            if (SelectCommand.getSelectedUser() != null) {
+                message = "Successfully selected "
+                        + SelectCommand.getSelectedUser().getUsername() + "'s page.";
+                user.setLastSearchUsers(null);
+                // set the current page
+                if (SelectCommand.getSelectedUser() instanceof Artist) {
+                    user.setCurrentPage(((Artist) SelectCommand.
+                            getSelectedUser()).getArtistPage());
+                } else if (SelectCommand.getSelectedUser() instanceof Host) {
+                    user.setCurrentPage(((Host) SelectCommand.getSelectedUser()).
+                            getHostPage());
+                }
+            } else {
+                if (itemNumber > user.getLastSearchUsers().size()) {
+                    message = "The selected ID is too high.";
+                } else {
+                    message = "Please conduct a search before making a selection.";
+                }
+            }
+        }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "select")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+
+        command.getCommandList().add(commandJson);
     }
 }

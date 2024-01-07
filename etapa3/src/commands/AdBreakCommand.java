@@ -4,6 +4,9 @@ import audio.files.Album;
 import audio.files.Library;
 import audio.files.Playlist;
 import audio.files.Song;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import main.InputCommands;
 import user.types.Artist;
 import user.types.User;
 import visit.pattern.Visitable;
@@ -11,8 +14,8 @@ import visit.pattern.Visitor;
 
 import java.util.ArrayList;
 
-public class AdBreakCommand implements Visitable {
-    private static int price;
+public class AdBreakCommand implements Command {
+    private int price;
     private String message;
 
     public AdBreakCommand() {
@@ -28,14 +31,14 @@ public class AdBreakCommand implements Visitable {
     /**
      * @param price1 the price to set
      */
-    public static void setPrice(int price1) {
+    public void setPrice(int price1) {
         price = price1;
     }
 
     /**
      * @return the price
      */
-    public static int getPrice() {
+    public int getPrice() {
         return price;
     }
 
@@ -44,6 +47,8 @@ public class AdBreakCommand implements Visitable {
             message = user.getUsername() + " is not playing any music.";
             return;
         }
+        if(user.isPremium())
+            return;
         // set the ad from the library
         Song ad = new Song();
         for (Song song : library.getSongs()) {
@@ -52,6 +57,9 @@ public class AdBreakCommand implements Visitable {
                 break;
             }
         }
+
+        // set the price of the ad
+        user.setAdPrice(price);
 
         // add the ad in the player queue, after the current song
         if (user.getPlayer().loadedItem instanceof Album) {
@@ -102,7 +110,30 @@ public class AdBreakCommand implements Visitable {
     }
 
     @Override
-    public void accept(main.InputCommands command, Visitor visitor, audio.files.Library library) {
-        visitor.visit(command, this, library);
+    public void execute(InputCommands command, Library library) {
+        User user = command.getUser();
+
+        // update the player for the user
+        if (user.getPlayer().loadedItem != null) {
+            if (user.getPlayer().repeatState == 0) {
+                user.getPlayer().setRemainingTime();
+            }
+            if (user.getPlayer().repeatState == 1) {
+                user.getPlayer().setRemainingTimeRepeat1();
+            }
+            if (user.getPlayer().repeatState == 2) {
+                user.getPlayer().setRemainingTimeRepeat2();
+            }
+        }
+
+        adBreak(user, library);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "adBreak")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+        command.getCommandList().add(commandJson);
     }
 }

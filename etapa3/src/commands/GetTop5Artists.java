@@ -1,6 +1,10 @@
 package commands;
 
 import audio.files.Album;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
@@ -10,7 +14,7 @@ import user.types.User;
 
 import java.util.ArrayList;
 
-public class GetTop5Artists implements Visitable {
+public class GetTop5Artists implements Command {
     private final ArrayList<Artist> top5Artists = new ArrayList<>();
 
     public GetTop5Artists() {
@@ -96,13 +100,32 @@ public class GetTop5Artists implements Visitable {
     }
 
     /**
-     * Accept method for the visitor
-     * @param command the command to be executed
-     * @param visitor the visitor
+     * Execute the getTop5Artists command
+     * @param command the input command
      * @param library the library
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        setTop5Artists(library);
+
+        ArrayList<Artist> artists = getTop5Artists();
+
+        // Create an array node for the results
+        ArrayNode resultsArray = JsonNodeFactory.instance.arrayNode();
+
+        // Add the names of the artists
+        for (Artist artist : artists) {
+            resultsArray.add(artist.getUsername());
+        }
+
+        // Create the command JSON structure
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "getTop5Artists")
+                .put("timestamp", command.getTimestamp())
+                .set("result", resultsArray);
+
+        // Add the commandJson to the commandList
+        command.getCommandList().add(commandJson);
     }
 }

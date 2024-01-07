@@ -1,6 +1,11 @@
 package commands;
 
 import audio.files.Album;
+import audio.files.Song;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
@@ -9,7 +14,7 @@ import audio.files.Library;
 
 import java.util.ArrayList;
 
-public class ShowAlbums implements Visitable {
+public class ShowAlbums implements Command {
     private String username;
     private ArrayList<Album> albums;
 
@@ -53,13 +58,40 @@ public class ShowAlbums implements Visitable {
     }
 
     /**
-     * Accept method for visitor
-     * @param command the command
-     * @param visitor the visitor
+     * Execute the command
+     * @param command the input command
      * @param library the library
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        setAlbums(library);
+
+        // Create an array node for the results
+        ArrayNode resultsArray = JsonNodeFactory.instance.arrayNode();
+
+        // the results array has the name of the album and the list of songs
+        for (Album album : albums) {
+            ObjectNode albumNode = JsonNodeFactory.instance.objectNode()
+                    .put("name", album.getName());
+
+            ArrayNode songsArray = JsonNodeFactory.instance.arrayNode();
+            for (Song song : album.getSongs()) {
+                songsArray.add(song.getName());
+            }
+
+            albumNode.set("songs", songsArray);
+            resultsArray.add(albumNode);
+        }
+
+        // Create the command JSON structure
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "showAlbums")
+                .put("user", username)
+                .put("timestamp", command.getTimestamp())
+                .set("result", resultsArray);
+
+        // Add the commandJson to the commandList
+        command.getCommandList().add(commandJson);
     }
 }

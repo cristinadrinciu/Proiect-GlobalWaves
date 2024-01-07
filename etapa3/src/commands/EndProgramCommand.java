@@ -3,6 +3,7 @@ package commands;
 import audio.files.Library;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import platform.data.OnlineUsers;
 import user.types.Artist;
 import user.types.User;
 
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 
 public class EndProgramCommand {
     private static ObjectNode commandJson;
-    public static ObjectNode execute(Library library) {
+    public static ObjectNode execute(Library library, int timestamp) {
         ArrayList<Artist> artists = new ArrayList<>();
         //get the list of artists for which we display the monetization report
         for(User user : library.getUsers()) {
@@ -27,6 +28,18 @@ public class EndProgramCommand {
         ObjectNode resultJson = objectMapper.createObjectNode();
         commandJson.put("command", "endProgram");
 
+        // update the player for each user
+        for (User user1 : OnlineUsers.getOnlineUsers()) {
+            user1.getPlayer().timestamp = timestamp;
+            if (user1.getPlayer().repeatState == 0) {
+                user1.getPlayer().setRemainingTime();
+            } else if (user1.getPlayer().repeatState == 1) {
+                user1.getPlayer().setRemainingTimeRepeat1();
+            } else if (user1.getPlayer().repeatState == 2) {
+                user1.getPlayer().setRemainingTimeRepeat2();
+            }
+        }
+
         // calculate the revenue for each artist
         for(Artist artist : artists) {
             // calculate the song revenue from each user
@@ -35,7 +48,17 @@ public class EndProgramCommand {
                     artist.calculateSongRevenue(user);
                 }
             }
+
+            // calculate the sum of the song revenue
+            double songRevenue = 0.0;
+            for(Double revenue : artist.getArtistStatistics().getSongsRevenue().values()) {
+                songRevenue += revenue;
+            }
+
+            artist.setSongRevenue(songRevenue);
         }
+
+
         // sort the artists by their total revenue
         artists.sort((artist1, artist2) -> {
             if(artist1.getSongRevenue() + artist1.getMerchRevenue() > artist2.getSongRevenue() + artist2.getMerchRevenue()) {

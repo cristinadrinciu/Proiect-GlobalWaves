@@ -4,14 +4,17 @@ import audio.files.Library;
 import audio.files.Playlist;
 import audio.files.Podcast;
 import audio.files.Song;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import player.Player;
+import user.types.User;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
 
 import java.util.ArrayList;
 
-public class StatusCommand implements Visitable {
+public class StatusCommand implements Command {
     private ArrayList<Object> statusArray = new ArrayList<>();
 
     public StatusCommand() {
@@ -69,13 +72,50 @@ public class StatusCommand implements Visitable {
     }
 
     /**
-     * Accepts the visitor
-     * @param command the command that is accepted
-     * @param visitor the visitor that is accepted
-     * @param library the library that is accepted
+     * Executes the status command
+     * @param command the input command
+     * @param library the library on which the command is executed
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+        if (user.getStatusOnline()) {
+            if (user.getPlayer().repeatState == 0) {
+                user.getPlayer().setRemainingTime();
+            } else if (user.getPlayer().repeatState == 1) {
+                user.getPlayer().setRemainingTimeRepeat1();
+            } else if (user.getPlayer().repeatState == 2) {
+                user.getPlayer().setRemainingTimeRepeat2();
+            }
+        }
+
+        ArrayList<Object> statusArray = buildStatusArray(user.getPlayer());
+
+        // Create the status JSON structure
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "status")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp());
+
+        final int index1 = 1;
+        final int index2 = 2;
+        final int index3 = 3;
+        final int index4 = 4;
+        final int index0 = 0;
+
+        // Create the "stats" object within the JSON structure
+        ObjectNode statsNode = objectMapper.createObjectNode()
+                .put("name", (String) statusArray.get(index0))
+                .put("remainedTime", (int) statusArray.get(index1))
+                .put("repeat", (String) statusArray.get(index2))
+                .put("shuffle", (boolean) statusArray.get(index3))
+                .put("paused", (boolean) statusArray.get(index4));
+
+        // Add the "stats" object to the main JSON structure
+        commandJson.set("stats", statsNode);
+
+        // Add the commandJson to the commandList
+        command.getCommandList().add(commandJson);
     }
 }

@@ -3,6 +3,8 @@ package commands;
 import audio.files.Library;
 import audio.files.Playlist;
 import audio.files.Song;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import user.types.Artist;
 import user.types.User;
@@ -12,7 +14,7 @@ import visit.pattern.Visitor;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class UpdateRecommendationsCommand implements Visitable {
+public class UpdateRecommendationsCommand implements Command {
     private String recommendationType;
     private String message;
 
@@ -311,9 +313,42 @@ public class UpdateRecommendationsCommand implements Visitable {
         message = "The recommendations for user " + user.getUsername() + " have been updated successfully.";
     }
 
-
+    /**
+     * Execute the command
+     * @param command the command to execute
+     * @param library the library to execute the command on
+     */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+
+        // update the player for the user
+        if (user.getPlayer().loadedItem != null) {
+            if (user.getPlayer().repeatState == 0) {
+                user.getPlayer().setRemainingTime();
+            }
+            if (user.getPlayer().repeatState == 1) {
+                user.getPlayer().setRemainingTimeRepeat1();
+            }
+            if (user.getPlayer().repeatState == 2) {
+                user.getPlayer().setRemainingTimeRepeat2();
+            }
+        }
+
+        if(recommendationType.equals("fans_playlist")) {
+            updateFansPlaylist(user, library);
+        } else if (recommendationType.equals("random_song")) {
+            updateRandomSong(user, library);
+        } else if (recommendationType.equals("random_playlist")) {
+            updateRandomPlaylist(user, library);
+        }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "updateRecommendations")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+        command.getCommandList().add(commandJson);
     }
 }

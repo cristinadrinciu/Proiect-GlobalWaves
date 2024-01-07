@@ -2,6 +2,8 @@ package commands;
 
 import audio.files.Library;
 import audio.files.Playlist;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
@@ -10,7 +12,7 @@ import user.types.User;
 
 import java.util.ArrayList;
 
-public class SwitchVisibilityCommand implements Visitable {
+public class SwitchVisibilityCommand implements Command {
     private int playlistId;
     private Playlist playlist;
     public SwitchVisibilityCommand() {
@@ -83,13 +85,23 @@ public class SwitchVisibilityCommand implements Visitable {
     }
 
     /**
-     * Accept method for the visitor
-     * @param command the command to be executed
-     * @param visitor the visitor
-     * @param library the library
+     * Execute the command.
+     * @param command the input command
+     * @param library the library that contains the users
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+        switchVisibility(user, library);
+        String message = message(user);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "switchVisibility")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+
+        command.getCommandList().add(commandJson);
     }
 }

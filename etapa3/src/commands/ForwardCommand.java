@@ -2,6 +2,8 @@ package commands;
 
 import audio.files.Library;
 import audio.files.Podcast;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
@@ -9,7 +11,7 @@ import user.types.User;
 import fileio.input.EpisodeInput;
 
 
-public class ForwardCommand implements Visitable {
+public class ForwardCommand implements Command {
     private String message;
 
     public ForwardCommand() {
@@ -81,13 +83,35 @@ public class ForwardCommand implements Visitable {
     }
 
     /**
-     * Accept method for the visitor
-     * @param command the command to be executed
-     * @param visitor the visitor
-     * @param library the library
+     * Executes the forward command
+     * @param command the input command
+     * @param library the main library
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+
+        if (user.getPlayer().loadedItem != null) {
+            if (user.getPlayer().repeatState == 0) {
+                user.getPlayer().setRemainingTime();
+            }
+            if (user.getPlayer().repeatState == 1) {
+                user.getPlayer().setRemainingTimeRepeat1();
+            }
+            if (user.getPlayer().repeatState == 2) {
+                user.getPlayer().setRemainingTimeRepeat2();
+            }
+        }
+
+        forwardPodcast(user);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "forward")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+
+        command.getCommandList().add(commandJson);
     }
 }

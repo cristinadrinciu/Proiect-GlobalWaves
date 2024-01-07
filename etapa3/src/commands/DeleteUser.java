@@ -5,6 +5,8 @@ import audio.files.Library;
 import audio.files.Playlist;
 import audio.files.Podcast;
 import audio.files.Song;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import player.Player;
 import platform.data.OnlineUsers;
@@ -18,7 +20,7 @@ import visit.pattern.Visitor;
 
 import java.util.ArrayList;
 
-public class DeleteUser implements Visitable {
+public class DeleteUser implements Command {
     private String username;
 
     private String message;
@@ -283,13 +285,33 @@ public class DeleteUser implements Visitable {
     }
 
     /**
-     * This method accepts the visitor.
-     * @param command the command to be accepted
-     * @param visitor the visitor
+     * Execute the command.
+     * @param command the input command
      * @param library the library of the application
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        // update the player for each user
+        for (User user1 : OnlineUsers.getOnlineUsers()) {
+            user1.getPlayer().timestamp = command.getTimestamp();
+            if (user1.getPlayer().repeatState == 0) {
+                user1.getPlayer().setRemainingTime();
+            } else if (user1.getPlayer().repeatState == 1) {
+                user1.getPlayer().setRemainingTimeRepeat1();
+            } else if (user1.getPlayer().repeatState == 2) {
+                user1.getPlayer().setRemainingTimeRepeat2();
+            }
+        }
+
+        deleteUser(library);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "deleteUser")
+                .put("user", username)
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+
+        command.getCommandList().add(commandJson);
     }
 }

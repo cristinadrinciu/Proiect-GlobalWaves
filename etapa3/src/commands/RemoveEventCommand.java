@@ -1,5 +1,7 @@
 package commands;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
@@ -8,7 +10,7 @@ import page.content.Event;
 import audio.files.Library;
 import user.types.User;
 
-public class RemoveEventCommand implements Visitable {
+public class RemoveEventCommand implements Command {
     private String name;
     private String message;
 
@@ -80,14 +82,22 @@ public class RemoveEventCommand implements Visitable {
     }
 
     /**
-     * The accept method that accepts a visitor
-     * @param command the command to be executed
-     * @param visitor the visitor that visits the command
-     * @param library the library of the application
+     * Execute the command
+     * @param command the input command
+     * @param library the main library
      */
     @Override
-    public void accept(final InputCommands command,
-                       final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+        removeEvent(user);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "removeEvent")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+
+        command.getCommandList().add(commandJson);
     }
 }

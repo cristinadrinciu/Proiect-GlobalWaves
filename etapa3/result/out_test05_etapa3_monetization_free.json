@@ -3206,29 +3206,29 @@
 }, {
   "command" : "endProgram",
   "result" : {
-    "Prince" : {
-      "merchRevenue" : 0.0,
-      "songRevenue" : 1579.79,
-      "ranking" : 1,
-      "mostProfitableSong" : ""
-    },
     "Stevie Wonder" : {
       "merchRevenue" : 0.0,
-      "songRevenue" : 1517.12,
-      "ranking" : 2,
-      "mostProfitableSong" : ""
+      "songRevenue" : 1228.5,
+      "ranking" : 1,
+      "mostProfitableSong" : "Hey Love"
     },
-    "The Rolling Stones" : {
+    "Prince" : {
       "merchRevenue" : 0.0,
-      "songRevenue" : 520.69,
-      "ranking" : 3,
-      "mostProfitableSong" : ""
+      "songRevenue" : 1168.61,
+      "ranking" : 2,
+      "mostProfitableSong" : "All The Critics Love U In New York"
     },
     "Joni Mitchell" : {
       "merchRevenue" : 0.0,
       "songRevenue" : 302.4,
+      "ranking" : 3,
+      "mostProfitableSong" : "Blue Boy"
+    },
+    "The Rolling Stones" : {
+      "merchRevenue" : 0.0,
+      "songRevenue" : 250.49,
       "ranking" : 4,
-      "mostProfitableSong" : ""
+      "mostProfitableSong" : "Miss You"
     }
   }
 } ]

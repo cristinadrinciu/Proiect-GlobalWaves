@@ -2,6 +2,10 @@ package commands;
 
 import audio.files.Library;
 import audio.files.Playlist;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import platform.data.PublicPlaylists;
 import visit.pattern.Visitable;
@@ -9,7 +13,7 @@ import visit.pattern.Visitor;
 
 import java.util.ArrayList;
 
-public class GetTop5Playlists implements Visitable {
+public class GetTop5Playlists implements Command {
     private final ArrayList<Playlist> top5Playlists = new ArrayList<>();
 
     public GetTop5Playlists() {
@@ -68,13 +72,32 @@ public class GetTop5Playlists implements Visitable {
     }
 
     /**
-     * Accept method for the visitor
-     * @param command the command to be executed
-     * @param visitor the visitor that executes the command
-     * @param library the library of the user
+     * Execute the getTop5Playlists command
+     * @param command the input command
+     * @param library the main library
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        setTop5Playlists();
+
+        ArrayList<Playlist> playlists = getTop5Playlists();
+
+        // Create an array node for the results
+        ArrayNode resultsArray = JsonNodeFactory.instance.arrayNode();
+
+        // Add the names of the playlists to the results array
+        for (Playlist playlist : playlists) {
+            resultsArray.add(playlist.getName());
+        }
+
+        // Create the command JSON structure
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "getTop5Playlists")
+                .put("timestamp", command.getTimestamp())
+                .set("result", resultsArray);
+
+        // Add the commandJson to the commandList
+        command.getCommandList().add(commandJson);
     }
 }

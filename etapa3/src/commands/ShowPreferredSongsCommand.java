@@ -2,6 +2,10 @@ package commands;
 
 import audio.files.Library;
 import audio.files.Song;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
@@ -9,7 +13,7 @@ import user.types.User;
 
 import java.util.ArrayList;
 
-public class ShowPreferredSongsCommand implements Visitable {
+public class ShowPreferredSongsCommand implements Command {
     private ArrayList<Song> preferredSongs = new ArrayList<>();
 
     public ShowPreferredSongsCommand() {
@@ -30,13 +34,29 @@ public class ShowPreferredSongsCommand implements Visitable {
     }
 
     /**
-     * Accept method for the visitor
-     * @param command the command to accept
-     * @param visitor the visitor that will visit the command
-     * @param library the library that contains the users
+     * Execute the command
+     * @param command the input command
+     * @param library the main library
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+        setPreferredSongs(user);
+        ArrayList<Song> songs = getPreferredSongs();
+
+        ArrayNode results = JsonNodeFactory.instance.arrayNode();
+
+        for (Song song : songs) {
+            results.add(song.getName());
+        }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "showPreferredSongs")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .set("result", results);
+
+        command.getCommandList().add(commandJson);
     }
 }

@@ -2,6 +2,7 @@ package user.types;
 
 import audio.files.*;
 import notification.Notification;
+import observer.Observer;
 import pages.LikedContentPage;
 import platform.data.PublicAlbums;
 import player.Player;
@@ -10,7 +11,7 @@ import pages.Page;
 
 import java.util.ArrayList;
 
-public class User {
+public class User implements Observer {
     private String username;
     private int age;
     private String city;
@@ -39,6 +40,7 @@ public class User {
     private AudioFile lastRecommendation;
     private ArrayList<Page> navigationHistory = new ArrayList<>();
     private int indexNavigationHistory = 0;
+    private int adPrice = 0;
 
     public User() {
     }
@@ -438,5 +440,27 @@ public class User {
      */
     public void setIndexNavigationHistory(final int indexNavigationHistory) {
         this.indexNavigationHistory = indexNavigationHistory;
+    }
+
+    /**
+     * @return the adPrice
+     */
+    public int getAdPrice() {
+        return adPrice;
+    }
+
+    /**
+     * @param adPrice the adPrice to set
+     */
+    public void setAdPrice(final int adPrice) {
+        this.adPrice = adPrice;
+    }
+
+    @Override
+    public void update(String name, String description) {
+        Notification notification = new Notification();
+        notification.setName(name);
+        notification.setDescription(description);
+        notifications.add(notification);
     }
 }

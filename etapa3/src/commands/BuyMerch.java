@@ -1,6 +1,8 @@
 package commands;
 
 import audio.files.Library;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import page.content.Merch;
 import pages.ArtistPage;
@@ -9,7 +11,7 @@ import user.types.User;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
 
-public class BuyMerch implements Visitable {
+public class BuyMerch implements Command {
     private String name;
     private String message;
 
@@ -62,8 +64,22 @@ public class BuyMerch implements Visitable {
         message = user.getUsername() + " has added new merch successfully.";
     }
 
+    /**
+     * Execute the buy merch command.
+     * @param command the input command
+     * @param library the main library
+     */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+        buyMerch(user);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "buyMerch")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+        command.getCommandList().add(commandJson);
     }
 }

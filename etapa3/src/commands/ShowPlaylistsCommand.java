@@ -2,6 +2,11 @@ package commands;
 
 import audio.files.Library;
 import audio.files.Playlist;
+import audio.files.Song;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
@@ -9,7 +14,7 @@ import user.types.User;
 
 import java.util.ArrayList;
 
-public class ShowPlaylistsCommand implements Visitable {
+public class ShowPlaylistsCommand implements Command {
     private ArrayList<Playlist> playlists;
 
     /**
@@ -27,13 +32,39 @@ public class ShowPlaylistsCommand implements Visitable {
     }
 
     /**
-     * Accept method for the visitor
-     * @param command the command to be executed
-     * @param visitor the visitor
-     * @param library the library
+     * Execute the command
+     * @param command the input command
+     * @param library the main library
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+        setPlaylists(user);
+
+        ArrayNode resultsArray = JsonNodeFactory.instance.arrayNode();
+
+        for (Playlist playlist : playlists) {
+            ObjectNode playlistNode = JsonNodeFactory.instance.objectNode()
+                    .put("name", playlist.getName());
+
+            ArrayNode songsArray = JsonNodeFactory.instance.arrayNode();
+            for (Song song : playlist.getSongs()) {
+                songsArray.add(song.getName());
+            }
+
+            playlistNode.set("songs", songsArray);
+            resultsArray.add(playlistNode);
+            playlistNode.put("visibility", playlist.isPublic() ? "public" : "private")
+                    .put("followers", playlist.getFollowers());
+        }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "showPlaylists")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .set("result", resultsArray);
+
+        command.getCommandList().add(commandJson);
     }
 }

@@ -1,5 +1,10 @@
 package commands;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import fileio.input.EpisodeInput;
 import main.InputCommands;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
@@ -9,7 +14,7 @@ import audio.files.Podcast;
 
 import java.util.ArrayList;
 
-public class ShowPodcasts implements Visitable {
+public class ShowPodcasts implements Command {
     private String username;
     private ArrayList<Podcast> podcasts;
 
@@ -51,13 +56,40 @@ public class ShowPodcasts implements Visitable {
     }
 
     /**
-     * Accept method for the visitor
-     * @param command the command to be executed
-     * @param visitor the visitor
-     * @param library the library
+     * Execute the command
+     * @param command the command to execute
+     * @param library the library to execute the command on
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        setPodcasts(library);
+
+        // Create an array node for the results
+        ArrayNode resultsArray = JsonNodeFactory.instance.arrayNode();
+
+        // the results array has the name of the podcast and the list of episodes
+        for (Podcast podcast : podcasts) {
+            ObjectNode podcastNode = JsonNodeFactory.instance.objectNode()
+                    .put("name", podcast.getName());
+
+            ArrayNode episodesArray = JsonNodeFactory.instance.arrayNode();
+            for (EpisodeInput episode : podcast.getEpisodes()) {
+                episodesArray.add(episode.getName());
+            }
+
+            podcastNode.set("episodes", episodesArray);
+            resultsArray.add(podcastNode);
+        }
+
+        // Create the command JSON structure
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "showPodcasts")
+                .put("user", username)
+                .put("timestamp", command.getTimestamp())
+                .set("result", resultsArray);
+
+        // Add the commandJson to the commandList
+        command.getCommandList().add(commandJson);
     }
 }

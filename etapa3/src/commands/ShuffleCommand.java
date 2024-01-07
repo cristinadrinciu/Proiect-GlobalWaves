@@ -4,6 +4,8 @@ import audio.files.Album;
 import audio.files.Library;
 import audio.files.Playlist;
 import audio.files.Song;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
@@ -13,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class ShuffleCommand implements Visitable {
+public class ShuffleCommand implements Command {
 
     private int seed;
 
@@ -106,14 +108,50 @@ public class ShuffleCommand implements Visitable {
     }
 
     /**
-     * The accept method for the visitor pattern
-     * @param command the command to be executed
-     * @param visitor the visitor
+     * Execute the shuffle command
+     * @param command the input command
      * @param library the library
      */
     @Override
-    public void accept(final InputCommands command,
-                       final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+
+        if (user.getPlayer().repeatState == 0) {
+            user.getPlayer().setRemainingTime();
+        }
+        if (user.getPlayer().repeatState == 1) {
+            user.getPlayer().setRemainingTimeRepeat1();
+        }
+        if (user.getPlayer().repeatState == 2) {
+            user.getPlayer().setRemainingTimeRepeat2();
+        }
+
+        shufflePlayer(user);
+        String message = message(user);
+
+        // Check if shuffleCommand is not null before accessing its methods
+        if (user.getPlayer().loadedItem != null) {
+            if (user.getPlayer().shuffle) {
+                // Update the shuffled Playlist from player
+                if (user.getPlayer().loadedItem instanceof Playlist) {
+                    user.getPlayer().shuffledPlaylist =
+                            shufflePlaylist((Playlist) user.getPlayer().loadedItem);
+                }
+                if (user.getPlayer().loadedItem instanceof Album) {
+                    user.getPlayer().shuffledPlaylist =
+                            shuffleAlbum((Album) user.getPlayer().loadedItem);
+                }
+                setSeed(0);
+            }
+        }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "shuffle")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+
+        command.getCommandList().add(commandJson);
     }
 }

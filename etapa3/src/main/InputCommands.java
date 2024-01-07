@@ -22,13 +22,8 @@ public class InputCommands {
     // User for this command
     private User user;
 
-    private Visitable commandToExecute = new Visitable() {
-        @Override
-        public void accept(final InputCommands inputCommands, final Visitor visitor,
-                           final Library library) {
-            // do nothing
-        }
-    };
+    private Command commandToExecute;
+
 
 
     /**
@@ -284,7 +279,7 @@ public class InputCommands {
         if(command.equals("addMerch"))
             this.addMerchCommand.setPrice(price);
         else if(command.equals("adBreak"))
-            AdBreakCommand.setPrice(price);
+            this.adBreakCommand.setPrice(price);
     }
 
     // Get All Users Command
@@ -637,9 +632,8 @@ public class InputCommands {
     /**
      * This method executes the command
      * @param library the library
-     * @param visitor the visitor
      */
-    public void executeCommand(final Library library, final Visitor visitor) {
-        commandToExecute.accept(this, visitor, library);
+    public void executeCommand(final Library library) {
+        commandToExecute.execute(this, library);
     }
 }

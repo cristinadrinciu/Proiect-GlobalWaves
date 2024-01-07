@@ -2,6 +2,8 @@ package commands;
 
 import audio.files.Library;
 import audio.files.Playlist;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import platform.data.PublicPlaylists;
 import visit.pattern.Visitable;
@@ -10,7 +12,7 @@ import user.types.User;
 
 import java.util.ArrayList;
 
-public class CreatePlaylistCommand implements Visitable {
+public class CreatePlaylistCommand implements Command {
     private String playlistName;
     private Playlist playlist = new Playlist();
 
@@ -87,13 +89,22 @@ public class CreatePlaylistCommand implements Visitable {
     }
 
     /**
-     * Accept method for the visitor
-     * @param command the command to be executed
-     * @param visitor the visitor
-     * @param library the library
+     * Execute the command.
+     * @param command the input command
+     * @param library the library of the application
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+        String message = message(user, library);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "createPlaylist")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+
+        command.getCommandList().add(commandJson);
     }
 }

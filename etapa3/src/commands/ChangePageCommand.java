@@ -3,6 +3,8 @@ package commands;
 import audio.files.Library;
 import audio.files.Podcast;
 import audio.files.Song;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import user.types.Artist;
 import user.types.Host;
@@ -10,7 +12,7 @@ import visit.pattern.Visitable;
 import visit.pattern.Visitor;
 import user.types.User;
 
-public class ChangePageCommand implements Visitable {
+public class ChangePageCommand implements Command {
     private String nextPage;
     private String message;
 
@@ -81,13 +83,22 @@ public class ChangePageCommand implements Visitable {
     }
 
     /**
-     * Accepts the visitor
-     * @param command the command that will be accepted
-     * @param visitor the visitor that will visit the command
-     * @param library the library that will be used
+     * Executes the command
+     * @param command the input command
+     * @param library the library of the application
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+        changePage(user);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "changePage")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+
+        command.getCommandList().add(commandJson);
     }
 }

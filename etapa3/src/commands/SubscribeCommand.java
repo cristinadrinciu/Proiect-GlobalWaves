@@ -1,6 +1,8 @@
 package commands;
 
 import audio.files.Library;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import pages.*;
 import user.types.Artist;
@@ -9,7 +11,7 @@ import user.types.User;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
 
-public class SubscribeCommand implements Visitable {
+public class SubscribeCommand implements Command {
     private String message;
 
     public SubscribeCommand() {
@@ -41,7 +43,7 @@ public class SubscribeCommand implements Visitable {
                 message = user.getUsername() + " unsubscribed from " + artist.getUsername() + " successfully.";
             } else {
                 // subscribe
-                artist.getSubscribers().add(user);
+                artist.addObserver(user);
                 message = user.getUsername() + " subscribed to " + artist.getUsername() + " successfully.";
             }
         } else if (page instanceof HostPage) {
@@ -53,14 +55,27 @@ public class SubscribeCommand implements Visitable {
                 message = user.getUsername() + " unsubscribed from " + host.getUsername() + " successfully.";
             } else {
                 // subscribe
-                host.getSubscribers().add(user);
+                host.addObserver(user);
                 message = user.getUsername() + " subscribed to " + host.getUsername() + " successfully.";
             }
         }
     }
 
+    /**
+     * @param command the input command
+     * @param library the main library
+     */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(InputCommands command, Library library) {
+        User user = command.getUser();
+        subscribe(user);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "subscribe")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+        command.getCommandList().add(commandJson);
     }
 }

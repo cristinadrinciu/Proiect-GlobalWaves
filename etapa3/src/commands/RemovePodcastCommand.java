@@ -1,6 +1,9 @@
 package commands;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
+import platform.data.OnlineUsers;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
 import user.types.Host;
@@ -8,7 +11,7 @@ import audio.files.Library;
 import audio.files.Podcast;
 import user.types.User;
 
-public class RemovePodcastCommand implements Visitable {
+public class RemovePodcastCommand implements Command {
     private String name;
     private String message;
 
@@ -105,14 +108,34 @@ public class RemovePodcastCommand implements Visitable {
     }
 
     /**
-     * Accept the visitor.
-     * @param command the command to be executed
-     * @param visitor the visitor
+     * Execute the remove podcast command.
+     * @param command the input command
      * @param library the library of the platform
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor,
-                       final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+
+        // update the player for each user
+        for (User user1 : OnlineUsers.getOnlineUsers()) {
+            user1.getPlayer().timestamp = command.getTimestamp();
+            if (user1.getPlayer().repeatState == 0) {
+                user1.getPlayer().setRemainingTime();
+            } else if (user1.getPlayer().repeatState == 1) {
+                user1.getPlayer().setRemainingTimeRepeat1();
+            } else if (user1.getPlayer().repeatState == 2) {
+                user1.getPlayer().setRemainingTimeRepeat2();
+            }
+        }
+
+        removePodcast(user, library);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "removePodcast")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+        command.getCommandList().add(commandJson);
     }
 }

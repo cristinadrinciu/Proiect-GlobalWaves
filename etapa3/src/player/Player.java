@@ -175,16 +175,18 @@ public class Player {
                             // check if it is an ad
                             for (User user1 : library.getUsers()) {
                                 if (user1.getType().equals("artist")) {
-                                    ((Artist) user1).calculateAddRevenue(AdBreakCommand.getPrice(), user);
+                                    ((Artist) user1).calculateAddRevenue(user.getAdPrice(), user);
                                 }
                             }
+
                             // clear the list of songs between ads
                             user.getSongsBetweenAds().clear();
                             continue;
                         }
 
                         // add in the list of songs between ads
-                        user.getSongsBetweenAds().add((Song) playingNow);
+                        if(!user.isPremium())
+                            user.getSongsBetweenAds().add((Song) playingNow);
 
                         // add in the list of songs listened while premium
                         if(user.isPremium())
@@ -224,7 +226,7 @@ public class Player {
                             // it means the whole ad was listened, so monetize
                             for (User user1 : library.getUsers()) {
                                 if (user1.getType().equals("artist")) {
-                                    ((Artist) user1).calculateAddRevenue(AdBreakCommand.getPrice(), user);
+                                    ((Artist) user1).calculateAddRevenue(user.getAdPrice(), user);
                                 }
                             }
 
@@ -234,7 +236,8 @@ public class Player {
                         }
 
                         // add in the list of songs between ads
-                        user.getSongsBetweenAds().add((Song) playingNow);
+                        if(!user.isPremium())
+                            user.getSongsBetweenAds().add((Song) playingNow);
 
                         // add in the list of songs listened while premium
                         if(user.isPremium())
@@ -280,7 +283,7 @@ public class Player {
                             // it means the whole ad was listened, so monetize
                             for (User user1 : library.getUsers()) {
                                 if (user1.getType().equals("artist")) {
-                                    ((Artist) user1).calculateAddRevenue(AdBreakCommand.getPrice(), user);
+                                    ((Artist) user1).calculateAddRevenue(user.getAdPrice(), user);
                                 }
                             }
 
@@ -290,7 +293,8 @@ public class Player {
                         }
 
                         // add in the list of songs between ads
-                        user.getSongsBetweenAds().add((Song) playingNow);
+                        if(!user.isPremium())
+                            user.getSongsBetweenAds().add((Song) playingNow);
 
                         // add in the list of songs listened while premium
                         if(user.isPremium())
@@ -329,7 +333,7 @@ public class Player {
                             // it means the whole ad was listened, so monetize
                             for (User user1 : library.getUsers()) {
                                 if (user1.getType().equals("artist")) {
-                                    ((Artist) user1).calculateAddRevenue(AdBreakCommand.getPrice(), user);
+                                    ((Artist) user1).calculateAddRevenue(user.getAdPrice(), user);
                                 }
                             }
 
@@ -339,7 +343,8 @@ public class Player {
                         }
 
                         // add in the list of songs between ads
-                        user.getSongsBetweenAds().add((Song) playingNow);
+                        if(!user.isPremium())
+                            user.getSongsBetweenAds().add((Song) playingNow);
 
                         // add in the list of songs listened while premium
                         if(user.isPremium())

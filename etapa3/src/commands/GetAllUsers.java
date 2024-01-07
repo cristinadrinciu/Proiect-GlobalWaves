@@ -1,6 +1,10 @@
 package commands;
 
 import audio.files.Library;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
@@ -8,7 +12,7 @@ import user.types.User;
 
 import java.util.ArrayList;
 
-public class GetAllUsers implements Visitable {
+public class GetAllUsers implements Command {
     private ArrayList<String> allUsersNames = new ArrayList<>();
 
     public GetAllUsers() {
@@ -46,14 +50,32 @@ public class GetAllUsers implements Visitable {
     }
 
     /**
-     * accept the visitor
-     * @param command the command
-     * @param visitor the visitor
+     * Execute the command
+     * @param command the input command
      * @param library the library
      */
     @Override
-    public void accept(final InputCommands command,
-                       final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        setAllUsersNames(library);
+
+        // Create an array node for the results
+        ArrayNode resultsArray = JsonNodeFactory.instance.arrayNode();
+
+        ArrayList<String> allUsers = getAllUsersNames();
+
+        // Add the names of the online users to the results array
+        for (String username : allUsers) {
+            resultsArray.add(username);
+        }
+
+        // Create the command JSON structure
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "getAllUsers")
+                .put("timestamp", command.getTimestamp())
+                .set("result", resultsArray);
+
+        // Add the commandJson to the commandList
+        command.getCommandList().add(commandJson);
     }
 }

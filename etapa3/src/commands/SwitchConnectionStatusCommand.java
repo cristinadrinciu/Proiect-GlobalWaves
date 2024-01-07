@@ -1,13 +1,15 @@
 package commands;
 
 import audio.files.Library;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import main.InputCommands;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
 import platform.data.OnlineUsers;
 import user.types.User;
 
-public class SwitchConnectionStatusCommand implements Visitable {
+public class SwitchConnectionStatusCommand implements Command {
     private String message;
 
     public SwitchConnectionStatusCommand() {
@@ -51,13 +53,32 @@ public class SwitchConnectionStatusCommand implements Visitable {
     }
 
     /**
-     * Accepts the command.
-     * @param command the command to accept
-     * @param visitor the visitor that visits the command
-     * @param library the library that contains the users
+     * Executes the command.
+     * @param command the input command
+     * @param library the main library
      */
     @Override
-    public void accept(final InputCommands command, final Visitor visitor, final Library library) {
-        visitor.visit(command, this, library);
+    public void execute(final InputCommands command, final Library library) {
+        User user = command.getUser();
+        if (user.getStatusOnline()) {
+            if (user.getPlayer().repeatState == 0) {
+                user.getPlayer().setRemainingTime();
+            } else if (user.getPlayer().repeatState == 1) {
+                user.getPlayer().setRemainingTimeRepeat1();
+            } else if (user.getPlayer().repeatState == 2) {
+                user.getPlayer().setRemainingTimeRepeat2();
+            }
+        }
+
+        switchConnectionStatus(user, command.getTimestamp());
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode commandJson = objectMapper.createObjectNode()
+                .put("command", "switchConnectionStatus")
+                .put("user", command.getUsername())
+                .put("timestamp", command.getTimestamp())
+                .put("message", message);
+
+        command.getCommandList().add(commandJson);
     }
 }
