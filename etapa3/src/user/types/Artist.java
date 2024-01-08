@@ -160,32 +160,15 @@ public class Artist extends User implements Subject, Visitable {
 
         int totalSongs = songs.size();
 
-        ArrayList<Song> tmpSongs = new ArrayList<>();
-
-        // add the songs listened while premium, but just once
-        for (Song song : songs) {
-            if (!tmpSongs.contains(song)) {
-                tmpSongs.add(song);
-            }
+        if (totalSongs == 0) {
+            return;
         }
 
         // calculate the song revenue for each song
-        for (Song song : tmpSongs) {
+        for (Song song : songs) {
             if (song.getArtist().equals(this.getUsername())) {
-                // get the number of occurrences of the song in the user's premium songs list
-                int occurrences = 0;
-                for (Song song1 : songs) {
-                    if (song1.equals(song)) {
-                        occurrences++;
-                    }
-                }
-
-                if (occurrences == 0) {
-                    continue;
-                }
-
                 // calculate the revenue for the song
-                double revenue = 1000000 * (double) occurrences / totalSongs;
+                double revenue = 1000000 * 1.0 / totalSongs;
 
                 // add the revenue to the hashmap
                 if (!artistStatistics.getSongsRevenue().containsKey(song.getName())) {

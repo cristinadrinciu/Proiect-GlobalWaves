@@ -12893,79 +12893,79 @@
   "result" : {
     "Bob Marley" : {
       "merchRevenue" : 0.0,
-      "songRevenue" : 4026791.01,
+      "songRevenue" : 4026832.08,
       "ranking" : 1,
       "mostProfitableSong" : "400 Years"
     },
     "Madonna" : {
       "merchRevenue" : 0.0,
-      "songRevenue" : 2733171.97,
+      "songRevenue" : 2733046.81,
       "ranking" : 2,
       "mostProfitableSong" : "Hung Up"
     },
     "Joni Mitchell" : {
       "merchRevenue" : 0.0,
-      "songRevenue" : 1931061.77,
+      "songRevenue" : 1931221.83,
       "ranking" : 3,
       "mostProfitableSong" : "For Free"
     },
     "The Beatles" : {
       "merchRevenue" : 0.0,
-      "songRevenue" : 1871477.43,
+      "songRevenue" : 1871442.68,
       "ranking" : 4,
       "mostProfitableSong" : "Because - Remastered 2009"
     },
     "Jimi Hendrix" : {
       "merchRevenue" : 0.0,
-      "songRevenue" : 1755486.87,
+      "songRevenue" : 1755665.11,
       "ranking" : 5,
       "mostProfitableSong" : "Foxy Lady"
     },
     "Frank Sinatra" : {
       "merchRevenue" : 0.0,
-      "songRevenue" : 1699620.6,
+      "songRevenue" : 1699512.9,
       "ranking" : 6,
       "mostProfitableSong" : "Silent Night"
     },
     "Stevie Wonder" : {
       "merchRevenue" : 0.0,
-      "songRevenue" : 1578021.17,
+      "songRevenue" : 1577965.04,
       "ranking" : 7,
       "mostProfitableSong" : "Sir Duke"
     },
     "Marvin Gaye" : {
       "merchRevenue" : 0.0,
-      "songRevenue" : 1542913.7,
+      "songRevenue" : 1542693.36,
       "ranking" : 8,
       "mostProfitableSong" : "God Is Love"
     },
     "Bob Dylan" : {
       "merchRevenue" : 0.0,
-      "songRevenue" : 1499588.2,
+      "songRevenue" : 1499551.71,
       "ranking" : 9,
       "mostProfitableSong" : "Corrina, Corrina"
     },
     "Aretha Franklin" : {
       "merchRevenue" : 0.0,
-      "songRevenue" : 1479742.57,
+      "songRevenue" : 1479672.17,
       "ranking" : 10,
       "mostProfitableSong" : "Respect"
     },
     "Fleetwood Mac" : {
       "merchRevenue" : 0.0,
-      "songRevenue" : 1360657.52,
+      "songRevenue" : 1360728.01,
       "ranking" : 11,
       "mostProfitableSong" : "Gold Dust Woman"
     },
     "Bruce Springsteen" : {
       "merchRevenue" : 0.0,
-      "songRevenue" : 1333139.84,
+      "songRevenue" : 1333168.69,
       "ranking" : 12,
       "mostProfitableSong" : "No Surrender"
     },
     "Led Zeppelin" : {
       "merchRevenue" : 0.0,
-      "songRevenue" : 1196197.36,
+      "songRevenue" : 1196369.6,
       "ranking" : 13,
       "mostProfitableSong" : "Babe I'm Gonna Leave You"
     }

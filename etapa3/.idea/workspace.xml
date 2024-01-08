@@ -5,14 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53d20739-522b-42d8-8a62-da46ad36f96f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/visit/pattern/WrappedVisitor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/WrappedCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/WrappedCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/checkstyle.txt" beforeDir="false" afterPath="$PROJECT_DIR$/checkstyle.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/etapa3/commands/LoadCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/commands/LoadCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/etapa3/commands/LoadRecommendationCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/commands/LoadRecommendationCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/etapa3/user/types/Artist.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/user/types/Artist.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/result/out_test06_etapa3_monetization_all.json" beforeDir="false" afterPath="$PROJECT_DIR$/result/out_test06_etapa3_monetization_all.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/result/out_test15_etapa3_complex.json" beforeDir="false" afterPath="$PROJECT_DIR$/result/out_test15_etapa3_complex.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/result/out_test16_etapa3_complex.json" beforeDir="false" afterPath="$PROJECT_DIR$/result/out_test16_etapa3_complex.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commands/LoadCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/LoadCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commands/LoadRecommendationCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/LoadRecommendationCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/user/types/Artist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/types/Artist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/types/Host.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/types/Host.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/types/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/types/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visit/pattern/Visitable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/visit/pattern/Visitable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visit/pattern/Visitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/visit/pattern/Visitor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

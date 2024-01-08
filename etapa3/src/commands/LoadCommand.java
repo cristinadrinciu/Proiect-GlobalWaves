@@ -107,7 +107,7 @@ public class LoadCommand implements Command {
                     || user.getPlayer().loadedItem instanceof Playlist
                     || user.getPlayer().loadedItem instanceof Album) {
                 // add in the list of songs between ads
-                if(user.getPlayer().playingNow != null)
+                if(user.getPlayer().playingNow != null && !user.isPremium())
                     user.getSongsBetweenAds().add((Song) user.getPlayer().playingNow);
 
                 // add in the list of songs listened while premium

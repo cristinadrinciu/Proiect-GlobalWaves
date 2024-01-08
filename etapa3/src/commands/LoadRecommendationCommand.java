@@ -49,7 +49,7 @@ public class LoadRecommendationCommand implements Command {
             if(user.getPlayer().loadedItem instanceof Song
                     || user.getPlayer().loadedItem instanceof Playlist) {
                 // add in the list of songs between ads
-                if(user.getPlayer().playingNow != null)
+                if(user.getPlayer().playingNow != null && !user.isPremium())
                     user.getSongsBetweenAds().add((Song) user.getPlayer().playingNow);
 
                 // add in the list of songs listened while premium
