@@ -8,10 +8,12 @@ import observer.Subject;
 import page.content.Event;
 import page.content.Merch;
 import pages.ArtistPage;
+import visit.pattern.Visitable;
+import visit.pattern.Visitor;
 
 import java.util.ArrayList;
 
-public class Artist extends User implements Subject {
+public class Artist extends User implements Subject, Visitable {
     // add the new fields of the artist
     private ArrayList<Album> albums = new ArrayList<Album>();
     private ArrayList<Event> events = new ArrayList<Event>();
@@ -270,5 +272,10 @@ public class Artist extends User implements Subject {
         for (User user : subscribers) {
             user.update(name, description);
         }
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }

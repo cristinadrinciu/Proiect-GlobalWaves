@@ -13,6 +13,7 @@ import user.types.Host;
 import user.types.User;
 import visit.pattern.Visitable;
 import visit.pattern.Visitor;
+import visit.pattern.WrappedVisitor;
 
 import java.util.ArrayList;
 
@@ -38,53 +39,11 @@ public class WrappedCommand implements Command {
         return message;
     }
 
-    public void setStatisticsUser(User user) {
-        // if there are no data in the user's statistics, the message is "No data to show for user ${username}.", otherwise is null
-        // check if the user has any data in his statistics
-        if(user.getStatistics().getTopArtists().isEmpty() && user.getStatistics().getTopGenres().isEmpty() &&
-                user.getStatistics().getTopSongs().isEmpty() && user.getStatistics().getTopAlbums().isEmpty() &&
-                user.getStatistics().getTopEpisodes().isEmpty()) {
-            message = "No data to show for user " + user.getUsername() + ".";
-            return;
-        }
-        message = null;
-        // get the song names
-        topSongs.addAll(user.getStatistics().topSongs());
-        topArtists.addAll(user.getStatistics().topArtists());
-        topGenres.addAll(user.getStatistics().topGenres());
-        topAlbums.addAll(user.getStatistics().topAlbums());
-        topEpisodes.addAll(user.getStatistics().topEpisodes());
-    }
-
-    public void setStatisticsArtist(Artist artist) {
-        // if there are no data in the artist's statistics, the message is "No data to show for artist ${artist_name}.", otherwise is null
-        // check if the artist has any data in his statistics
-        if(artist.getArtistStatistics().getTopAlbums().isEmpty() && artist.getArtistStatistics().getTopSongs().isEmpty() &&
-                artist.getArtistStatistics().getTopFans().isEmpty() && artist.getArtistStatistics().getListeners() == 0) {
-            message = "No data to show for artist " + artist.getUsername() + ".";
-            return;
-        }
-        message = null;
-        // get the song names
-        topSongs.addAll(artist.getArtistStatistics().topSongs());
-        topAlbums.addAll(artist.getArtistStatistics().topAlbums());
-        topFans.addAll(artist.getArtistStatistics().topFans());
-        artist.getArtistStatistics().setListeners();
-        listeners = artist.getArtistStatistics().getListeners();
-    }
-
-    public void setStatisticsHost(Host host) {
-        // if there are no data in the host's statistics, the message is "No data to show for host ${host_name}.", otherwise is null
-        // check if the host has any data in his statistics
-        if(host.getHostStatistics().getTopEpisodes().isEmpty() && host.getHostStatistics().getTopFans().isEmpty() &&
-                host.getHostStatistics().getListeners() == 0) {
-            message = "No data to show for host " + host.getUsername() + ".";
-            return;
-        }
-        message = null;
-        topEpisodes.addAll(host.getHostStatistics().topEpisodes());
-        host.getHostStatistics().setListeners();
-        listeners = host.getHostStatistics().getListeners();
+    /**
+     * @param message the message to set
+     */
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     /**
@@ -137,6 +96,21 @@ public class WrappedCommand implements Command {
     }
 
     /**
+     * @param listeners the listeners to set
+     */
+    public void setListeners(int listeners) {
+        this.listeners = listeners;
+    }
+
+    /**
+     * @param visitable  the visitable object
+     */
+    public void setStatistics(Visitable visitable) {
+        WrappedVisitor visitor = new WrappedVisitor(this);
+        visitable.accept(visitor);
+    }
+
+    /**
      * @param command  the command to be executed
      * @param library  the library on which the command is executed
      */
@@ -163,7 +137,7 @@ public class WrappedCommand implements Command {
                 }
             }
 
-            setStatisticsUser(user);
+            setStatistics(user);
 
             if (message != null) {
                 commandJson.put("message", message);
@@ -218,7 +192,7 @@ public class WrappedCommand implements Command {
                 }
             }
 
-            setStatisticsArtist((Artist) user);
+            setStatistics((Artist) user);
 
 
             if (message != null) {
@@ -263,7 +237,7 @@ public class WrappedCommand implements Command {
                 }
             }
 
-            setStatisticsHost((Host) user);
+            setStatistics((Host) user);
 
             if (message != null) {
                 commandJson.put("message", message);

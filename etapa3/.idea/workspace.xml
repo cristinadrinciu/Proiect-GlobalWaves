@@ -5,130 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53d20739-522b-42d8-8a62-da46ad36f96f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/commands/AdBreakCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/commands/BuyMerch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/commands/Command.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/commands/GetNotifications.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/commands/LoadRecommendationCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/commands/NextPageCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/commands/PreviousPageCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/commands/SeeMyMerchCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/commands/SubscribeCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/commands/UpdateRecommendationsCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/notification/Notification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/observer/Observer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/observer/Subject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/user/types/HostStatistics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/visit/pattern/WrappedVisitor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkstyle.txt" beforeDir="false" afterPath="$PROJECT_DIR$/checkstyle.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/audio/files/Library.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/audio/files/Library.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/audio/files/Playlist.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/audio/files/Playlist.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/commands/AddAlbumCommand$DuplicateSongChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/commands/AddAlbumCommand$DuplicateSongChecker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/commands/AddAlbumCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/commands/AddAlbumCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/commands/AddAnnouncementCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/commands/AddAnnouncementCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/commands/AddEventCommand$VerifyDate.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/commands/AddEventCommand$VerifyDate.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/commands/AddEventCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/commands/AddEventCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/commands/AddMerchCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/commands/AddMerchCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/commands/AddPodcastCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/commands/AddPodcastCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/commands/AddUserCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/commands/AddUserCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/commands/BuyPremiumCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/commands/BuyPremiumCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/commands/CancelPremiumCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/commands/CancelPremiumCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/commands/ChangePageCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/commands/ChangePageCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/commands/EndProgramCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/commands/EndProgramCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/commands/FollowCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/commands/FollowCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/commands/WrappedCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/commands/WrappedCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/main/InputCommands.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/main/InputCommands.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/pages/ArtistPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/pages/ArtistPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/pages/HomePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/pages/HomePage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/pages/HostPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/pages/HostPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/player/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/player/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/user/types/Artist.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/user/types/Artist.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/user/types/ArtistStatistics.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/user/types/ArtistStatistics.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/user/types/GhostUsers.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/user/types/Host.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/user/types/Host.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/user/types/StatisticsUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/user/types/StatisticsUser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/user/types/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/user/types/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/visit/pattern/CommandExecute.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/visit/pattern/CommandExecute.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/etapa3/visit/pattern/Visitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/etapa3/visit/pattern/Visitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref/ref_test12_etapa3_recommendations.json" beforeDir="false" afterPath="$PROJECT_DIR$/ref/ref_test12_etapa3_recommendations.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/out_test00_etapa3_wrapped_one_user_one_artist.json" beforeDir="false" afterPath="$PROJECT_DIR$/result/out_test00_etapa3_wrapped_one_user_one_artist.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/out_test01_etapa3_wrapped_one_user_n_artist.json" beforeDir="false" afterPath="$PROJECT_DIR$/result/out_test01_etapa3_wrapped_one_user_n_artist.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/out_test02_etapa3_wrapped_n_user_one_artist.json" beforeDir="false" afterPath="$PROJECT_DIR$/result/out_test02_etapa3_wrapped_n_user_one_artist.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/out_test04_etapa3_monetization_premium.json" beforeDir="false" afterPath="$PROJECT_DIR$/result/out_test04_etapa3_monetization_premium.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/out_test05_etapa3_monetization_free.json" beforeDir="false" afterPath="$PROJECT_DIR$/result/out_test05_etapa3_monetization_free.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/out_test06_etapa3_monetization_all.json" beforeDir="false" afterPath="$PROJECT_DIR$/result/out_test06_etapa3_monetization_all.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/out_test07_etapa3_notifications_simple.json" beforeDir="false" afterPath="$PROJECT_DIR$/result/out_test07_etapa3_notifications_simple.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/out_test08_etapa3_notifications_more.json" beforeDir="false" afterPath="$PROJECT_DIR$/result/out_test08_etapa3_notifications_more.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/out_test09_etapa3_merch_buy.json" beforeDir="false" afterPath="$PROJECT_DIR$/result/out_test09_etapa3_merch_buy.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/out_test10_etapa3_wrapped_host.json" beforeDir="false" afterPath="$PROJECT_DIR$/result/out_test10_etapa3_wrapped_host.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/out_test11_etapa3_basicPageNavigation.json" beforeDir="false" afterPath="$PROJECT_DIR$/result/out_test11_etapa3_basicPageNavigation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/out_test12_etapa3_recommendations.json" beforeDir="false" afterPath="$PROJECT_DIR$/result/out_test12_etapa3_recommendations.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/out_test13_etapa3_basic_recommendation.json" beforeDir="false" afterPath="$PROJECT_DIR$/result/out_test13_etapa3_basic_recommendation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/out_test14_etapa3_page_navigation.json" beforeDir="false" afterPath="$PROJECT_DIR$/result/out_test14_etapa3_page_navigation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/out_test15_etapa3_complex.json" beforeDir="false" afterPath="$PROJECT_DIR$/result/out_test15_etapa3_complex.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/out_test16_etapa3_complex.json" beforeDir="false" afterPath="$PROJECT_DIR$/result/out_test16_etapa3_complex.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/files/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/files/Library.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/files/Playlist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/files/Playlist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/files/Song.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/files/Song.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/AddAlbumCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/AddAlbumCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/AddAnnouncementCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/AddAnnouncementCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/AddEventCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/AddEventCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/AddMerchCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/AddMerchCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/AddPodcastCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/AddPodcastCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/AddRemoveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/AddRemoveCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/AddUserCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/AddUserCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/BackwardCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/BackwardCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/BuyPremiumCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/BuyPremiumCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/CancelPremiumCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/CancelPremiumCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/ChangePageCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/ChangePageCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/CreatePlaylistCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/CreatePlaylistCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/DeleteUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/DeleteUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/EndProgramCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/EndProgramCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/FollowCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/FollowCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/ForwardCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/ForwardCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/GetAllUsers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/GetAllUsers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/GetOnlineUsers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/GetOnlineUsers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/GetTop5Albums.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/GetTop5Albums.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/GetTop5Artists.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/GetTop5Artists.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/GetTop5Playlists.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/GetTop5Playlists.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/GetTop5Songs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/GetTop5Songs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/LikeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/LikeCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/LoadCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/LoadCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/NextCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/NextCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/PlayPauseCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/PlayPauseCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/PrevCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/PrevCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/PrintCurrentPageCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/PrintCurrentPageCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/RemoveAlbumCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/RemoveAlbumCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/RemoveAnnouncementCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/RemoveAnnouncementCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/RemoveEventCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/RemoveEventCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/RemovePodcastCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/RemovePodcastCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/RepeatCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/RepeatCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/SearchCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/SearchCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/SelectCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/SelectCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/ShowAlbums.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/ShowAlbums.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/ShowPlaylistsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/ShowPlaylistsCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/ShowPodcasts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/ShowPodcasts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/ShowPreferredSongsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/ShowPreferredSongsCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/ShuffleCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/ShuffleCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/StatusCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/StatusCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/SwitchConnectionStatusCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/SwitchConnectionStatusCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/SwitchVisibilityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/SwitchVisibilityCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/commands/WrappedCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/WrappedCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/InputCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/InputCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ArtistPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ArtistPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HomePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/HostPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/HostPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/player/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/user/types/Artist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/types/Artist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/types/ArtistStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/types/ArtistStatistics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/types/GhostUsers.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/user/types/Host.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/types/Host.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user/types/StatisticsUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/types/StatisticsUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/user/types/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user/types/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visit/pattern/CommandExecute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/visit/pattern/CommandExecute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/visit/pattern/Visitable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/visit/pattern/Visitable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/visit/pattern/Visitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/visit/pattern/Visitor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -139,8 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>

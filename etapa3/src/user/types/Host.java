@@ -6,10 +6,12 @@ import observer.Subject;
 import page.content.Announcement;
 import audio.files.Podcast;
 import pages.HostPage;
+import visit.pattern.Visitable;
+import visit.pattern.Visitor;
 
 import java.util.ArrayList;
 
-public class Host extends User implements Subject {
+public class Host extends User implements Subject, Visitable {
     private ArrayList<Podcast> podcasts;
     private ArrayList<Announcement> announcements;
     private HostPage hostPage = new HostPage(this);
@@ -120,5 +122,10 @@ public class Host extends User implements Subject {
     @Override
     public void addObserver(Observer observer) {
         subscribers.add((User) observer);
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }

@@ -8,10 +8,12 @@ import platform.data.PublicAlbums;
 import player.Player;
 import pages.HomePage;
 import pages.Page;
+import visit.pattern.Visitable;
+import visit.pattern.Visitor;
 
 import java.util.ArrayList;
 
-public class User implements Observer {
+public class User implements Observer, Visitable {
     private String username;
     private int age;
     private String city;
@@ -462,5 +464,13 @@ public class User implements Observer {
         notification.setName(name);
         notification.setDescription(description);
         notifications.add(notification);
+    }
+
+    /**
+     * @param visitor the visitor
+     */
+    @Override
+    public void accept(final Visitor visitor) {
+        visitor.visit(this);
     }
 }
