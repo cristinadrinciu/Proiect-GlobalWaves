@@ -116,7 +116,7 @@ public class AddUserCommand implements Command {
             user.setCity(this.city);
             user.setType("user");
             user.setStatusOnline(true);
-            user.setPlayer(new Player(user, library));
+            user.setPlayer(Player.getInstance(user, library));
             user.setPlaylists(new ArrayList<Playlist>());
             user.setLikedSongs(new ArrayList<Song>());
             user.setFollowedPlaylists(new ArrayList<Playlist>());
@@ -139,7 +139,7 @@ public class AddUserCommand implements Command {
             user.setCity(this.city);
             user.setType("artist");
             user.setStatusOnline(true);
-            user.setPlayer(new Player(user, library));
+            user.setPlayer(Player.getInstance(user, library));
             user.setPlaylists(new ArrayList<Playlist>());
             user.setLikedSongs(new ArrayList<Song>());
             user.setFollowedPlaylists(new ArrayList<Playlist>());
@@ -158,7 +158,7 @@ public class AddUserCommand implements Command {
             user.setCity(this.city);
             user.setType("host");
             user.setStatusOnline(true);
-            user.setPlayer(new Player(user, library));
+            user.setPlayer(Player.getInstance(user, library));
             user.setPlaylists(new ArrayList<Playlist>());
             user.setLikedSongs(new ArrayList<Song>());
             user.setFollowedPlaylists(new ArrayList<Playlist>());

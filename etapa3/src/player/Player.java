@@ -8,8 +8,11 @@ import user.types.Host;
 import user.types.User;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Player {
+    private static Map<User, Player> instances = new HashMap<>();
     public User user;
     public int timestamp;
     public AudioFile loadedItem;
@@ -38,6 +41,10 @@ public class Player {
         // set the user
         this.user = user;
         this.library = library;
+    }
+
+    public static Player getInstance(User user, Library library) {
+        return instances.computeIfAbsent(user, u -> new Player(u, library));
     }
 
     /**

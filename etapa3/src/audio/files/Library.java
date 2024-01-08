@@ -100,7 +100,7 @@ public class Library {
             newUser.setHomePage();
             newUser.setCurrentPage(newUser.getHomePage());
             newUser.getNavigationHistory().add(newUser.getHomePage());
-            newUser.setPlayer(new Player(newUser, this));
+            newUser.setPlayer(Player.getInstance(newUser, this));
             users.add(newUser);
         }
     }
