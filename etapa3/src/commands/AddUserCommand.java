@@ -1,22 +1,21 @@
 package commands;
-import audio.files.Album;
-import audio.files.AudioFile;
-import audio.files.Library;
-import audio.files.Playlist;
-import audio.files.Podcast;
-import audio.files.Song;
+import audioFiles.Album;
+import audioFiles.AudioFile;
+import audioFiles.Library;
+import audioFiles.Playlist;
+import audioFiles.Podcast;
+import audioFiles.Song;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import page.content.Announcement;
+import designPatterns.commandPattern.Command;
+import pageContent.Announcement;
 import main.InputCommands;
 import pages.HomePage;
 import player.Player;
-import platform.data.OnlineUsers;
-import user.types.Artist;
-import user.types.Host;
-import user.types.User;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
+import platformData.OnlineUsers;
+import users.Artist;
+import users.Host;
+import users.User;
 
 import java.util.ArrayList;
 

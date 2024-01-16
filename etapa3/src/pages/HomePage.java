@@ -1,7 +1,7 @@
 package pages;
 
-import audio.files.Playlist;
-import audio.files.Song;
+import audioFiles.Playlist;
+import audioFiles.Song;
 
 import java.util.ArrayList;
 
@@ -151,7 +151,8 @@ public class HomePage implements Page {
             playlistRecommendationsNames.add(playlist.getName());
         }
         return "Liked songs:\n\t" + songNames.toString() + "\n\nFollowed playlists:\n\t"
-                + playlistNames.toString() + "\n\nSong recommendations:\n\t" + songRecommendationsNames.toString()
+                + playlistNames.toString() + "\n\nSong recommendations:\n\t"
+                + songRecommendationsNames.toString()
                 + "\n\nPlaylists recommendations:\n\t" + playlistRecommendationsNames.toString();
     }
 

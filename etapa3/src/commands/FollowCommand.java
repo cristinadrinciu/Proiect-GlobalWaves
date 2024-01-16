@@ -1,15 +1,14 @@
 package commands;
 
-import audio.files.Library;
-import audio.files.Playlist;
+import audioFiles.Library;
+import audioFiles.Playlist;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import main.InputCommands;
 import notification.Notification;
-import platform.data.PublicPlaylists;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
-import user.types.User;
+import platformData.PublicPlaylists;
+import users.User;
 
 public class FollowCommand implements Command {
     private String message;
@@ -68,7 +67,8 @@ public class FollowCommand implements Command {
             // send notification to the owner of the playlist
             Notification notification = new Notification();
             notification.setName("New Follower");
-            notification.setDescription(user.getUsername() + " followed your playlist " + playlist.getName() + ".");
+            notification.setDescription(user.getUsername()
+                    + " followed your playlist " + playlist.getName() + ".");
             playlist.getOwner().getNotifications().add(notification);
         }
 

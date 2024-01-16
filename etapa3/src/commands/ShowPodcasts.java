@@ -4,13 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import fileio.input.EpisodeInput;
 import main.InputCommands;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
-import user.types.Host;
-import audio.files.Library;
-import audio.files.Podcast;
+import users.Host;
+import audioFiles.Library;
+import audioFiles.Podcast;
 
 import java.util.ArrayList;
 

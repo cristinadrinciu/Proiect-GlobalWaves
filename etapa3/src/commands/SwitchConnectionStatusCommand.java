@@ -1,13 +1,12 @@
 package commands;
 
-import audio.files.Library;
+import audioFiles.Library;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import main.InputCommands;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
-import platform.data.OnlineUsers;
-import user.types.User;
+import platformData.OnlineUsers;
+import users.User;
 
 public class SwitchConnectionStatusCommand implements Command {
     private String message;

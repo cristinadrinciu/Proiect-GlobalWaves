@@ -1,9 +1,9 @@
 package pages;
 
-import page.content.Announcement;
-import audio.files.Podcast;
+import pageContent.Announcement;
+import audioFiles.Podcast;
 import fileio.input.EpisodeInput;
-import user.types.Host;
+import users.Host;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ public class HostPage implements Page {
     private ArrayList<Announcement> announcements = new ArrayList<>();
     private Host host;
 
-    public HostPage(Host host) {
+    public HostPage(final Host host) {
         this.host = host;
     }
 

@@ -1,16 +1,15 @@
 package commands;
 
-import audio.files.Album;
-import audio.files.Library;
-import audio.files.Playlist;
-import audio.files.Song;
+import audioFiles.Album;
+import audioFiles.Library;
+import audioFiles.Playlist;
+import audioFiles.Song;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import main.InputCommands;
-import user.types.Artist;
-import user.types.User;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
+import users.User;
+
 
 import java.util.ArrayList;
 
@@ -31,7 +30,7 @@ public class AdBreakCommand implements Command {
     /**
      * @param price1 the price to set
      */
-    public void setPrice(int price1) {
+    public void setPrice(final int price1) {
         price = price1;
     }
 
@@ -42,13 +41,20 @@ public class AdBreakCommand implements Command {
         return price;
     }
 
-    public void adBreak(User user, Library library) {
+    /**
+     * Insert an ad in the player queue, after the current song
+     * @param user    the user that wants to insert an ad
+     * @param library the library of the application
+     */
+    public void adBreak(final User user, final Library library) {
         if (user.getPlayer().playingNow == null || !(user.getPlayer().playingNow instanceof Song)) {
             message = user.getUsername() + " is not playing any music.";
             return;
         }
-        if(user.isPremium())
+        if (user.isPremium()) {
             return;
+        }
+
         // set the ad from the library
         Song ad = new Song();
         for (Song song : library.getSongs()) {
@@ -65,7 +71,8 @@ public class AdBreakCommand implements Command {
         if (user.getPlayer().loadedItem instanceof Album) {
             // add the ad after the current song
             // get the index of the current song
-            int index = ((Album) user.getPlayer().loadedItem).getSongs().indexOf(user.getPlayer().playingNow);
+            int index = ((Album) user.getPlayer().loadedItem).getSongs().
+                    indexOf(user.getPlayer().playingNow);
             // create a new album with the same songs as the current one
             Album album = new Album();
             album.setName(((Album) user.getPlayer().loadedItem).getName());
@@ -82,7 +89,8 @@ public class AdBreakCommand implements Command {
         } else if (user.getPlayer().loadedItem instanceof Playlist) {
             // add the ad after the current song
             // get the index of the current song
-            int index = ((Playlist) user.getPlayer().loadedItem).getSongs().indexOf(user.getPlayer().playingNow);
+            int index = ((Playlist) user.getPlayer().loadedItem).getSongs().
+                    indexOf(user.getPlayer().playingNow);
 
             // create a new playlist with the same songs as the current one
             Playlist playlist = new Playlist();
@@ -109,8 +117,13 @@ public class AdBreakCommand implements Command {
         message = "Ad inserted successfully.";
     }
 
+    /**
+     * Execute the ad break command
+     * @param command the command to be executed
+     * @param library the library of the application
+     */
     @Override
-    public void execute(InputCommands command, Library library) {
+    public void execute(final InputCommands command, final Library library) {
         User user = command.getUser();
 
         // update the player for the user

@@ -1,14 +1,15 @@
 package commands;
 
-import audio.files.*;
+import audioFiles.Library;
+import audioFiles.Song;
+import audioFiles.Playlist;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import main.InputCommands;
-import user.types.Artist;
-import user.types.Host;
-import user.types.User;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
+import users.User;
+
 
 public class LoadRecommendationCommand implements Command {
     private String message;
@@ -27,13 +28,13 @@ public class LoadRecommendationCommand implements Command {
      * Loads the recommendation of the user
      * @param user the user that wants to load the recommendation
      */
-    public void loadRecommendation(User user) {
-        if(user.getLastRecommendation() == null) {
+    public void loadRecommendation(final User user) {
+        if (user.getLastRecommendation() == null) {
             this.message = "No recommendations available.";
             return;
         }
 
-        if(!user.getStatusOnline()) {
+        if (!user.getStatusOnline()) {
             this.message = user.getUsername() + " is not offline.";
             return;
         }
@@ -45,30 +46,10 @@ public class LoadRecommendationCommand implements Command {
         user.getPlayer().repeatState = 0;
 
         // update the listens
-        if(user.getPlayer().loadedItem != null) {
-            if(user.getPlayer().loadedItem instanceof Song
+        if (user.getPlayer().loadedItem != null) {
+            if (user.getPlayer().loadedItem instanceof Song
                     || user.getPlayer().loadedItem instanceof Playlist) {
-                // add in the list of songs between ads
-                if(user.getPlayer().playingNow != null && !user.isPremium())
-                    user.getSongsBetweenAds().add((Song) user.getPlayer().playingNow);
-
-                // add in the list of songs listened while premium
-                if(user.isPremium())
-                    user.addPremiumSongs((Song) user.getPlayer().playingNow);
-
-                // update the listens of the song
-                user.setListensToSong(user.getPlayer().playingNow.getName());
-                user.setListensToArtist(((Song) user.getPlayer().playingNow).getArtist());
-                user.setListensToGenre(((Song) user.getPlayer().playingNow).getGenre());
-                user.setListensToAlbum(((Song) user.getPlayer().playingNow).getAlbum());
-
-                // update the artist statistics
-                Artist artist = user.getPlayer().findArtist((Song) user.getPlayer().playingNow);
-                if (artist != null) {
-                    artist.setListensToSong(user.getPlayer().playingNow.getName());
-                    artist.setListensToAlbum(((Song) user.getPlayer().playingNow).getAlbum());
-                    artist.setListensToFan(user.getUsername());
-                }
+                user.getPlayer().updateStatistics();
             }
         }
 
@@ -81,7 +62,7 @@ public class LoadRecommendationCommand implements Command {
      * @param library the main library
      */
     @Override
-    public void execute(InputCommands command, Library library) {
+    public void execute(final InputCommands command, final Library library) {
         User user = command.getUser();
         loadRecommendation(user);
 

@@ -1,22 +1,22 @@
 package commands;
-import audio.files.Album;
-import audio.files.AudioFile;
-import audio.files.Library;
-import audio.files.Playlist;
-import audio.files.Podcast;
-import audio.files.Song;
+import audioFiles.Album;
+import audioFiles.AudioFile;
+import audioFiles.Library;
+import audioFiles.Playlist;
+import audioFiles.Podcast;
+import audioFiles.Song;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import fileio.input.Filter;
 import main.InputCommands;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
-import platform.data.PublicAlbums;
-import user.types.Artist;
-import user.types.Host;
-import user.types.User;
+
+import platformData.PublicAlbums;
+import users.Artist;
+import users.Host;
+import users.User;
 
 import java.util.ArrayList;
 
@@ -259,7 +259,7 @@ public class SearchCommand implements Command {
     /**
      * The method processes the albums
      */
-    public void processAlbum(Library library) {
+    public void processAlbum(final Library library) {
         ArrayList<Album> albums = new ArrayList<>();
         albums.addAll(PublicAlbums.getPublicAlbums());
 

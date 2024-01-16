@@ -1,14 +1,13 @@
 package main;
 
-import audio.files.Library;
-import audio.files.Song;
+import audioFiles.Library;
+import audioFiles.Song;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import commands.*;
 import fileio.input.EpisodeInput;
 import fileio.input.Filter;
-import user.types.User;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
+import users.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -276,10 +275,11 @@ public class InputCommands {
      * @param price the price for the add merch command
      */
     public void setPrice(final int price) {
-        if(command.equals("addMerch"))
+        if (command.equals("addMerch")) {
             this.addMerchCommand.setPrice(price);
-        else if(command.equals("adBreak"))
+        } else if (command.equals("adBreak")) {
             this.adBreakCommand.setPrice(price);
+        }
     }
 
     // Get All Users Command
@@ -359,7 +359,8 @@ public class InputCommands {
     private SeeMyMerchCommand seeMyMerchCommand = new SeeMyMerchCommand();
 
     // Update Recommendations Command
-    private UpdateRecommendationsCommand updateRecommendationsCommand = new UpdateRecommendationsCommand();
+    private UpdateRecommendationsCommand updateRecommendationsCommand
+            = new UpdateRecommendationsCommand();
 
     // Previous Page Command
     private PreviousPageCommand previousPageCommand = new PreviousPageCommand();
@@ -463,7 +464,13 @@ public class InputCommands {
     public String getUsername() {
         return username;
     }
-    public void setRecommendationType(String recommendationType) {
+
+    /**
+     * This method sets the recommendation type for the update recommendations command
+     * @param recommendationType the recommendation type for the update
+     * recommendations command
+     */
+    public void setRecommendationType(final String recommendationType) {
         this.updateRecommendationsCommand.setRecommendationType(recommendationType);
     }
 

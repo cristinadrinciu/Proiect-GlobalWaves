@@ -1,14 +1,13 @@
 package commands;
 
-import audio.files.Library;
-import audio.files.Song;
+import audioFiles.Library;
+import audioFiles.Song;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import main.InputCommands;
-import user.types.Artist;
-import user.types.User;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
+import users.Artist;
+import users.User;
 
 import java.util.ArrayList;
 
@@ -18,12 +17,20 @@ public class CancelPremiumCommand implements Command {
     public CancelPremiumCommand() {
     }
 
+    /**
+     * Getter for the message
+     * @return the message
+     */
     public String getMessage() {
         return message;
     }
 
-    public void cancelPremium(User user) {
-        if(!user.isPremium()) {
+    /**
+     * Cancel the premium subscription
+     * @param user the user that wants to cancel the premium subscription
+     */
+    public void cancelPremium(final User user) {
+        if (!user.isPremium()) {
             message = user.getUsername() + " is not a premium user.";
         } else {
             user.setPremium(false);
@@ -33,21 +40,22 @@ public class CancelPremiumCommand implements Command {
 
             // get the artists of the songs listened while premium
             ArrayList<Artist> artists = new ArrayList<>();
-            for(Song song : songs) {
-                if(!artists.contains(user.getPlayer().findArtist(song))) {
+            for (Song song : songs) {
+                if (!artists.contains(user.getPlayer().findArtist(song))) {
                     artists.add(user.getPlayer().findArtist(song));
                 }
             }
 
             // for each artist get the song revenue
-            for(Artist artist : artists) {
+            for (Artist artist : artists) {
                 artist.calculateSongRevenue(user);
             }
 
             // clear the list of premium songs
             user.getPremiumSongs().clear();
 
-            message = user.getUsername() + " cancelled the subscription successfully.";
+            message = user.getUsername()
+                    + " cancelled the subscription successfully.";
         }
     }
 
@@ -57,7 +65,7 @@ public class CancelPremiumCommand implements Command {
      * @param library the main library
      */
     @Override
-    public void execute(InputCommands command, Library library) {
+    public void execute(final InputCommands command, final Library library) {
         User user = command.getUser();
 
         // update the player of the user

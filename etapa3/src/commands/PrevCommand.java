@@ -1,13 +1,17 @@
 package commands;
 
-import audio.files.*;
+import audioFiles.Album;
+import audioFiles.Library;
+import audioFiles.Playlist;
+import audioFiles.Podcast;
+import audioFiles.Song;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import fileio.input.EpisodeInput;
 import main.InputCommands;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
-import user.types.User;
+import users.User;
 
 public class PrevCommand implements Command {
     private String message;

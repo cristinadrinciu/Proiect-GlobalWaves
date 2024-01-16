@@ -1,16 +1,15 @@
 package commands;
 
-import audio.files.Library;
-import audio.files.Podcast;
+import audioFiles.Library;
+import audioFiles.Podcast;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import fileio.input.EpisodeInput;
 import main.InputCommands;
-import notification.Notification;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
-import user.types.Host;
-import user.types.User;
+
+import users.Host;
+import users.User;
 
 import java.util.ArrayList;
 import java.util.HashSet;

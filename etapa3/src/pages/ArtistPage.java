@@ -1,9 +1,9 @@
 package pages;
 
-import audio.files.Album;
-import page.content.Event;
-import page.content.Merch;
-import user.types.Artist;
+import audioFiles.Album;
+import pageContent.Event;
+import pageContent.Merch;
+import users.Artist;
 
 import java.util.ArrayList;
 
@@ -13,7 +13,7 @@ public class ArtistPage implements Page {
     private ArrayList<Merch> merch = new ArrayList<>();
     private ArrayList<Event> events = new ArrayList<>();
 
-    public ArtistPage(Artist artist) {
+    public ArtistPage(final Artist artist) {
         this.artist = artist;
     }
 
@@ -80,9 +80,9 @@ public class ArtistPage implements Page {
         }
 
         message = message.concat("]\n\nMerch:\n\t[");
-        for (Merch merch : merch) {
-            message = message.concat(merch.getName() + " - " + merch.getPrice()
-                    + ":\n\t" + merch.getDescription() + ", ");
+        for (Merch merch1 : merch) {
+            message = message.concat(merch1.getName() + " - " + merch1.getPrice()
+                    + ":\n\t" + merch1.getDescription() + ", ");
         }
 
         // delete the last "," if it exists

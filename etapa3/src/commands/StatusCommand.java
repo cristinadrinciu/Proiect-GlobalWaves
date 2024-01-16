@@ -1,16 +1,15 @@
 package commands;
 
-import audio.files.Library;
-import audio.files.Playlist;
-import audio.files.Podcast;
-import audio.files.Song;
+import audioFiles.Library;
+import audioFiles.Playlist;
+import audioFiles.Podcast;
+import audioFiles.Song;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import main.InputCommands;
 import player.Player;
-import user.types.User;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
+import users.User;
 
 import java.util.ArrayList;
 
@@ -89,7 +88,7 @@ public class StatusCommand implements Command {
             }
         }
 
-        ArrayList<Object> statusArray = buildStatusArray(user.getPlayer());
+        ArrayList<Object> statusArray1 = buildStatusArray(user.getPlayer());
 
         // Create the status JSON structure
         ObjectMapper objectMapper = new ObjectMapper();
@@ -106,11 +105,11 @@ public class StatusCommand implements Command {
 
         // Create the "stats" object within the JSON structure
         ObjectNode statsNode = objectMapper.createObjectNode()
-                .put("name", (String) statusArray.get(index0))
-                .put("remainedTime", (int) statusArray.get(index1))
-                .put("repeat", (String) statusArray.get(index2))
-                .put("shuffle", (boolean) statusArray.get(index3))
-                .put("paused", (boolean) statusArray.get(index4));
+                .put("name", (String) statusArray1.get(index0))
+                .put("remainedTime", (int) statusArray1.get(index1))
+                .put("repeat", (String) statusArray1.get(index2))
+                .put("shuffle", (boolean) statusArray1.get(index3))
+                .put("paused", (boolean) statusArray1.get(index4));
 
         // Add the "stats" object to the main JSON structure
         commandJson.set("stats", statsNode);

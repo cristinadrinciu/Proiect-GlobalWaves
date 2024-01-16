@@ -1,11 +1,16 @@
 package player;
 
-import audio.files.*;
-import commands.AdBreakCommand;
+import audioFiles.Song;
+import audioFiles.AudioFile;
+import audioFiles.Album;
+import audioFiles.Playlist;
+import audioFiles.Podcast;
 import fileio.input.EpisodeInput;
-import user.types.Artist;
-import user.types.Host;
-import user.types.User;
+import audioFiles.Library;
+
+import users.Artist;
+import users.Host;
+import users.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,13 +42,19 @@ public class Player {
 
     public Library library;
 
-    public Player(User user, Library library) {
+    public Player(final User user, final Library library) {
         // set the user
         this.user = user;
         this.library = library;
     }
 
-    public static Player getInstance(User user, Library library) {
+
+    /**
+     * Function to get the instance of the player, Singleton pattern
+     * @param user the user that wants to get the player
+     * @param library the library of the application
+     */
+    public static Player getInstance(final User user, final Library library) {
         return instances.computeIfAbsent(user, u -> new Player(u, library));
     }
 
@@ -178,41 +189,12 @@ public class Player {
                         remainingTime = ((Song) playingNow).getDuration() - listenedTime;
 
                         // skip the statistics if it is an ad
-                        if(playingNow.getName().equals("Ad Break")) {
-                            // check if it is an ad
-                            for (User user1 : library.getUsers()) {
-                                if (user1.getType().equals("artist")) {
-                                    ((Artist) user1).calculateAddRevenue(user.getAdPrice(), user);
-                                }
-                            }
-
-                            // clear the list of songs between ads
-                            user.getSongsBetweenAds().clear();
+                        if (playingNow.getName().equals("Ad Break")) {
+                            user.payAdRevenue(library);
                             continue;
                         }
 
-                        // add in the list of songs between ads
-                        if(!user.isPremium())
-                            user.getSongsBetweenAds().add((Song) playingNow);
-
-                        // add in the list of songs listened while premium
-                        if(user.isPremium())
-                            user.addPremiumSongs((Song) playingNow);
-
-
-                        // update the listens of the song
-                        user.setListensToSong(playingNow.getName());
-                        user.setListensToArtist(((Song) playingNow).getArtist());
-                        user.setListensToGenre(((Song) playingNow).getGenre());
-                        user.setListensToAlbum(((Song) playingNow).getAlbum());
-
-                        // update the artist statistics
-                        Artist artist = findArtist((Song) playingNow);
-                        if (artist != null) {
-                            artist.setListensToSong(playingNow.getName());
-                            artist.setListensToAlbum(((Song) playingNow).getAlbum());
-                            artist.setListensToFan(user.getUsername());
-                        }
+                        updateStatistics();
                     } else {
                         int index = shuffledPlaylist.indexOf((Song) playingNow);
                         if (index == shuffledPlaylist.size() - 1) {
@@ -229,40 +211,12 @@ public class Player {
                         remainingTime = ((Song) playingNow).getDuration() - listenedTime;
 
                         // skip the statistics if it is an ad
-                        if(playingNow.getName().equals("Ad Break")) {
-                            // it means the whole ad was listened, so monetize
-                            for (User user1 : library.getUsers()) {
-                                if (user1.getType().equals("artist")) {
-                                    ((Artist) user1).calculateAddRevenue(user.getAdPrice(), user);
-                                }
-                            }
-
-                            // clear the list of songs between ads
-                            user.getSongsBetweenAds().clear();
+                        if (playingNow.getName().equals("Ad Break")) {
+                            user.payAdRevenue(library);
                             continue;
                         }
 
-                        // add in the list of songs between ads
-                        if(!user.isPremium())
-                            user.getSongsBetweenAds().add((Song) playingNow);
-
-                        // add in the list of songs listened while premium
-                        if(user.isPremium())
-                            user.addPremiumSongs((Song) playingNow);
-
-                        // update the listens of the song
-                        user.setListensToSong(playingNow.getName());
-                        user.setListensToArtist(((Song) playingNow).getArtist());
-                        user.setListensToGenre(((Song) playingNow).getGenre());
-                        user.setListensToAlbum(((Song) playingNow).getAlbum());
-
-                        // update the artist statistics
-                        Artist artist = findArtist((Song) playingNow);
-                        if (artist != null) {
-                            artist.setListensToSong(playingNow.getName());
-                            artist.setListensToAlbum(((Song) playingNow).getAlbum());
-                            artist.setListensToFan(user.getUsername());
-                        }
+                        updateStatistics();
                     }
                 }
             }
@@ -286,40 +240,12 @@ public class Player {
                         remainingTime = ((Song) playingNow).getDuration() - listenedTime;
 
                         // skip the statistics if it is an ad
-                        if(playingNow.getName().equals("Ad Break")) {
-                            // it means the whole ad was listened, so monetize
-                            for (User user1 : library.getUsers()) {
-                                if (user1.getType().equals("artist")) {
-                                    ((Artist) user1).calculateAddRevenue(user.getAdPrice(), user);
-                                }
-                            }
-
-                            // clear the list of songs between ads
-                            user.getSongsBetweenAds().clear();
+                        if (playingNow.getName().equals("Ad Break")) {
+                            user.payAdRevenue(library);
                             continue;
                         }
 
-                        // add in the list of songs between ads
-                        if(!user.isPremium())
-                            user.getSongsBetweenAds().add((Song) playingNow);
-
-                        // add in the list of songs listened while premium
-                        if(user.isPremium())
-                            user.addPremiumSongs((Song) playingNow);
-
-                        // update the listens of the song
-                        user.setListensToSong(playingNow.getName());
-                        user.setListensToArtist(((Song) playingNow).getArtist());
-                        user.setListensToGenre(((Song) playingNow).getGenre());
-                        user.setListensToAlbum(((Song) playingNow).getAlbum());
-
-                        // update the artist statistics
-                        Artist artist = findArtist((Song) playingNow);
-                        if (artist != null) {
-                            artist.setListensToSong(playingNow.getName());
-                            artist.setListensToAlbum(((Song) playingNow).getAlbum());
-                            artist.setListensToFan(user.getUsername());
-                        }
+                        updateStatistics();
                     } else {
                         int index = shuffledPlaylist.indexOf((Song) playingNow);
                         if (index == shuffledPlaylist.size() - 1) {
@@ -336,40 +262,12 @@ public class Player {
                         remainingTime = ((Song) playingNow).getDuration() - listenedTime;
 
                         // skip the statistics if it is an ad
-                        if(playingNow.getName().equals("Ad Break")) {
-                            // it means the whole ad was listened, so monetize
-                            for (User user1 : library.getUsers()) {
-                                if (user1.getType().equals("artist")) {
-                                    ((Artist) user1).calculateAddRevenue(user.getAdPrice(), user);
-                                }
-                            }
-
-                            // clear the list of songs between ads
-                            user.getSongsBetweenAds().clear();
+                        if (playingNow.getName().equals("Ad Break")) {
+                            user.payAdRevenue(library);
                             continue;
                         }
 
-                        // add in the list of songs between ads
-                        if(!user.isPremium())
-                            user.getSongsBetweenAds().add((Song) playingNow);
-
-                        // add in the list of songs listened while premium
-                        if(user.isPremium())
-                            user.addPremiumSongs((Song) playingNow);
-
-                        // update the listens of the song
-                        user.setListensToSong(playingNow.getName());
-                        user.setListensToArtist(((Song) playingNow).getArtist());
-                        user.setListensToGenre(((Song) playingNow).getGenre());
-                        user.setListensToAlbum(((Song) playingNow).getAlbum());
-
-                        // update the artist statistics
-                        Artist artist = findArtist((Song) playingNow);
-                        if (artist != null) {
-                            artist.setListensToSong(playingNow.getName());
-                            artist.setListensToAlbum(((Song) playingNow).getAlbum());
-                            artist.setListensToFan(user.getUsername());
-                        }
+                        updateStatistics();
                     }
                 }
             }
@@ -435,23 +333,7 @@ public class Player {
                     listenedTime = -remainingTime;
                     remainingTime = ((Song) playingNow).getDuration() - listenedTime;
 
-                    // add in the list of songs listened while premium
-                    if(user.isPremium())
-                        user.addPremiumSongs((Song) playingNow);
-
-                    // update the listens of the song
-                    user.setListensToSong(playingNow.getName());
-                    user.setListensToArtist(((Song) playingNow).getArtist());
-                    user.setListensToGenre(((Song) playingNow).getGenre());
-                    user.setListensToAlbum(((Song) playingNow).getAlbum());
-
-                    // update the artist statistics
-                    Artist artist = findArtist((Song) playingNow);
-                    if (artist != null) {
-                        artist.setListensToSong(playingNow.getName());
-                        artist.setListensToAlbum(((Song) playingNow).getAlbum());
-                        artist.setListensToFan(user.getUsername());
-                    }
+                    updateStatistics();
                 }
             }
             if (loadedItem instanceof Podcast) {
@@ -481,23 +363,7 @@ public class Player {
                     listenedTime = -remainingTime;
                     remainingTime = ((Song) playingNow).getDuration() - listenedTime;
 
-                    // add in the list of songs listened while premium
-                    if(user.isPremium())
-                        user.addPremiumSongs((Song) playingNow);
-
-                    // update the listens of the song
-                    user.setListensToSong(playingNow.getName());
-                    user.setListensToArtist(((Song) playingNow).getArtist());
-                    user.setListensToGenre(((Song) playingNow).getGenre());
-                    user.setListensToAlbum(((Song) playingNow).getAlbum());
-
-                    // update the artist statistics
-                    Artist artist = findArtist((Song) playingNow);
-                    if (artist != null) {
-                        artist.setListensToSong(playingNow.getName());
-                        artist.setListensToAlbum(((Song) playingNow).getAlbum());
-                        artist.setListensToFan(user.getUsername());
-                    }
+                    updateStatistics();
                 }
             }
             if (loadedItem instanceof Album) {
@@ -505,23 +371,7 @@ public class Player {
                     listenedTime = -remainingTime;
                     remainingTime = ((Song) playingNow).getDuration() - listenedTime;
 
-                    // add in the list of songs listened while premium
-                    if(user.isPremium())
-                        user.addPremiumSongs((Song) playingNow);
-
-                    // update the listens of the song
-                    user.setListensToSong(playingNow.getName());
-                    user.setListensToArtist(((Song) playingNow).getArtist());
-                    user.setListensToGenre(((Song) playingNow).getGenre());
-                    user.setListensToAlbum(((Song) playingNow).getAlbum());
-
-                    // update the artist statistics
-                    Artist artist = findArtist((Song) playingNow);
-                    if (artist != null) {
-                        artist.setListensToSong(playingNow.getName());
-                        artist.setListensToAlbum(((Song) playingNow).getAlbum());
-                        artist.setListensToFan(user.getUsername());
-                    }
+                    updateStatistics();
                 }
             }
         }
@@ -560,23 +410,7 @@ public class Player {
                         repeatedOnce = 1;
                         repeatState = 0;
 
-                        // add in the list of songs listened while premium
-                        if(user.isPremium())
-                            user.addPremiumSongs((Song) playingNow);
-
-                        // update the listens of the song
-                        user.setListensToSong(playingNow.getName());
-                        user.setListensToArtist(((Song) playingNow).getArtist());
-                        user.setListensToGenre(((Song) playingNow).getGenre());
-                        user.setListensToAlbum(((Song) playingNow).getAlbum());
-
-                        // update the artist statistics
-                        Artist artist = findArtist((Song) playingNow);
-                        if (artist != null) {
-                            artist.setListensToSong(playingNow.getName());
-                            artist.setListensToAlbum(((Song) playingNow).getAlbum());
-                            artist.setListensToFan(user.getUsername());
-                        }
+                        updateStatistics();
                     } else {
                         paused = true;
                         listenedTime = 0;
@@ -653,23 +487,7 @@ public class Player {
                         listenedTime = -remainingTime; // time listened from the next track
                         remainingTime = ((Song) playingNow).getDuration() - listenedTime;
 
-                        // add in the list of songs listened while premium
-                        if(user.isPremium())
-                            user.addPremiumSongs((Song) playingNow);
-
-                        // update the listens of the song
-                        user.setListensToSong(playingNow.getName());
-                        user.setListensToArtist(((Song) playingNow).getArtist());
-                        user.setListensToGenre(((Song) playingNow).getGenre());
-                        user.setListensToAlbum(((Song) playingNow).getAlbum());
-
-                        // update the artist statistics
-                        Artist artist = findArtist((Song) playingNow);
-                        if (artist != null) {
-                            artist.setListensToSong(playingNow.getName());
-                            artist.setListensToAlbum(((Song) playingNow).getAlbum());
-                            artist.setListensToFan(user.getUsername());
-                        }
+                        updateStatistics();
                     } else {
                         int index = shuffledPlaylist.indexOf((Song) playingNow);
                         if (index == shuffledPlaylist.size() - 1) {
@@ -680,23 +498,7 @@ public class Player {
                         listenedTime = -remainingTime; // time listened from the next track
                         remainingTime = ((Song) playingNow).getDuration() - listenedTime;
 
-                        // add in the list of songs listened while premium
-                        if(user.isPremium())
-                            user.addPremiumSongs((Song) playingNow);
-
-                        // update the listens of the song
-                        user.setListensToSong(playingNow.getName());
-                        user.setListensToArtist(((Song) playingNow).getArtist());
-                        user.setListensToGenre(((Song) playingNow).getGenre());
-                        user.setListensToAlbum(((Song) playingNow).getAlbum());
-
-                        // update the artist statistics
-                        Artist artist = findArtist((Song) playingNow);
-                        if (artist != null) {
-                            artist.setListensToSong(playingNow.getName());
-                            artist.setListensToAlbum(((Song) playingNow).getAlbum());
-                            artist.setListensToFan(user.getUsername());
-                        }
+                        updateStatistics();
                     }
                 }
             }
@@ -714,23 +516,7 @@ public class Player {
                         listenedTime = -remainingTime; // time listened from the next track
                         remainingTime = ((Song) playingNow).getDuration() - listenedTime;
 
-                        // add in the list of songs listened while premium
-                        if(user.isPremium())
-                            user.addPremiumSongs((Song) playingNow);
-
-                        // update the listens of the song
-                        user.setListensToSong(playingNow.getName());
-                        user.setListensToArtist(((Song) playingNow).getArtist());
-                        user.setListensToGenre(((Song) playingNow).getGenre());
-                        user.setListensToAlbum(((Song) playingNow).getAlbum());
-
-                        // update the artist statistics
-                        Artist artist = findArtist((Song) playingNow);
-                        if (artist != null) {
-                            artist.setListensToSong(playingNow.getName());
-                            artist.setListensToAlbum(((Song) playingNow).getAlbum());
-                            artist.setListensToFan(user.getUsername());
-                        }
+                        updateStatistics();
                     } else {
                         int index = shuffledPlaylist.indexOf((Song) playingNow);
                         if (index == shuffledPlaylist.size() - 1) {
@@ -742,23 +528,7 @@ public class Player {
                         listenedTime = -remainingTime; // time listened from the next track
                         remainingTime = ((Song) playingNow).getDuration() - listenedTime;
 
-                        // add in the list of songs listened while premium
-                        if(user.isPremium())
-                            user.addPremiumSongs((Song) playingNow);
-
-                        // update the listens of the song
-                        user.setListensToSong(playingNow.getName());
-                        user.setListensToArtist(((Song) playingNow).getArtist());
-                        user.setListensToGenre(((Song) playingNow).getGenre());
-                        user.setListensToAlbum(((Song) playingNow).getAlbum());
-
-                        // update the artist statistics
-                        Artist artist = findArtist((Song) playingNow);
-                        if (artist != null) {
-                            artist.setListensToSong(playingNow.getName());
-                            artist.setListensToAlbum(((Song) playingNow).getAlbum());
-                            artist.setListensToFan(user.getUsername());
-                        }
+                        updateStatistics();
                     }
                 }
             }
@@ -771,7 +541,7 @@ public class Player {
      */
     public Artist findArtist(final Song song) {
         for (User artist : library.getUsers()) {
-            if(artist.getType().equals("artist")) {
+            if (artist.getType().equals("artist")) {
                 if (artist.getUsername().equals(song.getArtist())) {
                     return (Artist) artist;
                 }
@@ -780,14 +550,48 @@ public class Player {
         return null;
     }
 
+    /**
+     * @param podcast the podcast we want to find the owner to
+     * @return the owner of the podcast
+     */
     public Host findHost(final Podcast podcast) {
         for (User host : library.getUsers()) {
-            if(host.getType().equals("host")) {
+            if (host.getType().equals("host")) {
                 if (host.getUsername().equals(podcast.getOwner())) {
                     return (Host) host;
                 }
             }
         }
         return null;
+    }
+
+    /**
+     * Function to update the statistics of the user and the artist
+     */
+    public void updateStatistics() {
+        // add in the list of songs between ads
+        if (!user.isPremium()) {
+            user.getSongsBetweenAds().add((Song) playingNow);
+        }
+
+        // add in the list of songs listened while premium
+        if (user.isPremium()) {
+            user.addPremiumSongs((Song) playingNow);
+        }
+
+
+        // update the listens of the song
+        user.setListensToSong(playingNow.getName());
+        user.setListensToArtist(((Song) playingNow).getArtist());
+        user.setListensToGenre(((Song) playingNow).getGenre());
+        user.setListensToAlbum(((Song) playingNow).getAlbum());
+
+        // update the artist statistics
+        Artist artist = findArtist((Song) playingNow);
+        if (artist != null) {
+            artist.setListensToSong(playingNow.getName());
+            artist.setListensToAlbum(((Song) playingNow).getAlbum());
+            artist.setListensToFan(user.getUsername());
+        }
     }
 }

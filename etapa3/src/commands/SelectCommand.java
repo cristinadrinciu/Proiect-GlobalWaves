@@ -1,15 +1,15 @@
 package commands;
 
-import audio.files.AudioFile;
-import audio.files.Library;
+import audioFiles.AudioFile;
+import audioFiles.Library;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import main.InputCommands;
-import user.types.Artist;
-import user.types.Host;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
-import user.types.User;
+import users.Artist;
+import users.Host;
+
+import users.User;
 
 public class SelectCommand implements Command {
     private int itemNumber;

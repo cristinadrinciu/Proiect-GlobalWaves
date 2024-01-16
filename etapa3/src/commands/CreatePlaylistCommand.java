@@ -1,14 +1,13 @@
 package commands;
 
-import audio.files.Library;
-import audio.files.Playlist;
+import audioFiles.Library;
+import audioFiles.Playlist;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import main.InputCommands;
-import platform.data.PublicPlaylists;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
-import user.types.User;
+import platformData.PublicPlaylists;
+import users.User;
 
 import java.util.ArrayList;
 

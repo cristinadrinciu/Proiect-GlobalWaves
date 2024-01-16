@@ -1,22 +1,31 @@
 package commands;
 
-import audio.files.Library;
+import audioFiles.Library;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import platform.data.OnlineUsers;
-import user.types.Artist;
-import user.types.User;
+import platformData.OnlineUsers;
+import users.Artist;
+import users.User;
 
 import java.util.ArrayList;
 
-public class EndProgramCommand {
+public final class EndProgramCommand {
     private static ObjectNode commandJson;
-    public static ObjectNode execute(Library library, int timestamp) {
+
+    private EndProgramCommand() {
+    }
+
+    /**
+     * @param library the library of the application
+     * @param timestamp the current timestamp
+     * @return the json with the result of the command
+     */
+    public static ObjectNode execute(final Library library, final int timestamp) {
         ArrayList<Artist> artists = new ArrayList<>();
         //get the list of artists for which we display the monetization report
-        for(User user : library.getUsers()) {
-            if(user.getType().equals("artist")) {
-                if(!((Artist) user).getArtistStatistics().getTopSongs().isEmpty()
+        for (User user : library.getUsers()) {
+            if (user.getType().equals("artist")) {
+                if (!((Artist) user).getArtistStatistics().getTopSongs().isEmpty()
                         || ((Artist) user).getMerchRevenue() != 0) {
                     artists.add((Artist) user);
                 }
@@ -41,17 +50,17 @@ public class EndProgramCommand {
         }
 
         // calculate the revenue for each artist
-        for(Artist artist : artists) {
+        for (Artist artist : artists) {
             // calculate the song revenue from each user
-            for(User user : library.getUsers()) {
-                if(user.isPremium()) {
+            for (User user : library.getUsers()) {
+                if (user.isPremium()) {
                     artist.calculateSongRevenue(user);
                 }
             }
 
             // calculate the sum of the song revenue
             double songRevenue = 0.0;
-            for(Double revenue : artist.getArtistStatistics().getSongsRevenue().values()) {
+            for (Double revenue : artist.getArtistStatistics().getSongsRevenue().values()) {
                 songRevenue += revenue;
             }
 
@@ -61,38 +70,42 @@ public class EndProgramCommand {
 
         // sort the artists by their total revenue
         artists.sort((artist1, artist2) -> {
-            if(artist1.getSongRevenue() + artist1.getMerchRevenue() > artist2.getSongRevenue() + artist2.getMerchRevenue()) {
+            if (artist1.getSongRevenue() + artist1.getMerchRevenue() > artist2.getSongRevenue()
+                    + artist2.getMerchRevenue()) {
                 return -1;
-            }
-            else if(artist1.getSongRevenue() + artist1.getMerchRevenue() < artist2.getSongRevenue() + artist2.getMerchRevenue()) {
+            } else if (artist1.getSongRevenue() + artist1.getMerchRevenue() < artist2.
+                    getSongRevenue() + artist2.getMerchRevenue()) {
                 return 1;
-            }
-            else {
+            } else {
                 return 0;
             }
         });
 
         // in case of equality, sort them by their username
         artists.sort((artist1, artist2) -> {
-            if(artist1.getSongRevenue() + artist1.getMerchRevenue() == artist2.getSongRevenue() + artist2.getMerchRevenue()) {
+            if (artist1.getSongRevenue() + artist1.getMerchRevenue() == artist2.getSongRevenue()
+                    + artist2.getMerchRevenue()) {
                 return artist1.getUsername().compareTo(artist2.getUsername());
-            }
-            else {
+            } else {
                 return 0;
             }
         });
 
-        for(int i = 0; i < artists.size(); i++) {
+        for (int i = 0; i < artists.size(); i++) {
             ObjectNode artistJson = objectMapper.createObjectNode();
             resultJson.set(artists.get(i).getUsername(), artistJson);
+            final double round = 100.0;
             artistJson.put("merchRevenue", artists.get(i).getMerchRevenue());
-            artistJson.put("songRevenue", Math.round(artists.get(i).getSongRevenue() * 100.0) / 100.0);
+            artistJson.put("songRevenue",
+                    Math.round(artists.get(i).getSongRevenue() * round) / round);
             artistJson.put("ranking", i + 1);
 
-            if(artists.get(i).getSongRevenue() == 0 || artists.get(i).getMostProfitableSong() == null)
+            if (artists.get(i).getSongRevenue() == 0 || artists.get(i).
+                    getMostProfitableSong() == null) {
                 artistJson.put("mostProfitableSong", "N/A");
-            else
+            } else {
                 artistJson.put("mostProfitableSong", artists.get(i).getMostProfitableSong());
+            }
         }
 
         commandJson.set("result", resultJson);

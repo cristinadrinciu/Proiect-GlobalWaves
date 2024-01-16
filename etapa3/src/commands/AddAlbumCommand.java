@@ -1,17 +1,15 @@
 package commands;
 
-import audio.files.Album;
-import audio.files.Library;
-import audio.files.Song;
+import audioFiles.Album;
+import audioFiles.Library;
+import audioFiles.Song;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import main.InputCommands;
-import notification.Notification;
-import platform.data.PublicAlbums;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
-import user.types.Artist;
-import user.types.User;
+import platformData.PublicAlbums;
+import users.Artist;
+import users.User;
 
 import java.util.ArrayList;
 import java.util.HashSet;

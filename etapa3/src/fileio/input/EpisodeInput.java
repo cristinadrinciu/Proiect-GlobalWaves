@@ -1,6 +1,6 @@
 package fileio.input;
 
-import audio.files.AudioFile;
+import audioFiles.AudioFile;
 
 public final class EpisodeInput extends AudioFile {
     private Integer duration;

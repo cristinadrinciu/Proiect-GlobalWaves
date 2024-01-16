@@ -1,15 +1,14 @@
 package commands;
 
-import audio.files.Library;
-import audio.files.Playlist;
-import audio.files.Song;
+import audioFiles.Library;
+import audioFiles.Playlist;
+import audioFiles.Song;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import main.InputCommands;
-import user.types.Artist;
-import user.types.User;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
+import users.Artist;
+import users.User;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -46,8 +45,8 @@ public class UpdateRecommendationsCommand implements Command {
      * This method updates the recommendations for a user for type fans playlist
      * @param user the user to update the recommendations for
      */
-    public void updateFansPlaylist(User user, Library library) {
-        if(!user.getType().equals("user")) {
+    public void updateFansPlaylist(final User user, final Library library) {
+        if (!user.getType().equals("user")) {
             message = user.getUsername() + " is not a normal user.";
             return;
         }
@@ -65,7 +64,7 @@ public class UpdateRecommendationsCommand implements Command {
 
         // get the users from the top fans names
         ArrayList<User> topFans = new ArrayList<>();
-        for(String fanName : topFansNames) {
+        for (String fanName : topFansNames) {
             // find the user in the library
             for (User user1 : library.getUsers()) {
                 if (user1.getUsername().equals(fanName)) {
@@ -77,13 +76,13 @@ public class UpdateRecommendationsCommand implements Command {
 
         // for each fan, get the top 5 Songs from likedSongs
         ArrayList<Song> topSongs = new ArrayList<>();
-        for(User fan : topFans) {
+        for (User fan : topFans) {
             // get the top 5 songs from the fan's likedSongs
             ArrayList<Song> fanTopSongs = new ArrayList<>(fan.getLikedSongs());
 
             // remove the songs from fanTopSongs that are already added in topSongs
             ArrayList<Song> songsToRemove = new ArrayList<>();
-            for(Song song : fanTopSongs) {
+            for (Song song : fanTopSongs) {
                 if (topSongs.contains(song)) {
                     songsToRemove.add(song);
                 }
@@ -93,9 +92,10 @@ public class UpdateRecommendationsCommand implements Command {
             // sort the list by the number of likes of the songs
             fanTopSongs.sort((song1, song2) -> song2.getLikes() - song1.getLikes());
 
+            final int maxSize1 = 5;
             // get the top 5 or all of them if there are less than 5
-            if(fanTopSongs.size() > 5) {
-                for(int i = 0; i < 5; i++) {
+            if (fanTopSongs.size() > maxSize1) {
+                for (int i = 0; i < maxSize1; i++) {
                     topSongs.add(fanTopSongs.get(i));
                 }
             } else {
@@ -103,7 +103,7 @@ public class UpdateRecommendationsCommand implements Command {
             }
         }
 
-        if(topSongs.isEmpty()) {
+        if (topSongs.isEmpty()) {
             message = "No new recommendations were found";
             return;
         }
@@ -121,23 +121,25 @@ public class UpdateRecommendationsCommand implements Command {
         // set the last recommendation
         user.setLastRecommendation(playlist);
 
-        message = "The recommendations for user " + user.getUsername() + " have been updated successfully.";
+        message = "The recommendations for user " + user.getUsername()
+                + " have been updated successfully.";
     }
 
     /**
      * This method updates the recommendations for a user for type random song
      * @param user the user to update the recommendations for
      */
-    public void updateRandomSong(User user, Library library) {
-        if(!user.getType().equals("user")) {
+    public void updateRandomSong(final User user, final Library library) {
+        if (!user.getType().equals("user")) {
             message = user.getUsername() + " is not a normal user.";
             return;
         }
-        if(user.getPlayer().loadedItem == null) {
+        if (user.getPlayer().loadedItem == null) {
             message = "No new recommendations were found";
             return;
         }
-        if(user.getPlayer().listenedTime < 30) {
+        final int listenedTime = 30;
+        if (user.getPlayer().listenedTime < listenedTime) {
             message = "No new recommendations were found";
             return;
         }
@@ -148,8 +150,8 @@ public class UpdateRecommendationsCommand implements Command {
         // find all the songs from the library with the same genre
         ArrayList<Song> songs = new ArrayList<>();
 
-        for(Song song : library.getSongs()) {
-            if(song.getGenre().equals(genre)) {
+        for (Song song : library.getSongs()) {
+            if (song.getGenre().equals(genre)) {
                 songs.add(song);
             }
         }
@@ -166,15 +168,16 @@ public class UpdateRecommendationsCommand implements Command {
         // set the last recommendation
         user.setLastRecommendation(randomSong);
 
-        message = "The recommendations for user " + user.getUsername() + " have been updated successfully.";
+        message = "The recommendations for user " + user.getUsername()
+                + " have been updated successfully.";
     }
 
     /**
      * This method updates the recommendations for a user for type random Playlist
      * @param user the user to update the recommendations for
      */
-    public void updateRandomPlaylist(User user, Library library) {
-        if(!user.getType().equals("user")) {
+    public void updateRandomPlaylist(final User user, final Library library) {
+        if (!user.getType().equals("user")) {
             message = user.getUsername() + " is not a normal user.";
             return;
         }
@@ -184,20 +187,21 @@ public class UpdateRecommendationsCommand implements Command {
         playlist.setOwner(user);
         playlist.setName(user.getUsername() + "'s recommendations");
 
-        // get the top 3 genre from songs from liked songs, created playlists and playlists that the user followed
+        // get the top 3 genre from songs from liked songs,
+        // created playlists and playlists that the user followed
         ArrayList<String> topGenres = new ArrayList<>();
         ArrayList<String> genres = new ArrayList<>();
 
-        for(Song song : user.getLikedSongs()) {
+        for (Song song : user.getLikedSongs()) {
             genres.add(song.getGenre());
         }
-        for(Playlist playlist1 : user.getPlaylists()) {
-            for(Song song : playlist1.getSongs()) {
+        for (Playlist playlist1 : user.getPlaylists()) {
+            for (Song song : playlist1.getSongs()) {
                 genres.add(song.getGenre());
             }
         }
-        for(Playlist playlist1 : user.getFollowedPlaylists()) {
-            for(Song song : playlist1.getSongs()) {
+        for (Playlist playlist1 : user.getFollowedPlaylists()) {
+            for (Song song : playlist1.getSongs()) {
                 genres.add(song.getGenre());
             }
         }
@@ -206,27 +210,28 @@ public class UpdateRecommendationsCommand implements Command {
         genres.sort((genre1, genre2) -> {
             int occurrences1 = 0;
             int occurrences2 = 0;
-            for(String genre : genres) {
-                if(genre.equals(genre1)) {
+            for (String genre : genres) {
+                if (genre.equals(genre1)) {
                     occurrences1++;
                 }
-                if(genre.equals(genre2)) {
+                if (genre.equals(genre2)) {
                     occurrences2++;
                 }
             }
             return occurrences2 - occurrences1;
         });
 
+        final int maxSize = 3;
         // get the top 3 genres or all of them if there are less than 3
-        if(genres.size() > 3) {
-            for(int i = 0; i < 3; i++) {
+        if (genres.size() > maxSize) {
+            for (int i = 0; i < maxSize; i++) {
                 topGenres.add(genres.get(i));
             }
         } else {
             topGenres.addAll(genres);
         }
 
-        if(topGenres.isEmpty()) {
+        if (topGenres.isEmpty()) {
             message = "No new recommendations were found";
             return;
         }
@@ -238,17 +243,18 @@ public class UpdateRecommendationsCommand implements Command {
 
         // get the songs from the first genre
         ArrayList<Song> songs = new ArrayList<>();
-        for(Song song : library.getSongs()) {
-            if(song.getGenre().equals(topGenres.get(0))) {
+        for (Song song : library.getSongs()) {
+            if (song.getGenre().equals(topGenres.get(0))) {
                 songs.add(song);
             }
         }
         // sort the list by the number of likes of the songs
         songs.sort((song1, song2) -> song2.getLikes() - song1.getLikes());
 
+        final int maxSize1 = 5;
         // get the top 5 or all of them if there are less than 5
-        if(songs.size() > 5) {
-            for(int i = 0; i < 5; i++) {
+        if (songs.size() > maxSize1) {
+            for (int i = 0; i < maxSize1; i++) {
                 playlistSongs.add(songs.get(i));
             }
         } else {
@@ -256,19 +262,20 @@ public class UpdateRecommendationsCommand implements Command {
         }
 
         // get the songs from the second genre if there is one
-        if(topGenres.size() > 1) {
+        if (topGenres.size() > 1) {
             songs.clear();
-            for(Song song : library.getSongs()) {
-                if(song.getGenre().equals(topGenres.get(1))) {
+            for (Song song : library.getSongs()) {
+                if (song.getGenre().equals(topGenres.get(1))) {
                     songs.add(song);
                 }
             }
             // sort the list by the number of likes of the songs
             songs.sort((song1, song2) -> song2.getLikes() - song1.getLikes());
 
+            final int maxSize2 = 3;
             // get the top 3 or all of them if there are less than 3
-            if(songs.size() > 3) {
-                for(int i = 0; i < 3; i++) {
+            if (songs.size() > maxSize2) {
+                for (int i = 0; i < maxSize2; i++) {
                     playlistSongs.add(songs.get(i));
                 }
             } else {
@@ -277,19 +284,20 @@ public class UpdateRecommendationsCommand implements Command {
         }
 
         // get the songs from the third genre if there is one
-        if(topGenres.size() > 2) {
+        if (topGenres.size() > 2) {
             songs.clear();
-            for(Song song : library.getSongs()) {
-                if(song.getGenre().equals(topGenres.get(2))) {
+            for (Song song : library.getSongs()) {
+                if (song.getGenre().equals(topGenres.get(2))) {
                     songs.add(song);
                 }
             }
             // sort the list by the number of likes of the songs
             songs.sort((song1, song2) -> song2.getLikes() - song1.getLikes());
 
+            final int maxSize3 = 2;
             // get the top 2 or all of them if there are less than 2
-            if(songs.size() > 2) {
-                for(int i = 0; i < 2; i++) {
+            if (songs.size() > maxSize3) {
+                for (int i = 0; i < maxSize3; i++) {
                     playlistSongs.add(songs.get(i));
                 }
             } else {
@@ -310,7 +318,8 @@ public class UpdateRecommendationsCommand implements Command {
         // set the last recommendation
         user.setLastRecommendation(playlist);
 
-        message = "The recommendations for user " + user.getUsername() + " have been updated successfully.";
+        message = "The recommendations for user " + user.getUsername()
+                + " have been updated successfully.";
     }
 
     /**
@@ -335,7 +344,7 @@ public class UpdateRecommendationsCommand implements Command {
             }
         }
 
-        if(recommendationType.equals("fans_playlist")) {
+        if (recommendationType.equals("fans_playlist")) {
             updateFansPlaylist(user, library);
         } else if (recommendationType.equals("random_song")) {
             updateRandomSong(user, library);

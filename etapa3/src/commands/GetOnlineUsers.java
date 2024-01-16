@@ -1,15 +1,14 @@
 package commands;
 
-import audio.files.Library;
+import audioFiles.Library;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import main.InputCommands;
-import platform.data.OnlineUsers;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
-import user.types.User;
+import platformData.OnlineUsers;
+import users.User;
 
 import java.util.ArrayList;
 

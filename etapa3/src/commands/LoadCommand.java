@@ -1,14 +1,18 @@
 package commands;
 
-import audio.files.*;
+import audioFiles.Album;
+import audioFiles.AudioFile;
+import audioFiles.Library;
+import audioFiles.Playlist;
+import audioFiles.Podcast;
+import audioFiles.Song;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import main.InputCommands;
-import user.types.Artist;
-import user.types.Host;
-import user.types.User;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
+import users.Host;
+import users.User;
 
 public class LoadCommand implements Command {
     private static AudioFile loadedItem;
@@ -102,33 +106,13 @@ public class LoadCommand implements Command {
         LoadCommand.setLoadedItem(null);
 
         // update the listens
-        if(user.getPlayer().loadedItem != null) {
-            if(user.getPlayer().loadedItem instanceof Song
+        if (user.getPlayer().loadedItem != null) {
+            if (user.getPlayer().loadedItem instanceof Song
                     || user.getPlayer().loadedItem instanceof Playlist
                     || user.getPlayer().loadedItem instanceof Album) {
-                // add in the list of songs between ads
-                if(user.getPlayer().playingNow != null && !user.isPremium())
-                    user.getSongsBetweenAds().add((Song) user.getPlayer().playingNow);
-
-                // add in the list of songs listened while premium
-                if(user.isPremium())
-                    user.addPremiumSongs((Song) user.getPlayer().playingNow);
-
-                // update the listens of the song
-                user.setListensToSong(user.getPlayer().playingNow.getName());
-                user.setListensToArtist(((Song) user.getPlayer().playingNow).getArtist());
-                user.setListensToGenre(((Song) user.getPlayer().playingNow).getGenre());
-                user.setListensToAlbum(((Song) user.getPlayer().playingNow).getAlbum());
-
-                // update the artist statistics
-                Artist artist = user.getPlayer().findArtist((Song) user.getPlayer().playingNow);
-                if (artist != null) {
-                    artist.setListensToSong(user.getPlayer().playingNow.getName());
-                    artist.setListensToAlbum(((Song) user.getPlayer().playingNow).getAlbum());
-                    artist.setListensToFan(user.getUsername());
-                }
+                user.getPlayer().updateStatistics();
             }
-            if(user.getPlayer().loadedItem instanceof Podcast) {
+            if (user.getPlayer().loadedItem instanceof Podcast) {
                 // update the listens of the episode
                 user.setListensToEpisode(user.getPlayer().playingNow.getName());
 

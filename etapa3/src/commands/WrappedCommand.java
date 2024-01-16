@@ -1,19 +1,20 @@
 package commands;
 
-import audio.files.Library;
-import audio.files.Song;
+import audioFiles.Library;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import main.InputCommands;
-import org.checkerframework.checker.units.qual.A;
-import platform.data.OnlineUsers;
-import user.types.Artist;
-import user.types.Host;
-import user.types.User;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
-import visit.pattern.WrappedVisitor;
+
+import platformData.OnlineUsers;
+import users.Artist;
+import users.Host;
+import users.User;
+import designPatterns.visitorPattern.Visitable;
+
+import designPatterns.visitorPattern.WrappedVisitor;
 
 import java.util.ArrayList;
 
@@ -42,7 +43,7 @@ public class WrappedCommand implements Command {
     /**
      * @param message the message to set
      */
-    public void setMessage(String message) {
+    public void setMessage(final String message) {
         this.message = message;
     }
 
@@ -98,14 +99,14 @@ public class WrappedCommand implements Command {
     /**
      * @param listeners the listeners to set
      */
-    public void setListeners(int listeners) {
+    public void setListeners(final int listeners) {
         this.listeners = listeners;
     }
 
     /**
      * @param visitable  the visitable object
      */
-    public void setStatistics(Visitable visitable) {
+    public void setStatistics(final Visitable visitable) {
         WrappedVisitor visitor = new WrappedVisitor(this);
         visitable.accept(visitor);
     }
@@ -115,7 +116,7 @@ public class WrappedCommand implements Command {
      * @param library  the library on which the command is executed
      */
     @Override
-    public void execute(InputCommands command, Library library) {
+    public void execute(final InputCommands command, final Library library) {
         User user = command.getUser();
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -143,11 +144,11 @@ public class WrappedCommand implements Command {
                 commandJson.put("message", message);
             } else {
                 ObjectNode result = objectMapper.createObjectNode();
-                ObjectNode topArtists = objectMapper.createObjectNode();
-                ObjectNode topGenres = objectMapper.createObjectNode();
-                ObjectNode topSongs = objectMapper.createObjectNode();
-                ObjectNode topAlbums = objectMapper.createObjectNode();
-                ObjectNode topEpisodes = objectMapper.createObjectNode();
+                ObjectNode topArtists1 = objectMapper.createObjectNode();
+                ObjectNode topGenres1 = objectMapper.createObjectNode();
+                ObjectNode topSongs1 = objectMapper.createObjectNode();
+                ObjectNode topAlbums1 = objectMapper.createObjectNode();
+                ObjectNode topEpisodes1 = objectMapper.createObjectNode();
 
                 ArrayList<String> topArtistsList = getTopArtists();
                 ArrayList<String> topGenresList = getTopGenres();
@@ -156,26 +157,26 @@ public class WrappedCommand implements Command {
                 ArrayList<String> topEpisodesList = getTopEpisodes();
 
                 for (String artist : topArtistsList) {
-                    topArtists.put(artist, user.getStatistics().getTopArtists().get(artist));
+                    topArtists1.put(artist, user.getStatistics().getTopArtists().get(artist));
                 }
                 for (String genre : topGenresList) {
-                    topGenres.put(genre, user.getStatistics().getTopGenres().get(genre));
+                    topGenres1.put(genre, user.getStatistics().getTopGenres().get(genre));
                 }
                 for (String song : topSongsList) {
-                    topSongs.put(song, user.getStatistics().getTopSongs().get(song));
+                    topSongs1.put(song, user.getStatistics().getTopSongs().get(song));
                 }
                 for (String album : topAlbumsList) {
-                    topAlbums.put(album, user.getStatistics().getTopAlbums().get(album));
+                    topAlbums1.put(album, user.getStatistics().getTopAlbums().get(album));
                 }
                 for (String episode : topEpisodesList) {
-                    topEpisodes.put(episode, user.getStatistics().getTopEpisodes().get(episode));
+                    topEpisodes1.put(episode, user.getStatistics().getTopEpisodes().get(episode));
                 }
 
-                result.set("topArtists", topArtists);
-                result.set("topGenres", topGenres);
-                result.set("topSongs", topSongs);
-                result.set("topAlbums", topAlbums);
-                result.set("topEpisodes", topEpisodes);
+                result.set("topArtists", topArtists1);
+                result.set("topGenres", topGenres1);
+                result.set("topSongs", topSongs1);
+                result.set("topAlbums", topAlbums1);
+                result.set("topEpisodes", topEpisodes1);
 
                 commandJson.set("result", result);
             }
@@ -194,32 +195,33 @@ public class WrappedCommand implements Command {
 
             setStatistics((Artist) user);
 
-
             if (message != null) {
                 commandJson.put("message", message);
             } else {
                 ObjectNode result = objectMapper.createObjectNode();
-                ObjectNode topAlbums = objectMapper.createObjectNode();
-                ObjectNode topSongs = objectMapper.createObjectNode();
-                ArrayNode topFans = objectMapper.createArrayNode();
+                ObjectNode topAlbums1 = objectMapper.createObjectNode();
+                ObjectNode topSongs1 = objectMapper.createObjectNode();
+                ArrayNode topFans1 = objectMapper.createArrayNode();
 
                 ArrayList<String> topAlbumsList = getTopAlbums();
                 ArrayList<String> topSongsList = getTopSongs();
                 ArrayList<String> topFansList = getTopFans();
 
                 for (String album : topAlbumsList) {
-                    topAlbums.put(album, ((Artist) user).getArtistStatistics().getTopAlbums().get(album));
+                    topAlbums1.put(album, ((Artist) user).getArtistStatistics().
+                            getTopAlbums().get(album));
                 }
                 for (String song : topSongsList) {
-                    topSongs.put(song, ((Artist) user).getArtistStatistics().getTopSongs().get(song));
+                    topSongs1.put(song, ((Artist) user).getArtistStatistics().
+                            getTopSongs().get(song));
                 }
                 for (String fan : topFansList) {
-                    topFans.add(fan);
+                    topFans1.add(fan);
                 }
 
-                result.set("topAlbums", topAlbums);
-                result.set("topSongs", topSongs);
-                result.set("topFans", topFans);
+                result.set("topAlbums", topAlbums1);
+                result.set("topSongs", topSongs1);
+                result.set("topFans", topFans1);
                 result.put("listeners", (getListeners()));
 
                 commandJson.set("result", result);
@@ -243,15 +245,16 @@ public class WrappedCommand implements Command {
                 commandJson.put("message", message);
             } else {
                 ObjectNode result = objectMapper.createObjectNode();
-                ObjectNode topEpisodes = objectMapper.createObjectNode();
+                ObjectNode topEpisodes1 = objectMapper.createObjectNode();
 
                 ArrayList<String> topEpisodesList = getTopEpisodes();
 
                 for (String episode : topEpisodesList) {
-                    topEpisodes.put(episode, ((Host) user).getHostStatistics().getTopEpisodes().get(episode));
+                    topEpisodes1.put(episode, ((Host) user).getHostStatistics().
+                            getTopEpisodes().get(episode));
                 }
 
-                result.set("topEpisodes", topEpisodes);
+                result.set("topEpisodes", topEpisodes1);
                 result.put("listeners", (getListeners()));
 
                 commandJson.set("result", result);

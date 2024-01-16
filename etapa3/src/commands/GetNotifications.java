@@ -1,17 +1,15 @@
 package commands;
 
-import audio.files.Library;
+import audioFiles.Library;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import main.InputCommands;
 import notification.Notification;
-import user.types.User;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
+import users.User;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class GetNotifications implements Command {
@@ -26,6 +24,9 @@ public class GetNotifications implements Command {
         return notifications;
     }
 
+    /**
+     * @param user the user that will receive the notifications
+     */
     public void showNotifications(final User user) {
         notifications.addAll(user.getNotifications());
         // clear the notifications of the user

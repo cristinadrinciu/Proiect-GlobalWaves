@@ -2,14 +2,12 @@ package commands;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import main.InputCommands;
-import notification.Notification;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
-import user.types.Artist;
-import page.content.Event;
-import audio.files.Library;
-import user.types.User;
+import users.Artist;
+import pageContent.Event;
+import audioFiles.Library;
+import users.User;
 
 import java.util.ArrayList;
 

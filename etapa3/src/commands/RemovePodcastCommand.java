@@ -2,14 +2,14 @@ package commands;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import main.InputCommands;
-import platform.data.OnlineUsers;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
-import user.types.Host;
-import audio.files.Library;
-import audio.files.Podcast;
-import user.types.User;
+import platformData.OnlineUsers;
+
+import users.Host;
+import audioFiles.Library;
+import audioFiles.Podcast;
+import users.User;
 
 public class RemovePodcastCommand implements Command {
     private String name;

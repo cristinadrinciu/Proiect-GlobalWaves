@@ -1,12 +1,11 @@
 package commands;
 
-import audio.files.Library;
+import audioFiles.Library;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import main.InputCommands;
-import user.types.User;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
+import users.User;
 
 public class NextPageCommand implements Command {
     private String message;
@@ -25,8 +24,8 @@ public class NextPageCommand implements Command {
      * Changes the current page of the user
      * @param user the user that wants to change the page
      */
-    public void goToNextPage(User user) {
-        if(user.getIndexNavigationHistory() == user.getNavigationHistory().size() - 1) {
+    public void goToNextPage(final User user) {
+        if (user.getIndexNavigationHistory() == user.getNavigationHistory().size() - 1) {
             this.message = "There are no pages left to go forward.";
             return;
         }
@@ -34,7 +33,8 @@ public class NextPageCommand implements Command {
         // go forward to the next page
         user.setCurrentPage(user.getNavigationHistory().get(user.getIndexNavigationHistory() + 1));
         user.setIndexNavigationHistory(user.getIndexNavigationHistory() + 1);
-        message = "The user " + user.getUsername() + " has navigated successfully to the next page.";
+        message = "The user " + user.getUsername()
+                + " has navigated successfully to the next page.";
     }
 
     /**
@@ -43,7 +43,7 @@ public class NextPageCommand implements Command {
      * @param library the main library
      */
     @Override
-    public void execute(InputCommands command, Library library) {
+    public void execute(final InputCommands command, final Library library) {
         User user = command.getUser();
         goToNextPage(user);
 

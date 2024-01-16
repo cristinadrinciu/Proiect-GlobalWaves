@@ -1,14 +1,13 @@
 package commands;
 
-import audio.files.Library;
+import audioFiles.Library;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import main.InputCommands;
-import user.types.User;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
+import users.User;
 
 import java.util.ArrayList;
 
@@ -17,7 +16,12 @@ public class SeeMyMerchCommand implements Command {
     public SeeMyMerchCommand() {
     }
 
-    public ArrayList<String> getBoughtMerch(User user) {
+    /**
+     * Get the bought merch of a user
+     * @param user the user
+     * @return the bought merch
+     */
+    public ArrayList<String> getBoughtMerch(final User user) {
         return user.getBoughtMerch();
     }
 
@@ -27,7 +31,7 @@ public class SeeMyMerchCommand implements Command {
      * @param library the main library
      */
     @Override
-    public void execute(InputCommands command, Library library) {
+    public void execute(final InputCommands command, final Library library) {
         User user = command.getUser();
         ArrayList<String> merch = getBoughtMerch(user);
 

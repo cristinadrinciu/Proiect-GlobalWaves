@@ -2,14 +2,14 @@ package commands;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import notification.Notification;
-import page.content.Announcement;
+
+import designPatterns.commandPattern.Command;
+import pageContent.Announcement;
 import main.InputCommands;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
-import user.types.Host;
-import audio.files.Library;
-import user.types.User;
+
+import users.Host;
+import audioFiles.Library;
+import users.User;
 
 public class AddAnnouncementCommand implements Command {
     private String name;

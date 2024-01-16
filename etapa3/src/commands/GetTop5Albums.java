@@ -1,16 +1,14 @@
 package commands;
 
-import audio.files.Album;
-import audio.files.Library;
+import audioFiles.Album;
+import audioFiles.Library;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import main.InputCommands;
-import platform.data.PublicAlbums;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
-
+import platformData.PublicAlbums;
 import java.util.ArrayList;
 
 public class GetTop5Albums implements Command {

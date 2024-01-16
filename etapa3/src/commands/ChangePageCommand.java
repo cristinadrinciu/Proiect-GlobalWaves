@@ -1,16 +1,16 @@
 package commands;
 
-import audio.files.Library;
-import audio.files.Podcast;
-import audio.files.Song;
+import audioFiles.Library;
+import audioFiles.Podcast;
+import audioFiles.Song;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import main.InputCommands;
-import user.types.Artist;
-import user.types.Host;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
-import user.types.User;
+import users.Artist;
+import users.Host;
+
+import users.User;
 
 public class ChangePageCommand implements Command {
     private String nextPage;
@@ -56,7 +56,7 @@ public class ChangePageCommand implements Command {
                 break;
             case "Artist":
                 // change to artist's page of the current Song
-                if(user.getPlayer().playingNow == null) {
+                if (user.getPlayer().playingNow == null) {
                     this.message = "You are not listening to any song.";
                     return;
                 }
@@ -66,13 +66,16 @@ public class ChangePageCommand implements Command {
                 break;
             case "Host":
                 // change to host's page of the current Podcast
-                if(user.getPlayer().playingNow == null) {
+                if (user.getPlayer().playingNow == null) {
                     this.message = "You are not listening to any song.";
                     return;
                 }
                 Host host = user.getPlayer().findHost((Podcast) user.getPlayer().loadedItem);
                 user.setCurrentPage(host.getHostPage());
                 this.message = user.getUsername() + " accessed " + this.nextPage + " successfully.";
+                break;
+            default:
+                this.message = "Page not found.";
                 break;
         }
         // put in the navigation history the current page

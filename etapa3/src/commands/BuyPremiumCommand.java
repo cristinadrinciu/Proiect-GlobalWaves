@@ -1,12 +1,11 @@
 package commands;
 
-import audio.files.Library;
+import audioFiles.Library;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import main.InputCommands;
-import user.types.User;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
+import users.User;
 
 public class BuyPremiumCommand implements Command {
     private String message;
@@ -14,12 +13,20 @@ public class BuyPremiumCommand implements Command {
     public BuyPremiumCommand() {
     }
 
+    /**
+     * Getter for the message
+     * @return the message
+     */
     public String getMessage() {
         return message;
     }
 
-    public void buyPremium(User user) {
-        if(user.isPremium()) {
+    /**
+     * Buys the premium subscription for the user
+     * @param user the user that buys the subscription
+     */
+    public void buyPremium(final User user) {
+        if (user.isPremium()) {
             message = user.getUsername() + " is already a premium user.";
         } else {
             user.setPremium(true);
@@ -33,7 +40,7 @@ public class BuyPremiumCommand implements Command {
      * @param library the main library
      */
     @Override
-    public void execute(InputCommands command, Library library) {
+    public void execute(final InputCommands command, final Library library) {
         User user = command.getUser();
 
         // update the player of the user

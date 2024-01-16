@@ -1,11 +1,11 @@
 package main;
 
-import audio.files.Library;
+import audioFiles.Library;
 import commands.EndProgramCommand;
-import platform.data.OnlineUsers;
-import platform.data.PublicAlbums;
-import platform.data.PublicPlaylists;
-import user.types.User;
+import platformData.OnlineUsers;
+import platformData.PublicAlbums;
+import platformData.PublicPlaylists;
+import users.User;
 import checker.Checker;
 import checker.CheckerConstants;
 import com.fasterxml.jackson.databind.ObjectMapper;

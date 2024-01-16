@@ -1,13 +1,12 @@
 package commands;
 
-import audio.files.Library;
+import audioFiles.Library;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import designPatterns.commandPattern.Command;
 import main.InputCommands;
 import player.Player;
-import user.types.User;
-import visit.pattern.Visitable;
-import visit.pattern.Visitor;
+import users.User;
 
 public class PlayPauseCommand implements Command {
     private String message;
@@ -61,13 +60,13 @@ public class PlayPauseCommand implements Command {
         }
 
         // Build the message and generate the corresponding JSON representation
-        String message = buildMessage(user.getPlayer());
+        String message1 = buildMessage(user.getPlayer());
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode commandJson = objectMapper.createObjectNode()
                 .put("command", "playPause")
                 .put("user", command.getUsername())
                 .put("timestamp", command.getTimestamp())
-                .put("message", message);
+                .put("message", message1);
 
         command.getCommandList().add(commandJson);
     }
