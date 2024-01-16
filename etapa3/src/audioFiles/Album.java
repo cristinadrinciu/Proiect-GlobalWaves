@@ -12,6 +12,12 @@ public class Album extends AudioFile {
     private Artist owner;
     private int likes;
 
+    public Album() {
+        super("album");
+        this.songs = new ArrayList<>();
+        this.likes = 0;
+    }
+
     /**
      * @return the release year of the album
      */

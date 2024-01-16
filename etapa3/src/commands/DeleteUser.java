@@ -217,7 +217,7 @@ public class DeleteUser implements Command {
                 }
 
                 Player player = user.getPlayer();
-                if (player.loadedItem instanceof Playlist) {
+                if (player.loadedItem.getType().equals("playlist")) {
                     if (deleteUser.getPlaylists().contains((Playlist) player.loadedItem)) {
                         // cannot delete the user
                         return false;
@@ -236,7 +236,7 @@ public class DeleteUser implements Command {
                 }
                 Player player = user.getPlayer();
 
-                if (player.loadedItem instanceof Album) {
+                if (player.loadedItem.getType().equals("album")) {
                     if (deleteArtist.getAlbums().contains((Album) player.loadedItem)) {
                         // cannot delete the artist
                         return false;
@@ -244,7 +244,7 @@ public class DeleteUser implements Command {
                 }
 
                 // if there is a song in the player that is owned by this artist
-                if (player.playingNow instanceof Song) {
+                if (player.playingNow.getType().equals("song")) {
                     if (((Song) player.playingNow).getArtist().equals(deleteArtist.getUsername())) {
                         // cannot delete the artist
                         return false;
@@ -268,7 +268,7 @@ public class DeleteUser implements Command {
                 }
                 Player player = user.getPlayer();
 
-                if (player.loadedItem instanceof Podcast) {
+                if (player.loadedItem.getType().equals("podcast")) {
                     if (deleteHost.getPodcasts().contains((Podcast) player.loadedItem)) {
                         // cannot delete the host
                         return false;

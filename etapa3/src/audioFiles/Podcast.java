@@ -14,6 +14,9 @@ public class Podcast extends AudioFile {
     private int watchedTime;
 
     public Podcast() {
+        super("podcast");
+        this.episodes = new ArrayList<>();
+        this.watchedTime = 0;
     }
 
     /**

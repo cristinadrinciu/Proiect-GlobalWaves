@@ -28,7 +28,7 @@ public class LikeCommand implements Command {
             message = "Please load a source before liking or unliking.";
             return;
         }
-        if (!(user.getPlayer().playingNow instanceof Song)) {
+        if (!(user.getPlayer().playingNow.getType().equals("song"))) {
             message = "Loaded source is not a song.";
             return;
         }

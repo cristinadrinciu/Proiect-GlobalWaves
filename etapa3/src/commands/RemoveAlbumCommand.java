@@ -199,7 +199,8 @@ public class RemoveAlbumCommand implements Command {
             // check if any user has this album loaded in the player
             for (User user : library.getUsers()) {
                 Player player = user.getPlayer();
-                if (player.loadedItem instanceof Album) {
+                if (player.loadedItem != null &&
+                        player.loadedItem.getType().equals("album")) {
                     if (deleteAlbum.getName().equals(((Album) player.loadedItem).getName())) {
                         // cannot delete the album
                         return false;
@@ -207,7 +208,8 @@ public class RemoveAlbumCommand implements Command {
                 }
 
                 // check if any user has a song from this album in the player
-                if (player.playingNow instanceof Song) {
+                if (player.loadedItem != null
+                    &&player.playingNow.getType().equals("song")) {
                     if (((Song) player.playingNow).getAlbum().equals(deleteAlbum.getName())) {
                         // cannot delete the album
                         return false;
@@ -215,7 +217,8 @@ public class RemoveAlbumCommand implements Command {
                 }
 
                 // check if anu user has playlist loaded that contains a song from this album
-                if (player.loadedItem instanceof Playlist) {
+                if (player.loadedItem != null
+                    &&player.loadedItem.getType().equals("playlist")) {
                     for (Song song : ((Playlist) player.loadedItem).getSongs()) {
                         if (song.getAlbum().equals(deleteAlbum.getName())) {
                             // cannot delete the album

@@ -52,18 +52,18 @@ public class StatusCommand implements Command {
         if (player.repeatState == 0 || player.loadedItem == null) {
             message = "No Repeat";
         }
-        if (player.repeatState == 1 && (player.loadedItem instanceof Song
-                || player.loadedItem instanceof Podcast)) {
+        if (player.repeatState == 1 && (player.loadedItem.getType().equals("song")
+                || player.loadedItem.getType().equals("podcast"))) {
             message = "Repeat Once";
         }
-        if (player.repeatState == 2 && (player.loadedItem instanceof Song
-                || player.loadedItem instanceof Podcast)) {
+        if (player.repeatState == 2 && (player.loadedItem.getType().equals("song")
+                || player.loadedItem.getType().equals("podcast"))) {
             message = "Repeat Infinite";
         }
-        if (player.repeatState == 1 && (player.loadedItem instanceof Playlist)) {
+        if (player.repeatState == 1 && (player.loadedItem.getType().equals("playlist"))) {
             message = "Repeat All";
         }
-        if (player.repeatState == 2 && (player.loadedItem instanceof Playlist)) {
+        if (player.repeatState == 2 && (player.loadedItem.getType().equals("playlist"))) {
             message = "Repeat Current Song";
         }
 

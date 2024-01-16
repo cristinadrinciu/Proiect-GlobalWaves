@@ -7,13 +7,14 @@ import users.Artist;
 
 import java.util.ArrayList;
 
-public class ArtistPage implements Page {
+public class ArtistPage extends Page {
     private Artist artist;
     private ArrayList<Album> albums = new ArrayList<>();
     private ArrayList<Merch> merch = new ArrayList<>();
     private ArrayList<Event> events = new ArrayList<>();
 
     public ArtistPage(final Artist artist) {
+        super("artist");
         this.artist = artist;
     }
 

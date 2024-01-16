@@ -32,7 +32,7 @@ public class FollowCommand implements Command {
             message = "Please select a source before following or unfollowing.";
             return;
         }
-        if (!(user.getSelectedItem() instanceof Playlist)) {
+        if (!(user.getSelectedItem() .getType().equals("playlist"))) {
             message = "The selected source is not a playlist.";
             return;
         }

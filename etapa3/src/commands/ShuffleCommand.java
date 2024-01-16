@@ -43,8 +43,8 @@ public class ShuffleCommand implements Command {
             user.getPlayer().shuffle = false;
             return;
         }
-        if (!(user.getPlayer().loadedItem instanceof Playlist)
-                && !(user.getPlayer().loadedItem instanceof Album)) {
+        if (!(user.getPlayer().loadedItem.getType().equals("playlist"))
+                && !(user.getPlayer().loadedItem.getType().equals("Album"))) {
             user.getPlayer().shuffle = false;
             return;
         }
@@ -68,8 +68,8 @@ public class ShuffleCommand implements Command {
             message = "Please load a source before using the shuffle function.";
             return message;
         }
-        if (!(user.getPlayer().loadedItem instanceof Playlist)
-                && !(user.getPlayer().loadedItem instanceof Album)) {
+        if (!(user.getPlayer().loadedItem.getType().equals("playlist"))
+                && !(user.getPlayer().loadedItem.getType().equals("Album"))) {
             message = "The loaded source is not a playlist or an album.";
             return message;
         }
@@ -132,11 +132,11 @@ public class ShuffleCommand implements Command {
         if (user.getPlayer().loadedItem != null) {
             if (user.getPlayer().shuffle) {
                 // Update the shuffled Playlist from player
-                if (user.getPlayer().loadedItem instanceof Playlist) {
+                if (user.getPlayer().loadedItem.getType().equals("playlist")) {
                     user.getPlayer().shuffledPlaylist =
                             shufflePlaylist((Playlist) user.getPlayer().loadedItem);
                 }
-                if (user.getPlayer().loadedItem instanceof Album) {
+                if (user.getPlayer().loadedItem.getType().equals("Album")) {
                     user.getPlayer().shuffledPlaylist =
                             shuffleAlbum((Album) user.getPlayer().loadedItem);
                 }

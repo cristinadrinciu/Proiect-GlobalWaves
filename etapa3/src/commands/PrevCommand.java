@@ -253,13 +253,13 @@ public class PrevCommand implements Command {
         if (user.getPlayer().loadedItem == null) {
             message = "Please load a source before returning to the previous track.";
         } else {
-            if (user.getPlayer().loadedItem instanceof Song) {
+            if (user.getPlayer().loadedItem.getType().equals("song")) {
                 goToPrevSong(user);
-            } else if (user.getPlayer().loadedItem instanceof Playlist) {
+            } else if (user.getPlayer().loadedItem.getType().equals("playlist")) {
                 goToPrevPlaylist(user);
-            } else if (user.getPlayer().loadedItem instanceof Podcast) {
+            } else if (user.getPlayer().loadedItem.getType().equals("podcast")) {
                 goToPrevPodcast(user);
-            } else if (user.getPlayer().loadedItem instanceof Album) {
+            } else if (user.getPlayer().loadedItem.getType().equals("album")) {
                 goToPrevAlbum(user);
             }
         }

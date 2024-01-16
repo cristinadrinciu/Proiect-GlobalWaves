@@ -32,15 +32,15 @@ public class SubscribeCommand implements Command {
      */
     public void subscribe(final User user) {
         // check if the user is on an artist page or host page
-        if (user.getCurrentPage() instanceof HomePage
-                || user.getCurrentPage() instanceof LikedContentPage) {
+        if (user.getCurrentPage().getType().equals("home")
+                || user.getCurrentPage().getType().equals("likedContent")) {
             message = "To subscribe you need to be on the page of an artist or host.";
             return;
         }
 
         Page page = user.getCurrentPage();
 
-        if (page instanceof ArtistPage) {
+        if (page.getType().equals("artist")) {
             // check if the user is already subscribed to the artist
             Artist artist = ((ArtistPage) page).getArtist();
             if (artist.getSubscribers().contains(user)) {
@@ -54,7 +54,7 @@ public class SubscribeCommand implements Command {
                 message = user.getUsername() + " subscribed to "
                         + artist.getUsername() + " successfully.";
             }
-        } else if (page instanceof HostPage) {
+        } else if (page.getType().equals("host")) {
             // check if the user is already subscribed to the host
             Host host = ((HostPage) page).getHost();
             if (host.getSubscribers().contains(user)) {

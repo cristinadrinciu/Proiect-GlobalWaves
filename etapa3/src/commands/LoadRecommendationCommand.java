@@ -47,8 +47,8 @@ public class LoadRecommendationCommand implements Command {
 
         // update the listens
         if (user.getPlayer().loadedItem != null) {
-            if (user.getPlayer().loadedItem instanceof Song
-                    || user.getPlayer().loadedItem instanceof Playlist) {
+            if (user.getPlayer().loadedItem.getType().equals("song")
+                    || user.getPlayer().loadedItem.getType().equals("playlist")) {
                 user.getPlayer().updateStatistics();
             }
         }

@@ -62,7 +62,7 @@ public class Player {
      *
      */
     public void setPlayingNow() {
-        if (loadedItem instanceof Song) {
+        if (loadedItem != null && loadedItem.getType().equals("song")) {
             // from the beginning
             playingNow = loadedItem;
             remainingTime = ((Song) loadedItem).getDuration();
@@ -71,7 +71,7 @@ public class Player {
             switchedTime = timestamp;
             return;
         }
-        if (loadedItem instanceof Playlist) {
+        if (loadedItem != null && loadedItem.getType().equals("playlist")) {
             // from the beginning
             playingNow = ((Playlist) loadedItem).getSongs().get(0);
             remainingTime = ((Song) playingNow).getDuration();
@@ -80,7 +80,7 @@ public class Player {
             switchedTime = timestamp;
             return;
         }
-        if (loadedItem instanceof Album) {
+        if (loadedItem != null && loadedItem.getType().equals("album")) {
             // from the beginning
             playingNow = ((Album) loadedItem).getSongs().get(0);
             remainingTime = ((Song) playingNow).getDuration();
@@ -90,7 +90,7 @@ public class Player {
             return;
 
         }
-        if (loadedItem instanceof Podcast) {
+        if (loadedItem != null && loadedItem.getType().equals("podcast")) {
             // check if it was played before
             boolean found = false;
             Podcast foundPodcast = null;
@@ -143,10 +143,10 @@ public class Player {
     public void setRemainingTime() {
         if (!paused) {
             int elapsedTime = timestamp - switchedTime;
-            if (playingNow instanceof Song) {
+            if (playingNow != null && playingNow.getType().equals("song")) {
                 listenedTime += elapsedTime;
                 remainingTime = ((Song) playingNow).getDuration() - listenedTime;
-            } else if (playingNow instanceof EpisodeInput) {
+            } else if (playingNow != null && playingNow.getType().equals("episode")) {
                 listenedTime += elapsedTime;
                 remainingTime = ((EpisodeInput) playingNow).getDuration() - listenedTime;
                 // get the podcast from the list of played podcasts
@@ -162,7 +162,7 @@ public class Player {
 
         switchedTime = timestamp;
         if (remainingTime <= 0) {
-            if (loadedItem instanceof Song) {
+            if (loadedItem != null && loadedItem.getType().equals("song")) {
                 paused = true;
                 listenedTime = 0;
                 loadedItem = null;
@@ -170,7 +170,7 @@ public class Player {
                 playingNow = null;
                 return;
             }
-            if (loadedItem instanceof Playlist) {
+            if (loadedItem != null && loadedItem.getType().equals("playlist")) {
                 while (remainingTime <= 0) {
                     if (!shuffle) {
                         int index = ((Playlist) loadedItem).getSongs().indexOf((Song) playingNow);
@@ -220,7 +220,7 @@ public class Player {
                     }
                 }
             }
-            if (loadedItem instanceof Album) {
+            if (loadedItem != null && loadedItem.getType().equals("album")) {
                 // exactly the same as Playlist
                 while (remainingTime <= 0) {
                     if (!shuffle) {
@@ -271,7 +271,7 @@ public class Player {
                     }
                 }
             }
-            if (loadedItem instanceof Podcast) {
+            if (loadedItem != null && loadedItem.getType().equals("podcast")) {
                 while (remainingTime <= 0) {
                     int index = ((Podcast) loadedItem).getEpisodes().indexOf(
                             (EpisodeInput) playingNow);
@@ -309,10 +309,10 @@ public class Player {
     public void setRemainingTimeRepeat2() {
         if (!paused) {
             int elapsedTime = timestamp - switchedTime;
-            if (playingNow instanceof Song) {
+            if (playingNow != null && playingNow.getType().equals("song")) {
                 listenedTime += elapsedTime;
                 remainingTime = ((Song) playingNow).getDuration() - listenedTime;
-            } else if (playingNow instanceof EpisodeInput) {
+            } else if (playingNow != null && playingNow.getType().equals("episode")) {
                 listenedTime += elapsedTime;
                 remainingTime = ((EpisodeInput) playingNow).getDuration() - listenedTime;
                 // get the podcast from the list of played podcasts
@@ -328,7 +328,7 @@ public class Player {
 
         switchedTime = timestamp;
         if (remainingTime <= 0) {
-            if (loadedItem instanceof Song) {
+            if (loadedItem != null && loadedItem.getType().equals("song")) {
                 while (remainingTime <= 0) {
                     listenedTime = -remainingTime;
                     remainingTime = ((Song) playingNow).getDuration() - listenedTime;
@@ -336,7 +336,7 @@ public class Player {
                     updateStatistics();
                 }
             }
-            if (loadedItem instanceof Podcast) {
+            if (loadedItem != null && loadedItem.getType().equals("podcast")) {
                 while (remainingTime <= 0) {
                     int index = ((Podcast) loadedItem).getEpisodes().
                             indexOf((EpisodeInput) playingNow);
@@ -358,7 +358,7 @@ public class Player {
                     }
                 }
             }
-            if (loadedItem instanceof Playlist) {
+            if (loadedItem != null && loadedItem.getType().equals("playlist")) {
                 while (remainingTime <= 0) {
                     listenedTime = -remainingTime;
                     remainingTime = ((Song) playingNow).getDuration() - listenedTime;
@@ -366,7 +366,7 @@ public class Player {
                     updateStatistics();
                 }
             }
-            if (loadedItem instanceof Album) {
+            if (loadedItem != null && loadedItem.getType().equals("album")) {
                 while (remainingTime <= 0) {
                     listenedTime = -remainingTime;
                     remainingTime = ((Song) playingNow).getDuration() - listenedTime;
@@ -383,10 +383,10 @@ public class Player {
     public void setRemainingTimeRepeat1() {
         if (!paused) {
             int elapsedTime = timestamp - switchedTime;
-            if (playingNow instanceof Song) {
+            if (playingNow != null && playingNow.getType().equals("song")) {
                 listenedTime += elapsedTime;
                 remainingTime = ((Song) playingNow).getDuration() - listenedTime;
-            } else if (playingNow instanceof EpisodeInput) {
+            } else if (playingNow != null && playingNow.getType().equals("episode")) {
                 listenedTime += elapsedTime;
                 remainingTime = ((EpisodeInput) playingNow).getDuration() - listenedTime;
                 // get the podcast from the list of played podcasts
@@ -402,7 +402,7 @@ public class Player {
 
         switchedTime = timestamp;
         if (remainingTime <= 0) {
-            if (loadedItem instanceof Song) {
+            if (loadedItem != null && loadedItem.getType().equals("song")) {
                 while (remainingTime <= 0) {
                     if (repeatedOnce == 0) {
                         listenedTime = -remainingTime;
@@ -423,7 +423,7 @@ public class Player {
                     }
                 }
             }
-            if (loadedItem instanceof Podcast) {
+            if (loadedItem != null && loadedItem.getType().equals("podcast")) {
                 while (remainingTime <= 0) {
                     if (repeatedOnce == 0) {
                         int index = ((Podcast) loadedItem).getEpisodes().
@@ -474,7 +474,7 @@ public class Player {
                     }
                 }
             }
-            if (loadedItem instanceof Playlist) {
+            if (loadedItem != null && loadedItem.getType().equals("playlist")) {
                 while (remainingTime <= 0) {
                     if (!shuffle) {
                         int index = ((Playlist) loadedItem).getSongs().
@@ -502,7 +502,7 @@ public class Player {
                     }
                 }
             }
-            if (loadedItem instanceof Album) {
+            if (loadedItem != null && loadedItem.getType().equals("album")) {
                 // exactly the same as Playlist
                 while (remainingTime <= 0) {
                     if (!shuffle) {

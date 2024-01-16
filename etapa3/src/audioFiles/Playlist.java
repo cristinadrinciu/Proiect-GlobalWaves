@@ -13,6 +13,8 @@ public class Playlist extends AudioFile {
     private int totalLikes;
 
     public Playlist() {
+        // insert super constructor
+        super("playlist");
         this.isPublic = true;
         this.followers = 0;
         this.totalLikes = 0;

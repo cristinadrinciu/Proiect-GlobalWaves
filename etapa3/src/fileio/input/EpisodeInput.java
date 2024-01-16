@@ -7,6 +7,7 @@ public final class EpisodeInput extends AudioFile {
     private String description;
 
     public EpisodeInput() {
+        super("episode");
     }
 
     public Integer getDuration() {

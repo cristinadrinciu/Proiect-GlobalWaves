@@ -7,12 +7,13 @@ import users.Host;
 
 import java.util.ArrayList;
 
-public class HostPage implements Page {
+public class HostPage extends Page {
     private ArrayList<Podcast> podcasts = new ArrayList<>();
     private ArrayList<Announcement> announcements = new ArrayList<>();
     private Host host;
 
     public HostPage(final Host host) {
+        super("host");
         this.host = host;
     }
 

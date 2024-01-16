@@ -41,16 +41,16 @@ public class RepeatCommand implements Command {
                 message = "Repeat mode changed to no repeat.";
                 break;
             case 1:
-                if (user.getPlayer().loadedItem instanceof Song
-                        || user.getPlayer().loadedItem instanceof Podcast) {
+                if (user.getPlayer().loadedItem.getType().equals("song")
+                        || user.getPlayer().loadedItem.getType().equals("podcast")) {
                     message = "Repeat mode changed to repeat once.";
                 } else {
                     message = "Repeat mode changed to repeat all.";
                 }
                 break;
             case 2:
-                if (user.getPlayer().loadedItem instanceof Song
-                        || user.getPlayer().loadedItem instanceof Podcast) {
+                if (user.getPlayer().loadedItem.getType().equals("song")
+                        || user.getPlayer().loadedItem.getType().equals("podcast")) {
                     message = "Repeat mode changed to repeat infinite.";
                 } else {
                     message = "Repeat mode changed to repeat current song.";

@@ -5,13 +5,14 @@ import audioFiles.Song;
 
 import java.util.ArrayList;
 
-public class HomePage implements Page {
+public class HomePage extends Page {
     private ArrayList<Song> likedSongs = new ArrayList<>();
     private ArrayList<Playlist> followedPlaylists = new ArrayList<>();
     private ArrayList<Song> songRecommendations = new ArrayList<>();
     private ArrayList<Playlist> playlistRecommendations = new ArrayList<>();
 
     public HomePage() {
+        super("home");
     }
 
     /**

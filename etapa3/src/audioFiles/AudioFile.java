@@ -2,8 +2,10 @@ package audioFiles;
 
 public class AudioFile {
     private String name;
+    private String type;
 
-    public AudioFile() {
+    public AudioFile(String type) {
+        this.type = type;   
     }
 
     /**
@@ -20,5 +22,21 @@ public class AudioFile {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     *
+     * @param type for the type of the audio file
+     */
+    public void setType(final String type) {
+        this.type = type;
+    }
+
+    /**
+     * getter for the type of the audio file
+     * @return type
+     */
+    public String getType() {
+        return type;
     }
 }

@@ -25,7 +25,7 @@ public class BackwardCommand implements Command {
             return;
         }
 
-        if (!(user.getPlayer().loadedItem instanceof Podcast)) {
+        if (!(user.getPlayer().loadedItem.getType().equals("podcast"))) {
             message = "The loaded source is not a podcast.";
             return;
         }

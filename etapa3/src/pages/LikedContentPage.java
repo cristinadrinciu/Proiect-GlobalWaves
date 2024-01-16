@@ -6,11 +6,12 @@ import users.User;
 
 import java.util.ArrayList;
 
-public class LikedContentPage implements Page {
+public class LikedContentPage extends Page {
     private ArrayList<Song> likedSongs;
     private ArrayList<Playlist> followedPlaylists;
 
     public LikedContentPage() {
+        super("likedContent");
         this.likedSongs = new ArrayList<>();
         this.followedPlaylists = new ArrayList<>();
     }

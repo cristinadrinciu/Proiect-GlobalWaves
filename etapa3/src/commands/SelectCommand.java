@@ -128,10 +128,10 @@ public class SelectCommand implements Command {
                         + SelectCommand.getSelectedUser().getUsername() + "'s page.";
                 user.setLastSearchUsers(null);
                 // set the current page
-                if (SelectCommand.getSelectedUser() instanceof Artist) {
+                if (SelectCommand.getSelectedUser().getType().equals("artist")) {
                     user.setCurrentPage(((Artist) SelectCommand.
                             getSelectedUser()).getArtistPage());
-                } else if (SelectCommand.getSelectedUser() instanceof Host) {
+                } else if (SelectCommand.getSelectedUser().getType().equals("host")) {
                     user.setCurrentPage(((Host) SelectCommand.getSelectedUser()).
                             getHostPage());
                 }

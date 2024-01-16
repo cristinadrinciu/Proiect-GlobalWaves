@@ -43,9 +43,9 @@ public class AddRemoveCommand implements Command {
             message = "Please load a source before adding to or removing from the playlist.";
             return message;
         }
-        if (!(user.getPlayer().loadedItem instanceof Song)
-                && !(user.getPlayer().loadedItem instanceof Album)
-                && !(user.getPlayer().loadedItem instanceof Playlist)) {
+        if (!(user.getPlayer().loadedItem.getType().equals("song"))
+                && !(user.getPlayer().loadedItem.getType().equals("album"))
+                && !(user.getPlayer().loadedItem.getType().equals("playlist"))) {
             message = "The loaded source is not a song.";
             return message;
         }

@@ -39,7 +39,7 @@ public class ForwardCommand implements Command {
             message = "Please load a source before attempting to forward.";
             return;
         }
-        if (!(user.getPlayer().loadedItem instanceof Podcast)) {
+        if (!(user.getPlayer().loadedItem.getType().equals("podcast"))) {
             message = "The loaded source is not a podcast.";
             return;
         }

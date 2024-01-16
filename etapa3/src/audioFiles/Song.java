@@ -13,6 +13,7 @@ public class Song extends AudioFile {
     private int likes;
 
     public Song() {
+        super("song");
     }
 
     /**

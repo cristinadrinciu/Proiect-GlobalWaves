@@ -42,7 +42,7 @@ public class NextCommand implements Command {
      */
     public void goToNextSong(final User user) {
         // verify what we are currently playing
-        if (user.getPlayer().loadedItem instanceof Song) {
+        if (user.getPlayer().loadedItem.getType().equals("song")) {
             if (user.getPlayer().repeatState == 0) {
                 // if we are not repeating, then we stop the player
                 user.getPlayer().playingNow = null;
@@ -94,7 +94,7 @@ public class NextCommand implements Command {
 
     public void goToNextPlaylist(final User user) {
         // verify what we are currently playing
-        if (user.getPlayer().loadedItem instanceof Playlist) {
+        if (user.getPlayer().loadedItem.getType().equals("playlist")) {
             Playlist playlist = (Playlist) user.getPlayer().loadedItem;
             if (user.getPlayer().repeatState == 0) {
                 if (!user.getPlayer().shuffle) {
@@ -233,7 +233,7 @@ public class NextCommand implements Command {
 
     public void goToNextPodcast(final User user) {
         // verify what we are currently playing
-        if (user.getPlayer().loadedItem instanceof Podcast) {
+        if (user.getPlayer().loadedItem.getType().equals("podcast")) {
             if (user.getPlayer().repeatState == 0) {
                 // check if it is the last episode
                 EpisodeInput episode = (EpisodeInput) user.getPlayer().playingNow;
@@ -367,7 +367,7 @@ public class NextCommand implements Command {
      */
     public void goToNextAlbum(final User user) {
         // exactly the same as the playlist
-        if (user.getPlayer().loadedItem instanceof Album) {
+        if (user.getPlayer().loadedItem.getType().equals("album")) {
             Album album = (Album) user.getPlayer().loadedItem;
             if (user.getPlayer().repeatState == 0) {
                 if (!user.getPlayer().shuffle) {
@@ -508,13 +508,13 @@ public class NextCommand implements Command {
         if (user.getPlayer().loadedItem == null) {
             message = "Please load a source before skipping to the next track.";
         } else {
-            if (user.getPlayer().loadedItem instanceof Song) {
+            if (user.getPlayer().loadedItem.getType().equals("song")) {
                 goToNextSong(user);
-            } else if (user.getPlayer().loadedItem instanceof Playlist) {
+            } else if (user.getPlayer().loadedItem.getType().equals("playlist")) {
                 goToNextPlaylist(user);
-            } else if (user.getPlayer().loadedItem instanceof Podcast) {
+            } else if (user.getPlayer().loadedItem.getType().equals("podcast")) {
                 goToNextPodcast(user);
-            } else if (user.getPlayer().loadedItem instanceof Album) {
+            } else if (user.getPlayer().loadedItem.getType().equals("album")) {
                 goToNextAlbum(user);
             }
         }

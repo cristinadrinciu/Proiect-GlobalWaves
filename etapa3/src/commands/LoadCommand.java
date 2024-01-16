@@ -47,19 +47,19 @@ public class LoadCommand implements Command {
      */
     public String buildMessage(final AudioFile audiofile) {
         if (audiofile != null) {
-            if (audiofile instanceof Podcast) {
+            if (audiofile.getType().equals("podcast")) {
                 if (((Podcast) audiofile).getEpisodes().isEmpty()) {
                     resultMessage = "You can't load an empty audio collection!";
                     return resultMessage;
                 }
             }
-            if (audiofile instanceof Playlist) {
+            if (audiofile.getType().equals("playlist")) {
                 if (((Playlist) audiofile).getSongs().isEmpty()) {
                     resultMessage = "You can't load an empty audio collection!";
                     return resultMessage;
                 }
             }
-            if (audiofile instanceof Album) {
+            if (audiofile.getType().equals("album")) {
                 if (((Album) audiofile).getSongs().isEmpty()) {
                     resultMessage = "You can't load an empty audio collection!";
                     return resultMessage;
@@ -107,12 +107,12 @@ public class LoadCommand implements Command {
 
         // update the listens
         if (user.getPlayer().loadedItem != null) {
-            if (user.getPlayer().loadedItem instanceof Song
-                    || user.getPlayer().loadedItem instanceof Playlist
-                    || user.getPlayer().loadedItem instanceof Album) {
+            if (user.getPlayer().loadedItem.getType().equals("song")
+                    || user.getPlayer().loadedItem.getType().equals("playlist")
+                    || user.getPlayer().loadedItem.getType().equals("album")) {
                 user.getPlayer().updateStatistics();
             }
-            if (user.getPlayer().loadedItem instanceof Podcast) {
+            if (user.getPlayer().loadedItem.getType().equals("podcast")) {
                 // update the listens of the episode
                 user.setListensToEpisode(user.getPlayer().playingNow.getName());
 

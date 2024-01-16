@@ -47,7 +47,8 @@ public class AdBreakCommand implements Command {
      * @param library the library of the application
      */
     public void adBreak(final User user, final Library library) {
-        if (user.getPlayer().playingNow == null || !(user.getPlayer().playingNow instanceof Song)) {
+        if (user.getPlayer().playingNow == null || !(user.getPlayer().playingNow.getType().
+                equals("song"))) {
             message = user.getUsername() + " is not playing any music.";
             return;
         }
@@ -68,7 +69,7 @@ public class AdBreakCommand implements Command {
         user.setAdPrice(price);
 
         // add the ad in the player queue, after the current song
-        if (user.getPlayer().loadedItem instanceof Album) {
+        if (user.getPlayer().loadedItem.getType().equals("album")) {
             // add the ad after the current song
             // get the index of the current song
             int index = ((Album) user.getPlayer().loadedItem).getSongs().
@@ -86,7 +87,7 @@ public class AdBreakCommand implements Command {
 
             // add the ad after the current song, without modifying the list of the album
             ((Album) user.getPlayer().loadedItem).getSongs().add(index + 1, ad);
-        } else if (user.getPlayer().loadedItem instanceof Playlist) {
+        } else if (user.getPlayer().loadedItem.getType().equals("playlist")) {
             // add the ad after the current song
             // get the index of the current song
             int index = ((Playlist) user.getPlayer().loadedItem).getSongs().
@@ -103,7 +104,7 @@ public class AdBreakCommand implements Command {
 
             // add the ad after the current song
             ((Playlist) user.getPlayer().loadedItem).getSongs().add(index + 1, ad);
-        } else if (user.getPlayer().loadedItem instanceof Song) {
+        } else if (user.getPlayer().loadedItem.getType().equals("song")) {
             // add the ad after the current song
             // being a song, transform it into a playlist
             Playlist playlist = new Playlist();

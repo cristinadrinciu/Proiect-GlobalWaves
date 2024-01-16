@@ -44,7 +44,7 @@ public class BuyMerch implements Command {
      */
     public void buyMerch(final User user) {
         // check if the user is on an artist page
-        if (!(user.getCurrentPage() instanceof ArtistPage)) {
+        if (!(user.getCurrentPage().getType().equals("artist"))) {
             message = "Cannot buy merch from this page.";
             return;
         }
