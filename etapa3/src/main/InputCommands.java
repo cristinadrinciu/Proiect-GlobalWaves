@@ -16,7 +16,6 @@ public class InputCommands {
     private String command;
     private String username;
     private int timestamp;
-    private List<ObjectNode> commandList = new ArrayList<>();
 
     // User for this command
     private User user;
@@ -392,14 +391,6 @@ public class InputCommands {
     }
 
     private LikeCommand likeCommand = new LikeCommand();
-
-    /**
-     * This method gets the command list
-     * @return the command list
-     */
-    public List<ObjectNode> getCommandList() {
-        return commandList;
-    }
 
     /**
      * This method sets the command list
