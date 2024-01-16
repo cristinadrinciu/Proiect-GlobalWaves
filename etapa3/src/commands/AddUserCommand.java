@@ -1,18 +1,19 @@
 package commands;
-import audioFiles.Album;
-import audioFiles.AudioFile;
-import audioFiles.Library;
-import audioFiles.Playlist;
-import audioFiles.Podcast;
-import audioFiles.Song;
+import stream.JsonOutputStream;
+import audiofiles.Album;
+import audiofiles.AudioFile;
+import audiofiles.Library;
+import audiofiles.Playlist;
+import audiofiles.Podcast;
+import audiofiles.Song;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import designPatterns.commandPattern.Command;
-import pageContent.Announcement;
+import designpatterns.commandPattern.Command;
+import pagecontent.Announcement;
 import main.InputCommands;
 import pages.HomePage;
 import player.Player;
-import platformData.OnlineUsers;
+import platformdata.OnlineUsers;
 import users.Artist;
 import users.Host;
 import users.User;
@@ -190,6 +191,7 @@ public class AddUserCommand implements Command {
                 .put("timestamp", command.getTimestamp())
                 .put("message", message);
 
-        command.getCommandList().add(commandJson);
+        // Add to the stream
+        JsonOutputStream.addJsonNode(commandJson);
     }
 }

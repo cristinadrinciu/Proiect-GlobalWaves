@@ -3,7 +3,7 @@ package pages;
 public class Page {
     private String type;
 
-    public Page(String type) {
+    public Page(final String type) {
         this.type = type;
     }
 

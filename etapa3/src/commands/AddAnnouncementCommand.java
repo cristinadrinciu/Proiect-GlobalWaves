@@ -1,14 +1,15 @@
 package commands;
 
+import stream.JsonOutputStream;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import designPatterns.commandPattern.Command;
-import pageContent.Announcement;
+import designpatterns.commandPattern.Command;
+import pagecontent.Announcement;
 import main.InputCommands;
 
 import users.Host;
-import audioFiles.Library;
+import audiofiles.Library;
 import users.User;
 
 public class AddAnnouncementCommand implements Command {
@@ -105,7 +106,8 @@ public class AddAnnouncementCommand implements Command {
                 .put("timestamp", command.getTimestamp())
                 .put("message", message);
 
-        command.getCommandList().add(commandJson);
+        // add the command to the JsonStream
+        JsonOutputStream.getCommandOutputs().add(commandJson);
     }
 
 }

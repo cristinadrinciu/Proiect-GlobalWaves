@@ -1,18 +1,19 @@
 package commands;
 
-import audioFiles.Album;
-import audioFiles.Library;
-import audioFiles.Playlist;
-import audioFiles.Podcast;
-import audioFiles.Song;
+import stream.JsonOutputStream;
+import audiofiles.Album;
+import audiofiles.Library;
+import audiofiles.Playlist;
+import audiofiles.Podcast;
+import audiofiles.Song;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import designPatterns.commandPattern.Command;
+import designpatterns.commandPattern.Command;
 import main.InputCommands;
 import player.Player;
-import platformData.OnlineUsers;
-import platformData.PublicAlbums;
-import platformData.PublicPlaylists;
+import platformdata.OnlineUsers;
+import platformdata.PublicAlbums;
+import platformdata.PublicPlaylists;
 import users.Artist;
 import users.Host;
 import users.User;
@@ -312,6 +313,6 @@ public class DeleteUser implements Command {
                 .put("timestamp", command.getTimestamp())
                 .put("message", message);
 
-        command.getCommandList().add(commandJson);
+        JsonOutputStream.getCommandOutputs().add(commandJson);
     }
 }

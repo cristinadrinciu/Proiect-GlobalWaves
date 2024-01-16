@@ -1,14 +1,15 @@
 package commands;
 
-import audioFiles.Album;
+import stream.JsonOutputStream;
+import audiofiles.Album;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import designPatterns.commandPattern.Command;
+import designpatterns.commandPattern.Command;
 import main.InputCommands;
 import users.Artist;
-import audioFiles.Library;
+import audiofiles.Library;
 import users.User;
 
 import java.util.ArrayList;
@@ -125,6 +126,6 @@ public class GetTop5Artists implements Command {
                 .set("result", resultsArray);
 
         // Add the commandJson to the commandList
-        command.getCommandList().add(commandJson);
+        JsonOutputStream.getCommandOutputs().add(commandJson);
     }
 }

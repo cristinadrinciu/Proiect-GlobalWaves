@@ -1,9 +1,10 @@
 package commands;
 
-import audioFiles.Library;
+import stream.JsonOutputStream;
+import audiofiles.Library;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import platformData.OnlineUsers;
+import platformdata.OnlineUsers;
 import users.Artist;
 import users.User;
 
@@ -20,7 +21,7 @@ public final class EndProgramCommand {
      * @param timestamp the current timestamp
      * @return the json with the result of the command
      */
-    public static ObjectNode execute(final Library library, final int timestamp) {
+    public static void execute(final Library library, final int timestamp) {
         ArrayList<Artist> artists = new ArrayList<>();
         //get the list of artists for which we display the monetization report
         for (User user : library.getUsers()) {
@@ -109,6 +110,8 @@ public final class EndProgramCommand {
         }
 
         commandJson.set("result", resultJson);
-        return commandJson;
+
+        // Add the JSONPObject to the JsonOutputStream
+        JsonOutputStream.addJsonNode(commandJson);
     }
 }

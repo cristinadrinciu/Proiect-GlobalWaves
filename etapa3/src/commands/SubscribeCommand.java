@@ -1,14 +1,13 @@
 package commands;
 
-import audioFiles.Library;
+import stream.JsonOutputStream;
+import audiofiles.Library;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import designPatterns.commandPattern.Command;
+import designpatterns.commandPattern.Command;
 import main.InputCommands;
 import pages.ArtistPage;
-import pages.HomePage;
 import pages.HostPage;
-import pages.LikedContentPage;
 import pages.Page;
 import users.Artist;
 import users.Host;
@@ -86,6 +85,7 @@ public class SubscribeCommand implements Command {
                 .put("user", command.getUsername())
                 .put("timestamp", command.getTimestamp())
                 .put("message", message);
-        command.getCommandList().add(commandJson);
+
+        JsonOutputStream.getCommandOutputs().add(commandJson);
     }
 }

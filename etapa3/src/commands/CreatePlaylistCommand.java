@@ -1,12 +1,13 @@
 package commands;
 
-import audioFiles.Library;
-import audioFiles.Playlist;
+import stream.JsonOutputStream;
+import audiofiles.Library;
+import audiofiles.Playlist;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import designPatterns.commandPattern.Command;
+import designpatterns.commandPattern.Command;
 import main.InputCommands;
-import platformData.PublicPlaylists;
+import platformdata.PublicPlaylists;
 import users.User;
 
 import java.util.ArrayList;
@@ -104,6 +105,6 @@ public class CreatePlaylistCommand implements Command {
                 .put("timestamp", command.getTimestamp())
                 .put("message", message);
 
-        command.getCommandList().add(commandJson);
+        JsonOutputStream.getCommandOutputs().add(commandJson);
     }
 }

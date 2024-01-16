@@ -1,9 +1,10 @@
 package commands;
 
-import audioFiles.Library;
+import stream.JsonOutputStream;
+import audiofiles.Library;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import designPatterns.commandPattern.Command;
+import designpatterns.commandPattern.Command;
 import main.InputCommands;
 import player.Player;
 import users.User;
@@ -68,6 +69,7 @@ public class PlayPauseCommand implements Command {
                 .put("timestamp", command.getTimestamp())
                 .put("message", message1);
 
-        command.getCommandList().add(commandJson);
+        // Add the JSON representation of the command to the output array
+        JsonOutputStream.getCommandOutputs().add(commandJson);
     }
 }

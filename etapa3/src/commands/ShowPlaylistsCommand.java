@@ -1,13 +1,14 @@
 package commands;
 
-import audioFiles.Library;
-import audioFiles.Playlist;
-import audioFiles.Song;
+import stream.JsonOutputStream;
+import audiofiles.Library;
+import audiofiles.Playlist;
+import audiofiles.Song;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import designPatterns.commandPattern.Command;
+import designpatterns.commandPattern.Command;
 import main.InputCommands;
 import users.User;
 
@@ -64,6 +65,6 @@ public class ShowPlaylistsCommand implements Command {
                 .put("timestamp", command.getTimestamp())
                 .set("result", resultsArray);
 
-        command.getCommandList().add(commandJson);
+        JsonOutputStream.addJsonNode(commandJson);
     }
 }

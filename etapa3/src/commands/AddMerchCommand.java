@@ -1,13 +1,14 @@
 package commands;
 
+import stream.JsonOutputStream;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import designPatterns.commandPattern.Command;
+import designpatterns.commandPattern.Command;
 import main.InputCommands;
 
 import users.Artist;
-import audioFiles.Library;
-import pageContent.Merch;
+import audiofiles.Library;
+import pagecontent.Merch;
 import users.User;
 
 import java.util.ArrayList;
@@ -130,6 +131,6 @@ public class AddMerchCommand implements Command {
                 .put("timestamp", command.getTimestamp())
                 .put("message", message);
 
-        command.getCommandList().add(commandJson);
+        JsonOutputStream.getCommandOutputs().add(commandJson);
     }
 }

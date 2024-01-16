@@ -1,15 +1,15 @@
 package users;
 
-import audioFiles.Album;
-import audioFiles.Song;
-import designPatterns.observer.Observer;
-import designPatterns.observer.Subject;
-import pageContent.Event;
-import pageContent.Merch;
+import audiofiles.Album;
+import audiofiles.Song;
+import designpatterns.observer.Observer;
+import designpatterns.observer.Subject;
+import pagecontent.Event;
+import pagecontent.Merch;
 import pages.ArtistPage;
 import statistics.ArtistStatistics;
-import designPatterns.visitorPattern.Visitable;
-import designPatterns.visitorPattern.Visitor;
+import designpatterns.visitorPattern.Visitable;
+import designpatterns.visitorPattern.Visitor;
 
 import java.util.ArrayList;
 
@@ -245,7 +245,7 @@ public class Artist extends User implements Subject, Visitable {
     }
 
     /**
-     * @param observer the designPatterns.observer to add
+     * @param observer the designpatterns.observer to add
      */
     @Override
     public void addObserver(final Observer observer) {

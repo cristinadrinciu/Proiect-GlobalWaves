@@ -1,10 +1,11 @@
 package main;
 
-import audioFiles.Library;
+import stream.JsonOutputStream;
+import audiofiles.Library;
 import commands.EndProgramCommand;
-import platformData.OnlineUsers;
-import platformData.PublicAlbums;
-import platformData.PublicPlaylists;
+import platformdata.OnlineUsers;
+import platformdata.PublicAlbums;
+import platformdata.PublicPlaylists;
 import users.User;
 import checker.Checker;
 import checker.CheckerConstants;
@@ -23,6 +24,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * The entry point to this homework. It runs the checker that tests your implentation.
@@ -90,6 +92,9 @@ public final class Main {
         List<ObjectNode> commandList = new ArrayList<>();
         OnlineUsers.getOnlineUsers().clear();
 
+        // clear the JsonStream
+        JsonOutputStream.getCommandOutputs().clear();
+
         // create the new library
         Library newLibrary = new Library();
         newLibrary.createLibrary(library);
@@ -122,7 +127,7 @@ public final class Main {
                     commandOutput.put("timestamp", commands[i].getTimestamp());
                     commandOutput.put("message", "The username "
                             + commands[i].getUsername() + " doesn't exist.");
-                    commandList.add(commandOutput);
+                    JsonOutputStream.getCommandOutputs().add(commandOutput);
                     continue;
                 }
             }
@@ -175,17 +180,17 @@ public final class Main {
 
             // execute the command
             commands[i].executeCommand(newLibrary);
-
-            // add the output of the command to the list of outputs
-            commandList.addAll(commands[i].getCommandList());
         }
 
         // endProgram command
-        commandList.add(EndProgramCommand.execute(newLibrary, commands[commands.length - 1].
-                getTimestamp()));
+        EndProgramCommand.execute(newLibrary, commands[commands.length - 1].
+                getTimestamp());
+
+        // Collect all outputs from JsonOutputStream
+        List<ObjectNode> finalOutputs = JsonOutputStream.getCommandOutputs().stream().collect(Collectors.toList());
 
         ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
-        objectWriter.writeValue(new File(filePathOutput), commandList);
+        objectWriter.writeValue(new File(filePathOutput), finalOutputs);
         System.out.println();
     }
 }

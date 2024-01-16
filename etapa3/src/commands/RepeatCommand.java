@@ -1,12 +1,11 @@
 package commands;
 
 
-import audioFiles.Library;
-import audioFiles.Podcast;
-import audioFiles.Song;
+import stream.JsonOutputStream;
+import audiofiles.Library;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import designPatterns.commandPattern.Command;
+import designpatterns.commandPattern.Command;
 import main.InputCommands;
 import users.User;
 
@@ -95,6 +94,7 @@ public class RepeatCommand implements Command {
                 .put("timestamp", command.getTimestamp())
                 .put("message", message);
 
-        command.getCommandList().add(commandJson);
+        // add the command to the list
+        JsonOutputStream.getCommandOutputs().add(commandJson);
     }
 }

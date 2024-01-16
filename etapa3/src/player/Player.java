@@ -1,12 +1,12 @@
 package player;
 
-import audioFiles.Song;
-import audioFiles.AudioFile;
-import audioFiles.Album;
-import audioFiles.Playlist;
-import audioFiles.Podcast;
+import audiofiles.Song;
+import audiofiles.AudioFile;
+import audiofiles.Album;
+import audiofiles.Playlist;
+import audiofiles.Podcast;
 import fileio.input.EpisodeInput;
-import audioFiles.Library;
+import audiofiles.Library;
 
 import users.Artist;
 import users.Host;

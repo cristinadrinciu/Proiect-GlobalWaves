@@ -1,15 +1,16 @@
 package commands;
 
+import stream.JsonOutputStream;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import designPatterns.commandPattern.Command;
+import designpatterns.commandPattern.Command;
 import fileio.input.EpisodeInput;
 import main.InputCommands;
 import users.Host;
-import audioFiles.Library;
-import audioFiles.Podcast;
+import audiofiles.Library;
+import audiofiles.Podcast;
 
 import java.util.ArrayList;
 
@@ -89,6 +90,6 @@ public class ShowPodcasts implements Command {
                 .set("result", resultsArray);
 
         // Add the commandJson to the commandList
-        command.getCommandList().add(commandJson);
+        JsonOutputStream.getCommandOutputs().add(commandJson);
     }
 }

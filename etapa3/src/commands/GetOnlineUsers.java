@@ -1,13 +1,14 @@
 package commands;
 
-import audioFiles.Library;
+import stream.JsonOutputStream;
+import audiofiles.Library;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import designPatterns.commandPattern.Command;
+import designpatterns.commandPattern.Command;
 import main.InputCommands;
-import platformData.OnlineUsers;
+import platformdata.OnlineUsers;
 import users.User;
 
 import java.util.ArrayList;
@@ -65,6 +66,6 @@ public class GetOnlineUsers implements Command {
                 .set("result", resultsArray);
 
         // Add the commandJson to the commandList
-        command.getCommandList().add(commandJson);
+        JsonOutputStream.addJsonNode(commandJson);
     }
 }

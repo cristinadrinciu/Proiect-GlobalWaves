@@ -1,7 +1,7 @@
 package pages;
 
-import pageContent.Announcement;
-import audioFiles.Podcast;
+import pagecontent.Announcement;
+import audiofiles.Podcast;
 import fileio.input.EpisodeInput;
 import users.Host;
 

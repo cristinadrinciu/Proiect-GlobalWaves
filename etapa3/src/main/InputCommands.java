@@ -1,9 +1,9 @@
 package main;
 
-import audioFiles.Library;
-import audioFiles.Song;
+import audiofiles.Library;
+import audiofiles.Song;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import designPatterns.commandPattern.Command;
+import designpatterns.commandPattern.Command;
 import commands.*;
 import fileio.input.EpisodeInput;
 import fileio.input.Filter;

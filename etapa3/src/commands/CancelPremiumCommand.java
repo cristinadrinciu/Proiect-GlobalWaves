@@ -1,10 +1,11 @@
 package commands;
 
-import audioFiles.Library;
-import audioFiles.Song;
+import stream.JsonOutputStream;
+import audiofiles.Library;
+import audiofiles.Song;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import designPatterns.commandPattern.Command;
+import designpatterns.commandPattern.Command;
 import main.InputCommands;
 import users.Artist;
 import users.User;
@@ -89,6 +90,8 @@ public class CancelPremiumCommand implements Command {
                 .put("user", command.getUsername())
                 .put("timestamp", command.getTimestamp())
                 .put("message", message);
-        command.getCommandList().add(commandJson);
+
+        // add the command to the list of commands
+        JsonOutputStream.getCommandOutputs().add(commandJson);
     }
 }

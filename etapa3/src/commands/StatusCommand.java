@@ -1,12 +1,10 @@
 package commands;
 
-import audioFiles.Library;
-import audioFiles.Playlist;
-import audioFiles.Podcast;
-import audioFiles.Song;
+import stream.JsonOutputStream;
+import audiofiles.Library;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import designPatterns.commandPattern.Command;
+import designpatterns.commandPattern.Command;
 import main.InputCommands;
 import player.Player;
 import users.User;
@@ -115,6 +113,6 @@ public class StatusCommand implements Command {
         commandJson.set("stats", statsNode);
 
         // Add the commandJson to the commandList
-        command.getCommandList().add(commandJson);
+        JsonOutputStream.getCommandOutputs().add(commandJson);
     }
 }

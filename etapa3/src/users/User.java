@@ -1,18 +1,18 @@
 package users;
 
-import audioFiles.AudioFile;
-import audioFiles.Library;
-import audioFiles.Song;
-import audioFiles.Playlist;
+import audiofiles.AudioFile;
+import audiofiles.Library;
+import audiofiles.Song;
+import audiofiles.Playlist;
 import notification.Notification;
-import designPatterns.observer.Observer;
+import designpatterns.observer.Observer;
 import pages.LikedContentPage;
 import player.Player;
 import pages.HomePage;
 import pages.Page;
 import statistics.StatisticsUser;
-import designPatterns.visitorPattern.Visitable;
-import designPatterns.visitorPattern.Visitor;
+import designpatterns.visitorPattern.Visitable;
+import designpatterns.visitorPattern.Visitor;
 
 import java.util.ArrayList;
 

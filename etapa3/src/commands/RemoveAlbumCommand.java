@@ -1,18 +1,19 @@
 package commands;
 
-import audioFiles.Album;
-import audioFiles.Library;
-import audioFiles.Playlist;
-import audioFiles.Song;
+import stream.JsonOutputStream;
+import audiofiles.Album;
+import audiofiles.Library;
+import audiofiles.Playlist;
+import audiofiles.Song;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import designPatterns.commandPattern.Command;
+import designpatterns.commandPattern.Command;
 import main.InputCommands;
-import platformData.OnlineUsers;
+import platformdata.OnlineUsers;
 import player.Player;
 
-import platformData.PublicAlbums;
-import platformData.PublicPlaylists;
+import platformdata.PublicAlbums;
+import platformdata.PublicPlaylists;
 import users.Artist;
 import users.User;
 
@@ -199,8 +200,8 @@ public class RemoveAlbumCommand implements Command {
             // check if any user has this album loaded in the player
             for (User user : library.getUsers()) {
                 Player player = user.getPlayer();
-                if (player.loadedItem != null &&
-                        player.loadedItem.getType().equals("album")) {
+                if (player.loadedItem != null
+                        && player.loadedItem.getType().equals("album")) {
                     if (deleteAlbum.getName().equals(((Album) player.loadedItem).getName())) {
                         // cannot delete the album
                         return false;
@@ -209,7 +210,7 @@ public class RemoveAlbumCommand implements Command {
 
                 // check if any user has a song from this album in the player
                 if (player.loadedItem != null
-                    &&player.playingNow.getType().equals("song")) {
+                    && player.playingNow.getType().equals("song")) {
                     if (((Song) player.playingNow).getAlbum().equals(deleteAlbum.getName())) {
                         // cannot delete the album
                         return false;
@@ -218,7 +219,7 @@ public class RemoveAlbumCommand implements Command {
 
                 // check if anu user has playlist loaded that contains a song from this album
                 if (player.loadedItem != null
-                    &&player.loadedItem.getType().equals("playlist")) {
+                    && player.loadedItem.getType().equals("playlist")) {
                     for (Song song : ((Playlist) player.loadedItem).getSongs()) {
                         if (song.getAlbum().equals(deleteAlbum.getName())) {
                             // cannot delete the album
@@ -261,6 +262,7 @@ public class RemoveAlbumCommand implements Command {
                 .put("timestamp", command.getTimestamp())
                 .put("message", message);
 
-        command.getCommandList().add(commandJson);
+        // add the command to the JsonStream
+        JsonOutputStream.getCommandOutputs().add(commandJson);
     }
 }

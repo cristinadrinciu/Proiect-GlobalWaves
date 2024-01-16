@@ -1,19 +1,20 @@
 package commands;
-import audioFiles.Album;
-import audioFiles.AudioFile;
-import audioFiles.Library;
-import audioFiles.Playlist;
-import audioFiles.Podcast;
-import audioFiles.Song;
+import stream.JsonOutputStream;
+import audiofiles.Album;
+import audiofiles.AudioFile;
+import audiofiles.Library;
+import audiofiles.Playlist;
+import audiofiles.Podcast;
+import audiofiles.Song;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import designPatterns.commandPattern.Command;
+import designpatterns.commandPattern.Command;
 import fileio.input.Filter;
 import main.InputCommands;
 
-import platformData.PublicAlbums;
+import platformdata.PublicAlbums;
 import users.Artist;
 import users.Host;
 import users.User;
@@ -411,7 +412,7 @@ public class SearchCommand implements Command {
                         + size + " results")
                 .set("results", results);
 
-        command.getCommandList().add(commandJson);
+        JsonOutputStream.getCommandOutputs().add(commandJson);
     }
 }
 

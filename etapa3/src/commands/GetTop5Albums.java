@@ -1,14 +1,15 @@
 package commands;
 
-import audioFiles.Album;
-import audioFiles.Library;
+import stream.JsonOutputStream;
+import audiofiles.Album;
+import audiofiles.Library;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import designPatterns.commandPattern.Command;
+import designpatterns.commandPattern.Command;
 import main.InputCommands;
-import platformData.PublicAlbums;
+import platformdata.PublicAlbums;
 import java.util.ArrayList;
 
 public class GetTop5Albums implements Command {
@@ -102,6 +103,6 @@ public class GetTop5Albums implements Command {
                 .set("result", resultsArray);
 
         // Add the commandJson to the commandList
-        command.getCommandList().add(commandJson);
+        JsonOutputStream.getCommandOutputs().add(commandJson);
     }
 }

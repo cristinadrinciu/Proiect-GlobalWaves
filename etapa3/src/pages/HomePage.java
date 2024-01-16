@@ -1,7 +1,7 @@
 package pages;
 
-import audioFiles.Playlist;
-import audioFiles.Song;
+import audiofiles.Playlist;
+import audiofiles.Song;
 
 import java.util.ArrayList;
 

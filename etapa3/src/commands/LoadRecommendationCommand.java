@@ -1,12 +1,10 @@
 package commands;
 
-import audioFiles.Library;
-import audioFiles.Song;
-import audioFiles.Playlist;
-
+import stream.JsonOutputStream;
+import audiofiles.Library;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import designPatterns.commandPattern.Command;
+import designpatterns.commandPattern.Command;
 import main.InputCommands;
 import users.User;
 
@@ -72,6 +70,7 @@ public class LoadRecommendationCommand implements Command {
                 .put("user", command.getUsername())
                 .put("timestamp", command.getTimestamp())
                 .put("message", message);
-        command.getCommandList().add(commandJson);
+
+        JsonOutputStream.getCommandOutputs().add(commandJson);
     }
 }

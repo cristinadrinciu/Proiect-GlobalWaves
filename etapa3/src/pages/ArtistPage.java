@@ -1,8 +1,8 @@
 package pages;
 
-import audioFiles.Album;
-import pageContent.Event;
-import pageContent.Merch;
+import audiofiles.Album;
+import pagecontent.Event;
+import pagecontent.Merch;
 import users.Artist;
 
 import java.util.ArrayList;

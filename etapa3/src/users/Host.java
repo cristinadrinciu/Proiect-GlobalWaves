@@ -1,13 +1,13 @@
 package users;
 
-import designPatterns.observer.Observer;
-import designPatterns.observer.Subject;
-import pageContent.Announcement;
-import audioFiles.Podcast;
+import designpatterns.observer.Observer;
+import designpatterns.observer.Subject;
+import pagecontent.Announcement;
+import audiofiles.Podcast;
 import pages.HostPage;
 import statistics.HostStatistics;
-import designPatterns.visitorPattern.Visitable;
-import designPatterns.visitorPattern.Visitor;
+import designpatterns.visitorPattern.Visitable;
+import designpatterns.visitorPattern.Visitor;
 
 import java.util.ArrayList;
 
@@ -126,7 +126,7 @@ public class Host extends User implements Subject, Visitable {
     }
 
     /**
-     * @param observer the designPatterns.observer to be added to the list of subscribers
+     * @param observer the designpatterns.observer to be added to the list of subscribers
      */
     @Override
     public void addObserver(final Observer observer) {

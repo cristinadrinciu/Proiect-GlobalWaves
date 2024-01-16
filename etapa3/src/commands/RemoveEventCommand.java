@@ -1,12 +1,13 @@
 package commands;
 
+import stream.JsonOutputStream;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import designPatterns.commandPattern.Command;
+import designpatterns.commandPattern.Command;
 import main.InputCommands;
 import users.Artist;
-import pageContent.Event;
-import audioFiles.Library;
+import pagecontent.Event;
+import audiofiles.Library;
 import users.User;
 
 public class RemoveEventCommand implements Command {
@@ -97,6 +98,6 @@ public class RemoveEventCommand implements Command {
                 .put("timestamp", command.getTimestamp())
                 .put("message", message);
 
-        command.getCommandList().add(commandJson);
+        JsonOutputStream.getCommandOutputs().add(commandJson);
     }
 }

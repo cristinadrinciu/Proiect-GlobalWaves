@@ -1,12 +1,13 @@
 package commands;
 
-import audioFiles.Library;
-import audioFiles.Song;
+import stream.JsonOutputStream;
+import audiofiles.Library;
+import audiofiles.Song;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import designPatterns.commandPattern.Command;
+import designpatterns.commandPattern.Command;
 import main.InputCommands;
 
 import java.util.ArrayList;
@@ -100,6 +101,6 @@ public class GetTop5Songs implements Command {
                 .set("result", resultsArray);
 
         // Add the commandJson to the commandList
-        command.getCommandList().add(commandJson);
+        JsonOutputStream.getCommandOutputs().add(commandJson);
     }
 }

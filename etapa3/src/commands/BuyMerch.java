@@ -1,11 +1,12 @@
 package commands;
 
-import audioFiles.Library;
+import stream.JsonOutputStream;
+import audiofiles.Library;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import designPatterns.commandPattern.Command;
+import designpatterns.commandPattern.Command;
 import main.InputCommands;
-import pageContent.Merch;
+import pagecontent.Merch;
 import pages.ArtistPage;
 import users.Artist;
 import users.User;
@@ -84,6 +85,7 @@ public class BuyMerch implements Command {
                 .put("user", command.getUsername())
                 .put("timestamp", command.getTimestamp())
                 .put("message", message);
-        command.getCommandList().add(commandJson);
+
+        JsonOutputStream.getCommandOutputs().add(commandJson);
     }
 }
