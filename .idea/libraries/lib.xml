@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/code/lib/lombok.jar!/" />
+      <root url="jar://$PROJECT_DIR$/code/lib/jackson-core-2.13.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/code/lib/jackson-annotations-2.13.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/code/lib/jackson-databind-2.13.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/code/lib/checkstyle-8.36.2-all.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
